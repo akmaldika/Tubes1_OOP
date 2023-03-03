@@ -13,6 +13,7 @@ class Card : public Valuable {
 
     public: 
     // Constructor
+        Card();
         Card(int value, string color); 
         Card(string ability);
 

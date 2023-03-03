@@ -1,5 +1,12 @@
 #include "../header/Card.hpp"
 
+Card::Card(){
+    this->valueCard = 0;
+    this->color="unknown";
+    this->category = "unknown";
+    this->ability = "unknown";
+}
+
 Card::Card(int value, string color){
     this->valueCard = value;
     this->color = color;

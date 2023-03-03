@@ -7,14 +7,14 @@ Combo::Combo(vector<Card> combination){
     this->type = "unknown";
 }
 
-void setCombinationType(){
+void Combo::setComboType(){
     // Mencari jenis combinasi
 
 }
 
 double Combo::value(){
     if (this->type == "unknown"){
-        setCombinationType();
+        setComboType();
     }
     if (this->type == "Pair"){
 

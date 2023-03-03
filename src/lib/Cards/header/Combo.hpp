@@ -10,11 +10,10 @@ class Combo: public Valuable{
     private:
         vector<Card> combination;
         string type;
-        static map<string, double> threshold;
 
     public:
         Combo(vector<Card> combination);
-        void setCombinationType();
+        void setComboType();
         double value();
 };
 
