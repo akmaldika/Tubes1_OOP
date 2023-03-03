@@ -1,19 +1,17 @@
-#include "DeckCard.hpp"
-
-int DeckCard::deckCardCount = 0;
+#include "../header/DeckCard.hpp"
 
 DeckCard::DeckCard(vector<Card> deckCard) {
     this->deckCard = deckCard;
-    deckCardCount = deckCard.size();
+    this->deckCardCount = deckCard.size();
 }
 
 DeckCard::DeckCard(const DeckCard& deckCard) {
     this->deckCard = deckCard.deckCard;
-    deckCardCount = deckCard.deckCard.size();
+    this->deckCardCount = deckCard.deckCard.size();
 }
 
 DeckCard::~DeckCard() {
-    deckCardCount = 0;
+    this->deckCard.clear();
 }
 
 void DeckCard::setDeckCard(vector<Card> deckCard) {
@@ -26,23 +24,29 @@ vector<Card> DeckCard::getDeckCard() {
 }
 
 int DeckCard::getDeckCardCount() {
-    return deckCardCount;
+    return this->deckCardCount;
 }
 
 DeckCard& DeckCard::operator+(Card card) {
     this->deckCard.push_back(card);
-    deckCardCount++;
+    this->deckCardCount++;
     return *this;
 }
 
 DeckCard& DeckCard::operator-(Card card) {
     for (int i = 0; i < deckCard.size(); i++) {
-        if (deckCard[i].getAbility() == card.getAbility() && deckCard[i].getColor() == card.getColor() && deckCard[i].getCategory() == card.getCategory() && deckCard[i].value() == card.value()) {
+        if (deckCard[i] == card) {
             deckCard.erase(deckCard.begin() + i);
-            deckCardCount--;
+            this->deckCardCount--;
             break;
         }
     }
+    return *this;
+}
+
+DeckCard& DeckCard::operator=(const DeckCard& deckCard) {
+    this->deckCard = deckCard.deckCard;
+    this->deckCardCount = deckCard.deckCard.size();
     return *this;
 }
 

@@ -1,19 +1,17 @@
-#include "TableCard.hpp"
-
-int TableCard::tableCardCount = 0;
+#include "../header/TableCard.hpp"
 
 TableCard::TableCard(vector<Card> tableCard) {
     this->tableCard = tableCard;
-    tableCardCount = tableCard.size();
+    this->tableCardCount = tableCard.size();
 }
 
 TableCard::TableCard(const TableCard& tableCard) {
     this->tableCard = tableCard.tableCard;
-    tableCardCount = tableCard.tableCard.size();
+    this->tableCardCount = tableCard.tableCard.size();
 }
 
 TableCard::~TableCard() {
-    tableCardCount = 0;
+    this->tableCardCount = 0;
 }
 
 void TableCard::setTableCard(vector<Card> tableCard) {
@@ -26,23 +24,29 @@ vector<Card> TableCard::getTableCard() {
 }
 
 int TableCard::getTableCardCount() {
-    return tableCardCount;
+    return this->tableCardCount;
 }
 
 TableCard& TableCard::operator+(Card card) {
     this->tableCard.push_back(card);
-    tableCardCount++;
+    this->tableCardCount++;
     return *this;
 }
 
 TableCard& TableCard::operator-(Card card) {
     for (int i = 0; i < tableCard.size(); i++) {
-        if (tableCard[i].getAbility() == card.getAbility() && tableCard[i].getColor() == card.getColor() && tableCard[i].getCategory() == card.getCategory() && tableCard[i].value() == card.value()) {
+        if (tableCard[i] == card) {
             tableCard.erase(tableCard.begin() + i);
-            tableCardCount--;
+            this->tableCardCount--;
             break;
         }
     }
+    return *this;
+}
+
+TableCard& TableCard::operator=(const TableCard& tableCard) {
+    this->tableCard = tableCard.tableCard;
+    this->tableCardCount = tableCard.tableCard.size();
     return *this;
 }
 
