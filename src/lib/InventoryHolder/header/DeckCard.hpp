@@ -15,6 +15,16 @@ class DeckCard : public InventoryHolder{
 
     public:
         // Constructor
+        /*
+            ini aku bingung, kalo gasalah card dalam decknya tuh
+            bisa digenerate random atau dari .txt kan yah
+
+            buat skrg aku bikin dulu default constnya (aku anggap di
+            generate random dulu) biar gamestate ga error aja sih
+
+            -Naufal
+        */
+        DeckCard(); 
         DeckCard(vector<Card> deckCard);
 
         // Copy Constructor
@@ -33,6 +43,12 @@ class DeckCard : public InventoryHolder{
         DeckCard& operator-(Card card);                 // Operator Overloading (remove card)
         DeckCard& operator=(const DeckCard& deckCard);  // Operator Overloading (assignment)
         void printCard();
+
+        /*
+            ambil kartu dari deck, terus dihapus dari deck
+            buat pembagian kartu ke pemain sama ke table.
+        */
+        Card takeCard();
 };
 
 #endif

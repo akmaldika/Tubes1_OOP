@@ -14,7 +14,10 @@ class TableCard : public InventoryHolder{
         int tableCardCount;
 
         // Constructor
+        TableCard();
+
         TableCard(vector<Card> tableCard);
+
 
         // Copy Constructor
         TableCard(const TableCard& tableCard);
