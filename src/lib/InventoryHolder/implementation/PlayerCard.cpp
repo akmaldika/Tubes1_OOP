@@ -1,23 +1,23 @@
-#include "PlayerCard.hpp"
+#include "../header/PlayerCard.hpp"
 
-int PlayerCard::playerCardCount = 0;
-
-PlayerCard::PlayerCard(Card card1, Card card2, string owner) {
+PlayerCard::PlayerCard(Card card1, Card card2, Card abilityCard, string owner) {
     this->playerCard.first = card1;
     this->playerCard.second = card2;
+    this->abilityCard = abilityCard;
     this->owner = owner;
-    playerCardCount = 2;
+    this->playerCardCount = 2;
 }
 
 PlayerCard::PlayerCard(const PlayerCard& playerCard) {
     this->playerCard.first = playerCard.playerCard.first;
     this->playerCard.second = playerCard.playerCard.second;
+    this->abilityCard = playerCard.abilityCard;
     this->owner = playerCard.owner;
-    playerCardCount = 2;
+    this->playerCardCount = 2;
 }
 
 PlayerCard::~PlayerCard() {
-    playerCardCount = 0;
+
 }
 
 void PlayerCard::setFirstPlayerCard(Card card) {
@@ -26,6 +26,10 @@ void PlayerCard::setFirstPlayerCard(Card card) {
 
 void PlayerCard::setSecondPlayerCard(Card card) {
     this->playerCard.second = card;
+}
+
+void PlayerCard::setAbilityCard(Card card) {
+    this->abilityCard = card;
 }
 
 void PlayerCard::setOwner(string owner) {
@@ -40,33 +44,46 @@ Card PlayerCard::getSecondPlayerCard() {
     return this->playerCard.second;
 }
 
+Card PlayerCard::getAbilityCard() {
+    return this->abilityCard;
+}
+
 string PlayerCard::getOwner() {
     return this->owner;
 }
 
 int PlayerCard::getPlayerCardCount() {
-    return playerCardCount;
+    return this->playerCardCount;
 }
 
 PlayerCard& PlayerCard::operator+(Card card) {
     if (playerCard.first.getCategory() == "unknown") {
         playerCard.first = card;
+        this->playerCardCount++;
     } else if (playerCard.second.getCategory() == "unknown") {
         playerCard.second = card;
-    } else {
-        cout << "Player Card is Full" << endl;
+        this->playerCardCount++;
     }
     return *this;
 }
 
 PlayerCard& PlayerCard::operator-(Card card) {
-    if (playerCard.first.getCategory() == card.getCategory() && playerCard.first.getColor() == card.getColor() && playerCard.first.getAbility() == card.getAbility()) {
+    if (this->playerCard.first == card) {
         playerCard.first = Card();
-    } else if (playerCard.second.getCategory() == card.getCategory() && playerCard.second.getColor() == card.getColor() && playerCard.second.getAbility() == card.getAbility()) {
+        this->playerCardCount--;
+    } else if (this->playerCard.second == card) {
         playerCard.second = Card();
-    } else {
-        cout << "Card not found" << endl;
+        this->playerCardCount--;
     }
+    return *this;
+}
+
+PlayerCard& PlayerCard::operator=(const PlayerCard& playerCard) {
+    this->playerCard.first = playerCard.playerCard.first;
+    this->playerCard.second = playerCard.playerCard.second;
+    this->abilityCard = playerCard.abilityCard;
+    this->owner = playerCard.owner;
+    this->playerCardCount = 2;
     return *this;
 }
 
@@ -82,6 +99,11 @@ void PlayerCard::printCard() {
     cout << "    Category: " << playerCard.second.getCategory() << endl;
     cout << "    Color: " << playerCard.second.getColor() << endl;
     cout << "    Ability: " << playerCard.second.getAbility() << endl;
-    cout << "    Value: " << playerCard.second.value() << endl;
+    cout << "    Value: " << playerCard.second.value() << endl << endl;
+    cout << "  Ability Card: " << endl;
+    cout << "    Category: " << abilityCard.getCategory() << endl;
+    cout << "    Color: " << abilityCard.getColor() << endl;
+    cout << "    Ability: " << abilityCard.getAbility() << endl;
+    cout << "    Value: " << abilityCard.value() << endl;
     cout << endl;
 }

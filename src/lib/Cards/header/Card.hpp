@@ -13,6 +13,7 @@ class Card : public Valuable {
 
     public: 
     // Constructor
+        Card();
         Card(int value, string color); 
         Card(string ability);
 
@@ -21,7 +22,7 @@ class Card : public Valuable {
         string getCategory();
         string getAbility();
         double value();
-
+        bool operator==(Card& card);
 };
 
 #endif

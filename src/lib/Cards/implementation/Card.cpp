@@ -1,5 +1,12 @@
 #include "../header/Card.hpp"
 
+Card::Card(){
+    this->valueCard = 0;
+    this->color="unknown";
+    this->category = "unknown";
+    this->ability = "unknown";
+}
+
 Card::Card(int value, string color){
     this->valueCard = value;
     this->color = color;
@@ -28,4 +35,11 @@ string Card::getAbility(){
 
 double Card::value(){
     return this->valueCard;
+}
+
+bool Card::operator==(Card& card){
+    if(this->color == card.color && this->category == card.category && this->ability == card.ability && this->valueCard == card.valueCard){
+        return true;
+    }
+    return false;
 }

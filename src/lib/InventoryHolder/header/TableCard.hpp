@@ -11,7 +11,7 @@ class TableCard : public InventoryHolder{
     public:
         // Attribute
         vector<Card> tableCard;
-        static int tableCardCount;
+        int tableCardCount;
 
         // Constructor
         TableCard(vector<Card> tableCard);
@@ -25,11 +25,12 @@ class TableCard : public InventoryHolder{
         // Setter and Getter
         void setTableCard(vector<Card> tableCard);
         vector<Card> getTableCard();
-        static int getTableCardCount();
+        int getTableCardCount();
 
         // Method
-        TableCard& operator+(Card card);     // Operator Overloading (add card)
-        TableCard& operator-(Card card);     // Operator Overloading (remove card)
+        TableCard& operator+(Card card);                    // Operator Overloading (add card)
+        TableCard& operator-(Card card);                    // Operator Overloading (remove card)
+        TableCard& operator=(const TableCard& tableCard);   // Operator Overloading (assignment)
         void printCard();
 };
 

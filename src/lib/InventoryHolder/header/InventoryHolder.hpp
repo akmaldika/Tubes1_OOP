@@ -6,10 +6,7 @@
 
 // Abstract Class InventoryHolder
 class InventoryHolder{
-    protected:
-        // Destructor
-        virtual ~InventoryHolder() = 0;
-
+    public:
         // Method
         virtual InventoryHolder& operator+(Card card) = 0;
         virtual InventoryHolder& operator-(Card card) = 0;
