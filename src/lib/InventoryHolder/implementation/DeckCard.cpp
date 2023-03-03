@@ -60,3 +60,12 @@ void DeckCard::printCard() {
         cout << endl;
     }
 }
+
+Card DeckCard::takeCard(){
+    Card tempCard = deckCard.back();
+
+    deckCardCount--;
+    deckCard.pop_back();
+
+    return tempCard;
+}

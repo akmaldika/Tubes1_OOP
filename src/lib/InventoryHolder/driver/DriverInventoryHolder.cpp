@@ -18,7 +18,7 @@ int main() {
         CONSTRUCTOR
     */
     // PlayerCard
-    PlayerCard playerCard(kartu1, kartu2, kartuAbility1, "Ghazi");
+    PlayerCard playerCard(kartu1, kartu2, kartuAbility1, 2);
 
     // TableCard
     vector<Card> table;
@@ -59,7 +59,7 @@ int main() {
     playerCard.setFirstPlayerCard(kartu3);
     playerCard.setSecondPlayerCard(kartu4);
     playerCard.setAbilityCard(kartuAbility2);
-    playerCard.setOwner("Akmal");
+    playerCard.setOwner(1);
     playerCard.printCard();
 
     cout << playerCard.getFirstPlayerCard().getColor() << endl;
