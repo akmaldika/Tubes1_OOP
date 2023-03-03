@@ -1,8 +1,8 @@
 #ifndef __PLAYER__
 #define __PLAYER__
 
-#include "../../Cards/header/Card.hpp"
-#include "../../Ability/Ability.hpp"
+#include "../Cards/header/Card.hpp"
+#include "../Ability/Ability.hpp"
 #include "../InventoryHolder/header/PlayerCard.hpp"
 
 #include <iostream>
@@ -19,6 +19,7 @@ class Player {
     static int playerCount;
 
     public:
+    Player(); // temp biar gameState ga error
     Player(Card card1, Card card2, Card abilityCard);
 
     // Player(string name);

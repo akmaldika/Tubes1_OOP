@@ -1,12 +1,14 @@
-#include "GameState.hpp"
+#include "../header/GameState.hpp"
 
 
 /*
     bagian ini aku gatau bisa apa ga
 */
+Player temp;
+
 vector<Card> emptyCards; // inisiasi vector kosong buat table card
                     // karena kan awalnya gaada kartu
-pair<int, Player> emptyPlayer; // inisiasi pair kosong buat turn
+pair<int, Player> emptyPlayer(0,temp); // inisiasi pair kosong buat turn
 
 GameState::GameState() 
 : CardTable(emptyCards), Turn(emptyPlayer)
@@ -17,7 +19,7 @@ GameState::GameState()
     for (int i = 0; i < 7 ; i++){
         Card card1 = deck.takeCard();
         Card card2 = deck.takeCard();
-        Card emptyAbility; // sementara aja sampai kelas ability selesai
+        Card emptyAbility("gada ability"); // sementara aja sampai kelas ability selesai
         Player tempPlayer(card1, card2, emptyAbility);
 
         AllPlayer.push_back(tempPlayer); // masukin player ke dalem array
@@ -26,7 +28,7 @@ GameState::GameState()
     Turn.first = 0;
     Turn.second = AllPlayer.front();
 
-    
+
 }
 
 int GameState::getPrize() {
@@ -41,6 +43,6 @@ TableCard GameState::getTableCard() {
     return CardTable;
 }
 
-Player GameState::getPlayer(int ID) {
+// Player GameState::getPlayer(int ID) {
     
-}
+// }

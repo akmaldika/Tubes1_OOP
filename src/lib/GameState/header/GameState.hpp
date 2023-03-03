@@ -1,7 +1,7 @@
-#include "Ability.hpp"
-#include "Player.hpp"
-#include "InventoryHolder/header/TableCard.hpp"
-#include "InventoryHolder/header/DeckCard.hpp"
+//#include "Ability.hpp"
+#include "../../Player/Player.hpp"
+#include "../../InventoryHolder/header/TableCard.hpp"
+#include "../../InventoryHolder/header/DeckCard.hpp"
 #include <vector>
 #include <iostream>
 
