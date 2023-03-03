@@ -8,11 +8,12 @@ using namespace std;
 
 // Class DeckCard
 class DeckCard : public InventoryHolder{
-    public:
+    private:
         // Attribute
         vector<Card> deckCard;
-        static int deckCardCount;
+        int deckCardCount;
 
+    public:
         // Constructor
         DeckCard(vector<Card> deckCard);
 
@@ -25,11 +26,12 @@ class DeckCard : public InventoryHolder{
         // Setter and Getter
         void setDeckCard(vector<Card> deckCard);
         vector<Card> getDeckCard();
-        static int getDeckCardCount();
+        int getDeckCardCount();
 
         // Method
-        DeckCard& operator+(Card card);     // Operator Overloading (add card)
-        DeckCard& operator-(Card card);     // Operator Overloading (remove card)
+        DeckCard& operator+(Card card);                 // Operator Overloading (add card)
+        DeckCard& operator-(Card card);                 // Operator Overloading (remove card)
+        DeckCard& operator=(const DeckCard& deckCard);  // Operator Overloading (assignment)
         void printCard();
 };
 

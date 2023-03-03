@@ -10,12 +10,13 @@ using namespace std;
 class PlayerCard : public InventoryHolder{
     private:
         pair<Card, Card> playerCard;
+        Card abilityCard;
         string owner;
-        static int playerCardCount;
+        int playerCardCount;
 
     public:
         // Constructor
-        PlayerCard(Card card1, Card card2, string owner);
+        PlayerCard(Card card1, Card card2, Card abilityCard, string owner);
 
         // Copy Constructor
         PlayerCard(const PlayerCard& playerCard);
@@ -26,15 +27,18 @@ class PlayerCard : public InventoryHolder{
         // Setter and Getter
         void setFirstPlayerCard(Card card);
         void setSecondPlayerCard(Card card);
+        void setAbilityCard(Card card);
         void setOwner(string owner);
         Card getFirstPlayerCard();
         Card getSecondPlayerCard();
+        Card getAbilityCard();
         string getOwner();
-        static int getPlayerCardCount();
+        int getPlayerCardCount();
 
         // Method
-        PlayerCard& operator+(Card card);    // Operator Overloading (add card)
-        PlayerCard& operator-(Card card);    // Operator Overloading (remove card)
+        PlayerCard& operator+(Card card);                       // Operator Overloading (add card)
+        PlayerCard& operator-(Card card);                       // Operator Overloading (remove card)
+        PlayerCard& operator=(const PlayerCard& playerCard);    // Operator Overloading (assignment)
         void printCard();
 };
 
