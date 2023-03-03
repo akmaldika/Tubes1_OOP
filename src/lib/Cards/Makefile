@@ -10,21 +10,21 @@ LINKERFLAG = -lm
 
 SRCDCARD := driver/driverCard.cpp
 LIBDCARD := implementation/Card.cpp
-LIBDCOMB := implementation/Combination.cpp
-SRCDCOMB := driver/driverCombination.cpp
+LIBDCOMB := implementation/Combo.cpp
+SRCDCOMB := driver/driverCombo.cpp
 OUTPUTCARD := ../../../bin/card
-OUTPUTCOMB := ../../../bin/combination 
+OUTPUTCOMB := ../../../bin/combo
 
 card: 
 	@echo "Compiling card driver.."
 	$(CPP) $(SRCDCARD) $(LIBDCARD) -o $(OUTPUTCARD)
-combination: 
+combo: 
 	@echo "Compiling combination driver.."
-	$(CPP) $(SRCDCOMB) $(LIBDCOMB) -o $(OUTPUTCOMB)
+	$(CPP) $(SRCDCOMB) $(LIBDCOMB) $(LIBDCARD) -o $(OUTPUTCOMB)
 
 runcard:
 	$(OUTPUTCARD)
-runcombination:
+runcombo:
 	$(OUTPUTCOMB)
 
 cleanCard:
