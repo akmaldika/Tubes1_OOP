@@ -36,3 +36,10 @@ string Card::getAbility(){
 double Card::value(){
     return this->valueCard;
 }
+
+bool Card::operator==(Card& card){
+    if(this->color == card.color && this->category == card.category && this->ability == card.ability && this->valueCard == card.valueCard){
+        return true;
+    }
+    return false;
+}
