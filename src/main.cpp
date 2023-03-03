@@ -1,7 +1,10 @@
 #include <iostream>
+
 using namespace std;
 
-int main(){
-    cout<<"Main Program"<<endl;
+int main(int argc, char const *argv[])
+{
+    cout << "Hello OopLoverz" << endl;    
     return 0;
 }
+
