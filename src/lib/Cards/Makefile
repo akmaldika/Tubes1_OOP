@@ -29,7 +29,7 @@ runcombination:
 
 cleanCard:
 	@echo "Cleaning up card..."
-	rm -rvf card.o card
+	rm -rvf $(OUTPUTCARD)
 cleanCombination:
 	@echo "Cleaning up combination..."
-	rm -rvf combination.o combination
+	rm -rvf $(OUTPUTCOMB)
