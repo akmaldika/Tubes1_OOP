@@ -24,7 +24,9 @@ class Card : public Valuable {
         string getAbility();
         double value();
         static map<string, float> getColorFactor();
-
+        bool operator>(Card& card);
+        bool operator==(Card& card);
+        bool operator<(Card& card);
 };
 
 #endif

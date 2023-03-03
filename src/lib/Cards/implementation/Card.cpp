@@ -44,6 +44,17 @@ double Card::value(){
     return this->valueCard;
 }
 
-map<string, float> Card::getColorFactor(){
+map<string,float> Card::getColorFactor(){
     return colorFactor;
+}
+
+bool Card::operator>(Card& card){
+    return (this->value()*0.1+0.03*colorFactor[this->color]) > (card.value()*0.1+0.03*colorFactor[card.color]);
+}
+
+bool Card::operator==(Card& card){
+    return (this->color == card.color) && (this->category == card.category) && (this->ability == card.ability) && (this->valueCard == card.valueCard);
+}
+bool Card::operator<(Card& card){
+    return (this->value()*0.1+0.03*colorFactor[this->color]) < (card.value()*0.1+0.03*colorFactor[card.color]);
 }

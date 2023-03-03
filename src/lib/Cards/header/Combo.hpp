@@ -24,6 +24,9 @@ class Combo: public Valuable{
         void setComboType();
         double value();
         double basicValue();
+        bool operator>(Combo& combo);
+        bool operator==(Combo& combo);
+        bool operator<(Combo& combo);
 };
 
 

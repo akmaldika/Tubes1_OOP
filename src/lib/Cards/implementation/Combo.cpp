@@ -127,3 +127,15 @@ double Combo::basicValue(){
     }
     return basicVal;
 }
+
+bool Combo::operator>(Combo& combo){
+    return (this->value() > combo.value());
+}
+
+bool Combo::operator==(Combo& combo){
+    return (this->value() == combo.value());
+}
+
+bool Combo::operator<(Combo& combo){
+    return (this->value() < combo.value());
+}
