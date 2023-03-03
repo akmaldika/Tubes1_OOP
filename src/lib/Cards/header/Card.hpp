@@ -22,7 +22,7 @@ class Card : public Valuable {
         string getCategory();
         string getAbility();
         double value();
-
+        bool operator==(Card& card);
 };
 
 #endif
