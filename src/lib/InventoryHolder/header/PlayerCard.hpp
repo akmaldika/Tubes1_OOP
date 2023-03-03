@@ -15,7 +15,7 @@ class PlayerCard : public InventoryHolder{
 
     public:
         // Constructor
-        PlayerCard(pair<Card, Card> playerCard, string owner);
+        PlayerCard(Card card1, Card card2, string owner);
 
         // Copy Constructor
         PlayerCard(const PlayerCard& playerCard);
@@ -24,9 +24,11 @@ class PlayerCard : public InventoryHolder{
         ~PlayerCard();
 
         // Setter and Getter
-        void setPlayerCard(pair<Card, Card> playerCard);
+        void setFirstPlayerCard(Card card);
+        void setSecondPlayerCard(Card card);
         void setOwner(string owner);
-        pair<Card, Card> getPlayerCard();
+        Card getFirstPlayerCard();
+        Card getSecondPlayerCard();
         string getOwner();
         static int getPlayerCardCount();
 

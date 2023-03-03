@@ -7,11 +7,8 @@
 // Abstract Class InventoryHolder
 class InventoryHolder{
     protected:
-        // Attribute
-        vector<Card> inventory;
-
         // Destructor
-        virtual ~InventoryHolder();
+        virtual ~InventoryHolder() = 0;
 
         // Method
         virtual InventoryHolder& operator+(Card card) = 0;
