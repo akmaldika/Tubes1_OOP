@@ -6,6 +6,7 @@ int main(){
     Card kartu1;
     Card kartu2(3,"hijau");
     Card kartu3("quadruple");
+    Card kartu4(3,"hijau");
 
     cout<<"Color kartu1: "<<kartu1.getColor()<<endl;
     cout<<"Category kartu1: "<<kartu1.getCategory()<<endl;
@@ -22,6 +23,11 @@ int main(){
 
     kartu1.getColor();    
 
+    if(kartu2==kartu4){
+        cout<<"kartu pertama sama dengan kartu kedua"<<endl;
+    } else {
+        cout<<"kartu pertama tidak sama dengan kartu kedua"<<endl;
+    }
 
     return 0;
 }
