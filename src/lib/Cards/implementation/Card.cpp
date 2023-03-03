@@ -1,5 +1,7 @@
 #include "../header/Card.hpp"
 
+
+
 Card::Card(){
     this->valueCard = 0;
     this->color="unknown";
@@ -35,4 +37,8 @@ string Card::getAbility(){
 
 double Card::value(){
     return this->valueCard;
+}
+
+map<string, float> Card::getColorFactor(){
+    return colorFactor;
 }

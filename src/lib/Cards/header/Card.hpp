@@ -3,6 +3,7 @@
 
 #include "Valuable.hpp"
 #include <iostream>
+#include <map>
 using namespace std;
 class Card : public Valuable {
     private:
@@ -10,7 +11,7 @@ class Card : public Valuable {
         string color;
         string category;
         string ability;
-
+        static map<string, float> colorFactor;
     public: 
     // Constructor
         Card();
@@ -22,6 +23,7 @@ class Card : public Valuable {
         string getCategory();
         string getAbility();
         double value();
+        static map<string, float> getColorFactor();
 
 };
 
