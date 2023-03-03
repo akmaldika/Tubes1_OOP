@@ -1,6 +1,11 @@
 #include "../header/Card.hpp"
 
-
+map<string, float> Card::colorFactor{
+    {"hijau", 0},
+    {"biru", 1},
+    {"kuning", 2},
+    {"merah", 3}
+};
 
 Card::Card(){
     this->valueCard = 0;

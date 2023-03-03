@@ -5,14 +5,12 @@
 #include "Card.hpp"
 #include <vector>
 #include <set>
-#include <map>
 
 class Combo: public Valuable{
     private:
         vector<Card> combination; 
         string type;
         static map<string, float> thresholdCombo;
-        static map<string, float> colorFactor;
 
     public:
         Combo();

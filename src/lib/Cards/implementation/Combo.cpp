@@ -14,13 +14,6 @@ map<string, float> Combo::thresholdCombo {
     {"Straight Flush", 50.36}
     };
 
-map<string, float> Combo::colorFactor{
-    {"hijau", 0},
-    {"biru", 1},
-    {"kuning", 2},
-    {"merah", 3}
-};
-
 /*Non-Static*/
 Combo::Combo(){
     this->type = "unknown";
@@ -130,7 +123,7 @@ double Combo::value(){
 double Combo::basicValue(){
     double basicVal=0;
     for (int i=0; i<this->combination.size();i++){
-        basicVal+= (this->combination[i].value()*0.1+0.03*colorFactor[this->combination[i].getColor()]);
+        basicVal+= (this->combination[i].value()*0.1+0.03*Card::getColorFactor()[this->combination[i].getColor()]);
     }
     return basicVal;
 }
