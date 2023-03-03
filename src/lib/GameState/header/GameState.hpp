@@ -1,8 +1,11 @@
 #include "Ability.hpp"
 #include "Player.hpp"
 #include "InventoryHolder/header/TableCard.hpp"
+#include "InventoryHolder/header/DeckCard.hpp"
 #include <vector>
 #include <iostream>
+
+using namespace std;
 
 /*
     KELAS GAMESTATE
@@ -24,8 +27,9 @@ class GameState {
         */
         pair<int, Player> Turn;
         TableCard CardTable; // kartu di meja
+        DeckCard deck; // kartu dalam deck
 
-        const int DefaultPrize = 64;
+        const int DEFAULT_PRIZE = 64;
 
     public:
     // CONSTRUCTOR
@@ -65,6 +69,9 @@ class GameState {
         void AddCardToTable(Card cardAdded); // tambah kartu di meja
 
         void printState();
+
+        
+        
 
 
         

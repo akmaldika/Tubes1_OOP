@@ -1,10 +1,10 @@
 #include "../header/PlayerCard.hpp"
 
-PlayerCard::PlayerCard(Card card1, Card card2, Card abilityCard, string owner) {
+PlayerCard::PlayerCard(Card card1, Card card2, Card abilityCard, int ID) {
     this->playerCard.first = card1;
     this->playerCard.second = card2;
     this->abilityCard = abilityCard;
-    this->owner = owner;
+    this->ID = ID;
     this->playerCardCount = 2;
 }
 
@@ -12,7 +12,7 @@ PlayerCard::PlayerCard(const PlayerCard& playerCard) {
     this->playerCard.first = playerCard.playerCard.first;
     this->playerCard.second = playerCard.playerCard.second;
     this->abilityCard = playerCard.abilityCard;
-    this->owner = playerCard.owner;
+    this->ID = playerCard.ID;
     this->playerCardCount = 2;
 }
 
@@ -32,8 +32,8 @@ void PlayerCard::setAbilityCard(Card card) {
     this->abilityCard = card;
 }
 
-void PlayerCard::setOwner(string owner) {
-    this->owner = owner;
+void PlayerCard::setOwner(int ID) {
+    this->ID = ID;
 }
 
 Card PlayerCard::getFirstPlayerCard() {
@@ -48,8 +48,8 @@ Card PlayerCard::getAbilityCard() {
     return this->abilityCard;
 }
 
-string PlayerCard::getOwner() {
-    return this->owner;
+int PlayerCard::getOwner() {
+    return this->ID;
 }
 
 int PlayerCard::getPlayerCardCount() {
@@ -82,14 +82,14 @@ PlayerCard& PlayerCard::operator=(const PlayerCard& playerCard) {
     this->playerCard.first = playerCard.playerCard.first;
     this->playerCard.second = playerCard.playerCard.second;
     this->abilityCard = playerCard.abilityCard;
-    this->owner = playerCard.owner;
+    this->ID = playerCard.ID;
     this->playerCardCount = 2;
     return *this;
 }
 
 void PlayerCard::printCard() {
     cout << "Player Card" << endl;
-    cout << "Owner: " << owner << endl;
+    cout << "Owner ID: " << ID << endl;
     cout << "  Card 1: " << endl;
     cout << "    Category: " << playerCard.first.getCategory() << endl;
     cout << "    Color: " << playerCard.first.getColor() << endl;

@@ -1,4 +1,4 @@
-#include "GameState/GameState.hpp"
+#include "GameState/header/GameState.hpp"
 #include "InventoryHolder/header/DeckCard.hpp"
 #include <iostream>
 
@@ -14,7 +14,7 @@ class GameEngine {
     private:
         GameState gameState; // state game saat ini
         int gameCount; // counter game keberapa saat ini
-        DeckCard deck; // kartu dalam deck
+        
 
     public:
          /*
