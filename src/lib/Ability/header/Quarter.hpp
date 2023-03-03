@@ -16,14 +16,15 @@ class Quarter : public Ability
 
         // Method
 
-
-        // Setter
-        // Set Ability menjadi "Quarter"
-        void setAbility();
-
         // Method
         // menggunakan Ability jenis kartu Quarter
         void useAbility(int&);
+        void useAbility(string&);
+        void useAbility();
+        void useAbility(vector<Player>&);
+        void useAbility(pair<Card,Card>&, pair<Card,Card>);
+        void useAbility(pair<Card,Card>&, Card, Card);
+        void useAbility(Card&, Card&);        
 };
 
 #endif

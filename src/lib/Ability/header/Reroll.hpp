@@ -16,13 +16,19 @@ class Reroll : public Ability
 
         // Method
 
-        // Setter
-        // Set Ability menjadi "Reroll"
-        void setAbility();
-
         // Method
         // menggunakan Ability jenis kartu Reroll
-        void useAbility(pair<Card,Card>&);
+        // PlayerCard& = kartu player yang memiliki Reroll
+        // PlayerCard& = pair<Card,Card>
+        void useAbility(pair<Card,Card>&, pair<Card,Card>);
+        // Overload
+        void useAbility(pair<Card,Card>&, Card, Card);
+
+        void useAbility(int&);
+        void useAbility(string&);
+        void useAbility();
+        void useAbility(vector<Player>&);
+        void useAbility(Card&, Card&);
 };
 
 #endif

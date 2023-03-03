@@ -16,13 +16,17 @@ class Abilityless : public Ability
 
         // Method
 
-        // Setter
-        // Set Ability menjadi "Abilityless"
-        void setAbility();
-
         // Method
         // menggunakan Ability jenis kartu Abilityless set to Default
         void useAbility(string&);
+        
+        void useAbility();
+        void useAbility(int&);
+        void useAbility(vector<Player>&);
+        void useAbility(pair<Card,Card>&, pair<Card,Card>);
+        void useAbility(pair<Card,Card>&, Card, Card);
+        void useAbility(Card&, Card&);
+
 };
 
 #endif

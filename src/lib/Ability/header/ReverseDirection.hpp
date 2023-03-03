@@ -15,14 +15,16 @@ class ReverseDirection : public Ability
         ReverseDirection();
 
         // Method
-
-        // Setter
-        // Set Ability menjadi "ReverseDirection"
-        void setAbility();
-
-        // Method
         // menggunakan Ability jenis kartu ReverseDirection
+        // Urutan pemain menjadi terbalik
+        void useAbility(vector<Player>&);
+
+        void useAbility(int&);
+        void useAbility(string&);
         void useAbility();
+        void useAbility(pair<Card,Card>&, pair<Card,Card>);
+        void useAbility(pair<Card,Card>&, Card, Card);
+        void useAbility(Card&, Card&);
 };
 
 #endif
