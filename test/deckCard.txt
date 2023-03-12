@@ -1,0 +1,4 @@
+1 Merah 
+2 Kuning 
+3 Hijau 
+4 Biru 
