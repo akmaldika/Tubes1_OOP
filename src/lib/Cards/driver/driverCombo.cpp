@@ -23,6 +23,7 @@ int main(){
     cout<<"nOfKind: "<<combination1.getNOfKind()<<endl;
     cout<<combination1.value()<<endl;
     cout<<"Type: "<<combination1.getType()<<endl;
+    combination1.print();
 
     if (combination1>combination2){
         cout<< "Kombinasi pertama lebih besar daripada kombinasi kedua"<<endl;
