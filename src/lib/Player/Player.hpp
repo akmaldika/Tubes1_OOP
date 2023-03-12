@@ -2,13 +2,13 @@
 #define __PLAYER__
 
 #include "../Cards/header/Card.hpp"
-// #include "../Ability/header/Ability.hpp"
+#include "../Ability/Ability.hpp"
 #include "../InventoryHolder/header/PlayerCard.hpp"
 
 #include <iostream>
 using namespace std;
 
-class Player {
+class Player : public Ability {
     private:
     int ID; // id satu player yang diambil dari playerCount -Naufal
     string name;
@@ -30,16 +30,13 @@ class Player {
 
     void setPlayerPoint(int point);
     int getPlayerPoint();
+    void status() const;
 
     // void addOne(Card one);
     // void addTwo(Card two);
-    Card getCardOne();
-    Card getCardTwo();
-
-    void pointDouble();
-    void pointHalf();
-    void playerNext();
-    void highestCombination();
+    bool operator>(Player& point);
+    bool operator==(Player& point);
+    bool operator<(Player& point);
 };
 
 #endif

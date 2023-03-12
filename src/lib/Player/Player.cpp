@@ -12,8 +12,7 @@ Player::Player(Card card1, Card card2, Card abilityCard)
 
     ID = playerCount;
     name = "NaN";
-    point = 0;
-    
+    point = 0;   
 }
 void Player::setPlayerName(string name){
     this->name = name;
@@ -30,8 +29,19 @@ void Player::setPlayerPoint(int p){
 int Player::getPlayerPoint(){
     return point;
 }
-
-template <class T>
-T highestCombination(int card){
-    
+void Player::status() const{
+    cout << "Status Player" << endl;
+    cout << "ID : " << this->ID << endl;
+    cout << "Nama : " << this->name << endl;
+    cout << "Point : " << this->point << endl;
+    cout << endl;
+}
+bool Player::operator>(Player& enemy){
+    return (getPlayerPoint() > enemy.getPlayerPoint());
+}
+bool Player::operator==(Player& enemy){
+    return (getPlayerPoint() == enemy.getPlayerPoint())
+}
+bool Player::operator<(Player& enemy){
+    return (getPlayerPoint() < enemy.getPlayerPoint());
 }
