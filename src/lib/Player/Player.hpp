@@ -8,7 +8,7 @@
 #include <iostream>
 using namespace std;
 
-class Player : public Ability {
+class Player : public AbilityCard {
     private:
     int ID; // id satu player yang diambil dari playerCount -Naufal
     string name;
@@ -28,6 +28,7 @@ class Player : public Ability {
 
     void setPlayerPoint(int point);
     int getPlayerPoint();
+
     void status() const;
 
     // void addOne(Card one);

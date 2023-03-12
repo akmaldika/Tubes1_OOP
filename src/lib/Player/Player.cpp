@@ -6,13 +6,12 @@ int Player::playerCount = 0;
 
 // construktor
 Player::Player(Card card1, Card card2, Card abilityCard) 
-: MyCard(card1, card2, abilityCard, playerCount+1)   
+: MyCard(card1, card2, abilityCard, (playerCount%7)+1)
 {  
-    playerCount++;
-
-    ID = playerCount;
+    ID = (playerCount%7)+1;
     name = "NaN";
     point = 0;   
+    playerCount++;
 }
 void Player::setPlayerName(string name){
     this->name = name;
@@ -31,6 +30,8 @@ void Player::status() const{
     cout << "ID : " << this->ID << endl;
     cout << "Nama : " << this->name << endl;
     cout << "Point : " << this->point << endl;
+    cout << "Kartu 1 : " << (this->MyCard)->getFirstPlayerCard().getColor() << endl;
+    cout << "Kartu 2 : " << (this->MyCard).getSecondPlayerCard().getColor() << endl;
     cout << endl;
 }
 bool Player::operator>(Player& enemy){
