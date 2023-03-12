@@ -28,6 +28,7 @@ class Player : public Ability {
 
     void setPlayerPoint(int point);
     int getPlayerPoint();
+    void status() const;
 
     // void addOne(Card one);
     // void addTwo(Card two);
