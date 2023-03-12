@@ -49,7 +49,7 @@ int main() {
     playerCard.setFirstPlayerCard(kartu3);
     playerCard.setSecondPlayerCard(kartu4);
     playerCard.setAbilityCard(kartuAbility2);
-    playerCard.setOwner(2);
+    playerCard.setID(2);
     playerCard.printCard();
 
     cout << playerCard.getFirstPlayerCard().getColor() << endl;

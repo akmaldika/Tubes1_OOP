@@ -1,7 +1,7 @@
 #ifndef __TABLE_CARD_HPP__
 #define __TABLE_CARD_HPP__
 
-#include <iostream>
+#include <vector>
 #include "InventoryHolder.hpp"
 
 using namespace std;

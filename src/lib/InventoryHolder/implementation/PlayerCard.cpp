@@ -32,7 +32,7 @@ void PlayerCard::setAbilityCard(Card card) {
     this->abilityCard = card;
 }
 
-void PlayerCard::setOwner(int ID) {
+void PlayerCard::setID(int ID) {
     this->ID = ID;
 }
 
