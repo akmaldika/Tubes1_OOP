@@ -109,7 +109,7 @@ void GameState::NextTurn(){
 }
 
 void GameState::AddCardToTable(Card cardAdded){
-
+    CardTable = CardTable + cardAdded;
 }
 
 void GameState::printState(){
