@@ -1,14 +1,13 @@
-#include "../header/DeckCard.hpp"
 #include "../header/PlayerCard.hpp"
 #include "../header/TableCard.hpp"
 #include "../header/DeckCard.hpp"
 
 int main() {
     // Card
-    Card kartu1(1,"merah");
-    Card kartu2(2,"kuning");
-    Card kartu3(3,"hijau");
-    Card kartu4(4,"biru");
+    Card kartu1(1,"Merah");
+    Card kartu2(2,"Kuning");
+    Card kartu3(3,"Hijau");
+    Card kartu4(4,"Biru");
     Card kartu5(5,"hello");
     Card kartu6(6,"world");
     Card kartuAbility1("terbang tapi boong");
@@ -17,39 +16,30 @@ int main() {
     /*
         CONSTRUCTOR
     */
+    // DeckCard
+    DeckCard deckCard;
+    DeckCard deckCardFile("../../../test/deckCard.txt");
+
     // PlayerCard
-    PlayerCard playerCard(kartu1, kartu2, kartuAbility1, "Ghazi");
+    PlayerCard playerCard(deckCard.takeCard(), deckCard.takeCard(), kartuAbility1, "Ghazi");
 
     // TableCard
     vector<Card> table;
-    table.push_back(kartu1);
-    table.push_back(kartu2);
-    table.push_back(kartu3);
-    table.push_back(kartu4);
+    table.push_back(deckCard.takeCard());
+    table.push_back(deckCard.takeCard());
     TableCard tableCard(table);
-
-    // DeckCard
-    vector<Card> deck;
-    deck.push_back(kartu1);
-    deck.push_back(kartu2);
-    deck.push_back(kartu3);
-    deck.push_back(kartu4);
-    DeckCard deckCard(deck);
 
     /*
         COPY CONSTRUCTOR
     */
     // PlayerCard
     PlayerCard playerCardCopy(playerCard);
-    playerCardCopy.printCard();
 
     // TableCard
     TableCard tableCardCopy(tableCard);
-    tableCardCopy.printCard();
 
     // DeckCard
     DeckCard deckCardCopy(deckCard);
-    deckCardCopy.printCard();
 
     /*
         SETTER AND GETTER
@@ -80,6 +70,7 @@ int main() {
 
     // DeckCard
     deckCard.printCard();
+    deckCardFile.printCard();
     vector<Card> testDeckCard;
     testDeckCard.push_back(kartu5);
     testDeckCard.push_back(kartu6);
