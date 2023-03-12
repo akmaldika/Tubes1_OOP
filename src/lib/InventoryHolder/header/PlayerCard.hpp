@@ -14,8 +14,6 @@ class PlayerCard : public InventoryHolder{
         int ID; // id player pemilik kartu ini
         int playerCardCount;
 
-
-
     public:
         // Constructor
         PlayerCard(Card card1, Card card2, Card abilityCard, int ID);
@@ -34,7 +32,7 @@ class PlayerCard : public InventoryHolder{
         Card getFirstPlayerCard();
         Card getSecondPlayerCard();
         Card getAbilityCard();
-        int getOwner();
+        int getID();
         int getPlayerCardCount();
 
         // Method

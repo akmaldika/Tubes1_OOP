@@ -26,6 +26,8 @@ class Player {
     void setPlayerName(string name);
     string getPlayerName();
 
+    int getID();
+
     void setPlayerPoint(int point);
     int getPlayerPoint();
 

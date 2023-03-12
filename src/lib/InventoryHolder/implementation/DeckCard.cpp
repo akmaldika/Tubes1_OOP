@@ -1,8 +1,51 @@
 #include "../header/DeckCard.hpp"
 
-DeckCard::DeckCard(vector<Card> deckCard) {
+DeckCard::DeckCard() {
+    // Random Card
+    this->deckCardCount = 52;
+    vector<Card> deckCard;
+    for (int i = 1; i <= 13; i++) {
+        for (int j = 0; j < 4; j++) {
+            if (j == 0) {
+                deckCard.push_back(Card(i, "merah"));
+            }
+            else if (j == 1) {
+                deckCard.push_back(Card(i, "kuning"));
+            }
+            else if (j == 2) {
+                deckCard.push_back(Card(i, "hijau"));
+            }
+            else if (j == 3) {
+                deckCard.push_back(Card(i, "biru"));
+            }
+        }
+    }
+    random_device rd;
+    mt19937 g(rd());
+    shuffle(deckCard.begin(), deckCard.end(), g);
+
     this->deckCard = deckCard;
-    this->deckCardCount = deckCard.size();
+}
+
+DeckCard::DeckCard(string filename) {
+    // Read from file
+    ifstream file;
+    file.open(filename);
+
+    if (file.is_open()) {
+        string line;
+        vector<Card> deckCard;
+        while (getline(file, line)) {
+            int value = stoi(line.substr(0, line.find(" ")));
+            string color = line.substr(line.find(" ") + 1, line.length());
+            deckCard.push_back(Card(value, color));
+        }
+        this->deckCard = deckCard;
+        this->deckCardCount = deckCard.size();
+    }
+    else {
+        cout << "File not found" << endl;
+    }
 }
 
 DeckCard::DeckCard(const DeckCard& deckCard) {
@@ -25,6 +68,15 @@ vector<Card> DeckCard::getDeckCard() {
 
 int DeckCard::getDeckCardCount() {
     return this->deckCardCount;
+}
+
+Card DeckCard::takeCard() {
+    Card taken = deckCard.back();
+
+    deckCardCount--;
+    deckCard.pop_back();
+
+    return taken;
 }
 
 DeckCard& DeckCard::operator+(Card card) {
@@ -59,13 +111,4 @@ void DeckCard::printCard() {
         cout << "  Value: " << deckCard[i].value() << endl;
         cout << endl;
     }
-}
-
-Card DeckCard::takeCard(){
-    Card tempCard = deckCard.back();
-
-    deckCardCount--;
-    deckCard.pop_back();
-
-    return tempCard;
 }

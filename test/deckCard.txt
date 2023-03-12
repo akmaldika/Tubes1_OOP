@@ -1,0 +1,4 @@
+1 merah 
+2 kuning 
+3 hijau 
+4 biru 
