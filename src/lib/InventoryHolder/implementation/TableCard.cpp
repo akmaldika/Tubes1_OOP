@@ -1,5 +1,11 @@
 #include "../header/TableCard.hpp"
 
+TableCard::TableCard() {
+    vector<Card> emptyCards;
+    this->tableCard = emptyCards;
+    this->tableCardCount = 0;
+}
+
 TableCard::TableCard(vector<Card> tableCard) {
     this->tableCard = tableCard;
     this->tableCardCount = tableCard.size();
