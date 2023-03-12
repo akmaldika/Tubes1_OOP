@@ -21,7 +21,7 @@ int main() {
     DeckCard deckCardFile("../../../test/deckCard.txt");
 
     // PlayerCard
-    PlayerCard playerCard(deckCard.takeCard(), deckCard.takeCard(), kartuAbility1, "Ghazi");
+    PlayerCard playerCard(deckCard.takeCard(), deckCard.takeCard(), kartuAbility1, 1);
 
     // TableCard
     vector<Card> table;
@@ -49,7 +49,7 @@ int main() {
     playerCard.setFirstPlayerCard(kartu3);
     playerCard.setSecondPlayerCard(kartu4);
     playerCard.setAbilityCard(kartuAbility2);
-    playerCard.setOwner("Akmal");
+    playerCard.setOwner(2);
     playerCard.printCard();
 
     cout << playerCard.getFirstPlayerCard().getColor() << endl;

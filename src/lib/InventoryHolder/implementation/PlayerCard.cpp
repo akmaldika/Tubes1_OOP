@@ -48,7 +48,7 @@ Card PlayerCard::getAbilityCard() {
     return this->abilityCard;
 }
 
-int PlayerCard::getOwner() {
+int PlayerCard::getID() {
     return this->ID;
 }
 
