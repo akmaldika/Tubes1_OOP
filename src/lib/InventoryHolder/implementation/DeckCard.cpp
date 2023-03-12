@@ -7,16 +7,16 @@ DeckCard::DeckCard() {
     for (int i = 1; i <= 13; i++) {
         for (int j = 0; j < 4; j++) {
             if (j == 0) {
-                deckCard.push_back(Card(i, "Merah"));
+                deckCard.push_back(Card(i, "merah"));
             }
             else if (j == 1) {
-                deckCard.push_back(Card(i, "Kuning"));
+                deckCard.push_back(Card(i, "kuning"));
             }
             else if (j == 2) {
-                deckCard.push_back(Card(i, "Hijau"));
+                deckCard.push_back(Card(i, "hijau"));
             }
             else if (j == 3) {
-                deckCard.push_back(Card(i, "Biru"));
+                deckCard.push_back(Card(i, "biru"));
             }
         }
     }

@@ -4,10 +4,10 @@
 
 int main() {
     // Card
-    Card kartu1(1,"Merah");
-    Card kartu2(2,"Kuning");
-    Card kartu3(3,"Hijau");
-    Card kartu4(4,"Biru");
+    Card kartu1(1,"merah");
+    Card kartu2(2,"kuning");
+    Card kartu3(3,"hijau");
+    Card kartu4(4,"biru");
     Card kartu5(5,"hello");
     Card kartu6(6,"world");
     Card kartuAbility1("terbang tapi boong");
