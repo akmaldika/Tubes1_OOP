@@ -2,6 +2,9 @@
 #define __DECK_CARD_HPP__
 
 #include <iostream>
+#include <fstream>
+#include <random>
+#include <algorithm>
 #include "InventoryHolder.hpp"
 
 using namespace std;
@@ -15,7 +18,8 @@ class DeckCard : public InventoryHolder{
 
     public:
         // Constructor
-        DeckCard(vector<Card> deckCard);
+        DeckCard();                     // Default Constructor (Random Card)
+        DeckCard(string filename);      // Constructor (Read from file)
 
         // Copy Constructor
         DeckCard(const DeckCard& deckCard);
@@ -29,6 +33,7 @@ class DeckCard : public InventoryHolder{
         int getDeckCardCount();
 
         // Method
+        Card takeCard();                                // Take card from deck (top card)
         DeckCard& operator+(Card card);                 // Operator Overloading (add card)
         DeckCard& operator-(Card card);                 // Operator Overloading (remove card)
         DeckCard& operator=(const DeckCard& deckCard);  // Operator Overloading (assignment)
