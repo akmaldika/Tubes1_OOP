@@ -22,11 +22,13 @@ string Player::getPlayerName(){
     return name;
 }
 void Player::setPlayerPoint(int p){
-    point = p;
+    this->point = p;
 }
 int Player::getPlayerPoint(){
     return point;
 }
+
+
 
 template <class T>
 T highestCombination(int card){
