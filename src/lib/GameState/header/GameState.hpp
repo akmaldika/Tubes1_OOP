@@ -29,6 +29,16 @@ class GameState {
         TableCard CardTable; // kartu di meja
         DeckCard deck; // kartu dalam deck
 
+        /*
+            aksi player di turn ini
+            0. Empty
+            1. Double
+            2. Next
+            3. Half
+            4. Ability
+        */
+        int Action;
+
         const int DEFAULT_PRIZE = 64;
 
     public:
@@ -41,6 +51,7 @@ class GameState {
             CardTable = instantiasi TableCard dengan jumlah 0
         */
         GameState();
+        GameState(DeckCard inputDeck);
 
     // Get Method
         int getPrize();
@@ -68,7 +79,14 @@ class GameState {
 
         void AddCardToTable(Card cardAdded); // tambah kartu di meja
 
+        void evaluateAction();
+
         void printState();
+
+        void inputAction();
+
+        void inputActionFirstRound();
+
 
         
         

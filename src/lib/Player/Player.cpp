@@ -21,6 +21,9 @@ void Player::setPlayerName(string name){
 string Player::getPlayerName(){
     return name;
 }
+int Player::getID(){
+    return ID;
+}
 void Player::setPlayerPoint(int p){
     point = p;
 }

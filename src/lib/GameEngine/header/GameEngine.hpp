@@ -32,6 +32,7 @@ class GameEngine {
         int getGameCount();
 
     // Method
+        
         /*
             Jalankan round pertama
             tiap player dapet giliran
@@ -52,15 +53,16 @@ class GameEngine {
             didalam sini ada fungsi playFirstRound & PlayOtherRound
 
         */
-        void PlayGame();
+        void PlayGame(); // ini mungkin di main aja
 
+        void calculateWinner();
+
+        template <typename T>
+        bool operator<(T object1);
 
     // METHOD FOR USER INTERFACE
         void printGameStatus();
         void printGameInterface();
-
-
-
 
 
 };
