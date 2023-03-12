@@ -19,7 +19,7 @@ class Player {
     static int playerCount;
 
     public:
-    Player(); // temp biar gameState ga error
+    // Player(); // temp biar gameState ga error
     Player(Card card1, Card card2, Card abilityCard);
 
     // Player(string name);

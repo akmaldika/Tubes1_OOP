@@ -4,7 +4,9 @@
 /*
     bagian ini aku gatau bisa apa ga
 */
-Player temp;
+Card tempCard;
+Player temp(tempCard,tempCard,tempCard);
+
 
 vector<Card> emptyCards; // inisiasi vector kosong buat table card
                     // karena kan awalnya gaada kartu
@@ -90,7 +92,7 @@ void GameState::NextRound(){
 
     // add satu card ke table card
     AddCardToTable(deck.takeCard());
-    Player temp;
+    Player temp(tempCard,tempCard,tempCard);
     temp = AllPlayer.front();
 
     NextTurn();
@@ -206,6 +208,25 @@ void GameState::evaluateAction(){
     }
 }
 
+template <typename T>
+T GameState::highestValue(vector<T> objects){
+    T max; // possible bug
+
+    for(auto obj : objects){
+        if(obj > max){
+            max = obj;
+        }
+    }
+
+    return max;
+}
+
+void GameState::resetGameState(){
+    Round = 1;
+    PrizePool = DEFAULT_PRIZE;
+
+    // blm selesai
+}
 
 
 

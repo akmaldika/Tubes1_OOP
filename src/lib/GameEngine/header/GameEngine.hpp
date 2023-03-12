@@ -57,8 +57,7 @@ class GameEngine {
 
         void calculateWinner();
 
-        template <typename T>
-        T highestCard(vector<T> objects);
+        
 
     // METHOD FOR USER INTERFACE
         void printGameStatus();
