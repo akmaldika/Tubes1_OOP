@@ -10,34 +10,15 @@ map<string, float> Card::colorFactor{
 Card::Card(){
     this->valueCard = 0;
     this->color="unknown";
-    this->category = "unknown";
-    this->ability = "unknown";
 }
 
 Card::Card(int value, string color){
     this->valueCard = value;
     this->color = color;
-    this->category = "regular";
-    this->ability = "unknown";
-}
-
-Card::Card(string ability){
-    this->valueCard = 0;
-    this->color = "unknown";
-    this->category = "ability";
-    this->ability = ability;
 }
 
 string Card::getColor(){
     return this->color;
-}
-
-string Card::getCategory(){
-    return this->category;
-}
-
-string Card::getAbility(){
-    return this->ability;
 }
 
 double Card::value(){
@@ -53,8 +34,53 @@ bool Card::operator>(Card& card){
 }
 
 bool Card::operator==(Card& card){
-    return (this->color == card.color) && (this->category == card.category) && (this->ability == card.ability) && (this->valueCard == card.valueCard);
+    return (this->color == card.color)  && (this->valueCard == card.valueCard);
 }
 bool Card::operator<(Card& card){
     return (this->value()*0.1+0.03*colorFactor[this->color]) < (card.value()*0.1+0.03*colorFactor[card.color]);
 }
+void Card::print(){
+    // ASCII Code coloring
+    string colorInterface;
+    // Value and Position on card
+    string pos1;
+    string pos2;
+    // Center of Card
+    char symbol;
+
+    // Coloring dan symbol
+    if (this->color=="hijau"){
+        colorInterface = LIGHT_GREEN;
+        symbol = 'G';
+    } else if (this->color=="biru"){
+        colorInterface = LIGHT_BLUE;
+        symbol = 'B';
+    } else if(this->color=="kuning"){
+        colorInterface = YELLOW;
+        symbol = 'Y';
+    } else if (this->color=="merah"){
+        colorInterface = RED;
+        symbol = 'R';
+    }
+
+    // Format Value pada posisi
+    pos1= pos2 = to_string(this->valueCard);
+    if (this->valueCard < 10){
+        // Satu digit
+        pos1 += " ";
+        pos2 = " " + pos2;
+    } 
+
+    // Output
+    cout<<colorInterface;
+    cout<<".---------."<<endl;
+    cout<<"|"<<pos1<<"       |"<<endl;
+    cout<<"|  .---.  |"<<endl;
+    cout<<"|  : "<<symbol<<" :  |"<<endl;
+    cout<<"|  '---'  |"<<endl;
+    cout<<"|       "<<pos2<<"|"<<endl;
+    cout<<"`---------'";
+    cout<<RESET;
+
+
+} 

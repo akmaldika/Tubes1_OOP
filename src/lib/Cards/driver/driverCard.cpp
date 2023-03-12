@@ -5,23 +5,24 @@ using namespace std;
 int main(){
     Card kartu1;
     Card kartu2(3,"hijau");
-    Card kartu3("quadruple");
     Card kartu4(13,"merah");
-    Card kartu5(13,"kuning");
+    Card kartu5(11,"kuning");
+    Card kartu6(1,"biru");
 
     cout<<"Color kartu1: "<<kartu1.getColor()<<endl;
-    cout<<"Category kartu1: "<<kartu1.getCategory()<<endl;
-    cout<<"Ability kartu1: "<<kartu1.getAbility()<<endl;
     cout<<"value kartu1: "<<kartu1.value()<<endl;
     cout<<"Color kartu2: "<<kartu2.getColor()<<endl;
-    cout<<"Category kartu2: "<<kartu2.getCategory()<<endl;
-    cout<<"Ability kartu2: "<<kartu2.getAbility()<<endl;
     cout<<"value kartu2: "<<kartu2.value()<<endl;
-    cout<<"Color kartu3: "<<kartu3.getColor()<<endl;
-    cout<<"Category kartu3: "<<kartu3.getCategory()<<endl;
-    cout<<"Ability kartu3: "<<kartu3.getAbility()<<endl;
-    cout<<"value kartu3: "<<kartu3.value()<<endl;
-
+    kartu2.print();
+    cout<<endl;
+    cout<<"Color kartu3: "<<kartu4.getColor()<<endl;
+    cout<<"value kartu3: "<<kartu4.value()<<endl;
+    kartu4.print();
+    cout<<endl;
+    kartu5.print();
+    cout<<endl;
+    kartu6.print();
+    cout<<endl;
     kartu1.getColor();    
 
     if(kartu4==kartu5){
