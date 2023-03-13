@@ -4,6 +4,7 @@
 #include "../../Cards/header/Card.hpp"
 #include "../../AbilityCard/header/AbilityCard.hpp"
 #include "../../InventoryHolder/header/PlayerCard.hpp"
+#include "../../Cards/header/Combo.hpp"
 
 #include <iostream>
 using namespace std;
@@ -13,7 +14,6 @@ class Player {
     int ID; 
     string name;
     int point;  
-
     PlayerCard* MyCard;
     static int playerCount;
     bool played;
@@ -37,6 +37,10 @@ class Player {
     void setPlayed(bool);
     bool getPlayed();
     void status() const;
+
+    void addPoint(int amount);
+    Combo getHighestCombo();
+
 
     // operator
     bool operator>(Player& enemy);

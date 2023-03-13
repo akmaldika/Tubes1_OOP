@@ -5,7 +5,7 @@
     bagian ini aku gatau bisa apa ga
 */
 Card tempCard;
-Player temp(tempCard,tempCard);
+Player temp;
 
 pair<int, Player&> emptyPlayer(0,temp); // inisiasi pair kosong buat turn
 
@@ -67,9 +67,9 @@ TableCard GameState::getTableCard() {
     return CardTable;
 }
 
-Player GameState::getPlayer(int ID) {
+Player& GameState::getPlayer(int ID) {
     for (Player player : AllPlayer){
-        if(ID == player.getID()){
+        if(ID == player.getPlayerID()){
             return player;
         }
     }
@@ -91,16 +91,16 @@ void GameState::NextRound(){
     Player temp(tempCard,tempCard);
     temp = AllPlayer.front();
 
-    NextTurn(Reverse);
+    NextTurn();
 }
 
-void GameState::NextTurn(bool reverse){
+void GameState::NextTurn(){
 // nandain player udah main
 // dan majuin/mundurin pointer turn 
     Turn.second.setPlayed(true);
 
     while(Turn.second.getPlayed()){
-        if(!reverse){
+        if(!Reverse){
             
             if(Turn.first >= 6){
                 Turn.first = 0;
@@ -130,10 +130,10 @@ void GameState::AddCardToTable(Card cardAdded){
 }
 
 void GameState::printState(){
-    cout << "Round       :" << Round << endl;
-    cout << "Prize Pool  :" << PrizePool << endl;
-    cout << "Turn        :" << Turn.second.getID() << " " << Turn.second.getPlayerName() << endl;
-    cout << "Table Card  :" << endl;
+    cout << "Round       : " << Round << endl;
+    cout << "Prize Pool  : " << PrizePool << endl;
+    cout << "Turn        : " << Turn.second.getPlayerID() << " " << Turn.second.getPlayerName() << endl;
+    cout << "Table Card  : " << endl;
     CardTable.printCard();
 
 
@@ -170,8 +170,8 @@ void GameState::inputAction(){
 
 
 void GameState::inputActionFirstRound(){
-    cout << "Player in turn : " << endl;
-    // print informasi player
+    cout << "\nPlayer in turn : " << endl;
+    Turn.second.status();
     cout << "Action Choice  : " << endl;
     cout << "1. Double " << endl;
     cout << "2. Next " << endl;
@@ -204,6 +204,7 @@ void GameState::evaluateAction(){
     case 1: // 1. Double
 
         PrizePool = PrizePool * 2;
+        cout << "masuk satu";
         
         break;
     case 2: // 2. Next
@@ -243,7 +244,7 @@ void GameState::resetGameState(){
     // tunggu ability, player, player card selesai.
 }
 
-bool GameState::checkForWin(){
+bool GameState::checkAllWin(){
     Player highestScore = highestValue(AllPlayer);
 
     if (highestScore.getPlayerPoint() >= 4294967296){
@@ -255,7 +256,7 @@ bool GameState::checkForWin(){
 
 }
 
-Player GameState::getWinner(){
+Player GameState::getAllWinner(){
 
     for (auto player : AllPlayer){
         if(player.getPlayerPoint() >= 4294967296){
@@ -276,7 +277,23 @@ void GameState::operator=(const GameState& copy){
 
 }
 
+void GameState::printInterface(){
+    cout << " ________________________________________________________________________________" << endl;
+    cout << "|                                                                                |" << endl;
+    cout << "|                                                                                |" << endl;
+    cout << "|                                                                                |" << endl;
+    cout << "|                                                                                |" << endl;
+    cout << "|                                                                                |" << endl;
+    cout << "|                                                                                |" << endl;
+    cout << "|                                                                                |" << endl;
+    cout << "|                                                                                |" << endl;
 
+
+}
+
+Player GameState::getRoundWinner(){
+    
+}
 
 
 

@@ -26,7 +26,7 @@ int main(int argc, char const *argv[])
     while(true){
         try{
             cin >> opt;
-            if(opt != 1 || opt != 2){
+            if(!(opt == 1 || opt == 2)){
                 throw (opt);
             }
             else {
@@ -69,8 +69,18 @@ int main(int argc, char const *argv[])
     }
 
     // PLAY FIRST ROUND
+    for (int i = 0; i < 7 ; i++){
+        gameState.printState(); // nanti ganti
+        gameState.inputActionFirstRound();
+        gameState.evaluateAction();
+        gameState.NextTurn();
+    }
+    
 
-    gameState.printState(); // nanti ganti 
+    // Draw Ability Card
+    for (int i = 0; i < 7 ; i++){
+        gameState.getPlayer(i);
+    }
 
     return 0;
 }

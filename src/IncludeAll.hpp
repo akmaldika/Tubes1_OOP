@@ -9,7 +9,7 @@
 #include "lib/InventoryHolder/header/DeckCard.hpp"
 #include "lib/InventoryHolder/header/PlayerCard.hpp"
 #include "lib/InventoryHolder/header/TableCard.hpp"
-#include "lib/Player/Player.hpp"
+#include "lib/Player/header/Player.hpp"
 #include "lib/AbilityCard/header/AbilityCard.hpp"
 #include "lib/AbilityCard/header/Abilityless.hpp"
 #include "lib/AbilityCard/header/Quadruple.hpp"

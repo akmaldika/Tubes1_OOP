@@ -1,8 +1,10 @@
 CPP := g++
 
+SRCTES := tes.cpp
+
 SRCMAIN := main.cpp
 LIBSTATE := lib/GameState/implementation/GameState.cpp
-LIBPLAYER := lib/Player/Player.cpp
+LIBPLAYER := lib/Player/implementation/Player.cpp
 LIBCARD := lib/Cards/implementation/Card.cpp
 LIBPCARD := lib/InventoryHolder/implementation/PlayerCard.cpp
 LIBDCARD := lib/InventoryHolder/implementation/DeckCard.cpp
@@ -18,6 +20,10 @@ LIBA7 := lib/AbilityCard/SwapCard.cpp
 LIBA8 := lib/AbilityCard/Switch.cpp
 OUTPUTINVEN := ../bin/main
 
-inventory: 
-	@echo "Compiling inventory driver.."
+main: 
+	@echo "Compiling main.."
 	$(CPP) $(SRCMAIN) $(LIBSTATE) $(LIBPLAYER) $(LIBCARD) $(LIBPCARD) $(LIBDCARD) $(LIBDACARD) $(LIBTCARD) $(LIBA1) $(LIBA2) $(LIBA3) $(LIBA4) $(LIBA5) $(LIBA6) $(LIBA7) $(LIBA8) -o $(OUTPUTINVEN)
+
+tes:
+	@echo "Compiling main.."
+	$(CPP) $(SRCTES) $(LIBSTATE) $(LIBPLAYER) $(LIBCARD) $(LIBPCARD) $(LIBDCARD) $(LIBDACARD) $(LIBTCARD) $(LIBA1) $(LIBA2) $(LIBA3) $(LIBA4) $(LIBA5) $(LIBA6) $(LIBA7) $(LIBA8) -o $(OUTPUTINVEN)

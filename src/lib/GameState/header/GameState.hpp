@@ -1,5 +1,5 @@
 //#include "Ability.hpp"
-#include "../../Player/Player.hpp"
+#include "../../Player/header/Player.hpp"
 #include "../../InventoryHolder/header/TableCard.hpp"
 #include "../../InventoryHolder/header/DeckCard.hpp"
 #include <vector>
@@ -58,7 +58,7 @@ class GameState {
         int getPrize();
         int getRound();
         TableCard getTableCard();
-        Player getPlayer(int ID); // setiap player ada id 1-7 yang terpisah dari urutannya.
+        Player& getPlayer(int ID); // setiap player ada id 1-7 yang terpisah dari urutannya.
         pair<int,Player> getWhoseTurn(); // return giliran siapa skrg
 
     // Set Method
@@ -76,7 +76,7 @@ class GameState {
         /*
             Turn diganti sesuai urutan di vector
         */
-        void NextTurn(bool reverse);
+        void NextTurn();
 
         void AddCardToTable(Card cardAdded); // tambah kartu di meja
 
@@ -95,11 +95,18 @@ class GameState {
 
         void resetGameState(); // reset game state kecuali point player
         
-        bool checkForWin();
+        bool checkAllWin();
 
-        Player getWinner();
+        Player getAllWinner();
+
+        //bool checkRoundWin();
+
+        Player getRoundWinner();
 
         void operator=(const GameState& copy);
+
+        void printInterface();
+
 
         
 

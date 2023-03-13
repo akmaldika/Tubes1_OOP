@@ -5,11 +5,14 @@ using namespace std;
 int Player::playerCount = 0;
 
 // construktor
+Player::Player(){}
+
 Player::Player(Card card1, Card card2)
 {  
     this->ID = (playerCount%7)+1;
     this->name = "NaN";
     this->point = 0;   
+    this->played = false;
     playerCount++;
 }
 void Player::setPlayerName(string name){
@@ -57,4 +60,16 @@ bool Player::operator==(Player& enemy){
 }
 bool Player::operator<(Player& enemy){
     return (getPlayerPoint() < enemy.getPlayerPoint());
+}
+
+void Player::addPoint(int amount){
+    point += amount;
+}
+
+
+Combo getHighestCombo(){
+
+    
+
+    Combo ()
 }
