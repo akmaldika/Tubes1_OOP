@@ -5,6 +5,11 @@ using namespace std;
 int Player::playerCount = 0;
 
 // construktor
+Player::Player() : MyCard() {
+    this->ID = 0;
+    this->name = "NaN";
+    this->point = 0;
+}
 Player::Player(Card card1, Card card2, Card abilityCard) 
 : MyCard(card1, card2, abilityCard, (playerCount%7)+1)
 {  
