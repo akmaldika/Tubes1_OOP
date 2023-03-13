@@ -2,7 +2,7 @@
 #define __PLAYER__
 
 #include "../Cards/header/Card.hpp"
-#include "../Ability/header/Ability.hpp"
+#include "../AbilityCard/header/AbilityCard.hpp"
 #include "../InventoryHolder/header/PlayerCard.hpp"
 
 #include <iostream>
