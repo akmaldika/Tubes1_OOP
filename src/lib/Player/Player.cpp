@@ -40,7 +40,7 @@ bool Player::operator>(Player& enemy){
     return (getPlayerPoint() > enemy.getPlayerPoint());
 }
 bool Player::operator==(Player& enemy){
-    return (getPlayerPoint() == enemy.getPlayerPoint())
+    return (getPlayerPoint() == enemy.getPlayerPoint());
 }
 bool Player::operator<(Player& enemy){
     return (getPlayerPoint() < enemy.getPlayerPoint());

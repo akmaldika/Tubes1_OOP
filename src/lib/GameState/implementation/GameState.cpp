@@ -7,13 +7,10 @@
 Card tempCard;
 Player temp(tempCard,tempCard,tempCard);
 
-
-vector<Card> emptyCards; // inisiasi vector kosong buat table card
-                    // karena kan awalnya gaada kartu
 pair<int, Player> emptyPlayer(0,temp); // inisiasi pair kosong buat turn
 
 GameState::GameState() 
-: CardTable(emptyCards), Turn(emptyPlayer)
+: Turn(emptyPlayer)
 {
     PrizePool = DEFAULT_PRIZE;
     Round = 1;
@@ -34,10 +31,9 @@ GameState::GameState()
     Action = 0;
 }
 
-GameState::GameState(DeckCard inputDeck)
-: CardTable(emptyCards), Turn(emptyPlayer)
+GameState::GameState(string filename)
+: Turn(emptyPlayer), deck(filename)
 {
-    deck = inputDeck;
 
     PrizePool = DEFAULT_PRIZE;
     Round = 1;
@@ -225,7 +221,28 @@ void GameState::resetGameState(){
     Round = 1;
     PrizePool = DEFAULT_PRIZE;
 
-    // blm selesai
+    // tunggu ability, player, player card selesai.
+}
+
+bool GameState::checkForWin(){
+    Player highestScore = highestValue(AllPlayer);
+
+    if (highestScore.getPlayerPoint() >= 4294967296){
+        return true;
+    }
+    else{
+        return false;
+    }
+
+}
+
+Player GameState::getWinner(){
+
+    for (auto player : AllPlayer){
+        if(player.getPlayerPoint() >= 4294967296){
+            return player;
+        }
+    }
 }
 
 

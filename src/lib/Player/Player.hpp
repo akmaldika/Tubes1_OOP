@@ -2,13 +2,13 @@
 #define __PLAYER__
 
 #include "../Cards/header/Card.hpp"
-#include "../Ability/Ability.hpp"
+#include "../Ability/header/Ability.hpp"
 #include "../InventoryHolder/header/PlayerCard.hpp"
 
 #include <iostream>
 using namespace std;
 
-class Player : public Ability {
+class Player  {
     private:
     int ID; // id satu player yang diambil dari playerCount -Naufal
     string name;

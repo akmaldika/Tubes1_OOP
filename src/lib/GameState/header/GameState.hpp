@@ -51,7 +51,7 @@ class GameState {
             CardTable = instantiasi TableCard dengan jumlah 0
         */
         GameState();
-        GameState(DeckCard inputDeck);
+        GameState(string filename);
 
     // Get Method
         int getPrize();
@@ -93,6 +93,14 @@ class GameState {
         T highestValue(vector<T> objects);
 
         void resetGameState(); // reset game state kecuali point player
+        
+        bool checkForWin();
+
+        Player getWinner();
+
+        
+
+        
 
         
 
