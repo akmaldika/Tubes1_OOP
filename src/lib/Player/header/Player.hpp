@@ -4,6 +4,7 @@
 #include "../../Cards/header/Card.hpp"
 #include "../../AbilityCard/header/AbilityCard.hpp"
 #include "../../InventoryHolder/header/PlayerCard.hpp"
+#include "../../InventoryHolder/header/DeckCard.hpp"
 
 #include <iostream>
 using namespace std;
@@ -14,7 +15,6 @@ class Player {
     string name;
     int point;  
 
-    PlayerCard* MyCard;
     static int playerCount;
     bool played;
 
@@ -30,10 +30,6 @@ class Player {
     int getPlayerPoint();
     void setPlayerID(int ID);
     int getPlayerID();
-    // void addCardOne(Card card1);
-    // Card getCardOne();
-    // void addCardTwo(Card card2);
-    // Card getCardTwo();
     void setPlayed(bool);
     bool getPlayed();
     void status() const;
