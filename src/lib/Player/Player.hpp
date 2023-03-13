@@ -1,12 +1,12 @@
 #ifndef __PLAYER__
 #define __PLAYER__
 
-#include "../Cards/header/Card.hpp"
-#include "../AbilityCard/header/AbilityCard.hpp"
-#include "../InventoryHolder/header/PlayerCard.hpp"
+// #include "../Cards/header/Card.hpp"
+// #include "../AbilityCard/header/AbilityCard.hpp"
+// #include "../InventoryHolder/header/PlayerCard.hpp"
 
-#include <iostream>
-using namespace std;
+// #include <iostream>
+// using namespace std;
 
 // class Player : public AbilityCard {
 //     private:
