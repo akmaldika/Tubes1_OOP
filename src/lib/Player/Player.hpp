@@ -8,26 +8,30 @@
 #include <iostream>
 using namespace std;
 
-class Player : public AbilityCard {
+class Player {
     private:
     int ID; // id satu player yang diambil dari playerCount -Naufal
     string name;
-    int point;  // point kayanya gapake static deh, biar tiap player bisa
-                // punya point berbeda -Naufal
+    int point;  
     PlayerCard MyCard;
-
     static int playerCount;
+    bool played; // ini buat ngasih tau player ini udah main blm -Naufal 
 
     public:
-    Player(); // temp biar gameState ga error
-    Player(Card card1, Card card2, Card abilityCard);
+    // Player(); // temp biar gameState ga error
+    Player(Card card1, Card card2);
 
     // Player(string name);
     void setPlayerName(string name);
     string getPlayerName();
 
+    int getID();
+
     void setPlayerPoint(int point);
     int getPlayerPoint();
+
+    void setPlayed(bool);
+    bool getPlayed();
 
     void status() const;
 
@@ -36,6 +40,8 @@ class Player : public AbilityCard {
     bool operator>(Player& enemy);
     bool operator==(Player& enemy);
     bool operator<(Player& enemy);
+
+    void printPlayer();
 };
 
 #endif
