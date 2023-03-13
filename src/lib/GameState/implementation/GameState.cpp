@@ -5,9 +5,9 @@
     bagian ini aku gatau bisa apa ga
 */
 Card tempCard;
-Player temp(tempCard,tempCard,tempCard);
+Player temp(tempCard,tempCard);
 
-pair<int, Player> emptyPlayer(0,temp); // inisiasi pair kosong buat turn
+pair<int, Player&> emptyPlayer(0,temp); // inisiasi pair kosong buat turn
 
 GameState::GameState() 
 : Turn(emptyPlayer)
@@ -18,8 +18,7 @@ GameState::GameState()
     for (int i = 0; i < 7 ; i++){ // ngisi kartu player
         Card card1 = deck.takeCard();
         Card card2 = deck.takeCard();
-        Card emptyAbility("Empty"); // sementara aja sampai kelas ability selesai
-        Player tempPlayer(card1, card2, emptyAbility);
+        Player tempPlayer(card1, card2);
 
         AllPlayer.push_back(tempPlayer); // masukin player ke dalem array
 
@@ -27,6 +26,7 @@ GameState::GameState()
 
     Turn.first = 0;
     Turn.second = AllPlayer.front();
+    Reverse = false;
 
     Action = 0;
 }
@@ -41,8 +41,7 @@ GameState::GameState(string filename)
     for (int i = 0; i < 7 ; i++){ // ngisi kartu player
         Card card1 = deck.takeCard();
         Card card2 = deck.takeCard();
-        Card emptyAbility("Empty"); // sementara aja sampai kelas ability selesai
-        Player tempPlayer(card1, card2, emptyAbility);
+        Player tempPlayer(card1, card2);
 
         AllPlayer.push_back(tempPlayer); // masukin player ke dalem array
 
@@ -50,6 +49,7 @@ GameState::GameState(string filename)
 
     Turn.first = 0;
     Turn.second = AllPlayer.front();
+    Reverse = false;
     
     Action = 0;
 
@@ -88,31 +88,38 @@ void GameState::NextRound(){
 
     // add satu card ke table card
     AddCardToTable(deck.takeCard());
-    Player temp(tempCard,tempCard,tempCard);
+    Player temp(tempCard,tempCard);
     temp = AllPlayer.front();
 
-    NextTurn();
+    NextTurn(Reverse);
 }
 
 void GameState::NextTurn(bool reverse){
-    if(!reverse){
-        if(Turn.first >= 6){
-            Turn.first = 0;
-            Turn.second = AllPlayer.at(0);
+// nandain player udah main
+// dan majuin/mundurin pointer turn 
+    Turn.second.setPlayed(true);
+
+    while(Turn.second.getPlayed()){
+        if(!reverse){
+            
+            if(Turn.first >= 6){
+                Turn.first = 0;
+                Turn.second = AllPlayer.at(0);
+            }
+            else{
+                Turn.first++;
+                Turn.second = AllPlayer.at(Turn.first);
+            }
         }
-        else{
-            Turn.first++;
-            Turn.second = AllPlayer.at(Turn.first);
-        }
-    }
-    else {
-        if(Turn.first >= 6){
-            Turn.first = 0;
-            Turn.second = AllPlayer.at(0);
-        }
-        else{
-            Turn.first++;
-            Turn.second = AllPlayer.at(Turn.first);
+        else {
+            if(Turn.first >= 6){
+                Turn.first = 0;
+                Turn.second = AllPlayer.at(0);
+            }
+            else{
+                Turn.first++;
+                Turn.second = AllPlayer.at(Turn.first);
+            }
         }
     }
 
@@ -255,6 +262,18 @@ Player GameState::getWinner(){
             return player;
         }
     }
+}
+
+void GameState::operator=(const GameState& copy){
+    AllPlayer = copy.AllPlayer;
+    PrizePool = copy.PrizePool;
+    Round = copy.Round;
+    Turn = copy.Turn;
+    CardTable = copy.CardTable;
+    deck = copy.deck;
+    Action = copy.Action;
+    Reverse = copy.Reverse;
+
 }
 
 

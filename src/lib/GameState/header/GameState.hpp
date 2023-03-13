@@ -25,7 +25,7 @@ class GameState {
             pair->first = urutan player/ index dalam vector
             pair->second = objek playernya
         */
-        pair<int, Player> Turn;
+        pair<int, Player&> Turn;
         TableCard CardTable; // kartu di meja
         DeckCard deck; // kartu dalam deck
 
@@ -38,6 +38,7 @@ class GameState {
             4. Ability
         */
         int Action;
+        bool Reverse;
 
         const int DEFAULT_PRIZE = 64;
 
@@ -97,6 +98,8 @@ class GameState {
         bool checkForWin();
 
         Player getWinner();
+
+        void operator=(const GameState& copy);
 
         
 

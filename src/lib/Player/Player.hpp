@@ -14,13 +14,12 @@ class Player {
     string name;
     int point;  
     PlayerCard MyCard;
-    AbilityCard *MyAbility;
     static int playerCount;
     bool played; // ini buat ngasih tau player ini udah main blm -Naufal 
 
     public:
     // Player(); // temp biar gameState ga error
-    Player(Card card1, Card card2, Card abilityCard);
+    Player(Card card1, Card card2);
 
     // Player(string name);
     void setPlayerName(string name);
@@ -30,6 +29,10 @@ class Player {
 
     void setPlayerPoint(int point);
     int getPlayerPoint();
+
+    void setPlayed(bool);
+    bool getPlayed();
+
     void status() const;
 
     // void addOne(Card one);

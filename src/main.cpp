@@ -45,14 +45,17 @@ int main(int argc, char const *argv[])
                 cin >> filename ;
 
                 GameState fromfile(filename);
-                gameState = fromfile; // implementasiin nih
+                gameState = fromfile; 
                 
             }
             catch(...){
-
+                cout << "File tidak ditemukan!"<< endl;
             }
         }
     }
+
+    // PLAY FIRST ROUND
+    
 
     
     
