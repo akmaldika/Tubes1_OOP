@@ -88,3 +88,50 @@ void Card::print(){
 
 
 } 
+
+void Card::print(Card card2){
+    // ASCII Code coloring
+    string colorInterface;
+    string colorInterface_2;
+    // Value and Position on card
+    string pos1;
+    string pos2;
+    // Center of Card
+    char symbol;
+
+    // Coloring dan symbol
+    if (this->color=="hijau"){
+        colorInterface = LIGHT_GREEN;
+        symbol = 'G';
+    } else if (this->color=="biru"){
+        colorInterface = LIGHT_BLUE;
+        symbol = 'B';
+    } else if(this->color=="kuning"){
+        colorInterface = YELLOW;
+        symbol = 'Y';
+    } else if (this->color=="merah"){
+        colorInterface = LIGHT_RED;
+        symbol = 'R';
+    }
+
+    // Format Value pada posisi
+    pos1= pos2 = to_string(this->valueCard);
+    if (this->valueCard < 10){
+        // Satu digit
+        pos1 += " ";
+        pos2 = " " + pos2;
+    } 
+
+    // Output
+    cout<<colorInterface;
+    cout<<".---------."<<endl;
+    cout<<"|"<<pos1<<"       |"<<endl;
+    cout<<"|  .---.  |"<<endl;
+    cout<<"|  : "<<symbol<<" :  |"<<endl;
+    cout<<"|  '---'  |"<<endl;
+    cout<<"|       "<<pos2<<"|"<<endl;
+    cout<<"`---------'";
+    cout<<RESET<<endl;
+
+
+} 

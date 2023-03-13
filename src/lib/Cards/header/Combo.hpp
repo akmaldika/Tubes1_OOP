@@ -26,6 +26,7 @@ class Combo: public Valuable{
         float value();
         float basicValue();
         bool operator>(Combo& combo);
+        bool operator>=(Combo& combo);
         bool operator==(Combo& combo);
         bool operator<(Combo& combo);
         void print();
