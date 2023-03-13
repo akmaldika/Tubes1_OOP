@@ -33,9 +33,9 @@ class Player : public AbilityCard {
 
     // void addOne(Card one);
     // void addTwo(Card two);
-    bool operator>(Player& point);
-    bool operator==(Player& point);
-    bool operator<(Player& point);
+    bool operator>(Player& enemy);
+    bool operator==(Player& enemy);
+    bool operator<(Player& enemy);
 };
 
 #endif
