@@ -5,7 +5,8 @@ using namespace std;
 int Player::playerCount = 0;
 
 // construktor
-Player::Player(Card card1, Card card2)
+Player::Player(Card card1, Card card2, Card abilityCard) 
+: MyCard(card1, card2, abilityCard, (playerCount%7)+1)
 {  
     this->ID = (playerCount%7)+1;
     this->name = "NaN";
