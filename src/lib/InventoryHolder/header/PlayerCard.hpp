@@ -1,21 +1,20 @@
 #ifndef __PLAYER_CARD_HPP__
 #define __PLAYER_CARD_HPP__
 
+#include "../../AbilityCard/header/AbilityCard.hpp"
 #include "InventoryHolder.hpp"
-
-using namespace std;
 
 // Class PlayerCard
 class PlayerCard : public InventoryHolder{
     private:
         pair<Card, Card> playerCard;
-        Card abilityCard;
+        AbilityCard* abilityCard;
         int ID; // id player pemilik kartu ini
         int playerCardCount;
 
     public:
         // Constructor
-        PlayerCard(Card card1, Card card2, Card abilityCard, int ID);
+        PlayerCard(Card card1, Card card2, AbilityCard* abilityCard, int ID);
 
         // Copy Constructor
         PlayerCard(const PlayerCard& playerCard);
@@ -26,11 +25,11 @@ class PlayerCard : public InventoryHolder{
         // Setter and Getter
         void setFirstPlayerCard(Card card);
         void setSecondPlayerCard(Card card);
-        void setAbilityCard(Card card);
+        void setAbilityCard(AbilityCard* card);
         void setID(int ID);
         Card getFirstPlayerCard();
         Card getSecondPlayerCard();
-        Card getAbilityCard();
+        AbilityCard* getAbilityCard();
         int getID();
         int getPlayerCardCount();
 
