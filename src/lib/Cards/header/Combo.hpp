@@ -27,6 +27,7 @@ class Combo: public Valuable{
         bool operator>(Combo& combo);
         bool operator==(Combo& combo);
         bool operator<(Combo& combo);
+        void print();
 };
 
 

@@ -139,3 +139,9 @@ bool Combo::operator==(Combo& combo){
 bool Combo::operator<(Combo& combo){
     return (this->value() < combo.value());
 }
+void Combo::print(){
+    for (int i=0; i< this->combination.size();i++){
+        this->combination[i].print();
+        cout<<endl;
+    }
+}
