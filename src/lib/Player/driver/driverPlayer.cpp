@@ -9,18 +9,28 @@ int main(){
     Card ability1("test ability 1");
     Card ability2("test ability 2");
 
-    // construktor
+    // CONSTRUKTOR
+
+    // player
     Player player(card1,card2);
-    PlayerCard playerCard(card1,card2,ability1,3);
+
+    // Deckcard
+    DeckCard deckCard;
+
+    // PlayerCard
+    PlayerCard playerCard(deckCard.takeCard(), deckCard.takeCard(), ability1, 3);
 
     // getter and setter
     player.setPlayerName("Satria");
     player.setPlayerPoint(100);
     player.setPlayerID(3);
 
-    // cout << player.getPlayerName() << endl;
-    // cout << player.getPlayerID() << endl;
-    // cout << player.getPlayerPoint() << endl;
-
     player.status();
+
+    // PlayerCard
+    playerCard.setFirstPlayerCard(card3);
+    playerCard.setSecondPlayerCard(card4);
+    playerCard.setAbilityCard(ability2);
+    // playerCard.setID(2);
+    playerCard.printCard();
 }

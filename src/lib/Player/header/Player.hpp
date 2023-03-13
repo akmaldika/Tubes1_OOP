@@ -6,6 +6,7 @@
 #include "../../InventoryHolder/header/PlayerCard.hpp"
 #include "../../Cards/header/Combo.hpp"
 
+#include "../../InventoryHolder/header/DeckCard.hpp"
 
 #include <iostream>
 using namespace std;
