@@ -88,15 +88,13 @@ PlayerCard& PlayerCard::operator=(const PlayerCard& playerCard) {
 }
 
 void PlayerCard::printCard() {
-    cout << "Player Card" << endl;
-    cout << "Owner ID: " << ID << endl;
-    cout << "  Card 1: " << endl;
-    cout << "    Color: " << playerCard.first.getColor() << endl;
-    cout << "    Value: " << playerCard.first.value() << endl << endl;
-    cout << "  Card 2: " << endl;
-    cout << "    Color: " << playerCard.second.getColor() << endl;
-    cout << "    Value: " << playerCard.second.value() << endl << endl;
-    cout << "  Ability Card: " << endl;
-    cout << "    Ability: " << abilityCard->getAbilityCard() << endl;
+    cout << LIGHT_RED << UNDERLINE << "Player Card" << RESET << endl;
+    cout << WHITE << "Owner ID: " << YELLOW << ID << RESET << endl;
+    cout << WHITE << "Card 1: " << RESET << endl;
+    playerCard.first.print();
+    cout << WHITE << "Card 2: " << RESET << endl;
+    playerCard.second.print();
+    cout << WHITE << "Ability Card: " << RESET << endl;
+    cout << WHITE << "  Ability: " << YELLOW << abilityCard->getAbilityCard() << RESET << endl;
     cout << endl;
 }

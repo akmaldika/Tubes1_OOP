@@ -9,8 +9,8 @@ int main() {
     Card kartu2(2,"kuning");
     Card kartu3(3,"hijau");
     Card kartu4(4,"biru");
-    Card kartu5(5,"hello");
-    Card kartu6(6,"world");
+    Card kartu5(10,"biru");
+    Card kartu6(11,"kuning");
 
     /*
         CONSTRUCTOR
