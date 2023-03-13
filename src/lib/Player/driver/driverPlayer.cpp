@@ -12,7 +12,7 @@ int main(){
     // CONSTRUKTOR
 
     // player
-    Player player(card1,card2);
+    Player player(card1,card2, ability1);
 
     // Deckcard
     DeckCard deckCard;
