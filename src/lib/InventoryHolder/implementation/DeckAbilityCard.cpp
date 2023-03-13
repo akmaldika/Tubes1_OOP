@@ -27,8 +27,8 @@ DeckAbilityCard::DeckAbilityCard(string filename) {
     if (file.is_open()) {
         string line;
         vector<AbilityCard*> deckAbilityCard;
-        while (getline(file, line)) {
-            string ability = line.substr(0, line.find(" "));
+        string ability;
+        while (file >> ability) {
             if (ability == "Abilityless") {
                 deckAbilityCard.push_back(new Abilityless());
             }
@@ -118,8 +118,8 @@ DeckAbilityCard& DeckAbilityCard::operator=(const DeckAbilityCard& deckAbilityCa
 
 void DeckAbilityCard::printCard() {
     for (int i = 0; i < this->deckAbilityCard.size(); i++) {
-        cout << "Deck Ability Card " << i + 1 << endl;
-        cout << "  Ability: " << this->deckAbilityCard[i]->getAbilityCard() << endl;
+        cout << WHITE << "Deck Ability Card " << i + 1 << RESET << endl;
+        cout << WHITE << "  Ability: " << YELLOW << this->deckAbilityCard[i]->getAbilityCard() << RESET << endl;
         cout << endl;
     }
 }
