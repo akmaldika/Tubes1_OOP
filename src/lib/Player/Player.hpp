@@ -8,34 +8,34 @@
 #include <iostream>
 using namespace std;
 
-class Player : public AbilityCard {
-    private:
-    int ID; // id satu player yang diambil dari playerCount -Naufal
-    string name;
-    int point;  // point kayanya gapake static deh, biar tiap player bisa
-                // punya point berbeda -Naufal
-    PlayerCard MyCard;
+// class Player : public AbilityCard {
+//     private:
+//     int ID; // id satu player yang diambil dari playerCount -Naufal
+//     string name;
+//     int point;  // point kayanya gapake static deh, biar tiap player bisa
+//                 // punya point berbeda -Naufal
+//     PlayerCard MyCard;
 
-    static int playerCount;
+//     static int playerCount;
 
-    public:
-    Player(); // temp biar gameState ga error
-    Player(Card card1, Card card2, Card abilityCard);
+//     public:
+//     Player(); // temp biar gameState ga error
+//     Player(Card card1, Card card2, Card abilityCard);
 
-    // Player(string name);
-    void setPlayerName(string name);
-    string getPlayerName();
+//     // Player(string name);
+//     void setPlayerName(string name);
+//     string getPlayerName();
 
-    void setPlayerPoint(int point);
-    int getPlayerPoint();
+//     void setPlayerPoint(int point);
+//     int getPlayerPoint();
 
-    void status() const;
+//     void status() const;
 
-    // void addOne(Card one);
-    // void addTwo(Card two);
-    bool operator>(Player& enemy);
-    bool operator==(Player& enemy);
-    bool operator<(Player& enemy);
-};
+//     // void addOne(Card one);
+//     // void addTwo(Card two);
+//     bool operator>(Player& enemy);
+//     bool operator==(Player& enemy);
+//     bool operator<(Player& enemy);
+// };
 
 #endif
