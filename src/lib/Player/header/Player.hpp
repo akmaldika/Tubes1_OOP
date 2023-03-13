@@ -1,38 +1,42 @@
 #ifndef __PLAYER__
 #define __PLAYER__
 
-#include "../Cards/header/Card.hpp"
-#include "../AbilityCard/header/AbilityCard.hpp"
-#include "../InventoryHolder/header/PlayerCard.hpp"
+#include "../../Cards/header/Card.hpp"
+#include "../../AbilityCard/header/AbilityCard.hpp"
+#include "../../InventoryHolder/header/PlayerCard.hpp"
 
 #include <iostream>
 using namespace std;
 
-class Player : public AbilityCard {
+class Player {
     private:
-    int ID; // id satu player yang diambil dari playerCount -Naufal
+    int ID; 
     string name;
-    int point;  // point kayanya gapake static deh, biar tiap player bisa
-                // punya point berbeda -Naufal
-    PlayerCard MyCard;
+    int point;  
 
+    PlayerCard MyCard;
     static int playerCount;
 
     public:
+    // construktor
     Player(); // temp biar gameState ga error
     Player(Card card1, Card card2, Card abilityCard);
 
-    // Player(string name);
+    // getter and setter
     void setPlayerName(string name);
     string getPlayerName();
-
     void setPlayerPoint(int point);
     int getPlayerPoint();
+    void setPlayerID(int ID);
+    int getPlayerID();
+    // void addCardOne(Card card1);
+    // Card getCardOne();
+    // void addCardTwo(Card card2);
+    // Card getCardTwo();
 
     void status() const;
 
-    // void addOne(Card one);
-    // void addTwo(Card two);
+    // operator
     bool operator>(Player& enemy);
     bool operator==(Player& enemy);
     bool operator<(Player& enemy);
