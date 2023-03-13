@@ -2,6 +2,7 @@
 #include "../../Player/header/Player.hpp"
 #include "../../InventoryHolder/header/TableCard.hpp"
 #include "../../InventoryHolder/header/DeckCard.hpp"
+#include "../../Cards/header/Combo.hpp"
 #include <vector>
 #include <iostream>
 
@@ -103,9 +104,13 @@ class GameState {
 
         Player getRoundWinner();
 
+        Combo playerHighestCombo(Player player);
+
         void operator=(const GameState& copy);
 
         void printInterface();
+
+        
 
 
         

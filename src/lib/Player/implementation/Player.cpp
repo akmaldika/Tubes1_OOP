@@ -66,10 +66,10 @@ void Player::addPoint(int amount){
     point += amount;
 }
 
+void Player::setCombo(Combo paket){
+    MyCombo = paket;
+}
 
-Combo getHighestCombo(){
-
-    
-
-    Combo ()
+Combo Player::getCombo(){
+    return MyCombo;
 }

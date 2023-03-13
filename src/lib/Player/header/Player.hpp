@@ -6,6 +6,7 @@
 #include "../../InventoryHolder/header/PlayerCard.hpp"
 #include "../../Cards/header/Combo.hpp"
 
+
 #include <iostream>
 using namespace std;
 
@@ -17,6 +18,7 @@ class Player {
     PlayerCard* MyCard;
     static int playerCount;
     bool played;
+    Combo MyCombo;
 
     public:
     // construktor
@@ -30,16 +32,18 @@ class Player {
     int getPlayerPoint();
     void setPlayerID(int ID);
     int getPlayerID();
-    // void addCardOne(Card card1);
-    // Card getCardOne();
-    // void addCardTwo(Card card2);
-    // Card getCardTwo();
+    void addCardOne(Card card1);
+    Card getCardOne();
+    void addCardTwo(Card card2);
+    Card getCardTwo();
     void setPlayed(bool);
     bool getPlayed();
+    void setCombo(Combo);
+    Combo getCombo();
+
     void status() const;
 
     void addPoint(int amount);
-    Combo getHighestCombo();
 
 
     // operator
