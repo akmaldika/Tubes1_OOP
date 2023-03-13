@@ -14,14 +14,14 @@ class Player {
     string name;
     int point;  
 
-    PlayerCard MyCard;
+    PlayerCard* MyCard;
     static int playerCount;
     bool played;
 
     public:
     // construktor
     Player(); // temp biar gameState ga error
-    Player(Card card1, Card card2, Card abilityCard);
+    Player(Card card1, Card card2);
 
     // getter and setter
     void setPlayerName(string name);

@@ -5,8 +5,7 @@ using namespace std;
 int Player::playerCount = 0;
 
 // construktor
-Player::Player(Card card1, Card card2, Card abilityCard) 
-: MyCard(card1, card2, abilityCard, (playerCount%7)+1)
+Player::Player(Card card1, Card card2)
 {  
     this->ID = (playerCount%7)+1;
     this->name = "NaN";
@@ -31,11 +30,16 @@ void Player::setPlayerID(int ID){
 int Player::getPlayerID(){
     return ID;
 }
+Card getCardOne();
+void addCardTwo(Card card2);
+Card getCardTwo();
 void Player::status() const{
     cout << "Status Player" << endl;
     cout << "ID : " << this->ID << endl;
     cout << "Nama : " << this->name << endl;
     cout << "Point : " << this->point << endl;
+    // cout << "Kartu 1 : " << (this->MyCard)->getFirstPlayerCard().getAbility() << endl;
+    // cout << "Kartu 2 : " << (this->MyCard)->getSecondPlayerCard().getAbility() << endl;
     cout << endl;
 }
 void Player::setPlayed(bool played){

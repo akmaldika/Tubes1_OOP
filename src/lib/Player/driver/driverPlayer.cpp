@@ -10,7 +10,7 @@ int main(){
     Card ability2("test ability 2");
 
     // construktor
-    Player player(card1,card2,ability1);
+    Player player(card1,card2);
     PlayerCard playerCard(card1,card2,ability1,3);
 
     // getter and setter
