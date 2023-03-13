@@ -72,14 +72,6 @@ int main(int argc, char const *argv[])
 
     gameState.printState(); // nanti ganti 
 
-
-    
-    
-
-
-
-
-
     return 0;
 }
 
