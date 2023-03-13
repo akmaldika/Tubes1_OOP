@@ -1,26 +1,25 @@
-#include "Cards/header/Card.hpp"
-#include "Cards/header/Combo.hpp"
-#include "GameEngine/header/GameEngine.hpp"
-#include "GameState/header/GameState.hpp"
-#include "InventoryHolder/header/DeckCard.hpp"
-#include "InventoryHolder/header/PlayerCard.hpp"
-#include "InventoryHolder/header/TableCard.hpp"
-#include "Player/Player.hpp"
-#include <iostream>
+#include "IncludeAll.hpp"
 
 using namespace std;
 
 int main(int argc, char const *argv[])
 {
+    /*
+        INISIALISAI VARIABEL
+    */
+
     GameState gameState; // udah construct game state, sama isinya (def const)
     int opt;
     string filename;
+    DeckAbilityCard abilityDeck;
 
-
+    /*
+        ALGORITMA PERMAINAN
+    */
     cout << "Splash Screen" << endl;
 
 
-    cout << "Pilih urutan deck:" << endl;
+    cout << "Deck Order By:" << endl;
     cout << "1. Random" << endl;
     cout << "2. File" << endl;
 
@@ -35,27 +34,44 @@ int main(int argc, char const *argv[])
             }
         }
         catch(...){
-            cout << "Input Invalid! Silahkan ulangi." << endl;
+            cout << "Invalid Input!" << endl;
         }
     }
 
     if (opt == 2){
         while(true){
             try{
+                cout << "insert deck card file name: ";
                 cin >> filename ;
 
-                GameState fromfile(filename);
-                gameState = fromfile; 
+                GameState stateFromfile(filename);
+                gameState = stateFromfile; 
                 
             }
             catch(...){
-                cout << "File tidak ditemukan!"<< endl;
+                cout << "File not found!"<< endl;
+            }
+        }
+
+        while(true){
+            try{
+                cout << "insert deck ability file name: ";
+                cin >> filename ;
+
+                DeckAbilityCard deckFromfile(filename);
+                abilityDeck = deckFromfile; 
+                
+            }
+            catch(...){
+                cout << "File not found!"<< endl;
             }
         }
     }
 
     // PLAY FIRST ROUND
-    
+
+    gameState.printState(); // nanti ganti 
+
 
     
     
