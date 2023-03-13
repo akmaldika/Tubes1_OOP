@@ -1,5 +1,5 @@
 #include "../header/Combo.hpp"
-
+#include "../../maxFunction.cpp"
 /*Static*/
 map<string, float> Combo::thresholdCombo {
     {"High Card", 0.0},
@@ -17,6 +17,7 @@ map<string, float> Combo::thresholdCombo {
 /*Non-Static*/
 Combo::Combo(){
     this->type = "unknown";
+    this->valueCombo = 0;
 }
 
 Combo::Combo(vector<Card>& combination){
@@ -24,6 +25,7 @@ Combo::Combo(vector<Card>& combination){
         this->combination.push_back(*i);
     }
     this->type = "unknown";
+    this->valueCombo = 0;
 }
 
 Combo::~Combo(){
@@ -110,17 +112,18 @@ void Combo::setComboType(){
         this->type="Pair";
     } else {
         this->type="High Card";
+        this->valueCombo = (max<Card>(this->combination)).weightValue();
     }
 }
 
-double Combo::value(){
+float Combo::value(){
     if (this->type == "unknown"){
         setComboType();
     }
-    return thresholdCombo[this->type] + basicValue();
+    return this->valueCombo;
 }
 
-double Combo::basicValue(){
+float Combo::basicValue(){
     double basicVal=0;
     for (int i=0; i<this->combination.size();i++){
         basicVal+= (this->combination[i].value()*0.1+0.03*Card::getColorFactor()[this->combination[i].getColor()]);
