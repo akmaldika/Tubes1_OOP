@@ -75,7 +75,7 @@ class GameState {
         /*
             Turn diganti sesuai urutan di vector
         */
-        void NextTurn();
+        void NextTurn(bool reverse);
 
         void AddCardToTable(Card cardAdded); // tambah kartu di meja
 

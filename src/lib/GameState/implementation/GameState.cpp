@@ -94,14 +94,26 @@ void GameState::NextRound(){
     NextTurn();
 }
 
-void GameState::NextTurn(){
-    if(Turn.first >= 6){
-        Turn.first = 0;
-        Turn.second = AllPlayer.at(0);
+void GameState::NextTurn(bool reverse){
+    if(!reverse){
+        if(Turn.first >= 6){
+            Turn.first = 0;
+            Turn.second = AllPlayer.at(0);
+        }
+        else{
+            Turn.first++;
+            Turn.second = AllPlayer.at(Turn.first);
+        }
     }
-    else{
-        Turn.first++;
-        Turn.second = AllPlayer.at(Turn.first);
+    else {
+        if(Turn.first >= 6){
+            Turn.first = 0;
+            Turn.second = AllPlayer.at(0);
+        }
+        else{
+            Turn.first++;
+            Turn.second = AllPlayer.at(Turn.first);
+        }
     }
 
 }

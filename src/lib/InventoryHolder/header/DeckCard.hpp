@@ -1,8 +1,8 @@
 #ifndef __DECK_CARD_HPP__
 #define __DECK_CARD_HPP__
 
-#include <iostream>
 #include <fstream>
+#include <vector>
 #include <random>
 #include <algorithm>
 #include "InventoryHolder.hpp"

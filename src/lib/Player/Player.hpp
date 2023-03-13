@@ -8,15 +8,15 @@
 #include <iostream>
 using namespace std;
 
-class Player  {
+class Player {
     private:
     int ID; // id satu player yang diambil dari playerCount -Naufal
     string name;
-    int point;  // point kayanya gapake static deh, biar tiap player bisa
-                // punya point berbeda -Naufal
+    int point;  
     PlayerCard MyCard;
-
+    AbilityCard *MyAbility;
     static int playerCount;
+    bool played; // ini buat ngasih tau player ini udah main blm -Naufal 
 
     public:
     // Player(); // temp biar gameState ga error
@@ -34,9 +34,11 @@ class Player  {
 
     // void addOne(Card one);
     // void addTwo(Card two);
-    bool operator>(Player& point);
-    bool operator==(Player& point);
-    bool operator<(Player& point);
+    bool operator>(Player& enemy);
+    bool operator==(Player& enemy);
+    bool operator<(Player& enemy);
+
+    void printPlayer();
 };
 
 #endif

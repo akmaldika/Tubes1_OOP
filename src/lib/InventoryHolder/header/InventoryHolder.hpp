@@ -2,7 +2,7 @@
 #define __INVENTORY_HOLDER_HPP__
 
 #include "../../Cards/header/Card.hpp"
-#include <vector>
+#include <iostream>
 
 // Abstract Class InventoryHolder
 class InventoryHolder{

@@ -1,7 +1,6 @@
 #ifndef __PLAYER_CARD_HPP__
 #define __PLAYER_CARD_HPP__
 
-#include <iostream>
 #include "InventoryHolder.hpp"
 
 using namespace std;
@@ -28,7 +27,7 @@ class PlayerCard : public InventoryHolder{
         void setFirstPlayerCard(Card card);
         void setSecondPlayerCard(Card card);
         void setAbilityCard(Card card);
-        void setOwner(int ID);
+        void setID(int ID);
         Card getFirstPlayerCard();
         Card getSecondPlayerCard();
         Card getAbilityCard();
