@@ -58,11 +58,8 @@ TableCard& TableCard::operator=(const TableCard& tableCard) {
 
 void TableCard::printCard() {
     for (int i = 0; i < tableCard.size(); i++) {
-        cout << "Table Card " << i + 1 << endl;
-        cout << "  Color: " << tableCard[i].getColor() << endl;
-        cout << "  Category: " << tableCard[i].getCategory() << endl;
-        cout << "  Ability: " << tableCard[i].getAbility() << endl;
-        cout << "  Value: " << tableCard[i].value() << endl;
+        cout << WHITE << "Table Card " << i + 1 << RESET << endl;
+        tableCard[i].print();
         cout << endl;
     }
 }

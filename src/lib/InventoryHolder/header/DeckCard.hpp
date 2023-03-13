@@ -7,8 +7,6 @@
 #include <algorithm>
 #include "InventoryHolder.hpp"
 
-using namespace std;
-
 // Class DeckCard
 class DeckCard : public InventoryHolder{
     private:

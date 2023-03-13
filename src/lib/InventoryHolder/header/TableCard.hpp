@@ -4,8 +4,6 @@
 #include <vector>
 #include "InventoryHolder.hpp"
 
-using namespace std;
-
 // Class TableCard
 class TableCard : public InventoryHolder{
     public:

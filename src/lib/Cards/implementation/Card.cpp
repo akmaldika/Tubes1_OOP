@@ -59,7 +59,7 @@ void Card::print(){
         colorInterface = YELLOW;
         symbol = 'Y';
     } else if (this->color=="merah"){
-        colorInterface = RED;
+        colorInterface = LIGHT_RED;
         symbol = 'R';
     }
 
@@ -80,7 +80,7 @@ void Card::print(){
     cout<<"|  '---'  |"<<endl;
     cout<<"|       "<<pos2<<"|"<<endl;
     cout<<"`---------'";
-    cout<<RESET;
+    cout<<RESET<<endl;
 
 
 } 

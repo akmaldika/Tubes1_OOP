@@ -1,6 +1,7 @@
 #include "../header/PlayerCard.hpp"
 #include "../header/TableCard.hpp"
 #include "../header/DeckCard.hpp"
+#include "../header/DeckAbilityCard.hpp"
 
 int main() {
     // Card
@@ -8,10 +9,8 @@ int main() {
     Card kartu2(2,"kuning");
     Card kartu3(3,"hijau");
     Card kartu4(4,"biru");
-    Card kartu5(5,"hello");
-    Card kartu6(6,"world");
-    Card kartuAbility1("terbang tapi boong");
-    Card kartuAbility2("turu + bangun");
+    Card kartu5(10,"biru");
+    Card kartu6(11,"kuning");
 
     /*
         CONSTRUCTOR
@@ -20,8 +19,12 @@ int main() {
     DeckCard deckCard;
     DeckCard deckCardFile("../../../test/deckCard.txt");
 
+    // DeckAbilityCard
+    DeckAbilityCard deckAbilityCard;
+    DeckAbilityCard deckAbilityCardFile("../../../test/deckAbilityCard.txt");
+
     // PlayerCard
-    PlayerCard playerCard(deckCard.takeCard(), deckCard.takeCard(), kartuAbility1, 1);
+    PlayerCard playerCard(deckCard.takeCard(), deckCard.takeCard(), deckAbilityCard.takeCard(), 1);
 
     // TableCard
     vector<Card> table;
@@ -41,6 +44,9 @@ int main() {
     // DeckCard
     DeckCard deckCardCopy(deckCard);
 
+    // DeckAbilityCard
+    DeckAbilityCard deckAbilityCardCopy(deckAbilityCard);
+
     /*
         SETTER AND GETTER
     */
@@ -48,13 +54,13 @@ int main() {
     playerCard.printCard();
     playerCard.setFirstPlayerCard(kartu3);
     playerCard.setSecondPlayerCard(kartu4);
-    playerCard.setAbilityCard(kartuAbility2);
+    playerCard.setAbilityCard(deckAbilityCard.takeCard());
     playerCard.setID(2);
     playerCard.printCard();
 
     cout << playerCard.getFirstPlayerCard().getColor() << endl;
     cout << playerCard.getSecondPlayerCard().getColor() << endl;
-    cout << playerCard.getAbilityCard().getAbility() << endl;
+    cout << playerCard.getAbilityCard()->getAbilityCard() << endl;
     cout << playerCard.getPlayerCardCount() << endl << endl;
 
     // TableCard
@@ -80,6 +86,16 @@ int main() {
     cout << deckCard.getDeckCard()[0].getColor() << endl;
     cout << deckCard.getDeckCardCount() << endl << endl;
 
+    // DeckAbilityCard
+    deckAbilityCard.printCard();
+    deckAbilityCardFile.printCard();
+    vector<AbilityCard*> testDeckAbilityCard;
+    deckAbilityCard.setDeckAbilityCard(deckAbilityCardFile.getDeckAbilityCard());
+    deckAbilityCard.printCard();
+
+    cout << deckAbilityCard.getDeckAbilityCard()[0]->getAbilityCard() << endl;
+    cout << deckAbilityCard.getDeckAbilityCardCount() << endl << endl;
+
     /*
         OPERATOR OVERLOADING
     */
@@ -95,6 +111,10 @@ int main() {
     deckCard = deckCard + kartu3;
     deckCard = deckCard - kartu5;
 
+    // DeckAbilityCard
+    deckAbilityCard = deckAbilityCard + new Quarter();
+    deckAbilityCard = deckAbilityCard - deckAbilityCard.getDeckAbilityCard()[0];
+
     /*
         PRINT CARD
     */
@@ -106,6 +126,9 @@ int main() {
 
     // DeckCard
     deckCard.printCard();
+
+    // DeckAbilityCard
+    deckAbilityCard.printCard();
 
     return 0;
 }
