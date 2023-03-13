@@ -1,20 +1,25 @@
 #ifndef __DECK_CARD_HPP__
 #define __DECK_CARD_HPP__
 
-#include <iostream>
+#include <fstream>
+#include <vector>
+#include <random>
+#include <algorithm>
 #include "InventoryHolder.hpp"
 
 using namespace std;
 
 // Class DeckCard
 class DeckCard : public InventoryHolder{
-    public:
+    private:
         // Attribute
         vector<Card> deckCard;
-        static int deckCardCount;
+        int deckCardCount;
 
+    public:
         // Constructor
-        DeckCard(vector<Card> deckCard);
+        DeckCard();                     // Default Constructor (Random Card)
+        DeckCard(string filename);      // Constructor (Read from file)
 
         // Copy Constructor
         DeckCard(const DeckCard& deckCard);
@@ -25,11 +30,13 @@ class DeckCard : public InventoryHolder{
         // Setter and Getter
         void setDeckCard(vector<Card> deckCard);
         vector<Card> getDeckCard();
-        static int getDeckCardCount();
+        int getDeckCardCount();
 
         // Method
-        DeckCard& operator+(Card card);     // Operator Overloading (add card)
-        DeckCard& operator-(Card card);     // Operator Overloading (remove card)
+        Card takeCard();                                // Take card from deck (top card)
+        DeckCard& operator+(Card card);                 // Operator Overloading (add card)
+        DeckCard& operator-(Card card);                 // Operator Overloading (remove card)
+        DeckCard& operator=(const DeckCard& deckCard);  // Operator Overloading (assignment)
         void printCard();
 };
 

@@ -2,14 +2,11 @@
 #define __INVENTORY_HOLDER_HPP__
 
 #include "../../Cards/header/Card.hpp"
-#include <vector>
+#include <iostream>
 
 // Abstract Class InventoryHolder
 class InventoryHolder{
-    protected:
-        // Destructor
-        virtual ~InventoryHolder() = 0;
-
+    public:
         // Method
         virtual InventoryHolder& operator+(Card card) = 0;
         virtual InventoryHolder& operator-(Card card) = 0;

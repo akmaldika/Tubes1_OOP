@@ -1,7 +1,7 @@
 #ifndef __TABLE_CARD_HPP__
 #define __TABLE_CARD_HPP__
 
-#include <iostream>
+#include <vector>
 #include "InventoryHolder.hpp"
 
 using namespace std;
@@ -11,9 +11,10 @@ class TableCard : public InventoryHolder{
     public:
         // Attribute
         vector<Card> tableCard;
-        static int tableCardCount;
+        int tableCardCount;
 
         // Constructor
+        TableCard();
         TableCard(vector<Card> tableCard);
 
         // Copy Constructor
@@ -25,11 +26,12 @@ class TableCard : public InventoryHolder{
         // Setter and Getter
         void setTableCard(vector<Card> tableCard);
         vector<Card> getTableCard();
-        static int getTableCardCount();
+        int getTableCardCount();
 
         // Method
-        TableCard& operator+(Card card);     // Operator Overloading (add card)
-        TableCard& operator-(Card card);     // Operator Overloading (remove card)
+        TableCard& operator+(Card card);                    // Operator Overloading (add card)
+        TableCard& operator-(Card card);                    // Operator Overloading (remove card)
+        TableCard& operator=(const TableCard& tableCard);   // Operator Overloading (assignment)
         void printCard();
 };
 
