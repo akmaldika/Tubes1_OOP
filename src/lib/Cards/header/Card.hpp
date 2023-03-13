@@ -2,6 +2,7 @@
 #define CARD_HPP
 
 #include "Valuable.hpp"
+#include "../../color.h"
 #include <iostream>
 #include <map>
 using namespace std;
@@ -9,24 +10,29 @@ class Card : public Valuable {
     private:
         int valueCard;
         string color;
-        string category;
-        string ability;
         static map<string, float> colorFactor;
     public: 
     // Constructor
         Card();
         Card(int value, string color); 
-        Card(string ability);
 
     // Methods
         string getColor();
-        string getCategory();
-        string getAbility();
         double value();
         static map<string, float> getColorFactor();
         bool operator>(Card& card);
         bool operator==(Card& card);
         bool operator<(Card& card);
+        void print(); // Print kartu dalam bentuk kartu
+        // Contoh
+        // .---------.
+        // |7        |
+        // |  .---.  |
+        // |  : Y :  |
+        // |  '---'  |
+        // |        7|
+        // `---------'
+            
 };
 
 #endif
