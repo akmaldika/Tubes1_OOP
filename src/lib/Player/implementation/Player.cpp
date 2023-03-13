@@ -31,9 +31,6 @@ void Player::setPlayerID(int ID){
 int Player::getPlayerID(){
     return ID;
 }
-Card getCardOne();
-void addCardTwo(Card card2);
-Card getCardTwo();
 void Player::status() const{
     cout << "Status Player" << endl;
     cout << "ID : " << this->ID << endl;
@@ -46,7 +43,6 @@ void Player::status() const{
 void Player::setPlayed(bool played){
     this->played = played;
 }
-
 bool Player::getPlayed(){
     return played;
 }
