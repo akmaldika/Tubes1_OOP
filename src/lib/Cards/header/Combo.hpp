@@ -8,7 +8,8 @@
 
 class Combo: public Valuable{
     private:
-        vector<Card> combination; 
+        vector<Card> combination;
+        float valueCombo; 
         string type;
         static map<string, float> thresholdCombo;
 
@@ -22,14 +23,11 @@ class Combo: public Valuable{
         int getNumOfPair();
         int getNOfKind();
         void setComboType();
-        double value();
-        double basicValue();
+        float value();
+        float basicValue();
         bool operator>(Combo& combo);
         bool operator==(Combo& combo);
         bool operator<(Combo& combo);
         void print();
 };
-
-
-
 #endif

@@ -21,8 +21,12 @@ string Card::getColor(){
     return this->color;
 }
 
-double Card::value(){
+float Card::value(){
     return this->valueCard;
+}
+
+float Card::weightValue(){
+    return this->valueCard*0.1+0.03*colorFactor[this->color];
 }
 
 map<string,float> Card::getColorFactor(){
@@ -30,14 +34,14 @@ map<string,float> Card::getColorFactor(){
 }
 
 bool Card::operator>(Card& card){
-    return (this->value()*0.1+0.03*colorFactor[this->color]) > (card.value()*0.1+0.03*colorFactor[card.color]);
+    return (this->weightValue()) > (card.weightValue());
 }
 
 bool Card::operator==(Card& card){
     return (this->color == card.color)  && (this->valueCard == card.valueCard);
 }
 bool Card::operator<(Card& card){
-    return (this->value()*0.1+0.03*colorFactor[this->color]) < (card.value()*0.1+0.03*colorFactor[card.color]);
+    return (this->weightValue()) < (card.weightValue());
 }
 void Card::print(){
     // ASCII Code coloring
