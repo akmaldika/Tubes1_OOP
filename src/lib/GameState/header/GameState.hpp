@@ -102,31 +102,11 @@ class GameState {
 
         //bool checkRoundWin();
 
-        Player getRoundWinner();
+        void getRoundWinner(); //langsung tambahin skor ke winner round ini
 
         Combo playerHighestCombo(Player player);
 
         void operator=(const GameState& copy);
 
         void printInterface();
-
-        
-
-
-        
-
-        
-
-        
-
-
-        
-        
-
-
-        
-
-        
-
-
 };

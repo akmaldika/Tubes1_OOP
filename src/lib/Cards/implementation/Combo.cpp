@@ -21,8 +21,10 @@ Combo::Combo(){
 }
 
 Combo::Combo(vector<Card>& combination){
-    for (auto i= combination.begin(); i!=combination.end(); i++){
-        this->combination.push_back(*i);
+    if(combination.size() > 0){
+        for (auto i= combination.begin(); i!=combination.end(); i++){
+            this->combination.push_back(*i);
+        }
     }
     this->type = "unknown";
     this->valueCombo = 0;
@@ -133,6 +135,10 @@ float Combo::basicValue(){
 
 bool Combo::operator>(Combo& combo){
     return (this->value() > combo.value());
+}
+
+bool Combo::operator>=(Combo& combo){
+    return (this->value() >= combo.value());
 }
 
 bool Combo::operator==(Combo& combo){

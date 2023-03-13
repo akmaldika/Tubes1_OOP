@@ -5,13 +5,13 @@ using namespace std;
 int Player::playerCount = 0;
 
 // construktor
-Player::Player() : MyCard() {
+Player::Player(){
     this->ID = 0;
     this->name = "NaN";
     this->point = 0;
 }
-Player::Player(Card card1, Card card2, Card abilityCard) 
-: MyCard(card1, card2, abilityCard, (playerCount%7)+1)
+Player::Player(Card card1, Card card2) 
+: MyCard(card1, card2, NULL, (playerCount%7)+1)
 {  
     this->ID = (playerCount%7)+1;
     this->name = "NaN";
@@ -42,8 +42,10 @@ void Player::status() const{
     cout << "ID : " << this->ID << endl;
     cout << "Nama : " << this->name << endl;
     cout << "Point : " << this->point << endl;
-    // cout << "Kartu 1 : " << (this->MyCard)->getFirstPlayerCard().getAbility() << endl;
-    // cout << "Kartu 2 : " << MyCard.getSecondPlayerCard().getAbilityCard() << endl;
+    cout << "Kartu : " << endl;
+    MyCard.getFirstPlayerCard().print();
+    MyCard.getSecondPlayerCard().print();
+
     cout << endl;
 }
 void Player::setPlayed(bool played){
@@ -66,16 +68,35 @@ void Player::addPoint(int amount){
     point += amount;
 }
 
-void Player::setCombo(Combo paket){
-    MyCombo = paket;
-}
+// void Player::setCombo(Combo paket){
+//     MyCombo = paket;
+// }
 
-Combo Player::getCombo(){
-    return MyCombo;
-}
+// Combo Player::getCombo(){
+//     return MyCombo;
+// }
 
 
 void Player::addCardOne(Card card1){
     MyCard.setFirstPlayerCard(card1);
 }
 
+Card Player::getCardOne(){
+    return MyCard.getFirstPlayerCard();
+}
+
+void Player::addCardTwo(Card card2){
+    MyCard.setSecondPlayerCard(card2);
+}
+
+Card Player::getCardTwo(){
+    return MyCard.getSecondPlayerCard();
+}
+
+void Player::setAbility(AbilityCard *ini){
+    MyCard.setAbilityCard(ini);
+}
+
+AbilityCard* Player::getAbility(){
+    return MyCard.getAbilityCard();
+}

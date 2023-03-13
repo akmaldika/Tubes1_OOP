@@ -18,14 +18,14 @@ class Player {
     int point;  
     static int playerCount;
     bool played;
-    Combo MyCombo;
+    // Combo MyCombo;
 
     PlayerCard MyCard;
     
     public:
     // construktor
     Player(); // temp biar gameState ga error
-    Player(Card card1, Card card2, Card abilityCard);
+    Player(Card card1, Card card2);
 
     // getter and setter
     void setPlayerName(string name);
@@ -40,8 +40,11 @@ class Player {
     Card getCardTwo();
     void setPlayed(bool);
     bool getPlayed();
-    void setCombo(Combo);
-    Combo getCombo();
+    //void setCombo(Combo);
+    //Combo getCombo();
+
+    void setAbility(AbilityCard*);
+    AbilityCard* getAbility();
 
     void status() const;
 

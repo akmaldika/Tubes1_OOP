@@ -68,9 +68,12 @@ TableCard GameState::getTableCard() {
 }
 
 Player& GameState::getPlayer(int ID) {
+    Player &temp = AllPlayer.front();
+
     for (Player player : AllPlayer){
         if(ID == player.getPlayerID()){
-            return player;
+            temp = player;
+            return temp;
         }
     }
 }
@@ -204,7 +207,7 @@ void GameState::evaluateAction(){
     case 1: // 1. Double
 
         PrizePool = PrizePool * 2;
-        cout << "masuk satu";
+        //cout << "masuk satu";
         
         break;
     case 2: // 2. Next
@@ -291,17 +294,65 @@ void GameState::printInterface(){
 
 }
 
-Player GameState::getRoundWinner(){
+Combo GameState::playerHighestCombo(Player player){
+    
+    vector<Card> cardList;
+    vector<Card> temp;
+    Combo maxCombo;
 
+    cardList.push_back(player.getCardOne());
+    cardList.push_back(player.getCardTwo());
+
+    if(CardTable.getTableCardCount() > 0){
+        for(auto card : CardTable.getTableCard()){
+            cardList.push_back(card);
+        }
+    }
+
+    int range = (1 << cardList.size()) - 1;
+
+    for (int i = 0; i <= range; i++){
+        cout << "Masuk loop highest combo" << endl;
+        int x = 0, y = i;
+
+        while(y > 0){
+            if(y & 1 == 1){
+                temp.push_back(cardList.at(x));
+            }
+            
+            x++;
+            y = y >> 1;
+        }
+        cout << "in\n";
+        Combo tempCombo(temp); // bug here
+
+        if(tempCombo.value() >= maxCombo.value()){
+            maxCombo = tempCombo;
+
+        }
+        cout << "out\n";
+
+    }
+    cout << "Keluar loop highest combo" << endl;
+
+
+    return maxCombo;
 }
 
-// Combo GameState::playerHighestCombo(Player player){
+void GameState::getRoundWinner(){
     
-//     vector<Card> cardList;
+    cout << "Masuk round winner\n";
+    Player &max = AllPlayer.front();
 
-//     cardList.push_back(player.get)
+    for (auto player : AllPlayer){
+        cout << "Masuk loop round winner\n";
 
-// }
+        if(playerHighestCombo(player).value() >= playerHighestCombo(max).value()){
+            max = player;
+        }
+    }
 
-
-
+    cout << "This Round Winner is: " << endl;
+    max.addPoint(PrizePool);  
+    max.status();  
+}
