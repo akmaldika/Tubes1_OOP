@@ -42,7 +42,7 @@ void Player::status() const{
     cout << "Nama : " << this->name << endl;
     cout << "Point : " << this->point << endl;
     // cout << "Kartu 1 : " << (this->MyCard)->getFirstPlayerCard().getAbility() << endl;
-    // cout << "Kartu 2 : " << (this->MyCard)->getSecondPlayerCard().getAbility() << endl;
+    cout << "Kartu 2 : " << MyCard.getSecondPlayerCard().getAbilityCard() << endl;
     cout << endl;
 }
 void Player::setPlayed(bool played){
@@ -73,3 +73,9 @@ void Player::setCombo(Combo paket){
 Combo Player::getCombo(){
     return MyCombo;
 }
+
+
+void Player::addCardOne(Card card1){
+    MyCard.setFirstPlayerCard(card1);
+}
+

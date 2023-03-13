@@ -16,7 +16,7 @@ class Player {
     int ID; 
     string name;
     int point;  
-    PlayerCard* MyCard;
+    PlayerCard MyCard;
     static int playerCount;
     bool played;
     Combo MyCombo;

@@ -292,8 +292,16 @@ void GameState::printInterface(){
 }
 
 Player GameState::getRoundWinner(){
-    
+
 }
+
+// Combo GameState::playerHighestCombo(Player player){
+    
+//     vector<Card> cardList;
+
+//     cardList.push_back(player.get)
+
+// }
 
 
 
