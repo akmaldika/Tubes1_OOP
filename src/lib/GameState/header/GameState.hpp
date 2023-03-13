@@ -25,9 +25,20 @@ class GameState {
             pair->first = urutan player/ index dalam vector
             pair->second = objek playernya
         */
-        pair<int, Player> Turn;
+        pair<int, Player&> Turn;
         TableCard CardTable; // kartu di meja
         DeckCard deck; // kartu dalam deck
+
+        /*
+            aksi player di turn ini
+            0. Empty
+            1. Double
+            2. Next
+            3. Half
+            4. Ability
+        */
+        int Action;
+        bool Reverse;
 
         const int DEFAULT_PRIZE = 64;
 
@@ -41,6 +52,7 @@ class GameState {
             CardTable = instantiasi TableCard dengan jumlah 0
         */
         GameState();
+        GameState(string filename);
 
     // Get Method
         int getPrize();
@@ -64,11 +76,37 @@ class GameState {
         /*
             Turn diganti sesuai urutan di vector
         */
-        void NextTurn();
+        void NextTurn(bool reverse);
 
         void AddCardToTable(Card cardAdded); // tambah kartu di meja
 
+        void evaluateAction();
+
         void printState();
+
+        void inputAction();
+
+        void inputActionFirstRound();
+
+        void useAbility(); // blm implementasi
+
+        template <typename T>
+        T highestValue(vector<T> objects);
+
+        void resetGameState(); // reset game state kecuali point player
+        
+        bool checkForWin();
+
+        Player getWinner();
+
+        void operator=(const GameState& copy);
+
+        
+
+        
+
+        
+
 
         
         
