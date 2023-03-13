@@ -3,7 +3,7 @@
 
 class Valuable{
     public:
-        virtual double value()=0; 
+        virtual float value()=0; 
 };
 
 

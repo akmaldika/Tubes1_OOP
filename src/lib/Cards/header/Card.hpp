@@ -18,7 +18,8 @@ class Card : public Valuable {
 
     // Methods
         string getColor();
-        double value();
+        float value();
+        float weightValue();
         static map<string, float> getColorFactor();
         bool operator>(Card& card);
         bool operator==(Card& card);
