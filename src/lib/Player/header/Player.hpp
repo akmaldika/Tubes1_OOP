@@ -16,6 +16,7 @@ class Player {
 
     PlayerCard MyCard;
     static int playerCount;
+    bool played;
 
     public:
     // construktor
@@ -33,7 +34,8 @@ class Player {
     // Card getCardOne();
     // void addCardTwo(Card card2);
     // Card getCardTwo();
-
+    void setPlayed(bool);
+    bool getPlayed();
     void status() const;
 
     // operator

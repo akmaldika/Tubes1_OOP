@@ -38,6 +38,13 @@ void Player::status() const{
     cout << "Point : " << this->point << endl;
     cout << endl;
 }
+void Player::setPlayed(bool played){
+    this->played = played;
+}
+
+bool Player::getPlayed(){
+    return played;
+}
 bool Player::operator>(Player& enemy){
     return (getPlayerPoint() > enemy.getPlayerPoint());
 }
