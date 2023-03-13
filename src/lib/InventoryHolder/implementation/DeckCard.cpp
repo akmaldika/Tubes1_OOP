@@ -105,10 +105,8 @@ DeckCard& DeckCard::operator=(const DeckCard& deckCard) {
 void DeckCard::printCard() {
     for (int i = 0; i < deckCard.size(); i++) {
         cout << "Deck Card " << i + 1 << endl;
-        cout << "  Color: " << deckCard[i].getColor() << endl;
-        cout << "  Category: " << deckCard[i].getCategory() << endl;
-        cout << "  Ability: " << deckCard[i].getAbility() << endl;
         cout << "  Value: " << deckCard[i].value() << endl;
+        cout << "  Color: " << deckCard[i].getColor() << endl;
         cout << endl;
     }
 }

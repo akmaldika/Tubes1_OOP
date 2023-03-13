@@ -1,6 +1,6 @@
 #include "../header/PlayerCard.hpp"
 
-PlayerCard::PlayerCard(Card card1, Card card2, Card abilityCard, int ID) {
+PlayerCard::PlayerCard(Card card1, Card card2, AbilityCard* abilityCard, int ID) {
     this->playerCard.first = card1;
     this->playerCard.second = card2;
     this->abilityCard = abilityCard;
@@ -28,7 +28,7 @@ void PlayerCard::setSecondPlayerCard(Card card) {
     this->playerCard.second = card;
 }
 
-void PlayerCard::setAbilityCard(Card card) {
+void PlayerCard::setAbilityCard(AbilityCard* card) {
     this->abilityCard = card;
 }
 
@@ -44,7 +44,7 @@ Card PlayerCard::getSecondPlayerCard() {
     return this->playerCard.second;
 }
 
-Card PlayerCard::getAbilityCard() {
+AbilityCard* PlayerCard::getAbilityCard() {
     return this->abilityCard;
 }
 
@@ -57,10 +57,10 @@ int PlayerCard::getPlayerCardCount() {
 }
 
 PlayerCard& PlayerCard::operator+(Card card) {
-    if (playerCard.first.getCategory() == "unknown") {
+    if (playerCard.first.getColor() == "unknown") {
         playerCard.first = card;
         this->playerCardCount++;
-    } else if (playerCard.second.getCategory() == "unknown") {
+    } else if (playerCard.second.getColor() == "unknown") {
         playerCard.second = card;
         this->playerCardCount++;
     }
@@ -91,19 +91,12 @@ void PlayerCard::printCard() {
     cout << "Player Card" << endl;
     cout << "Owner ID: " << ID << endl;
     cout << "  Card 1: " << endl;
-    cout << "    Category: " << playerCard.first.getCategory() << endl;
     cout << "    Color: " << playerCard.first.getColor() << endl;
-    cout << "    Ability: " << playerCard.first.getAbility() << endl;
     cout << "    Value: " << playerCard.first.value() << endl << endl;
     cout << "  Card 2: " << endl;
-    cout << "    Category: " << playerCard.second.getCategory() << endl;
     cout << "    Color: " << playerCard.second.getColor() << endl;
-    cout << "    Ability: " << playerCard.second.getAbility() << endl;
     cout << "    Value: " << playerCard.second.value() << endl << endl;
     cout << "  Ability Card: " << endl;
-    cout << "    Category: " << abilityCard.getCategory() << endl;
-    cout << "    Color: " << abilityCard.getColor() << endl;
-    cout << "    Ability: " << abilityCard.getAbility() << endl;
-    cout << "    Value: " << abilityCard.value() << endl;
+    cout << "    Ability: " << abilityCard->getAbilityCard() << endl;
     cout << endl;
 }
