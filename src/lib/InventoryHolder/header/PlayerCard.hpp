@@ -15,6 +15,7 @@ class PlayerCard : public InventoryHolder{
 
     public:
         // Constructor
+        PlayerCard();
         PlayerCard(Card card1, Card card2, Card abilityCard, int ID);
 
         // Copy Constructor
