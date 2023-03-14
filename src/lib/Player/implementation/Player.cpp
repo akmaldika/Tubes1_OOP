@@ -113,8 +113,8 @@ void Player::setAbility(AbilityCard *ini){
     MyCard.setAbilityCard(ini);
 }
 
-AbilityCard Player::getAbility(){
-    return MyCard.getAbilityCard()[0];
+AbilityCard* Player::getAbility(){
+    return MyCard.getAbilityCard();
 }
 
 PlayerCard Player::getMyCard() const
