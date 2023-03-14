@@ -304,7 +304,18 @@ Combo GameState::playerHighestCombo(Player player){
     }
     // Pencarian semua kombinasi yang mungkin
     if(cardList.size()>5){ // Jika ada lebih dari satu kombinasi yang mungkin
-
+        for (int i=0; i<(cardList.size()-4);i++){
+            for (int j=i+1; j<(cardList.size()-3);j++){
+                for (int k=j+1; j<(cardList.size()-2);k++){
+                    for(int l=k+1; j<(cardList.size()-1); l++){
+                        for(int m=l+1; m<cardList.size();m++){
+                            possibleCombination = {cardList[i], cardList[j], cardList[k], cardList[l], cardList[m]};
+                            listPossibleCombination.push_back(Combo(possibleCombination));
+                        }
+                    }
+                }
+            }
+        }
     } else { // Jika hanya ada satu kombinasi yang mungkin
         listPossibleCombination.push_back(Combo(cardList));
     }
