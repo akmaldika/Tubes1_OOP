@@ -74,6 +74,7 @@ TableCard GameState::getTableCard() {
     return CardTable;
 }
 
+
 Player& GameState::getPlayer(int ID) {
     Player &temp = AllPlayer.front();
 
@@ -238,9 +239,11 @@ void GameState::evaluateAction(){
 void GameState::resetGameState(){
     Round = 1;
     PrizePool = DEFAULT_PRIZE;
+    DeckCard decknew;
+    deck = decknew;
 
-    for (int i = 0; i < 5 ; i++){ // kosongin table card
-        CardTable = CardTable - CardTable.getTableCard().at(i);
+    for (auto kartu : CardTable.getTableCard()){ // kosongin table card
+        CardTable = CardTable - kartu;
     }
 
     for (auto player : AllPlayer){ // set played false dan ganti kartu tiap pemain
@@ -252,7 +255,11 @@ void GameState::resetGameState(){
 }
 
 bool GameState::checkAllWin(){
+
+    // cout << "Evaluating all score...\n";
+
     Player highestScorePlayer = max(AllPlayer);
+    // highestScorePlayer.status();
 
     return (highestScorePlayer.getPlayerPoint() >= 4294967296);
 }
@@ -327,8 +334,13 @@ Combo GameState::playerHighestCombo(Player player){
 // Temporary
 void GameState::getRoundWinner(){
     
-    cout << "Masuk round winner\n";
-    Player winnerPlayer = max(AllPlayer);
+    Player &winnerPlayer = AllPlayer.at(0); // max(AllPlayer)
+
+    for(auto player : AllPlayer){
+        if(playerHighestCombo(player).value() > playerHighestCombo(winnerPlayer).value()){
+            winnerPlayer = player;
+        }
+    }
 
     cout << "This Round Winner is: " << endl;
     winnerPlayer.addPoint(PrizePool);  

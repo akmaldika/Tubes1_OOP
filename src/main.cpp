@@ -9,11 +9,12 @@ int main(int argc, char const *argv[])
     */
     GameState gameState; // udah construct game state, sama isinya (def const)
     int opt;
+    int gameCounter = 0;
     string filename;
     DeckAbilityCard abilityDeck;
     Player winner;
 
-try{
+
     
 
     /*
@@ -72,6 +73,8 @@ try{
     }
 
     while(!gameState.checkAllWin()){
+        gameCounter++;
+        cout << "|   GAME "<<  gameCounter << "   |" << endl;
 
         // PLAY FIRST ROUND
         for (int i = 0; i < 7 ; i++){ // per turn
@@ -83,7 +86,6 @@ try{
         }
         gameState.NextRound();
 
-        cout << "masuk ronde selanjutnya\n";
 
         // Draw Ability Card
         for (int i = 0; i < 7 ; i++){
@@ -94,7 +96,7 @@ try{
         for(int i = 0; i < 5 ; i++){ // per round
             for(int j = 0; j < 7 ; j++){ // per turn
                 gameState.printState(); // nanti ganti
-                // gameState.inputAction();
+                //gameState.inputAction();
                 gameState.inputRandom();
                 gameState.evaluateAction();
                 gameState.NextTurn();
@@ -102,19 +104,15 @@ try{
             gameState.NextRound();
         }
         gameState.getRoundWinner();
+
         gameState.resetGameState();
-    }
+    } 
+
 
     winner = gameState.getAllWinner();
-    cout << "The winner is: " << endl;
+    cout << "The winner of the game is: " << endl;
     winner.status();
 
     return 0;
-
-}
-
-catch(...){
-    cout << "ada exception somewhere"<< endl;
-}
 }
 
