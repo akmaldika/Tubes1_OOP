@@ -13,9 +13,20 @@ class Exceptions{
 class FileNotFoundException: public Exceptions{
     public:
         FileNotFoundException(string);
-}
+};
 
-class 
+class IntInputOutOfRangeException: public Exceptions{
+    public:
+        IntInputOutOfRangeException(int);
+};
+class IntInputException: public Exceptions{
+    public:
+        IntInputException();
+};
 
+class InvalidCommandException: public Exceptions{
+    public:
+        InvalidCommandException(string);
+};
 
 #endif /* EXCEPTIONS_HPP */
