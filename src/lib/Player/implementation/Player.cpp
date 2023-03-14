@@ -25,10 +25,10 @@ void Player::setPlayerName(string name){
 string Player::getPlayerName(){
     return name;
 }
-void Player::setPlayerPoint(int p){
+void Player::setPlayerPoint(long long int p){
     this->point = p;
 }
-int Player::getPlayerPoint(){
+long long int Player::getPlayerPoint(){
     return point;
 }
 void Player::setPlayerID(int ID){
@@ -64,7 +64,7 @@ bool Player::operator<(Player& enemy){
     return (getPlayerPoint() < enemy.getPlayerPoint());
 }
 
-void Player::addPoint(int amount){
+void Player::addPoint(long long int amount){
     point += amount;
 }
 

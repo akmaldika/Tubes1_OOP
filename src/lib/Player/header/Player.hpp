@@ -15,7 +15,7 @@ class Player {
     private:
     int ID; 
     string name;
-    int point;  
+    long long int point;  
     static int playerCount;
     bool played;
     // Combo MyCombo;
@@ -30,8 +30,8 @@ class Player {
     // getter and setter
     void setPlayerName(string name);
     string getPlayerName();
-    void setPlayerPoint(int point);
-    int getPlayerPoint();
+    void setPlayerPoint(long long int point);
+    long long int getPlayerPoint();
     void setPlayerID(int ID);
     int getPlayerID();
     void addCardOne(Card card1);
@@ -48,7 +48,7 @@ class Player {
 
     void status() const;
 
-    void addPoint(int amount);
+    void addPoint(long long int amount);
 
 
     // operator

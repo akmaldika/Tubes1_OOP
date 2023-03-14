@@ -7,12 +7,14 @@ int main(int argc, char const *argv[])
     /*
         INISIALISAI VARIABEL
     */
-try{
     GameState gameState; // udah construct game state, sama isinya (def const)
     int opt;
     string filename;
     DeckAbilityCard abilityDeck;
     Player winner;
+    
+try{
+    
 
     /*
         ALGORITMA PERMAINAN
