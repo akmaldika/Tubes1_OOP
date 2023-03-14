@@ -4,7 +4,7 @@ using namespace std;
 template <class T>
  // Preconditional: objects Tidak kosong 
 T& max(vector<T> &objects){
-    T &maxElmt = objects[0];
+    T& maxElmt = objects[0];
 
 
     for(auto obj : objects){
