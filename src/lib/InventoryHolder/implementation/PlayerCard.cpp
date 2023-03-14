@@ -1,5 +1,7 @@
 #include "../header/PlayerCard.hpp"
 
+PlayerCard::PlayerCard(){}
+
 PlayerCard::PlayerCard(Card card1, Card card2, AbilityCard* abilityCard, int ID) {
     this->playerCard.first = card1;
     this->playerCard.second = card2;
@@ -36,11 +38,11 @@ void PlayerCard::setID(int ID) {
     this->ID = ID;
 }
 
-Card PlayerCard::getFirstPlayerCard() {
+Card PlayerCard::getFirstPlayerCard() const{
     return this->playerCard.first;
 }
 
-Card PlayerCard::getSecondPlayerCard() {
+Card PlayerCard::getSecondPlayerCard() const{
     return this->playerCard.second;
 }
 

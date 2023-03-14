@@ -5,7 +5,7 @@
     bagian ini aku gatau bisa apa ga
 */
 Card tempCard;
-Player temp(tempCard,tempCard);
+Player temp;
 
 pair<int, Player&> emptyPlayer(0,temp); // inisiasi pair kosong buat turn
 
@@ -67,10 +67,13 @@ TableCard GameState::getTableCard() {
     return CardTable;
 }
 
-Player GameState::getPlayer(int ID) {
+Player& GameState::getPlayer(int ID) {
+    Player &temp = AllPlayer.front();
+
     for (Player player : AllPlayer){
-        if(ID == player.getID()){
-            return player;
+        if(ID == player.getPlayerID()){
+            temp = player;
+            return temp;
         }
     }
 }
@@ -91,16 +94,16 @@ void GameState::NextRound(){
     Player temp(tempCard,tempCard);
     temp = AllPlayer.front();
 
-    NextTurn(Reverse);
+    NextTurn();
 }
 
-void GameState::NextTurn(bool reverse){
+void GameState::NextTurn(){
 // nandain player udah main
 // dan majuin/mundurin pointer turn 
     Turn.second.setPlayed(true);
 
     while(Turn.second.getPlayed()){
-        if(!reverse){
+        if(!Reverse){
             
             if(Turn.first >= 6){
                 Turn.first = 0;
@@ -130,10 +133,10 @@ void GameState::AddCardToTable(Card cardAdded){
 }
 
 void GameState::printState(){
-    cout << "Round       :" << Round << endl;
-    cout << "Prize Pool  :" << PrizePool << endl;
-    cout << "Turn        :" << Turn.second.getID() << " " << Turn.second.getPlayerName() << endl;
-    cout << "Table Card  :" << endl;
+    cout << "Round       : " << Round << endl;
+    cout << "Prize Pool  : " << PrizePool << endl;
+    cout << "Turn        : " << Turn.second.getPlayerID() << " " << Turn.second.getPlayerName() << endl;
+    cout << "Table Card  : " << endl;
     CardTable.printCard();
 
 
@@ -170,8 +173,8 @@ void GameState::inputAction(){
 
 
 void GameState::inputActionFirstRound(){
-    cout << "Player in turn : " << endl;
-    // print informasi player
+    cout << "\nPlayer in turn : " << endl;
+    Turn.second.status();
     cout << "Action Choice  : " << endl;
     cout << "1. Double " << endl;
     cout << "2. Next " << endl;
@@ -204,6 +207,7 @@ void GameState::evaluateAction(){
     case 1: // 1. Double
 
         PrizePool = PrizePool * 2;
+        //cout << "masuk satu";
         
         break;
     case 2: // 2. Next
@@ -243,7 +247,7 @@ void GameState::resetGameState(){
     // tunggu ability, player, player card selesai.
 }
 
-bool GameState::checkForWin(){
+bool GameState::checkAllWin(){
     Player highestScore = highestValue(AllPlayer);
 
     if (highestScore.getPlayerPoint() >= 4294967296){
@@ -255,7 +259,7 @@ bool GameState::checkForWin(){
 
 }
 
-Player GameState::getWinner(){
+Player GameState::getAllWinner(){
 
     for (auto player : AllPlayer){
         if(player.getPlayerPoint() >= 4294967296){
@@ -276,7 +280,79 @@ void GameState::operator=(const GameState& copy){
 
 }
 
+void GameState::printInterface(){
+    cout << " ________________________________________________________________________________" << endl;
+    cout << "|                                                                                |" << endl;
+    cout << "|                                                                                |" << endl;
+    cout << "|                                                                                |" << endl;
+    cout << "|                                                                                |" << endl;
+    cout << "|                                                                                |" << endl;
+    cout << "|                                                                                |" << endl;
+    cout << "|                                                                                |" << endl;
+    cout << "|                                                                                |" << endl;
 
 
+}
+
+Combo GameState::playerHighestCombo(Player player){
+    
+    vector<Card> cardList;
+    vector<Card> temp;
+    Combo maxCombo;
+
+    cardList.push_back(player.getCardOne());
+    cardList.push_back(player.getCardTwo());
+
+    if(CardTable.getTableCardCount() > 0){
+        for(auto card : CardTable.getTableCard()){
+            cardList.push_back(card);
+        }
+    }
+
+    int range = (1 << cardList.size()) - 1;
+
+    for (int i = 0; i <= range; i++){
+        cout << "Masuk loop highest combo" << endl;
+        int x = 0, y = i;
+
+        while(y > 0){
+            if(y & 1 == 1){
+                temp.push_back(cardList.at(x));
+            }
+            
+            x++;
+            y = y >> 1;
+        }
+        cout << "in\n";
+        Combo tempCombo(temp); // bug here
+
+        if(tempCombo.value() >= maxCombo.value()){
+            maxCombo = tempCombo;
+
+        }
+        cout << "out\n";
+
+    }
+    cout << "Keluar loop highest combo" << endl;
 
 
+    return maxCombo;
+}
+
+void GameState::getRoundWinner(){
+    
+    cout << "Masuk round winner\n";
+    Player &max = AllPlayer.front();
+
+    for (auto player : AllPlayer){
+        cout << "Masuk loop round winner\n";
+
+        if(playerHighestCombo(player).value() >= playerHighestCombo(max).value()){
+            max = player;
+        }
+    }
+
+    cout << "This Round Winner is: " << endl;
+    max.addPoint(PrizePool);  
+    max.status();  
+}

@@ -7,11 +7,12 @@ int main(int argc, char const *argv[])
     /*
         INISIALISAI VARIABEL
     */
-
+try{
     GameState gameState; // udah construct game state, sama isinya (def const)
     int opt;
     string filename;
     DeckAbilityCard abilityDeck;
+    Player winner;
 
     /*
         ALGORITMA PERMAINAN
@@ -26,7 +27,7 @@ int main(int argc, char const *argv[])
     while(true){
         try{
             cin >> opt;
-            if(opt != 1 || opt != 2){
+            if(!(opt == 1 || opt == 2)){
                 throw (opt);
             }
             else {
@@ -68,18 +69,46 @@ int main(int argc, char const *argv[])
         }
     }
 
-    // PLAY FIRST ROUND
+    while(!gameState.checkAllWin()){
 
-    gameState.printState(); // nanti ganti 
+        // PLAY FIRST ROUND
+        for (int i = 0; i < 7 ; i++){ // per turn
+            gameState.printState(); // nanti ganti
+            gameState.inputActionFirstRound();
+            gameState.evaluateAction();
+            gameState.NextTurn();
+        }
+        gameState.getRoundWinner();
 
+        cout << "masuk ronde selanjutnya\n";
 
-    
-    
+        // Draw Ability Card
+        for (int i = 0; i < 7 ; i++){
+            gameState.getPlayer(i).setAbility(abilityDeck.getDeckAbilityCard().at(i));
+        }
 
+        //PLAY ROUND 2-7
+        for(int i = 0; i < 6 ; i++){ // per round
+            for(int j = 0; j < 7 ; j++){ // per turn
+                gameState.printState(); // nanti ganti
+                gameState.inputAction();
+                gameState.evaluateAction();
+                gameState.NextTurn();
+            }
+            gameState.getRoundWinner();
+        }
+    }
 
-
-
+    winner = gameState.getAllWinner();
+    cout << "The winner is: " << endl;
+    winner.status();
 
     return 0;
+
+}
+
+catch(...){
+    cout << "ada exception somewhere"<< endl;
+}
 }
 

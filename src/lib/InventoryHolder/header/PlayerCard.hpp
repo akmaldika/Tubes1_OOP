@@ -14,6 +14,7 @@ class PlayerCard : public InventoryHolder{
 
     public:
         // Constructor
+        PlayerCard();
         PlayerCard(Card card1, Card card2, AbilityCard* abilityCard, int ID);
 
         // Copy Constructor
@@ -27,8 +28,8 @@ class PlayerCard : public InventoryHolder{
         void setSecondPlayerCard(Card card);
         void setAbilityCard(AbilityCard* card);
         void setID(int ID);
-        Card getFirstPlayerCard();
-        Card getSecondPlayerCard();
+        Card getFirstPlayerCard() const;
+        Card getSecondPlayerCard() const;
         AbilityCard* getAbilityCard();
         int getID();
         int getPlayerCardCount();
