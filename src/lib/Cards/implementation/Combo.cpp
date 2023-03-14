@@ -146,7 +146,7 @@ void Combo::setComboType(){
 }
 
 float Combo::value(){
-    if (this->type == "unknown"){
+    if (this->type == "unknown" && (this->combination.size()>0)){
         setComboType();
         this->valueCombo += thresholdCombo[this->type];
     }

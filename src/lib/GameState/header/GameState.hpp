@@ -3,6 +3,7 @@
 #include "../../InventoryHolder/header/TableCard.hpp"
 #include "../../InventoryHolder/header/DeckCard.hpp"
 #include "../../Cards/header/Combo.hpp"
+#include "../../utilityFunction.cpp"
 #include <vector>
 #include <iostream>
 
@@ -90,9 +91,6 @@ class GameState {
         void inputActionFirstRound();
 
         void useAbility(); // blm implementasi
-
-        template <typename T>
-        T highestValue(vector<T> objects);
 
         void resetGameState(); // reset game state kecuali point player
         

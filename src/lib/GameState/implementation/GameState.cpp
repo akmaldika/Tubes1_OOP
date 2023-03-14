@@ -2,6 +2,13 @@
 
 
 /*
+    Ini ada beberapa yang agak diragukan. 
+    1. getPlayer apakah sudah aman soalnya pake & ?  takutnya error di playernya malah jadi ketimpa. but i'm not sure 
+    2. next turn bisa dioptimize soalnya ada redundancy. Reverse ama yg ga reverse kenapa sama aja (?)
+    3. generic function highest value bakalan dihapus karena udah ada max dunction di utility function, pake ini aja ntar
+*/
+
+/*
     bagian ini aku gatau bisa apa ga
 */
 Card tempCard;
@@ -104,25 +111,12 @@ void GameState::NextTurn(){
 
     while(Turn.second.getPlayed()){
         if(!Reverse){
-            
-            if(Turn.first >= 6){
-                Turn.first = 0;
-                Turn.second = AllPlayer.at(0);
-            }
-            else{
-                Turn.first++;
-                Turn.second = AllPlayer.at(Turn.first);
-            }
+            Turn.first = (Turn.first+1)%7;
+            Turn.second = AllPlayer.at(Turn.first);
         }
         else {
-            if(Turn.first >= 6){
-                Turn.first = 0;
-                Turn.second = AllPlayer.at(0);
-            }
-            else{
-                Turn.first++;
-                Turn.second = AllPlayer.at(Turn.first);
-            }
+            Turn.first = ((Turn.first-1)+7)%7;
+            Turn.second = AllPlayer.at(Turn.first); 
         }
     }
 
@@ -227,19 +221,6 @@ void GameState::evaluateAction(){
     }
 }
 
-template <typename T>
-T GameState::highestValue(vector<T> objects){
-    T max; // possible bug
-
-    for(auto obj : objects){
-        if(obj > max){
-            max = obj;
-        }
-    }
-
-    return max;
-}
-
 void GameState::resetGameState(){
     Round = 1;
     PrizePool = DEFAULT_PRIZE;
@@ -248,24 +229,14 @@ void GameState::resetGameState(){
 }
 
 bool GameState::checkAllWin(){
-    Player highestScore = highestValue(AllPlayer);
+    Player highestScorePlayer = max(AllPlayer);
 
-    if (highestScore.getPlayerPoint() >= 4294967296){
-        return true;
-    }
-    else{
-        return false;
-    }
-
+    return (highestScorePlayer.getPlayerPoint() >= 4294967296);
 }
 
+// Precondional: Telah ditemukan pemenang pada game 
 Player GameState::getAllWinner(){
-
-    for (auto player : AllPlayer){
-        if(player.getPlayerPoint() >= 4294967296){
-            return player;
-        }
-    }
+    return max(AllPlayer);
 }
 
 void GameState::operator=(const GameState& copy){
@@ -296,63 +267,37 @@ void GameState::printInterface(){
 
 Combo GameState::playerHighestCombo(Player player){
     
-    vector<Card> cardList;
-    vector<Card> temp;
-    Combo maxCombo;
+    vector<Card> cardList; //kumpulan kartu yang bisa digunakan untuk menemukan kombinasi
+    vector<Card> possibleCombination;//kombinasi kartu yang mungkin
+    vector<Combo> listPossibleCombination;// list semua kombinasi kartu yang mungkin
 
+    // Filling the cardList
     cardList.push_back(player.getCardOne());
     cardList.push_back(player.getCardTwo());
-
     if(CardTable.getTableCardCount() > 0){
         for(auto card : CardTable.getTableCard()){
             cardList.push_back(card);
         }
     }
 
-    int range = (1 << cardList.size()) - 1;
+    // Pencarian semua kombinasi yang mungkin
+    if(cardList.size()>5){ // Jika ada lebih dari satu kombinasi yang mungkin
 
-    for (int i = 0; i <= range; i++){
-        cout << "Masuk loop highest combo" << endl;
-        int x = 0, y = i;
-
-        while(y > 0){
-            if(y & 1 == 1){
-                temp.push_back(cardList.at(x));
-            }
-            
-            x++;
-            y = y >> 1;
-        }
-        cout << "in\n";
-        Combo tempCombo(temp); // bug here
-
-        if(tempCombo.value() >= maxCombo.value()){
-            maxCombo = tempCombo;
-
-        }
-        cout << "out\n";
-
+    } else { // Jika hanya ada satu kombinasi yang mungkin
+        listPossibleCombination.push_back(Combo(cardList));
     }
-    cout << "Keluar loop highest combo" << endl;
 
-
-    return maxCombo;
+    return max(listPossibleCombination);
 }
 
+
+// Temporary
 void GameState::getRoundWinner(){
     
     cout << "Masuk round winner\n";
-    Player &max = AllPlayer.front();
-
-    for (auto player : AllPlayer){
-        cout << "Masuk loop round winner\n";
-
-        if(playerHighestCombo(player).value() >= playerHighestCombo(max).value()){
-            max = player;
-        }
-    }
+    Player winnerPlayer = max(AllPlayer);
 
     cout << "This Round Winner is: " << endl;
-    max.addPoint(PrizePool);  
-    max.status();  
+    winnerPlayer.addPoint(PrizePool);  
+    winnerPlayer.status();  
 }
