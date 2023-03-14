@@ -16,6 +16,7 @@ class ReverseDirection : public AbilityCard
 
         // Menggunakan ReverseDirection Card, setelahnya ability set ABILITYCARD_DEFAULT
         void useAbilityCard();
+        void useAbilityCard(GameState&);
 };
 
 #endif
