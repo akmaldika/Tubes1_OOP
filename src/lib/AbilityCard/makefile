@@ -4,26 +4,46 @@
 
 .PHONY = all clean
 
-CPP = g++			# compiler to use
+# compiler to use
+CPP = g++
 
 LINKERFLAG = -lm
 
-SRCDINVEN := driver/DriverAbility.cpp
-LIBIMPLEMENTATION := implementation/*.cpp
-LIBCARD := ../../Cards/implementation/Card.cpp
-LIBPLAYER := ../../Player/implementation/Player.cpp
-OUTPUTINVEN := ../../../bin/Ability
+# src
+SRCABILITYCARD := driver/DriverAbilityCard.cpp
 
-All: runAbility cleanAbility
+# lib
+LIBIMPLEMENTATION := *.cpp
+LIBINVENTORYHOLDER := ../InventoryHolder/implementation/*.cpp
+LIBCARDS := ../Cards/implementation/*.cpp
 
-compileAbility:
-	@echo "Makefile: compiling Ability driver.."
-	$(CPP) $(SRCDINVEN) $(LIBIMPLEMENTATION) $(LIBPCARD) $(LIBPLAYER) -o $(OUTPUTINVEN)
+LIBCARD := ../Cards/implementation/Card.cpp
+LIBDECKCARD := ../InventoryHolder/implementation/DeckCard.cpp
+LIBPLAYERCARD := ../InventoryHolder/implementation/PlayerCard.cpp
+LIBPLAYER := ../Player/implementation/Player.cpp
+LIBGAMESTATE := ../GameState/implementation/GameState.cpp
 
-runAbility: compileAbility
-	@echo "Makefile: Running Ability driver.."
-	$(OUTPUTINVEN)
+# out
+OUTPUTABILITYCARD := ../../../bin/AbilityCard
 
-cleanAbility:
-	@echo "Makefile: Cleaning up inventory..."
-	rm -rvf $(OUTPUTINVEN)
+# color; must using echo before
+ccred := "\e\033[0;31m"
+ccgreen := "\e\033[32;1m"
+ccend := "\e\033[0m"
+
+
+All: run clean
+
+compile:
+	@echo $(ccgreen)"Makefile: compiling Ability driver.." $(ccend)
+	$(CPP) $(LINKERFLAG) $(SRCABILITYCARD) $(LIBIMPLEMENTATION) $(LIBCARDS) $(LIBINVENTORYHOLDER) $(LIBPLAYER) $(LIBGAMESTATE) -o $(OUTPUTABILITYCARD)
+
+run: compile
+	@echo $(ccgreen)"Makefile: Running Ability driver.." $(ccend)
+	@echo
+	@ $(OUTPUTABILITYCARD)
+
+clean:
+	@echo
+	@echo $(ccgreen)"Makefile: Cleaning up inventory..." $(ccend)
+	@rm -rvf $(OUTPUTABILITYCARD)

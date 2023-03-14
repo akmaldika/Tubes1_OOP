@@ -16,6 +16,7 @@ class Quarter : public AbilityCard
 
         // Menggunakan Quarter Card, setelahnya ability set ABILITYCARD_DEFAULT
         void useAbilityCard();
+        void useAbilityCard(GameState&);
 };
 
 #endif

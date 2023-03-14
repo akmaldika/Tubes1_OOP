@@ -1,12 +1,25 @@
-// Create Abstract Class AbilityCard
+// AbilityCard.hpp
+
 #ifndef ABILITYCARD_HPP
 #define ABILITYCARD_HPP
 
-#include "../../Cards/header/Card.hpp"
+#include "Ability.hpp"
+
+class Card;
+class DeckCard;
+class PlayerCard;
+class Player;
+class GameState;
+
+// #include "../../Cards/header/Card.hpp"
+// #include "../../InventoryHolder/header/DeckCard.hpp"
+// #include "../../InventoryHolder/header/PlayerCard.hpp"
+// #include "../../Player/header/Player.hpp"
+// #include "../../GameState/header/GameState.hpp"
 
 using namespace std;
 
-class AbilityCard
+class AbilityCard : public Ability
 {
     protected :
         const string ABILITYCARD_DEFAULT = "unknown";
@@ -22,7 +35,7 @@ class AbilityCard
         string getAbilityCard() const;
 
         // menggunakan AbilityCard sesuai dengan jenis kartu (child)
-        virtual void useAbilityCard() = 0;
+        virtual void useAbilityCard();
 
 };
 

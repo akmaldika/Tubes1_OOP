@@ -62,7 +62,7 @@ GameState::GameState(string filename)
 
 }
 
-int GameState::getPrize() {
+long int GameState::getPrize() {
     return PrizePool;
 }
 
@@ -89,7 +89,7 @@ pair<int, Player> GameState::getWhoseTurn(){
     return Turn;
 }
 
-void GameState::setPrize(int amount){
+void GameState::setPrize(long int amount){
     PrizePool = amount;
 }
 
@@ -137,8 +137,9 @@ void GameState::printState(){
 }
 
 void GameState::inputAction(){
-    cout << "Player in turn : " << endl;
-    // print informasi player
+    cout << "\nPlayer in turn : " << endl;
+    Turn.second.status();
+
     cout << "Action Choice  : " << endl;
     cout << "1. Double " << endl;
     cout << "2. Next " << endl;
@@ -163,6 +164,17 @@ void GameState::inputAction(){
     }
     
     Action = input;
+}
+
+void GameState::inputRandom(){
+    cout << "\nPlayer in turn : " << endl;
+    Turn.second.status();
+
+    cout << "Action Choice  : random 1,2,3" << endl;
+    srand(time(0));
+    Action = rand() % (3 - 1 +1) + 1;
+
+    cout << "My Action is: " << Action << endl;
 }
 
 
@@ -209,7 +221,9 @@ void GameState::evaluateAction(){
         break;
     case 3: // 3. Half
         
-        PrizePool = PrizePool / 2;
+        if(!(PrizePool / 2 < 1)){
+            PrizePool = PrizePool / 2;
+        }
 
         break;
     case 4: // 4. Ability
@@ -225,7 +239,16 @@ void GameState::resetGameState(){
     Round = 1;
     PrizePool = DEFAULT_PRIZE;
 
-    // tunggu ability, player, player card selesai.
+    for (int i = 0; i < 5 ; i++){ // kosongin table card
+        CardTable = CardTable - CardTable.getTableCard().at(i);
+    }
+
+    for (auto player : AllPlayer){ // set played false dan ganti kartu tiap pemain
+        player.setPlayed(false);
+
+        player.addCardOne(deck.takeCard());
+        player.addCardTwo(deck.takeCard());
+    }
 }
 
 bool GameState::checkAllWin(){
@@ -279,7 +302,6 @@ Combo GameState::playerHighestCombo(Player player){
             cardList.push_back(card);
         }
     }
-
     // Pencarian semua kombinasi yang mungkin
     if(cardList.size()>5){ // Jika ada lebih dari satu kombinasi yang mungkin
 
@@ -300,4 +322,14 @@ void GameState::getRoundWinner(){
     cout << "This Round Winner is: " << endl;
     winnerPlayer.addPoint(PrizePool);  
     winnerPlayer.status();  
+}
+
+void GameState::setReverse(const bool& reverse)
+{
+    this->Reverse = reverse;
+}
+
+bool GameState::getReverse() const
+{
+    return this->Reverse;
 }

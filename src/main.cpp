@@ -74,11 +74,12 @@ try{
         // PLAY FIRST ROUND
         for (int i = 0; i < 7 ; i++){ // per turn
             gameState.printState(); // nanti ganti
-            gameState.inputActionFirstRound();
+            //gameState.inputActionFirstRound();
+            gameState.inputRandom();
             gameState.evaluateAction();
             gameState.NextTurn();
         }
-        gameState.getRoundWinner();
+        gameState.NextRound();
 
         cout << "masuk ronde selanjutnya\n";
 
@@ -88,15 +89,17 @@ try{
         }
 
         //PLAY ROUND 2-7
-        for(int i = 0; i < 6 ; i++){ // per round
+        for(int i = 0; i < 5 ; i++){ // per round
             for(int j = 0; j < 7 ; j++){ // per turn
                 gameState.printState(); // nanti ganti
-                gameState.inputAction();
+                // gameState.inputAction();
+                gameState.inputRandom();
                 gameState.evaluateAction();
                 gameState.NextTurn();
             }
-            gameState.getRoundWinner();
+            gameState.NextRound();
         }
+        gameState.getRoundWinner();
     }
 
     winner = gameState.getAllWinner();
