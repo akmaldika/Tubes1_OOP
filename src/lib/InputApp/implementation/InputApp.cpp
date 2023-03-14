@@ -57,7 +57,7 @@ void InputApp::takeIntInput(int i)
     {
         this->intInput = stoi(temp);
 
-        if (this->intInput > i)
+        if (this->intInput > i || this->intInput < 1)
         {
             throw IntInputOutOfRangeException(i);
         }

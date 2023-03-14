@@ -11,14 +11,9 @@ SwapCard::SwapCard()
     this->abilityCard = "SwapCard";
 }
 
-void SwapCard::useAbilityCard()
-{
-    cout << "Using ability Card: " << this->abilityCard << endl;
-    setAbilityCard(ABILITYCARD_DEFAULT);
-}
-
 void SwapCard::useAbilityCard(Card& Card1, Card& Card2)
 {
+    AbilityCard::useAbilityCard();
     Card tempCard(Card1);
     Card1 = Card2;
     Card2 = tempCard;
