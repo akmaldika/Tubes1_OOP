@@ -19,16 +19,17 @@ LIBA5 := lib/AbilityCard/Reroll.cpp
 LIBA6 := lib/AbilityCard/ReverseDirection.cpp
 LIBA7 := lib/AbilityCard/SwapCard.cpp
 LIBA8 := lib/AbilityCard/Switch.cpp
-OUTPUTINVEN := ../bin/main
+OUTPUT := ../bin/main
 
 main: 
 	@echo "Compiling main.."
-	$(CPP) $(SRCMAIN) $(LIBSTATE) $(LIBPLAYER) $(LIBCARD) $(LIBCOMBO) $(LIBPCARD) $(LIBDCARD) $(LIBDACARD) $(LIBTCARD) $(LIBA1) $(LIBA2) $(LIBA3) $(LIBA4) $(LIBA5) $(LIBA6) $(LIBA7) $(LIBA8) -o $(OUTPUTINVEN)
+	$(CPP) $(SRCMAIN) $(LIBSTATE) $(LIBPLAYER) $(LIBCARD) $(LIBCOMBO) $(LIBPCARD) $(LIBDCARD) $(LIBDACARD) $(LIBTCARD) $(LIBA1) $(LIBA2) $(LIBA3) $(LIBA4) $(LIBA5) $(LIBA6) $(LIBA7) $(LIBA8) -o $(OUTPUT)
+test:
+	@echo "Compiling main.."
+	$(CPP) $(SRCTES) $(LIBSTATE) $(LIBPLAYER) $(LIBCARD) $(LIBCOMBO) $(LIBPCARD) $(LIBDCARD) $(LIBDACARD) $(LIBTCARD) $(LIBA1) $(LIBA2) $(LIBA3) $(LIBA4) $(LIBA5) $(LIBA6) $(LIBA7) $(LIBA8) -o $(OUTPUT)
+run:
+	$(OUTPUT)
+clean:
+	@echo "Cleaning up main..."
+	rm -rvf $(OUTPUT)
 
-tes:
-	@echo "Compiling test.."
-	$(CPP) $(SRCTES) $(LIBSTATE) $(LIBPLAYER) $(LIBCARD) $(LIBCOMBO) $(LIBPCARD) $(LIBDCARD) $(LIBDACARD) $(LIBTCARD) $(LIBA1) $(LIBA2) $(LIBA3) $(LIBA4) $(LIBA5) $(LIBA6) $(LIBA7) $(LIBA8) -o $(OUTPUTINVEN)
-
-runmain:
-	@echo "Running main.."
-	$(OUTPUTINVEN)
