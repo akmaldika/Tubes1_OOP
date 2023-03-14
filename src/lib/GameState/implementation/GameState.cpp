@@ -71,11 +71,11 @@ Player& GameState::getPlayer(int ID) {
     Player &temp = AllPlayer.front();
 
     for (Player player : AllPlayer){
-        if(ID == player.getPlayerID()){
+        if (ID == player.getPlayerID()){
             temp = player;
-            return temp;
         }
     }
+    return temp;
 }
 
 pair<int, Player> GameState::getWhoseTurn(){
@@ -283,12 +283,8 @@ bool GameState::checkAllWin(){
 }
 
 Player GameState::getAllWinner(){
-
-    for (auto player : AllPlayer){
-        if(player.getPlayerPoint() >= 4294967296){
-            return player;
-        }
-    }
+    Player highestScore = highestValue(AllPlayer);
+    return highestScore;
 }
 
 void GameState::operator=(const GameState& copy){
