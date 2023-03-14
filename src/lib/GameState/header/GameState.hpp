@@ -5,6 +5,7 @@
 #include "../../InventoryHolder/header/DeckAbilityCard.hpp"
 #include "../../Cards/header/Combo.hpp"
 #include "../../utilityFunction.cpp"
+#include "../../InputApp/header/InputApp.hpp"
 #include <vector>
 #include <iostream>
 #include <cstdlib>
@@ -41,7 +42,7 @@ class GameState {
             3. Half
             4. Ability
         */
-        int Action;
+        string Action;
         bool Reverse;
 
         const int DEFAULT_PRIZE = 64;
@@ -116,5 +117,7 @@ class GameState {
         bool getReverse() const;
 
         void AbilitylessCommand();
+
+        void printLeaderboard();
         
 };

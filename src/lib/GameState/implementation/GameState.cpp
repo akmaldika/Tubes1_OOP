@@ -35,7 +35,7 @@ GameState::GameState()
     Turn.second = AllPlayer.front();
     Reverse = false;
 
-    Action = 0;
+    Action = "";
 }
 
 GameState::GameState(string filename)
@@ -58,7 +58,7 @@ GameState::GameState(string filename)
     Turn.second = AllPlayer.front();
     Reverse = false;
     
-    Action = 0;
+    Action = "";
 
 }
 
@@ -138,33 +138,50 @@ void GameState::printState(){
 }
 
 void GameState::inputAction(){
-    cout << "\nPlayer in turn : " << endl;
+
+    InputApp command;
+
+    cout << "\n                 -----> YOUR TURN <-----" << endl;
     Turn.second.status();
 
-    cout << "Action Choice  : " << endl;
-    cout << "1. Double " << endl;
-    cout << "2. Next " << endl;
-    cout << "3. Half " << endl;
-    cout << "4. Use Ability" << endl;
+    cout << " ____________________________\n";
+    cout << "|      LIST OF COMMAND       |" << endl;
+    cout << "|____________________________|" << endl;
+    cout << "| DOUBLE     |       QUARTER |" << endl;
+    cout << "| NEXT       |       REVERSE |" << endl;
+    cout << "| HALF       |          SWAP |" << endl;
+    cout << "| REROLL     |        SWITCH |" << endl;
+    cout << "| QUADRUPLE  |   ABILITYLESS |" << endl;
+    cout << "|____________|_______________|" << endl;
+    cout << " What do you want to do? ";
 
-    int input;
     while (true){
         try{
-            cin >> input;
-            if(input > 4 || input < 1){ // blm ada handling buat string
-                throw (input);
-            }
-            else {
+            command.takeStrInput();
+            if(     command.getStrInput() == "DOUBLE"
+                ||  command.getStrInput() == "NEXT"
+                ||  command.getStrInput() == "HALF"
+                ||  command.getStrInput() == "REROLL"
+                ||  command.getStrInput() == "QUADRUPLE"
+                ||  command.getStrInput() == "QUARTER"
+                ||  command.getStrInput() == "REVERSE"
+                ||  command.getStrInput() == "SWAP"
+                ||  command.getStrInput() == "SWITCH"
+                ||  command.getStrInput() == "ABILITYLESS")
+            {
                 break;
+            }
+            else{
+                throw "Insert Exception"; // nanti diganti
             }
         }
 
         catch(...){
-            cout << "Input Tidak Valid! Silahkan ulangi" << endl;
+            cout << "----------   Invalid Input!    ---------- " << endl;
         }
     }
     
-    Action = input;
+    Action = command.getStrInput();
 }
 
 void GameState::inputRandom(){
@@ -180,58 +197,80 @@ void GameState::inputRandom(){
 
 
 void GameState::inputActionFirstRound(){
-    cout << "\nPlayer in turn : " << endl;
-    Turn.second.status();
-    cout << "Action Choice  : " << endl;
-    cout << "1. Double " << endl;
-    cout << "2. Next " << endl;
-    cout << "3. Half " << endl;
+    
+    InputApp command;
 
-    int input;
+    cout << "\n                 -----> YOUR TURN <-----" << endl;
+    Turn.second.status();
+
+    cout << " ____________________________\n";
+    cout << "|      LIST OF COMMAND       |" << endl;
+    cout << "|____________________________|" << endl;
+    cout << "| DOUBLE     |       QUARTER |" << endl;
+    cout << "| NEXT       |       REVERSE |" << endl;
+    cout << "| HALF       |          SWAP |" << endl;
+    cout << "| REROLL     |        SWITCH |" << endl;
+    cout << "| QUADRUPLE  |   ABILITYLESS |" << endl;
+    cout << "|____________|_______________|" << endl;
+    cout << " What do you want to do? ";
+
     while (true){
         try{
-            cin >> input;
-            if(input > 3 || input < 1){ // blm ada handling buat string
-                throw (input);
-            }
-            else {
+            command.takeStrInput();
+            if(     command.getStrInput() == "DOUBLE"
+                ||  command.getStrInput() == "NEXT"
+                ||  command.getStrInput() == "HALF"
+                ||  command.getStrInput() == "REROLL"
+                ||  command.getStrInput() == "QUADRUPLE"
+                ||  command.getStrInput() == "QUARTER"
+                ||  command.getStrInput() == "REVERSE"
+                ||  command.getStrInput() == "SWAP"
+                ||  command.getStrInput() == "SWITCH"
+                ||  command.getStrInput() == "ABILITYLESS")
+            {
                 break;
+            }
+            else{
+                throw "Insert Exception"; // nanti diganti
             }
         }
 
         catch(...){
-            cout << "Input Tidak Valid! Silahkan ulangi" << endl;
+            cout << "----------   Invalid Input!    ---------- " << endl;
         }
     }
     
-    Action = input;
+    Action = command.getStrInput();
 }
 
 void GameState::evaluateAction(){
-    switch (Action)
-    {
-    case 1: // 1. Double
 
+    if(Action == "DOUBLE"){
         PrizePool = PrizePool * 2;
-        //cout << "masuk satu";
-        
-        break;
-    case 2: // 2. Next
-        // nothing
-        break;
-    case 3: // 3. Half
-        
+    }
+    else if(Action == "HALF"){
         if(!(PrizePool / 2 < 1)){
             PrizePool = PrizePool / 2;
         }
-
-        break;
-    case 4: // 4. Ability
-        
-        break;
-    default:
-        break;
     }
+
+    // ABILITY
+    else if(Action == "REROLL"){
+    }
+    else if(Action == "QUADRUPLE"){
+    }
+    else if(Action == "QUARTER"){
+    }
+    else if(Action == "REVERSE"){
+    }
+    else if(Action == "SWAP"){
+    }
+    else if(Action == "SWITCH"){
+    }
+    else if(Action == "ABILITYLESS"){
+    }
+
+    else{} // ACTION : NEXT
 }
 
 void GameState::resetGameState(){
@@ -356,4 +395,15 @@ void GameState::setReverse(const bool& reverse)
 bool GameState::getReverse() const
 {
     return this->Reverse;
+}
+
+void GameState::printLeaderboard(){
+
+    vector<Player> copyPlayers = sort(AllPlayer);
+
+    cout << "GAMBLING HALL OF FAME" << endl;
+    cout << " ID\t| Name" << endl;
+    for (auto player : copyPlayers){
+        cout << player.getPlayerID() << "\t| " << player.getPlayerName() << endl;
+    }
 }
