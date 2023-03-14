@@ -21,7 +21,7 @@ class GameState {
     private:
     // ATTRIBUTE
         vector<Player> AllPlayer;  // array semua player yang terurut berdasarkan gilirannya
-        long int PrizePool;  // poin hadiah
+        unsigned long long PrizePool;  // poin hadiah
         int Round; // hitungan ronde
 
         /*  TURN
@@ -103,9 +103,9 @@ class GameState {
 
         //bool checkRoundWin();
 
-        void getRoundWinner(); //langsung tambahin skor ke winner round ini
+        void getGameWinner(); //langsung tambahin skor ke winner game ini (6 round)
 
-        Combo playerHighestCombo(Player player);
+        Combo playerHighestCombo(Player& player);
 
         void operator=(const GameState& copy);
 

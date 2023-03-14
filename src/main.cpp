@@ -9,25 +9,60 @@ int main(int argc, char const *argv[])
     */
     GameState gameState; // udah construct game state, sama isinya (def const)
     int opt;
+    int gameCounter = 0;
     string filename;
     DeckAbilityCard abilityDeck;
     Player winner;
 
-try{
+
     
 
     /*
         ALGORITMA PERMAINAN
-    */
-    cout << "Splash Screen" << endl;
+    */    
+ cout<<R"(
+ _____________________________________________________________________
+|               _             _               _                       |
+|              (_)_   _  __| (_)   ___  _ __ | | ___ _ __             |
+|              | | | | |/ _` | |  / _ \| '_ \| |/ _ | '_ \            |
+|              | | |_| | (_| | | | (_) | | | | |  __| | | |           |
+|             _/ |\__,_|\__,_|_|  \___/|_| |_|_|\___|_| |_|           |
+|            |__/                                                     |
+|                       _______________________                       | 
+|                      \_____________________/                        |
+|                       \       __O__       /                         |
+|                        \      =(_)=      /              +           |
+|       +                _\  ___________  /_         .  . . .         |
+|        . . +          ( \\/ ___   ___.\// )       +.. .. .+         |
+|        .. .. :         \    (o)) ((o)    /       ... .. . .         |
+|       .. : .. .:. .    (_)    /   \    (_)      ..+.. + ...+        |
+|       . .+ . ++. .       \:. (_   _) .:/         +  + :.. + :       |
+|        . __... . +        )::::\_/::::(            :. __  . .       |
+|        _(  \ __ .        (:::\_|_|_/:::)          __ /  )_          |
+|       (  \  (  \      __  \:::\_|_/:::/  __      /  )  /  )         |
+|        \  \  \  \    /  )  \:::::::::/  (  \    /  /  /  /          |
+|       ( \  \  \  \__/  /    |\:::::/|    \  \__/  /  /  //)         |
+|        \ \_ \_ \_     / ____| |___| |____ \     _/ _/ _/ /          |
+|         \            /_/ ||   |___|   || \_\            /           |
+|          \          /\   ||  (_____)  ||   /\          /            | 
+|           \________/ \\  ||___________||  // \________/             | 
+|____________\\_______//    |___________|   \\______//________________|
+              \______/_:                   :_\______/
 
+        )" << endl;
+    
+    cout << "             \"Sudahi tubesmu sini judi bersamaku        \n";
+    cout << "                    Eh tubesnya bikin bandar judi yah\"   \n";
+    cout << "                                             - The Dealer\n\n";
 
-    cout << "Deck Order By:" << endl;
+    cout << "----------   Choose Deck Order By    ---------- " << endl;
     cout << "1. Random" << endl;
     cout << "2. File" << endl;
+    
 
     while(true){
         try{
+            cout << "(1/2) Your Choice : ";
             cin >> opt;
             if(!(opt == 1 || opt == 2)){
                 throw (opt);
@@ -37,7 +72,7 @@ try{
             }
         }
         catch(...){
-            cout << "Invalid Input!" << endl;
+            cout << "----------   Invalid Input!    ---------- " << endl;
         }
     }
 
@@ -52,7 +87,7 @@ try{
                 
             }
             catch(...){
-                cout << "File not found!"<< endl;
+                cout << "----------   File Not Found!    ---------- "<< endl;
             }
         }
 
@@ -66,24 +101,25 @@ try{
                 
             }
             catch(...){
-                cout << "File not found!"<< endl;
+                cout << "----------   File Not Found!    ---------- "<< endl;
             }
         }
     }
 
     while(!gameState.checkAllWin()){
+        gameCounter++;
+        cout << "\n$ $ $ $ $ $ $ $ $ $ $ $    GAME " << gameCounter << "    $ $ $ $ $ $ $ $ $ $ $ $\n";
 
         // PLAY FIRST ROUND
         for (int i = 0; i < 7 ; i++){ // per turn
-            gameState.printState(); // nanti ganti
-            //gameState.inputActionFirstRound();
-            gameState.inputRandom();
+            gameState.printInterface(); // nanti ganti
+            gameState.inputActionFirstRound();
+            //gameState.inputRandom();
             gameState.evaluateAction();
             gameState.NextTurn();
         }
         gameState.NextRound();
 
-        cout << "masuk ronde selanjutnya\n";
 
         // Draw Ability Card
         for (int i = 0; i < 7 ; i++){
@@ -93,28 +129,27 @@ try{
         //PLAY ROUND 2-7
         for(int i = 0; i < 5 ; i++){ // per round
             for(int j = 0; j < 7 ; j++){ // per turn
-                gameState.printState(); // nanti ganti
-                // gameState.inputAction();
-                gameState.inputRandom();
+                gameState.printInterface(); // nanti ganti
+                gameState.inputAction();
+                //gameState.inputRandom();
                 gameState.evaluateAction();
                 gameState.NextTurn();
             }
             gameState.NextRound();
         }
-        gameState.getRoundWinner();
+        gameState.getGameWinner();
+
         gameState.resetGameState();
-    }
+    } 
+
 
     winner = gameState.getAllWinner();
-    cout << "The winner is: " << endl;
+    // for (int i=0; i<7; i++){
+    //     gameState.getPlayer(i).status();
+    // }
+    cout << "The winner of the game is: " << endl;
     winner.status();
 
     return 0;
-
-}
-
-catch(...){
-    cout << "ada exception somewhere"<< endl;
-}
 }
 
