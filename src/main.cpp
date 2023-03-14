@@ -103,13 +103,16 @@ int main(int argc, char const *argv[])
             }
             gameState.NextRound();
         }
-        gameState.getRoundWinner();
+        gameState.getGameWinner();
 
         gameState.resetGameState();
     } 
 
 
     winner = gameState.getAllWinner();
+    for (int i=0; i<7; i++){
+        gameState.getPlayer(i).status();
+    }
     cout << "The winner of the game is: " << endl;
     winner.status();
 
