@@ -57,7 +57,7 @@ DeckCard::DeckCard(const DeckCard& deckCard) {
 }
 
 DeckCard::~DeckCard() {
-    this->deckCard.clear();
+
 }
 
 void DeckCard::setDeckCard(vector<Card> deckCard) {

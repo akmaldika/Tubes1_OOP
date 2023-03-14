@@ -69,7 +69,7 @@ DeckAbilityCard::DeckAbilityCard(const DeckAbilityCard& deckAbilityCard) {
 }
 
 DeckAbilityCard::~DeckAbilityCard() {
-    this->deckAbilityCard.clear();
+
 }
 
 void DeckAbilityCard::setDeckAbilityCard(vector<AbilityCard*> deckAbilityCard) {
