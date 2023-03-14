@@ -3,6 +3,7 @@
 
 #include "../../Cards/header/Card.hpp"
 #include "../../color.h"
+#include "../../Exceptions/header/Exceptions.hpp"
 #include <iostream>
 
 using namespace std;

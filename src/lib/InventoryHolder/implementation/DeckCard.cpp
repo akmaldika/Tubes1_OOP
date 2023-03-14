@@ -31,20 +31,23 @@ DeckCard::DeckCard(string filename) {
     // Read from file
     ifstream file;
     file.open(filename);
-
-    if (file.is_open()) {
-        string line;
-        vector<Card> deckCard;
-        int value;
-        string color;
-        while (file >> value >> color) {
-            deckCard.push_back(Card(value, color));
+    try{
+        if (file.is_open()) {
+            string line;
+            vector<Card> deckCard;
+            int value;
+            string color;
+            while (file >> value >> color) {
+                deckCard.push_back(Card(value, color));
+            }
+            this->deckCard = deckCard;
+            this->deckCardCount = deckCard.size();
         }
-        this->deckCard = deckCard;
-        this->deckCardCount = deckCard.size();
-    }
-    else {
-        cout << "File not found" << endl;
+        else {
+            throw FileNotFoundException(filename);
+        }
+    } catch(FileNotFoundException& err){
+        cout<<err.what()<<endl;
     }
 }
 
