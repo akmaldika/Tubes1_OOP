@@ -11,15 +11,10 @@ Reroll::Reroll()
     this->abilityCard = "Reroll";
 }
 
-void Reroll::useAbilityCard()
-{
-    cout << "Using ability Card: " << this->abilityCard << endl;
-    setAbilityCard(ABILITYCARD_DEFAULT);
-}
 
 void Reroll::useAbilityCard(DeckCard& deck, Player& player)
 {
-    useAbilityCard();
+    AbilityCard::useAbilityCard();
     player.setCardOne(deck.takeCard());
     player.setCardTwo(deck.takeCard());
 }
