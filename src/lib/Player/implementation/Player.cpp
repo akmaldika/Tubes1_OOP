@@ -93,7 +93,7 @@ void Player::addPoint(long long int amount){
 // }
 
 
-void Player::addCardOne(Card card1){
+void Player::setCardOne(Card card1){
     MyCard.setFirstPlayerCard(card1);
 }
 
@@ -101,7 +101,7 @@ Card Player::getCardOne(){
     return MyCard.getFirstPlayerCard();
 }
 
-void Player::addCardTwo(Card card2){
+void Player::setCardTwo(Card card2){
     MyCard.setSecondPlayerCard(card2);
 }
 
@@ -113,6 +113,11 @@ void Player::setAbility(AbilityCard *ini){
     MyCard.setAbilityCard(ini);
 }
 
-AbilityCard* Player::getAbility(){
-    return MyCard.getAbilityCard();
+AbilityCard Player::getAbility(){
+    return MyCard.getAbilityCard()[0];
+}
+
+PlayerCard Player::getMyCard() const
+{
+    return this->MyCard;
 }

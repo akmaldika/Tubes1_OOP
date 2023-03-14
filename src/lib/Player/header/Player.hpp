@@ -34,15 +34,15 @@ class Player {
     long long int getPlayerPoint();
     void setPlayerID(int ID);
     int getPlayerID();
-    void addCardOne(Card card1);
+    void setCardOne(Card card1);
     Card getCardOne();
-    void addCardTwo(Card card2);
+    void setCardTwo(Card card2);
     Card getCardTwo();
     void setPlayed(bool);
     bool getPlayed();
     //void setCombo(Combo);
     //Combo getCombo();
-
+    PlayerCard getMyCard() const;
     void setAbility(AbilityCard*);
     AbilityCard* getAbility();
 

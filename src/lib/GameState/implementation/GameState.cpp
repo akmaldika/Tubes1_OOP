@@ -208,7 +208,6 @@ void GameState::inputActionFirstRound(){
 }
 
 void GameState::evaluateAction(){
-    
     switch (Action)
     {
     case 1: // 1. Double
@@ -229,7 +228,6 @@ void GameState::evaluateAction(){
         break;
     case 4: // 4. Ability
         
-
         break;
     default:
         break;
@@ -249,8 +247,8 @@ void GameState::resetGameState(){
     for (auto player : AllPlayer){ // set played false dan ganti kartu tiap pemain
         player.setPlayed(false);
 
-        player.addCardOne(deck.takeCard());
-        player.addCardTwo(deck.takeCard());
+        player.setCardOne(deck.takeCard());
+        player.setCardTwo(deck.takeCard());
     }
 }
 
