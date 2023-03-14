@@ -28,11 +28,15 @@ GameState::GameState()
         Player tempPlayer(card1, card2);
 
         AllPlayer.push_back(tempPlayer); // masukin player ke dalem array
+        tempPlayer.status();
+    }
 
+    for (auto player : AllPlayer){
+        player.status();
     }
 
     Turn.first = 0;
-    Turn.second = AllPlayer.front();
+    Turn.second = AllPlayer.at(0);
     Reverse = false;
 
     Action = "";
@@ -55,7 +59,7 @@ GameState::GameState(string filename)
     }
 
     Turn.first = 0;
-    Turn.second = AllPlayer.front();
+    Turn.second = AllPlayer.at(0);
     Reverse = false;
     
     Action = "";
@@ -112,12 +116,24 @@ void GameState::NextTurn(){
 
     while(Turn.second.getPlayed()){
         if(!Reverse){
-            Turn.first = (Turn.first+1)%7;
-            Turn.second = AllPlayer.at(Turn.first);
+            if(Turn.first == 6){
+                Turn.first = 0;
+                Turn.second = AllPlayer.at(Turn.first);
+            }
+            else{
+                Turn.first++;
+                Turn.second = AllPlayer.at(Turn.first);
+            }
         }
         else {
-            Turn.first = ((Turn.first-1)+7)%7;
-            Turn.second = AllPlayer.at(Turn.first); 
+            if(Turn.first == 0){
+                Turn.first = 6;
+                Turn.second = AllPlayer.at(Turn.first);
+            }
+            else{
+                Turn.first--;
+                Turn.second = AllPlayer.at(Turn.first);
+            }
         }
     }
 
@@ -185,14 +201,20 @@ void GameState::inputAction(){
 }
 
 void GameState::inputRandom(){
-    cout << "\nPlayer in turn : " << endl;
-    Turn.second.status();
+    
+    // vector<string> com = {
+    //     "DOUBLE", "NEXT", "HALF", "REROLL", "QUADRUPLE"
+    //     , "QUARTER", "REVERSE", "SWAP", "SWITCH", "ABILITYLESS"
+    // };
 
-    cout << "Action Choice  : random 1,2,3" << endl;
-    srand(time(0));
-    Action = rand() % (3 - 1 +1) + 1;
+    vector<string> com = {"NEXT", "HALF", "DOUBLE"};
 
-    cout << "My Action is: " << Action << endl;
+    srand(time(NULL));
+    int choice = rand() % 2;  
+    
+    Action = com[choice];
+    cout << choice << endl;
+    cout << "Command : " << Action << endl;
 }
 
 
@@ -324,7 +346,7 @@ cout << " _____________________________________________________________________\
 cout << "                                                                      \n";
 cout << "                            ROUND " << Round << endl;
 cout << "      PRIZE POOL : " << PrizePool << endl;
-cout << "      WHOSE TURN : (" << Turn.second.getPlayerID() << ") " << Turn.second.getPlayerName() << endl;
+cout << "      WHOSE TURN : (" << Turn.first << ") " << Turn.second.getPlayerName() << endl;
 cout << endl;
 cout << "                        CARD ON TABLE :\n";
 CardTable.printCard();
@@ -401,9 +423,9 @@ void GameState::printLeaderboard(){
 
     vector<Player> copyPlayers = sort(AllPlayer);
 
-    cout << "GAMBLING HALL OF FAME" << endl;
-    cout << " ID\t| Name" << endl;
+    cout << "\nGAMBLING HALL OF FAME" << endl;
+    cout << " Name\t (point)" << endl;
     for (auto player : copyPlayers){
-        cout << player.getPlayerID() << "\t| " << player.getPlayerName() << endl;
+        cout << player.getPlayerName() << "\t (" << player.getPlayerPoint() << ")\n";
     }
 }
