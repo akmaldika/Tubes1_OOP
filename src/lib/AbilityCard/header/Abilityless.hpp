@@ -16,6 +16,7 @@ class Abilityless : public AbilityCard
         
         // Menggunakan Abilityless Card, setelahnya ability set ABILITYCARD_DEFAULT
         void useAbilityCard();
+        void useAbilityCard(Player&);
 };
 
 #endif

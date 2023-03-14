@@ -16,6 +16,7 @@ class Quadruple : public AbilityCard
         
         // Menggunakan Quadruple Card, setelahnya ability set ABILITYCARD_DEFAULT
         void useAbilityCard();
+        void useAbilityCard(GameState&);
 };
 
 #endif
