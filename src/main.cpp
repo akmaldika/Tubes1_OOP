@@ -150,11 +150,28 @@ int main(int argc, char const *argv[])
     cout << "The winner of the game is: " << endl;
     winner.status();
 
-    cout << "\nDo you want to try again? (y/n)" << endl;
+    cout << "\nDo you want to try again?" << endl;
     char c;
-    cin >> c;
+    while(true){
+        try{
+            cout << "\n(y/n) Your Choice : ";
+            cin >> c;
+            if(!(c == 'n' || c == 'y')){
+                throw (c);
+            }
+            else {
+                break;
+            }
+        }
+        catch(...){
+            cout << "\n----------   Invalid Input!    ---------- " << endl;
+        }
+    }
     if (c == 'y'){
         system("../bin/main");
+    }
+    else {
+        cout << "\nThank you for playing!" << endl;
     }
 
     return 0;
