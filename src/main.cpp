@@ -12,7 +12,7 @@ int main(int argc, char const *argv[])
     string filename;
     DeckAbilityCard abilityDeck;
     Player winner;
-    
+
 try{
     
 
@@ -102,6 +102,7 @@ try{
             gameState.NextRound();
         }
         gameState.getRoundWinner();
+        gameState.resetGameState();
     }
 
     winner = gameState.getAllWinner();
