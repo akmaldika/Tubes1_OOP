@@ -150,6 +150,12 @@ int main(int argc, char const *argv[])
     cout << "The winner of the game is: " << endl;
     winner.status();
 
+    cout << "\nDo you want to try again? (y/n)" << endl;
+    char c;
+    cin >> c;
+    if (c == 'y'){
+        system("../bin/main");
+    }
+
     return 0;
 }
-
