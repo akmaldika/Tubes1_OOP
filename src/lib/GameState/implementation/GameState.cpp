@@ -172,12 +172,12 @@ void GameState::inputAction(){
                 break;
             }
             else{
-                throw "Insert Exception"; // nanti diganti
+                throw InvalidCommandException(command.getStrInput()); // nanti diganti
             }
         }
 
-        catch(...){
-            cout << "----------   Invalid Input!    ---------- " << endl;
+        catch(InvalidCommandException &er){
+            cout << er.what() << endl;
         }
     }
     
@@ -196,52 +196,52 @@ void GameState::inputRandom(){
 }
 
 
-void GameState::inputActionFirstRound(){
+// void GameState::inputActionFirstRound(){
     
-    InputApp command;
+//     InputApp command;
 
-    cout << "\n                 -----> YOUR TURN <-----" << endl;
-    Turn.second.status();
+//     cout << "\n                 -----> YOUR TURN <-----" << endl;
+//     Turn.second.status();
 
-    cout << " ____________________________\n";
-    cout << "|      LIST OF COMMAND       |" << endl;
-    cout << "|____________________________|" << endl;
-    cout << "| DOUBLE     |       QUARTER |" << endl;
-    cout << "| NEXT       |       REVERSE |" << endl;
-    cout << "| HALF       |          SWAP |" << endl;
-    cout << "| REROLL     |        SWITCH |" << endl;
-    cout << "| QUADRUPLE  |   ABILITYLESS |" << endl;
-    cout << "|____________|_______________|" << endl;
-    cout << " What do you want to do? ";
+//     cout << " ____________________________\n";
+//     cout << "|      LIST OF COMMAND       |" << endl;
+//     cout << "|____________________________|" << endl;
+//     cout << "| DOUBLE     |       QUARTER |" << endl;
+//     cout << "| NEXT       |       REVERSE |" << endl;
+//     cout << "| HALF       |          SWAP |" << endl;
+//     cout << "| REROLL     |        SWITCH |" << endl;
+//     cout << "| QUADRUPLE  |   ABILITYLESS |" << endl;
+//     cout << "|____________|_______________|" << endl;
+//     cout << " What do you want to do? ";
 
-    while (true){
-        try{
-            command.takeStrInput();
-            if(     command.getStrInput() == "DOUBLE"
-                ||  command.getStrInput() == "NEXT"
-                ||  command.getStrInput() == "HALF"
-                ||  command.getStrInput() == "REROLL"
-                ||  command.getStrInput() == "QUADRUPLE"
-                ||  command.getStrInput() == "QUARTER"
-                ||  command.getStrInput() == "REVERSE"
-                ||  command.getStrInput() == "SWAP"
-                ||  command.getStrInput() == "SWITCH"
-                ||  command.getStrInput() == "ABILITYLESS")
-            {
-                break;
-            }
-            else{
-                throw "Insert Exception"; // nanti diganti
-            }
-        }
+//     while (true){
+//         try{
+//             command.takeStrInput();
+//             if(     command.getStrInput() == "DOUBLE"
+//                 ||  command.getStrInput() == "NEXT"
+//                 ||  command.getStrInput() == "HALF"
+//                 ||  command.getStrInput() == "REROLL"
+//                 ||  command.getStrInput() == "QUADRUPLE"
+//                 ||  command.getStrInput() == "QUARTER"
+//                 ||  command.getStrInput() == "REVERSE"
+//                 ||  command.getStrInput() == "SWAP"
+//                 ||  command.getStrInput() == "SWITCH"
+//                 ||  command.getStrInput() == "ABILITYLESS")
+//             {
+//                 break;
+//             }
+//             else{
+//                 throw "Insert Exception"; // nanti diganti
+//             }
+//         }
 
-        catch(...){
-            cout << "----------   Invalid Input!    ---------- " << endl;
-        }
-    }
+//         catch(...){
+//             cout << "----------   Invalid Input!    ---------- " << endl;
+//         }
+//     }
     
-    Action = command.getStrInput();
-}
+//     Action = command.getStrInput();
+// }
 
 void GameState::evaluateAction(){
 

@@ -6,6 +6,7 @@
 #include "../../Cards/header/Combo.hpp"
 #include "../../utilityFunction.cpp"
 #include "../../InputApp/header/InputApp.hpp"
+#include "../../Exceptions/header/Exceptions.hpp"
 #include <vector>
 #include <iostream>
 #include <cstdlib>
