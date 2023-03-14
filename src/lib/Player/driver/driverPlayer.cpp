@@ -24,8 +24,8 @@ int main(){
     player.setPlayerName("Satria");
     player.setPlayerPoint(100);
     player.setPlayerID(3);
-    player.addCardOne(card1);
-    player.addCardTwo(card2);
+    player.setCardOne(card1);
+    player.setCardTwo(card2);
     // player.setAbility("terbang");
 
     player.status();

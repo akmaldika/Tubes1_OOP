@@ -2,6 +2,7 @@
 #include "../../Player/header/Player.hpp"
 #include "../../InventoryHolder/header/TableCard.hpp"
 #include "../../InventoryHolder/header/DeckCard.hpp"
+#include "../../InventoryHolder/header/DeckAbilityCard.hpp"
 #include "../../Cards/header/Combo.hpp"
 #include "../../utilityFunction.cpp"
 #include <vector>
@@ -93,7 +94,6 @@ class GameState {
 
         void inputActionFirstRound();
 
-        void useAbility(); // blm implementasi
 
         void resetGameState(); // reset game state kecuali point player
         
@@ -114,4 +114,7 @@ class GameState {
         void setReverse(const bool&);
 
         bool getReverse() const;
+
+        void AbilitylessCommand();
+        
 };

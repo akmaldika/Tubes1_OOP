@@ -11,17 +11,12 @@ class PlayerCard;
 class Player;
 class GameState;
 
-// #include "../../Cards/header/Card.hpp"
-// #include "../../InventoryHolder/header/DeckCard.hpp"
-// #include "../../InventoryHolder/header/PlayerCard.hpp"
-// #include "../../Player/header/Player.hpp"
-// #include "../../GameState/header/GameState.hpp"
-
 using namespace std;
 
 class AbilityCard : public Ability
 {
     protected :
+        // Attribut
         const string ABILITYCARD_DEFAULT = "unknown";
         string abilityCard;
     public :

@@ -37,16 +37,32 @@ void Player::setPlayerID(int ID){
 int Player::getPlayerID(){
     return ID;
 }
+// void Player::status() const{
+//     cout << "Status Player" << endl;
+//     cout << "ID : " << this->ID << endl;
+//     cout << "Nama : " << this->name << endl;
+//     cout << "Point : " << this->point << endl;
+//     cout << "Kartu : " << endl;
+//     MyCard.getFirstPlayerCard().print();
+//     MyCard.getSecondPlayerCard().print();
+
+//     cout << endl;
+// }
+
 void Player::status() const{
-    cout << "Status Player" << endl;
-    cout << "ID : " << this->ID << endl;
-    cout << "Nama : " << this->name << endl;
-    cout << "Point : " << this->point << endl;
-    cout << "Kartu : " << endl;
+    cout << "    .///\\.        " << endl;
+    cout << "   //////\\\\     \n";
+    cout << "  (.)(.)-||    ID    : " << this->ID << endl;
+    cout << "  | L    )|    Name  : " << this->name << endl;
+    cout << "  | _    /     Point : " << this->point << endl;
+    cout << "  |____.'         \n";
+    cout << "  ___| |__        \n";
+    cout << " __________________________YOUR CARD______________________________\n";
     MyCard.getFirstPlayerCard().print();
     MyCard.getSecondPlayerCard().print();
+    // print ability card
 
-    cout << endl;
+
 }
 void Player::setPlayed(bool played){
     this->played = played;
@@ -77,7 +93,7 @@ void Player::addPoint(long long int amount){
 // }
 
 
-void Player::addCardOne(Card card1){
+void Player::setCardOne(Card card1){
     MyCard.setFirstPlayerCard(card1);
 }
 
@@ -85,7 +101,7 @@ Card Player::getCardOne(){
     return MyCard.getFirstPlayerCard();
 }
 
-void Player::addCardTwo(Card card2){
+void Player::setCardTwo(Card card2){
     MyCard.setSecondPlayerCard(card2);
 }
 
@@ -99,4 +115,9 @@ void Player::setAbility(AbilityCard *ini){
 
 AbilityCard* Player::getAbility(){
     return MyCard.getAbilityCard();
+}
+
+PlayerCard Player::getMyCard() const
+{
+    return this->MyCard;
 }
