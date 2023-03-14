@@ -12,8 +12,10 @@ Switch::Switch()
 }
 void Switch::useAbilityCard(Player& player1, Player& player2)
 {
-    pair<Card,Card> tempPlayerCard(player1.getMyCard().getPlayerCard());
+    pair<Card,Card> tempPlayerCard(player1.getMyCard().getFirstPlayerCard(), player1.getMyCard().getSecondPlayerCard());
     AbilityCard::useAbilityCard();
-    player1.getMyCard().getPlayerCard() = player2.getMyCard().getPlayerCard();
-    player2.getMyCard().getPlayerCard() = tempPlayerCard;
+    player1.setCardOne(player2.getMyCard().getFirstPlayerCard());
+    player1.setCardTwo(player2.getMyCard().getSecondPlayerCard());
+    player2.setCardOne(tempPlayerCard.first);
+    player2.setCardTwo(tempPlayerCard.second);
 }
