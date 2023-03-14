@@ -37,7 +37,9 @@ void PlayerCard::setSecondPlayerCard(Card card) {
 }
 
 void PlayerCard::setAbilityCard(AbilityCard* card) {
+    cout << "Apa lah itu lah" << endl;
     this->abilityCard = card;
+    cout << "Apa lah ya iya lah" << endl;
 }
 
 void PlayerCard::setID(int ID) {
@@ -96,13 +98,70 @@ PlayerCard& PlayerCard::operator=(const PlayerCard& playerCard) {
 }
 
 void PlayerCard::printCard() {
-    cout << LIGHT_RED << UNDERLINE << "Player Card" << RESET << endl;
-    cout << WHITE << "Owner ID: " << YELLOW << ID << RESET << endl;
-    cout << WHITE << "Card 1: " << RESET << endl;
-    playerCard.first.print();
-    cout << WHITE << "Card 2: " << RESET << endl;
-    playerCard.second.print();
-    cout << WHITE << "Ability Card: " << RESET << endl;
-    cout << WHITE << "  Ability: " << YELLOW << abilityCard->getAbilityCard() << RESET << endl;
-    cout << endl;
+    // ASCII Code coloring
+    string colorInterfaceC1;
+    string colorInterfaceC2;
+    // Value and Position on card
+    string pos1C1;
+    string pos2C1;
+    string pos1C2;
+    string pos2C2;
+    // Center of Card
+    char symbolC1;
+    char symbolC2;
+
+    // Coloring dan symbol Card 1
+    if (this->playerCard.first.getColor()=="hijau"){
+        colorInterfaceC1 = LIGHT_GREEN;
+        symbolC1 = 'G';
+    } else if (this->playerCard.first.getColor()=="biru"){
+        colorInterfaceC1 = LIGHT_BLUE;
+        symbolC1 = 'B';
+    } else if(this->playerCard.first.getColor()=="kuning"){
+        colorInterfaceC1 = YELLOW;
+        symbolC1 = 'Y';
+    } else if (this->playerCard.first.getColor()=="merah"){
+        colorInterfaceC1 = LIGHT_RED;
+        symbolC1 = 'R';
+    }
+
+    // Format Value pada posisi
+    pos1C1= pos2C1 = to_string(int(this->playerCard.first.value()));
+    if (this->playerCard.first.value() < 10){
+        // Satu digit
+        pos1C1 += " ";
+        pos2C1 = " " + pos2C1;
+    } 
+    // Coloring dan symbol Card 2
+    if (this->playerCard.second.getColor()=="hijau"){
+        colorInterfaceC2 = LIGHT_GREEN;
+        symbolC2 = 'G';
+    } else if (this->playerCard.second.getColor()=="biru"){
+        colorInterfaceC2 = LIGHT_BLUE;
+        symbolC2 = 'B';
+    } else if(this->playerCard.second.getColor()=="kuning"){
+        colorInterfaceC2 = YELLOW;
+        symbolC2 = 'Y';
+    } else if (this->playerCard.second.getColor()=="merah"){
+        colorInterfaceC2 = LIGHT_RED;
+        symbolC2 = 'R';
+    }
+
+    // Format Value pada posisi
+    pos1C2= pos2C2 = to_string(int(this->playerCard.second.value()));
+    if (this->playerCard.second.value() < 10){
+        // Satu digit
+        pos1C2 += " ";
+        pos2C2 = " " + pos2C2;
+    } 
+
+    // Output
+    cout<<colorInterfaceC1<<".---------."               <<"     "<<colorInterfaceC2<<".---------."              <<endl;
+    cout<<colorInterfaceC1<<"|"<<pos1C1<<"       |"     <<"     "<<colorInterfaceC2<<"|"<<pos1C2<<"       |"    <<endl;
+    cout<<colorInterfaceC1<<"|  .---.  |"               <<"     "<<colorInterfaceC2<<"|  .---.  |"              <<endl;
+    cout<<colorInterfaceC1<<"|  : "<<symbolC1<<" :  |"  <<"     "<<colorInterfaceC2<<"|  : "<<symbolC2<<" :  |" <<endl;
+    cout<<colorInterfaceC1<<"|  '---'  |"               <<"     "<<colorInterfaceC2<<"|  '---'  |"              <<endl;
+    cout<<colorInterfaceC1<<"|       "<<pos2C1<<"|"     <<"     "<<colorInterfaceC2<<"|       "<<pos2C2<<"|"    <<endl;
+    cout<<colorInterfaceC1<<"`---------'"               <<"     "<<colorInterfaceC2<<"`---------'";
+    cout<<RESET<<endl;
 }

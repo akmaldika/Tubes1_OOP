@@ -15,7 +15,6 @@ class Reroll : public AbilityCard
         // Method
         
         // Menggunakan Reroll Card, setelahnya ability set ABILITYCARD_DEFAULT
-        void useAbilityCard();
         void useAbilityCard(DeckCard&, Player&);
 };
 

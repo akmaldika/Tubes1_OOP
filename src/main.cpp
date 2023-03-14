@@ -122,9 +122,10 @@ int main(int argc, char const *argv[])
 
 
         // Draw Ability Card
-        for (int i = 0; i < 7 ; i++){
-            gameState.getPlayer(i).setAbility(abilityDeck.getDeckAbilityCard().at(i));
-        }
+        // for (int i = 0; i < 7 ; i++){
+        //     gameState.getPlayer(i).setAbility(abilityDeck.getDeckAbilityCard().at(i));
+        // }
+        cout << "Ciee udh dapat ability"<<endl;
 
         //PLAY ROUND 2-7
         for(int i = 0; i < 5 ; i++){ // per round
