@@ -9,11 +9,12 @@ int main(int argc, char const *argv[])
     */
     GameState gameState; // udah construct game state, sama isinya (def const)
     int opt;
+    int gameCounter = 0;
     string filename;
     DeckAbilityCard abilityDeck;
     Player winner;
 
-try{
+
     
 
     /*
@@ -72,6 +73,8 @@ try{
     }
 
     while(!gameState.checkAllWin()){
+        gameCounter++;
+        cout << "|   GAME "<<  gameCounter << "   |" << endl;
 
         // PLAY FIRST ROUND
         for (int i = 0; i < 7 ; i++){ // per turn
@@ -102,19 +105,16 @@ try{
             gameState.NextRound();
         }
         gameState.getRoundWinner();
+        cout << "|   GAME "<<  gameCounter << "   |" << endl;
+        cout << "reset:\n";
         gameState.resetGameState();
-    }
+    }   cout << "DONE reset:\n";
+
 
     winner = gameState.getAllWinner();
-    cout << "The winner is: " << endl;
+    cout << "The winner of the game is: " << endl;
     winner.status();
 
     return 0;
-
-}
-
-catch(...){
-    cout << "ada exception somewhere"<< endl;
-}
 }
 

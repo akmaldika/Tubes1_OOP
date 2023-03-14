@@ -74,6 +74,7 @@ TableCard GameState::getTableCard() {
     return CardTable;
 }
 
+
 Player& GameState::getPlayer(int ID) {
     Player &temp = AllPlayer.front();
 
@@ -239,8 +240,8 @@ void GameState::resetGameState(){
     Round = 1;
     PrizePool = DEFAULT_PRIZE;
 
-    for (int i = 0; i < 5 ; i++){ // kosongin table card
-        CardTable = CardTable - CardTable.getTableCard().at(i);
+    for (auto kartu : CardTable.getTableCard()){// kosongin table card
+        CardTable = CardTable - kartu;
     }
 
     for (auto player : AllPlayer){ // set played false dan ganti kartu tiap pemain
