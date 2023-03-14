@@ -1,3 +1,5 @@
 Reroll
 Abilityless
 Quadruple
+Quarter
+ReverseDirection
