@@ -2,8 +2,8 @@
 // Fungsi untuk mencari elemen maksimum pada tipe generik (minimal Kartu, Combo, dan Player)
 using namespace std;
 template <class T>
+ // Preconditional: objects Tidak kosong 
 T max(vector<T> objects){
-    // objects Tidak kosong 
     T maxElmt = objects[0];
 
     for(auto obj : objects){

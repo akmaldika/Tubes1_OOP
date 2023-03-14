@@ -1,6 +1,12 @@
 #include "../header/PlayerCard.hpp"
 
-PlayerCard::PlayerCard(){}
+PlayerCard::PlayerCard() {
+    this->playerCard.first = Card();
+    this->playerCard.second = Card();
+    this->abilityCard = new AbilityCard();
+    this->ID = 0;
+    this->playerCardCount = 0;
+}
 
 PlayerCard::PlayerCard(Card card1, Card card2, AbilityCard* abilityCard, int ID) {
     this->playerCard.first = card1;
