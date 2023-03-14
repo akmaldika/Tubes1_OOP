@@ -283,8 +283,14 @@ void GameState::operator=(const GameState& copy){
 
 void GameState::printInterface(){
 
-
-
+cout << " _____________________________________________________________________\n";
+cout << "                                                                      \n";
+cout << "                            ROUND " << Round << endl;
+cout << "      PRIZE POOL : " << PrizePool << endl;
+cout << "      WHOSE TURN : (" << Turn.second.getPlayerID() << ") " << Turn.second.getPlayerName() << endl;
+cout << endl;
+cout << "                        CARD ON TABLE :\n";
+CardTable.printCard();
 }
 
 Combo GameState::playerHighestCombo(Player& player){

@@ -37,16 +37,32 @@ void Player::setPlayerID(int ID){
 int Player::getPlayerID(){
     return ID;
 }
+// void Player::status() const{
+//     cout << "Status Player" << endl;
+//     cout << "ID : " << this->ID << endl;
+//     cout << "Nama : " << this->name << endl;
+//     cout << "Point : " << this->point << endl;
+//     cout << "Kartu : " << endl;
+//     MyCard.getFirstPlayerCard().print();
+//     MyCard.getSecondPlayerCard().print();
+
+//     cout << endl;
+// }
+
 void Player::status() const{
-    cout << "Status Player" << endl;
-    cout << "ID : " << this->ID << endl;
-    cout << "Nama : " << this->name << endl;
-    cout << "Point : " << this->point << endl;
-    cout << "Kartu : " << endl;
+    cout << "    .///\\.        " << endl;
+    cout << "   //////\\\\     \n";
+    cout << "  (.)(.)-||    ID    : " << this->ID << endl;
+    cout << "  | L    )|    Name  : " << this->name << endl;
+    cout << "  | _    /     Point : " << this->point << endl;
+    cout << "  |____.'         \n";
+    cout << "  ___| |__        \n";
+    cout << " __________________________YOUR CARD______________________________\n";
     MyCard.getFirstPlayerCard().print();
     MyCard.getSecondPlayerCard().print();
+    // print ability card
 
-    cout << endl;
+
 }
 void Player::setPlayed(bool played){
     this->played = played;
