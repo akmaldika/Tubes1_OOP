@@ -23,39 +23,43 @@ DeckAbilityCard::DeckAbilityCard(string filename) {
     // Read from file
     ifstream file;
     file.open(filename);
-
-    if (file.is_open()) {
-        string line;
-        vector<AbilityCard*> deckAbilityCard;
-        string ability;
-        while (file >> ability) {
-            if (ability == "Abilityless") {
-                deckAbilityCard.push_back(new Abilityless());
+    try{
+        if (file.is_open()) {
+            string line;
+            vector<AbilityCard*> deckAbilityCard;
+            string ability;
+            while (file >> ability) {
+                if (ability == "Abilityless") {
+                    deckAbilityCard.push_back(new Abilityless());
+                }
+                else if (ability == "Quadruple") {
+                    deckAbilityCard.push_back(new Quadruple());
+                }
+                else if (ability == "Quarter") {
+                    deckAbilityCard.push_back(new Quarter());
+                }
+                else if (ability == "Reroll") {
+                    deckAbilityCard.push_back(new Reroll());
+                }
+                else if (ability == "ReverseDirection") {
+                    deckAbilityCard.push_back(new ReverseDirection());
+                }
+                else if (ability == "SwapCard") {
+                    deckAbilityCard.push_back(new SwapCard());
+                }
+                else if (ability == "Switch") {
+                    deckAbilityCard.push_back(new Switch());
+                }
             }
-            else if (ability == "Quadruple") {
-                deckAbilityCard.push_back(new Quadruple());
-            }
-            else if (ability == "Quarter") {
-                deckAbilityCard.push_back(new Quarter());
-            }
-            else if (ability == "Reroll") {
-                deckAbilityCard.push_back(new Reroll());
-            }
-            else if (ability == "ReverseDirection") {
-                deckAbilityCard.push_back(new ReverseDirection());
-            }
-            else if (ability == "SwapCard") {
-                deckAbilityCard.push_back(new SwapCard());
-            }
-            else if (ability == "Switch") {
-                deckAbilityCard.push_back(new Switch());
-            }
+            this->deckAbilityCard = deckAbilityCard;
+            this->deckAbilityCardCount = deckAbilityCard.size();
         }
-        this->deckAbilityCard = deckAbilityCard;
-        this->deckAbilityCardCount = deckAbilityCard.size();
+        else {
+            throw FileNotFoundException(filename);
+        }
     }
-    else {
-        cout << "File not found" << endl;
+    catch(FileNotFoundException& err){
+        cout<<err.what()<<endl;
     }
 }
 

@@ -59,11 +59,14 @@ void InputApp::takeIntInput(int i)
 
         if (this->intInput > i || this->intInput < 1)
         {
-            throw "Input out of range";
+            throw IntInputOutOfRangeException(i);
         }
     }
-    catch (const exception& e)
+    catch (IntInputOutOfRangeException& e)
     {
-        throw "Input must be a number from 1 to "+ to_string(i);
+        cout<<e.what()<<endl;
+    }
+    catch (exception& e){
+        cout<<IntInputException().what()<<endl;
     }
 }
