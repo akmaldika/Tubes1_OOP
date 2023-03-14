@@ -16,6 +16,7 @@ class SwapCard : public AbilityCard
  
         // Menggunakan SwapCard Card, setelahnya ability set ABILITYCARD_DEFAULT
         void useAbilityCard();
+        void useAbilityCard(Card&, Card&);
 };
 
 #endif

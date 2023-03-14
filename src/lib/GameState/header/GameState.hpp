@@ -112,4 +112,8 @@ class GameState {
         void operator=(const GameState& copy);
 
         void printInterface();
+
+        void setReverse(const bool&);
+
+        bool getReverse() const;
 };

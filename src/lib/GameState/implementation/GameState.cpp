@@ -382,3 +382,13 @@ void GameState::getRoundWinner(){
     max.addPoint(PrizePool);  
     max.status();  
 }
+
+void GameState::setReverse(const bool& reverse)
+{
+    this->Reverse = reverse;
+}
+
+bool GameState::getReverse() const
+{
+    return this->Reverse;
+}
