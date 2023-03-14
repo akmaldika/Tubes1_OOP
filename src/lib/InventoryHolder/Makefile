@@ -14,14 +14,14 @@ LIBPCARD := implementation/PlayerCard.cpp
 LIBDCARD := implementation/DeckCard.cpp
 LIBDACARD := implementation/DeckAbilityCard.cpp
 LIBTCARD := implementation/TableCard.cpp
-LIBA1 := ../AbilityCard/AbilityCard.cpp
-LIBA2 := ../AbilityCard/Abilityless.cpp
-LIBA3 := ../AbilityCard/Quadruple.cpp
-LIBA4 := ../AbilityCard/Quarter.cpp
-LIBA5 := ../AbilityCard/Reroll.cpp
-LIBA6 := ../AbilityCard/ReverseDirection.cpp
-LIBA7 := ../AbilityCard/SwapCard.cpp
-LIBA8 := ../AbilityCard/Switch.cpp
+LIBA1 := ../AbilityCard/implementation/AbilityCard.cpp
+LIBA2 := ../AbilityCard/implementation/Abilityless.cpp
+LIBA3 := ../AbilityCard/implementation/Quadruple.cpp
+LIBA4 := ../AbilityCard/implementation/Quarter.cpp
+LIBA5 := ../AbilityCard/implementation/Reroll.cpp
+LIBA6 := ../AbilityCard/implementation/ReverseDirection.cpp
+LIBA7 := ../AbilityCard/implementation/SwapCard.cpp
+LIBA8 := ../AbilityCard/implementation/Switch.cpp
 OUTPUTINVEN := ../../../bin/inventoryholder
 
 inventory: 

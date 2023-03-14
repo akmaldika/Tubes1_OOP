@@ -13,7 +13,7 @@ LINKERFLAG = -lm
 SRCABILITYCARD := driver/DriverAbilityCard.cpp
 
 # lib
-LIBIMPLEMENTATION := *.cpp
+LIBIMPLEMENTATION := implementation/*.cpp
 LIBINVENTORYHOLDER := ../InventoryHolder/implementation/*.cpp
 LIBCARDS := ../Cards/implementation/*.cpp
 
@@ -32,13 +32,13 @@ ccgreen := "\e\033[32;1m"
 ccend := "\e\033[0m"
 
 
-All: run clean
+All: compile run clean
 
 compile:
 	@echo $(ccgreen)"Makefile: compiling Ability driver.." $(ccend)
 	$(CPP) $(LINKERFLAG) $(SRCABILITYCARD) $(LIBIMPLEMENTATION) $(LIBCARDS) $(LIBINVENTORYHOLDER) $(LIBPLAYER) $(LIBGAMESTATE) -o $(OUTPUTABILITYCARD)
 
-run: compile
+run: 
 	@echo $(ccgreen)"Makefile: Running Ability driver.." $(ccend)
 	@echo
 	@ $(OUTPUTABILITYCARD)

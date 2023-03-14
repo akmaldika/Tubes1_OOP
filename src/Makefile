@@ -11,15 +11,16 @@ LIBPCARD := lib/InventoryHolder/implementation/PlayerCard.cpp
 LIBDCARD := lib/InventoryHolder/implementation/DeckCard.cpp
 LIBDACARD := lib/InventoryHolder/implementation/DeckAbilityCard.cpp
 LIBTCARD := lib/InventoryHolder/implementation/TableCard.cpp
-LIBA1 := lib/AbilityCard/AbilityCard.cpp
-LIBA2 := lib/AbilityCard/Abilityless.cpp
-LIBA3 := lib/AbilityCard/Quadruple.cpp
-LIBA4 := lib/AbilityCard/Quarter.cpp
-LIBA5 := lib/AbilityCard/Reroll.cpp
-LIBA6 := lib/AbilityCard/ReverseDirection.cpp
-LIBA7 := lib/AbilityCard/SwapCard.cpp
-LIBA8 := lib/AbilityCard/Switch.cpp
-OUTPUTINVEN := ../bin/main
+
+LIBA1 := lib/AbilityCard/implementation/AbilityCard.cpp
+LIBA2 := lib/AbilityCard/implementation/Abilityless.cpp
+LIBA3 := lib/AbilityCard/implementation/Quadruple.cpp
+LIBA4 := lib/AbilityCard/implementation/Quarter.cpp
+LIBA5 := lib/AbilityCard/implementation/Reroll.cpp
+LIBA6 := lib/AbilityCard/implementation/ReverseDirection.cpp
+LIBA7 := lib/AbilityCard/implementation/SwapCard.cpp
+LIBA8 := lib/AbilityCard/implementation/Switch.cpp
+OUTPUT := ../bin/main
 
 main: 
 	@echo "Compiling main.."
