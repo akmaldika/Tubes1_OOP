@@ -55,7 +55,7 @@ GameState::GameState(string filename)
 
 }
 
-int GameState::getPrize() {
+long int GameState::getPrize() {
     return PrizePool;
 }
 
@@ -82,7 +82,7 @@ pair<int, Player> GameState::getWhoseTurn(){
     return Turn;
 }
 
-void GameState::setPrize(int amount){
+void GameState::setPrize(long int amount){
     PrizePool = amount;
 }
 
@@ -143,8 +143,9 @@ void GameState::printState(){
 }
 
 void GameState::inputAction(){
-    cout << "Player in turn : " << endl;
-    // print informasi player
+    cout << "\nPlayer in turn : " << endl;
+    Turn.second.status();
+
     cout << "Action Choice  : " << endl;
     cout << "1. Double " << endl;
     cout << "2. Next " << endl;
@@ -169,6 +170,17 @@ void GameState::inputAction(){
     }
     
     Action = input;
+}
+
+void GameState::inputRandom(){
+    cout << "\nPlayer in turn : " << endl;
+    Turn.second.status();
+
+    cout << "Action Choice  : random 1,2,3" << endl;
+    srand(time(0));
+    Action = rand() % (3 - 1 +1) + 1;
+
+    cout << "My Action is: " << Action << endl;
 }
 
 
@@ -215,7 +227,9 @@ void GameState::evaluateAction(){
         break;
     case 3: // 3. Half
         
-        PrizePool = PrizePool / 2;
+        if(!(PrizePool / 2 < 1)){
+            PrizePool = PrizePool / 2;
+        }
 
         break;
     case 4: // 4. Ability
@@ -244,7 +258,16 @@ void GameState::resetGameState(){
     Round = 1;
     PrizePool = DEFAULT_PRIZE;
 
-    // tunggu ability, player, player card selesai.
+    for (int i = 0; i < 5 ; i++){ // kosongin table card
+        CardTable = CardTable - CardTable.getTableCard().at(i);
+    }
+
+    for (auto player : AllPlayer){ // set played false dan ganti kartu tiap pemain
+        player.setPlayed(false);
+
+        player.addCardOne(deck.takeCard());
+        player.addCardTwo(deck.takeCard());
+    }
 }
 
 bool GameState::checkAllWin(){
@@ -311,7 +334,7 @@ Combo GameState::playerHighestCombo(Player player){
 
     int range = (1 << cardList.size()) - 1;
 
-    for (int i = 0; i <= range; i++){
+    for (int i = 0; i <= range; i++){ // cek semua kemungkinan urutan dr array
         cout << "Masuk loop highest combo" << endl;
         int x = 0, y = i;
 
@@ -323,15 +346,18 @@ Combo GameState::playerHighestCombo(Player player){
             x++;
             y = y >> 1;
         }
-        cout << "in\n";
-        Combo tempCombo(temp); // bug here
 
-        if(tempCombo.value() >= maxCombo.value()){
-            maxCombo = tempCombo;
+        if(temp.size() == 5){ // periksa kalau kombo dari 5 kartu aja (kemungkinan yg isinya 5 kartu)
+            Combo tempCombo(temp); 
 
+            cout << temp.size()<<endl;
+            cout << "in\n";
+
+            if(tempCombo.value() >= maxCombo.value()){ // bug here
+                maxCombo = tempCombo;
+            }
+            cout << "out\n";
         }
-        cout << "out\n";
-
     }
     cout << "Keluar loop highest combo" << endl;
 
