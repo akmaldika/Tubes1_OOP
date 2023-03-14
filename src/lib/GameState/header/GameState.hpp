@@ -3,9 +3,11 @@
 #include "../../InventoryHolder/header/TableCard.hpp"
 #include "../../InventoryHolder/header/DeckCard.hpp"
 #include "../../Cards/header/Combo.hpp"
+#include "../../utilityFunction.cpp"
 #include <vector>
 #include <iostream>
-
+#include <cstdlib>
+#include <time.h>
 using namespace std;
 
 /*
@@ -18,7 +20,7 @@ class GameState {
     private:
     // ATTRIBUTE
         vector<Player> AllPlayer;  // array semua player yang terurut berdasarkan gilirannya
-        int PrizePool;  // poin hadiah
+        long int PrizePool;  // poin hadiah
         int Round; // hitungan ronde
 
         /*  TURN
@@ -56,14 +58,14 @@ class GameState {
         GameState(string filename);
 
     // Get Method
-        int getPrize();
+        long int getPrize();
         int getRound();
         TableCard getTableCard();
         Player& getPlayer(int ID); // setiap player ada id 1-7 yang terpisah dari urutannya.
         pair<int,Player> getWhoseTurn(); // return giliran siapa skrg
 
     // Set Method
-        void setPrize(int amount);
+        void setPrize(long int amount);
 
     
     // Method
@@ -87,12 +89,11 @@ class GameState {
 
         void inputAction();
 
+        void inputRandom();
+
         void inputActionFirstRound();
 
         void useAbility(); // blm implementasi
-
-        template <typename T>
-        T highestValue(vector<T> objects);
 
         void resetGameState(); // reset game state kecuali point player
         
