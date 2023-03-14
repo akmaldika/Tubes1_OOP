@@ -153,8 +153,6 @@ int main(int argc, char const *argv[])
 
     gameState.printLeaderboard();
 
-    gameState.printLeaderboard();
-
     cout << "\nDo you want to try again?" << endl;
     char c;
     while(true){
