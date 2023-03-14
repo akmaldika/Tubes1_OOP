@@ -1,10 +1,10 @@
-#include "header/ReverseDirection.hpp"
+#include "../header/ReverseDirection.hpp"
 
-#include "../Cards/header/Card.hpp"
-#include "../InventoryHolder/header/DeckCard.hpp"
-#include "../InventoryHolder/header/PlayerCard.hpp"
-#include "../Player/header/Player.hpp"
-#include "../GameState/header/GameState.hpp"
+#include "../../Cards/header/Card.hpp"
+#include "../../InventoryHolder/header/DeckCard.hpp"
+#include "../../InventoryHolder/header/PlayerCard.hpp"
+#include "../../Player/header/Player.hpp"
+#include "../../GameState/header/GameState.hpp"
 
 ReverseDirection::ReverseDirection() 
 {

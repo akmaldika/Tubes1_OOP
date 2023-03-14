@@ -42,7 +42,7 @@ class Player {
     bool getPlayed();
     //void setCombo(Combo);
     //Combo getCombo();
-    PlayerCard getPlayerCard() const;
+    PlayerCard getMyCard() const;
     void setAbility(AbilityCard*);
     AbilityCard* getAbility();
 

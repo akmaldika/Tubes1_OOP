@@ -41,7 +41,7 @@ compile:
 run: 
 	@echo $(ccgreen)"Makefile: Running Ability driver.." $(ccend)
 	@echo
-	@ $(OUTPUTABILITYCARD)
+	$(OUTPUTABILITYCARD)
 
 clean:
 	@echo

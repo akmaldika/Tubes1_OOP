@@ -1,10 +1,10 @@
-#include "header/SwapCard.hpp"
+#include "../header/SwapCard.hpp"
 
-#include "../Cards/header/Card.hpp"
-#include "../InventoryHolder/header/DeckCard.hpp"
-#include "../InventoryHolder/header/PlayerCard.hpp"
-#include "../Player/header/Player.hpp"
-#include "../GameState/header/GameState.hpp"
+#include "../../Cards/header/Card.hpp"
+#include "../../InventoryHolder/header/DeckCard.hpp"
+#include "../../InventoryHolder/header/PlayerCard.hpp"
+#include "../../Player/header/Player.hpp"
+#include "../../GameState/header/GameState.hpp"
 
 SwapCard::SwapCard() 
 {

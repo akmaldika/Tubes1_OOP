@@ -207,7 +207,6 @@ void GameState::inputActionFirstRound(){
 }
 
 void GameState::evaluateAction(){
-    
     switch (Action)
     {
     case 1: // 1. Double
@@ -228,7 +227,6 @@ void GameState::evaluateAction(){
         break;
     case 4: // 4. Ability
         
-
         break;
     default:
         break;

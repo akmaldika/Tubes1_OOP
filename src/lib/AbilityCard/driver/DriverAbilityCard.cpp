@@ -30,8 +30,10 @@ int main()
     b.first = b1;
     b.second = b2;
 
-    Player player1(Card1, Card2);
+    Player player1(a1, a2);
+    Player player2(b1,b2);
 
+    AbilityCard ability;
     Abilityless abilityless;
     Quadruple quadruple;
     Quarter quarter;
@@ -43,7 +45,10 @@ int main()
     int point(36);
 
     cout << "=========== Driver Game State ===========" << endl;
-    abilityless.useAbilityCard(player1);
+    cout << abilityless.getAbilityCard() << endl;
+    // abilityless.useAbilityCard(player1);
+    abilityless.setAbilityCard("MININDSAFDSAFDS");
+    cout << abilityless.getAbilityCard() << endl;
 
     return 0;
 }
