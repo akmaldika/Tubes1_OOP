@@ -108,7 +108,7 @@ int main(int argc, char const *argv[])
 
     while(!gameState.checkAllWin()){
         gameCounter++;
-        cout << "\n$ $ $ $ $ $ $ $ $ $ $ $    GAME " << gameCounter << "    $ $ $ $ $ $ $ $ $ $ $ $\n";
+        cout << "\n                         GAME " << gameCounter << "\n";
 
         // PLAY FIRST ROUND
         for (int i = 0; i < 7 ; i++){ // per turn
