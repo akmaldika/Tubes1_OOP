@@ -240,7 +240,7 @@ void GameState::resetGameState(){
     Round = 1;
     PrizePool = DEFAULT_PRIZE;
 
-    for (auto kartu : CardTable.getTableCard()){// kosongin table card
+    for (auto kartu : CardTable.getTableCard()){ // kosongin table card
         CardTable = CardTable - kartu;
     }
 
