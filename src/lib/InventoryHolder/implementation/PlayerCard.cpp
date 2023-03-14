@@ -25,7 +25,7 @@ PlayerCard::PlayerCard(const PlayerCard& playerCard) {
 }
 
 PlayerCard::~PlayerCard() {
-
+    delete this->abilityCard;
 }
 
 void PlayerCard::setFirstPlayerCard(Card card) {
