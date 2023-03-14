@@ -20,7 +20,7 @@ T& max(vector<T> &objects){
 // Fungsi untuk melakukan sorting list dengan element tipe generik (minimal Kartu, Combo, dan Player)
 // Mengembalikan salinan vector of T
 
-template<class T>
+template<class T> // ASCENDING
 vector<T> sort(vector<T> list){
     vector<T> copyList;
     if (!list.empty()){ // Jika list tidak kosong

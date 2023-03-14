@@ -28,12 +28,9 @@ GameState::GameState()
         Player tempPlayer(card1, card2);
 
         AllPlayer.push_back(tempPlayer); // masukin player ke dalem array
-        tempPlayer.status();
     }
 
-    for (auto player : AllPlayer){
-        player.status();
-    }
+
 
     Turn.first = 0;
     Turn.second = AllPlayer.at(0);
