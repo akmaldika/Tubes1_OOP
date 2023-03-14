@@ -20,8 +20,8 @@ class Combo: public Valuable{
         string getType();
         bool isFlush();
         bool isStraight();
-        int getNumOfPair();
-        int getNOfKind();
+        pair<int,float> getPair();
+        pair<int,float> getNOfKind();
         void setComboType();
         float value();
         float basicValue();

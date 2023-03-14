@@ -4,25 +4,27 @@
 using namespace std;
 
 int main(){
-    Card kartu1(1,"hijau");
-    Card kartu2(2,"hijau");
-    Card kartu3(3,"hijau");
-    Card kartu4(4,"hijau");
-    Card kartu5(5,"hijau");
-    Card kartu6(6,"hijau");
-    Card kartu7(7,"hijau");
+    Card kartu1h(1,"hijau");
+    Card kartu2h(2,"hijau");
+    Card kartu3h(3,"hijau");
+    Card kartu3k(3,"kuning");
+    Card kartu4h(4,"hijau");
+    Card kartu5h(5,"hijau");
+    Card kartu6h(6,"hijau");
+    Card kartu7h(7,"hijau");
+    Card kartu7k(7,"kuning");
 
-    vector<Card> collectionCard1{kartu3,kartu4,kartu5,kartu6,kartu7};
-    vector<Card> collectionCard2{kartu3, kartu4, kartu5, kartu6, kartu7};
+    vector<Card> collectionCard1{kartu3h,kartu3k,kartu5h,kartu2h,kartu7k};
+    vector<Card> collectionCard2{kartu3k, kartu4h, kartu6h, kartu1h, kartu7h};
     Combo defCombination;
     Combo combination1(collectionCard1);
     Combo combination2(collectionCard2);
     cout<<"isFlush: "<<combination1.isFlush()<<endl;
     cout<<"isStraight: "<<combination1.isStraight()<<endl;
-    cout<<"nPair: "<<combination1.getNumOfPair()<<endl;
-    cout<<"nOfKind: "<<combination1.getNOfKind()<<endl;
+    cout<<"nPair: "<<combination1.getPair().first<<endl;
+    cout<<"nOfKind: "<<combination1.getNOfKind().first<<endl;
     cout<<combination1.value()<<endl;
-    cout<<"Type: "<<combination1.getType()<<endl;
+    cout<<"Type1: "<<combination1.getType()<<endl;
     combination1.print();
 
     if (combination1>combination2){
@@ -32,6 +34,8 @@ int main(){
     } else if(combination1<combination2){
         cout<<"Kombinasi pertama lebih kecil daripada kombinasi kedua"<<endl;
     }
-
+    cout<<"Type2: "<<combination2.getType()<<endl;
+    combination2.print();
+    cout<<combination2.value()<<endl;
     return 0;
 }
