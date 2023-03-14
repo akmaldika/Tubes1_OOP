@@ -11,6 +11,7 @@ LIBPCARD := lib/InventoryHolder/implementation/PlayerCard.cpp
 LIBDCARD := lib/InventoryHolder/implementation/DeckCard.cpp
 LIBDACARD := lib/InventoryHolder/implementation/DeckAbilityCard.cpp
 LIBTCARD := lib/InventoryHolder/implementation/TableCard.cpp
+LIBEXCEPT := lib/Exceptions/implementation/Exceptions.cpp
 
 LIBA1 := lib/AbilityCard/implementation/AbilityCard.cpp
 LIBA2 := lib/AbilityCard/implementation/Abilityless.cpp
@@ -35,4 +36,3 @@ run:
 clean:
 	@echo "Cleaning up main..."
 	rm -rvf $(OUTPUT)
-

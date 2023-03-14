@@ -17,7 +17,7 @@ TableCard::TableCard(const TableCard& tableCard) {
 }
 
 TableCard::~TableCard() {
-    this->tableCard.clear();
+
 }
 
 void TableCard::setTableCard(vector<Card> tableCard) {
