@@ -86,7 +86,6 @@ int main(int argc, char const *argv[])
         }
         gameState.NextRound();
 
-        cout << "masuk ronde selanjutnya\n";
 
         // Draw Ability Card
         for (int i = 0; i < 7 ; i++){
@@ -97,7 +96,7 @@ int main(int argc, char const *argv[])
         for(int i = 0; i < 5 ; i++){ // per round
             for(int j = 0; j < 7 ; j++){ // per turn
                 gameState.printState(); // nanti ganti
-                // gameState.inputAction();
+                //gameState.inputAction();
                 gameState.inputRandom();
                 gameState.evaluateAction();
                 gameState.NextTurn();
@@ -105,10 +104,9 @@ int main(int argc, char const *argv[])
             gameState.NextRound();
         }
         gameState.getRoundWinner();
-        cout << "|   GAME "<<  gameCounter << "   |" << endl;
-        cout << "reset:\n";
+
         gameState.resetGameState();
-    }   cout << "DONE reset:\n";
+    } 
 
 
     winner = gameState.getAllWinner();

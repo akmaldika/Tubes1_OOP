@@ -71,8 +71,10 @@ int DeckCard::getDeckCardCount() {
 }
 
 Card DeckCard::takeCard() {
-    Card taken = deckCard.back();
-
+    
+    Card taken(deckCard.back().value(), deckCard.back().getColor());
+    
+    
     deckCardCount--;
     deckCard.pop_back();
 
