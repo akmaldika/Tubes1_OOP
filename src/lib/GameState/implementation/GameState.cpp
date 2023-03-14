@@ -282,15 +282,7 @@ void GameState::operator=(const GameState& copy){
 }
 
 void GameState::printInterface(){
-    cout << " ________________________________________________________________________________" << endl;
-    cout << "|                                                                                |" << endl;
-    cout << "|                                                                                |" << endl;
-    cout << "|                                                                                |" << endl;
-    cout << "|                                                                                |" << endl;
-    cout << "|                                                                                |" << endl;
-    cout << "|                                                                                |" << endl;
-    cout << "|                                                                                |" << endl;
-    cout << "|                                                                                |" << endl;
+
 
 
 }
@@ -327,7 +319,7 @@ Combo GameState::playerHighestCombo(Player& player){
     } else { // Jika hanya ada satu kombinasi yang mungkin
         listPossibleCombination.push_back(Combo(cardList));
     }
-    cout<<"Ini udah dapet highest"<<endl;
+   
     return max(listPossibleCombination);
 }
 
@@ -339,7 +331,7 @@ void GameState::getGameWinner(){
     float highestComboWinner =  playerHighestCombo(winnerPlayer).value();
 
     for(auto player : AllPlayer){
-        cout<<"Masuk game winner"<<endl;
+        
         float highestComboPlayer = playerHighestCombo(player).value();
         if( highestComboPlayer> highestComboWinner){
             winnerPlayer = player;
