@@ -17,6 +17,7 @@ using namespace std;
 
 int main()
 {
+
     Card a1(2, "merah");
     Card a2(3, "biru");
     pair<Card,Card> a;
@@ -29,13 +30,25 @@ int main()
     b.first = b1;
     b.second = b2;
 
-    int point(36);
+    Player player1(a1, a2);
+    Player player2(b1,b2);
 
+    AbilityCard ability;
     Abilityless abilityless;
     Quadruple quadruple;
     Quarter quarter;
     Reroll reroll;
     ReverseDirection reverseDirection;
+    SwapCard swapCard;
+    Switch _switch;
+
+    int point(36);
+
+    cout << "=========== Driver Game State ===========" << endl;
+    cout << abilityless.getAbilityCard() << endl;
+    // abilityless.useAbilityCard(player1);
+    abilityless.setAbilityCard("MININDSAFDSAFDS");
+    cout << abilityless.getAbilityCard() << endl;
 
     return 0;
 }
