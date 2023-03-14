@@ -12,6 +12,7 @@ LIBDCARD := lib/InventoryHolder/implementation/DeckCard.cpp
 LIBDACARD := lib/InventoryHolder/implementation/DeckAbilityCard.cpp
 LIBTCARD := lib/InventoryHolder/implementation/TableCard.cpp
 LIBEXCEPT := lib/Exceptions/implementation/Exceptions.cpp
+LIBINPUT := lib/InputApp/implementation/InputApp.cpp
 
 LIBA1 := lib/AbilityCard/implementation/AbilityCard.cpp
 LIBA2 := lib/AbilityCard/implementation/Abilityless.cpp
@@ -27,10 +28,10 @@ OUTPUT := ../bin/main
 
 main: 
 	@echo "Compiling main.."
-	$(CPP) $(SRCMAIN) $(LIBSTATE) $(LIBPLAYER) $(LIBCARD) $(LIBCOMBO) $(LIBPCARD) $(LIBDCARD) $(LIBDACARD) $(LIBTCARD) $(LIBA1) $(LIBA2) $(LIBA3) $(LIBA4) $(LIBA5) $(LIBA6) $(LIBA7) $(LIBA8) $(LIBEXC) -o $(OUTPUT)
+	$(CPP) $(SRCMAIN) $(LIBSTATE) $(LIBPLAYER) $(LIBCARD) $(LIBCOMBO) $(LIBPCARD) $(LIBDCARD) $(LIBDACARD) $(LIBTCARD) $(LIBINPUT) $(LIBA1) $(LIBA2) $(LIBA3) $(LIBA4) $(LIBA5) $(LIBA6) $(LIBA7) $(LIBA8) $(LIBEXC) -o $(OUTPUT)
 test:
 	@echo "Compiling main.."
-	$(CPP) $(SRCTES) $(LIBSTATE) $(LIBPLAYER) $(LIBCARD) $(LIBCOMBO) $(LIBPCARD) $(LIBDCARD) $(LIBDACARD) $(LIBTCARD) $(LIBA1) $(LIBA2) $(LIBA3) $(LIBA4) $(LIBA5) $(LIBA6) $(LIBA7) $(LIBA8) $(LIBEXC) -o $(OUTPUT)
+	$(CPP) $(SRCTES) $(LIBSTATE) $(LIBPLAYER) $(LIBCARD) $(LIBCOMBO) $(LIBPCARD) $(LIBDCARD) $(LIBDACARD) $(LIBTCARD) $(LIBINPUT) $(LIBA1) $(LIBA2) $(LIBA3) $(LIBA4) $(LIBA5) $(LIBA6) $(LIBA7) $(LIBA8) $(LIBEXC) -o $(OUTPUT)
 run:
 	$(OUTPUT)
 clean:

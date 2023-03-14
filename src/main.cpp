@@ -108,12 +108,12 @@ int main(int argc, char const *argv[])
 
     while(!gameState.checkAllWin()){
         gameCounter++;
-        cout << "\n$ $ $ $ $ $ $ $ $ $ $ $    GAME " << gameCounter << "    $ $ $ $ $ $ $ $ $ $ $ $\n";
+        cout << "\n                         GAME " << gameCounter << "\n";
 
         // PLAY FIRST ROUND
         for (int i = 0; i < 7 ; i++){ // per turn
             gameState.printInterface(); // nanti ganti
-            gameState.inputActionFirstRound();
+            gameState.inputAction();
             //gameState.inputRandom();
             gameState.evaluateAction();
             gameState.NextTurn();
@@ -150,6 +150,10 @@ int main(int argc, char const *argv[])
     // }
     cout << "The winner of the game is: " << endl;
     winner.status();
+
+    gameState.printLeaderboard();
+
+    gameState.printLeaderboard();
 
     cout << "\nDo you want to try again?" << endl;
     char c;
