@@ -79,10 +79,10 @@ int main(int argc, char const *argv[])
     if (opt == 2){
         while(true){
             try{
-                cout << "insert deck card file name: ";
+                cout << "Deck Card Filename (inside test folder): ";
                 cin >> filename ;
 
-                GameState stateFromfile(filename);
+                GameState stateFromfile("../test/" + filename + ".txt");
                 gameState = stateFromfile; 
                 
             }
@@ -93,10 +93,10 @@ int main(int argc, char const *argv[])
 
         while(true){
             try{
-                cout << "insert deck ability file name: ";
+                cout << "Deck Ability Filename (inside test folder): ";
                 cin >> filename ;
 
-                DeckAbilityCard deckFromfile(filename);
+                DeckAbilityCard deckFromfile("../test/" + filename + ".txt");
                 abilityDeck = deckFromfile; 
                 
             }
