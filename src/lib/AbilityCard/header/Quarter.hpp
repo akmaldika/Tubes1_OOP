@@ -14,7 +14,10 @@ class Quarter : public AbilityCard
 
         // Method
 
-        // Menggunakan Quarter Card, setelahnya ability set ABILITYCARD_DEFAULT
+        /* 
+        Menggunakan Quarter Card, setelahnya ability set ABILITYCARD_DEFAULT
+        prizePoint pada GameState dibagi 4
+        */
         void useAbilityCard(GameState&);
 };
 

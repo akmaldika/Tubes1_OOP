@@ -14,7 +14,10 @@ class Quadruple : public AbilityCard
 
         // Method
         
-        // Menggunakan Quadruple Card, setelahnya ability set ABILITYCARD_DEFAULT
+        /* 
+        Menggunakan Quadruple Card, setelahnya ability set ABILITYCARD_DEFAULT
+        prizePoint pada GmaseState dikali 4
+        */
         void useAbilityCard(GameState&);
 };
 

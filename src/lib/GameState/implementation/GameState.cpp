@@ -246,8 +246,8 @@ void GameState::resetGameState(){
     for (auto player : AllPlayer){ // set played false dan ganti kartu tiap pemain
         player.setPlayed(false);
 
-        player.addCardOne(deck.takeCard());
-        player.addCardTwo(deck.takeCard());
+        player.setCardOne(deck.takeCard());
+        player.setCardTwo(deck.takeCard());
     }
 }
 

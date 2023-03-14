@@ -16,7 +16,7 @@ class Abilityless : public AbilityCard
         
         /* 
         Menggunakan Abilityless Card, setelahnya ability set ABILITYCARD_DEFAULT
-        Ability Player yang dipilih akan dinon-aktifkan 
+        Ability Player akan dinon-aktifkan (Set ke ABILITYCARD_DEFAULT)
         */
         void useAbilityCard(Player&);
 };

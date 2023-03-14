@@ -15,8 +15,7 @@ class Switch : public AbilityCard
         // Method
 
         // Menggunakan Switch Card, setelahnya ability set ABILITYCARD_DEFAULT
-        void useAbilityCard();
-        void useAbilityCard(PlayerCard&, PlayerCard&);
+        void useAbilityCard(Player&, Player&);
 };
 
 #endif
