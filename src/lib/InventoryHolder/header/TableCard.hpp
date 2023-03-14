@@ -6,10 +6,17 @@
 
 // Class TableCard
 class TableCard : public InventoryHolder{
-    public:
+    private:
         // Attribute
         vector<Card> tableCard;
         int tableCardCount;
+        // privateMethod
+        void printTwoCards();
+        void printThreeCards();
+        void printFourCards();
+        void printFiveCards();
+
+    public:
 
         // Constructor
         TableCard();

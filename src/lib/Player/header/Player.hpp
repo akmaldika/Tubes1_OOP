@@ -46,7 +46,7 @@ class Player {
     void setAbility(AbilityCard*);
     AbilityCard* getAbility();
 
-    void status() const;
+    void status();
 
     void addPoint(long long int amount);
 

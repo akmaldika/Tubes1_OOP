@@ -122,9 +122,10 @@ int main(int argc, char const *argv[])
 
 
         // Draw Ability Card
-        for (int i = 0; i < 7 ; i++){
-            gameState.getPlayer(i).setAbility(abilityDeck.getDeckAbilityCard().at(i));
-        }
+        // for (int i = 0; i < 7 ; i++){
+        //     gameState.getPlayer(i).setAbility(abilityDeck.getDeckAbilityCard().at(i));
+        // }
+        cout << "Ciee udh dapat ability"<<endl;
 
         //PLAY ROUND 2-7
         for(int i = 0; i < 5 ; i++){ // per round
@@ -152,11 +153,30 @@ int main(int argc, char const *argv[])
 
     gameState.printLeaderboard();
 
-    cout << "\nDo you want to try again? (y/n)" << endl;
+    gameState.printLeaderboard();
+
+    cout << "\nDo you want to try again?" << endl;
     char c;
-    cin >> c;
+    while(true){
+        try{
+            cout << "\n(y/n) Your Choice : ";
+            cin >> c;
+            if(!(c == 'n' || c == 'y')){
+                throw (c);
+            }
+            else {
+                break;
+            }
+        }
+        catch(...){
+            cout << "\n----------   Invalid Input!    ---------- " << endl;
+        }
+    }
     if (c == 'y'){
         system("../bin/main");
+    }
+    else {
+        cout << "\nThank you for playing!" << endl;
     }
 
     return 0;

@@ -69,7 +69,7 @@ DeckAbilityCard::DeckAbilityCard(const DeckAbilityCard& deckAbilityCard) {
 }
 
 DeckAbilityCard::~DeckAbilityCard() {
-    this->deckAbilityCard.clear();
+
 }
 
 void DeckAbilityCard::setDeckAbilityCard(vector<AbilityCard*> deckAbilityCard) {
@@ -78,6 +78,7 @@ void DeckAbilityCard::setDeckAbilityCard(vector<AbilityCard*> deckAbilityCard) {
 }
 
 vector<AbilityCard*> DeckAbilityCard::getDeckAbilityCard() {
+    cout << "Makan nih ability"<<endl;
     return this->deckAbilityCard;
 }
 
