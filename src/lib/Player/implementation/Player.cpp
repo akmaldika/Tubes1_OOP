@@ -49,7 +49,7 @@ int Player::getPlayerID(){
 //     cout << endl;
 // }
 
-void Player::status() const{
+void Player::status(){
     cout << "    .///\\.        " << endl;
     cout << "   //////\\\\     \n";
     cout << "  (.)(.)-||    ID    : " << this->ID << endl;
@@ -58,8 +58,7 @@ void Player::status() const{
     cout << "  |____.'         \n";
     cout << "  ___| |__        \n";
     cout << " __________________________YOUR CARD______________________________\n";
-    MyCard.getFirstPlayerCard().print();
-    MyCard.getSecondPlayerCard().print();
+    MyCard.printCard();
     // print ability card
 
 
@@ -110,6 +109,7 @@ Card Player::getCardTwo(){
 }
 
 void Player::setAbility(AbilityCard *ini){
+    cout << "Otw kasih ability" << endl;
     MyCard.setAbilityCard(ini);
 }
 

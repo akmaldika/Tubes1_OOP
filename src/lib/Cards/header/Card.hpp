@@ -33,13 +33,6 @@ class Card : public Valuable {
         // |  '---'  |
         // |        7|
         // `---------'
-
-        void print(Card card2);
-        void print(Card card2, Card card3);
-        void print(Card card2, Card card3, Card card4);
-        void print(Card card2, Card card3, Card card4, Card card5);
-
-            
 };
 
 #endif
