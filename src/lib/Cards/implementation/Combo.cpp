@@ -121,6 +121,7 @@ void Combo::setComboType(){
 float Combo::value(){
     if (this->type == "unknown"){
         setComboType();
+        //valueCombo = thresholdCombo.find(type)->second ;
     }
     return this->valueCombo;
 }
