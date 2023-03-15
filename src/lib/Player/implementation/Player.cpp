@@ -13,7 +13,7 @@ Player::Player(){
 Player::Player(Card card1, Card card2) 
 : MyCard(card1, card2, NULL, (playerCount%7)+1)
 {  
-    this->ID = (playerCount%7)+1;
+    this->ID = playerCount;
     this->name = "NaN";
     this->point = 0;   
     this->played = false;
