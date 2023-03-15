@@ -39,3 +39,23 @@ vector<T> sort(vector<T> list){
     
     return list;
 };
+
+template<class T> // ASCENDING
+vector<T> sortDsc(vector<T> list){
+    vector<T> copyList;
+    if (!list.empty()){ // Jika list tidak kosong
+        int size = list.size();
+        for (int i=1; i<size; i++){
+            int j = i;
+            while (j>0 && (list[j-1] < list[j])){
+                T temp = list[j-1];
+                list[j-1] = list[j];
+                list[j] = temp;
+                j--;
+            }
+            // j<=0 || list[j-1] <= list[j]
+        }
+    }
+    
+    return list;
+};
