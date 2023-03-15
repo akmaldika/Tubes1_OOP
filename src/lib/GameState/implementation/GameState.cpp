@@ -433,7 +433,7 @@ void GameState::evaluateAction(){
                     auto itr = find(AllPlayer.begin(), AllPlayer.end(), playerOther);
                     int idx = distance(AllPlayer.begin(), itr);
                     
-                    Switch.useAbilityCard(Turn.second, playerOther);
+                    Switch.useAbilityCard(Turn.second, AllPlayer[idx]);
                     Turn.second.setAbility(&Switch);
 
                     cout << "Your card now :" << endl;
