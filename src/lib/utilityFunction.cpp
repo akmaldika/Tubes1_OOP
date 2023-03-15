@@ -6,18 +6,27 @@ template <class T>
 T& max(vector<T> &objects){
 
     if(objects.size() != 1){
-        T &maxElmt = objects[0];
+        T *maxElmt = &objects[0];
 
-        for(auto obj : objects){
-            if(obj > maxElmt){
-                maxElmt = obj;
+        for(auto& obj : objects){
+            if(obj > *maxElmt){
+                maxElmt = &obj;
             }
         }
-        return maxElmt;
+        return *maxElmt;
     }
     else{
         return objects.at(0);
     }
+    // T *max = &objects.at(0);
+
+    // for(T& obj : objects){
+    //     if(obj > *max){
+    //         max = &obj;
+    //     }
+    // }
+
+    // return *max;
 };
 
 // Fungsi untuk melakukan sorting list dengan element tipe generik (minimal Kartu, Combo, dan Player)
@@ -45,7 +54,7 @@ vector<T> sort(vector<T> list){
     return list;
 };
 
-template<class T> // ASCENDING
+template<class T> // Descending
 vector<T> sortDsc(vector<T> list){
     vector<T> copyList;
     if (!list.empty()){ // Jika list tidak kosong

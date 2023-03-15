@@ -19,6 +19,7 @@ class Abilityless : public AbilityCard
         Ability Player akan dinon-aktifkan (Set ke ABILITYCARD_DEFAULT)
         */
         void useAbilityCard(Player&);
+        void printAbilityCard();
 };
 
 #endif

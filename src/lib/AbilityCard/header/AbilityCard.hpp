@@ -41,6 +41,8 @@ class AbilityCard : public Ability
 
         bool operator==(const AbilityCard& other) const;
 
+        virtual void printAbilityCard();
+
 };
 
 #endif

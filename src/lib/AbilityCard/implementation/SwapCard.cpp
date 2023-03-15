@@ -21,3 +21,13 @@ void SwapCard::useAbilityCard(Player& Player1, const bool& isKiri1, Player& Play
     isKiri2 ? Player1.setCardOne(card1) : Player1.setCardTwo(card1);
 
 }
+
+void SwapCard::printAbilityCard(){
+    cout<<".---------."<<endl;
+    cout<<"|Swap     |"<<endl;
+    cout<<"|  .---.  |"<<endl;
+    cout<<"|  : A :  |"<<endl;
+    cout<<"|  '---'  |"<<endl;
+    cout<<"|     Swap|"<<endl;
+    cout<<"`---------'"<<endl;
+}

@@ -16,3 +16,13 @@ void Quarter::useAbilityCard(unsigned long long& prize)
     AbilityCard::useAbilityCard();
     prize /= 4;
 }
+
+void Quarter::printAbilityCard(){
+    cout<<".---------."<<endl;
+    cout<<"|Quarter  |"<<endl;
+    cout<<"|  .---.  |"<<endl;
+    cout<<"|  : A :  |"<<endl;
+    cout<<"|  '---'  |"<<endl;
+    cout<<"|  Quarter|"<<endl;
+    cout<<"`---------'"<<endl;
+}

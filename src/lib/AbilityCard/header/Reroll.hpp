@@ -19,6 +19,7 @@ class Reroll : public AbilityCard
         player akan mengambil karu dari deck 2 kali
          */
         void useAbilityCard(DeckCard&, Player&);
+        void printAbilityCard();
 };
 
 #endif

@@ -19,6 +19,7 @@ class ReverseDirection : public AbilityCard
         membalikan boolean reverse pada GameState
         */
         void useAbilityCard(bool&);
+        void printAbilityCard();
 };
 
 #endif

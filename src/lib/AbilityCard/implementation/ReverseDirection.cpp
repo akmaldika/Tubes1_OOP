@@ -16,3 +16,13 @@ void ReverseDirection::useAbilityCard(bool& reverse)
     AbilityCard::useAbilityCard();
     reverse = !reverse;
 }
+
+void ReverseDirection::printAbilityCard(){
+    cout<<".---------."<<endl;
+    cout<<"|Reverse  |"<<endl;
+    cout<<"|  .---.  |"<<endl;
+    cout<<"|  : A :  |"<<endl;
+    cout<<"|  '---'  |"<<endl;
+    cout<<"|  Reverse|"<<endl;
+    cout<<"`---------'"<<endl;
+}

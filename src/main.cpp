@@ -14,7 +14,10 @@ int main(int argc, char const *argv[])
     DeckAbilityCard abilityDeck;
 
 
-    
+    for (auto player: gameState.getAllPlayer()){
+        cout<<"Minimal test"<<endl;
+        player.status();
+    }
 
     /*
         ALGORITMA PERMAINAN
@@ -77,10 +80,18 @@ int main(int argc, char const *argv[])
     // Input Player Name
     InputApp playerName;
     cout << "\n----------   Input Player Name    ---------- " << endl;
-    for (int i = 0; i < 7 ; i++){
+    // for (int i = 0; i < 7 ; i++){
+    //     cout << "Player " << i << " : ";
+    //     playerName.takeStrInput();
+    //     gameState.setPlayerName(i, playerName.getStrInput());
+    // }
+
+    int i = 0;
+    for (auto& player : gameState.getAllPlayer()){
+        i++;
         cout << "Player " << i << " : ";
         playerName.takeStrInput();
-        gameState.setPlayerName(i, playerName.getStrInput());
+        player.setPlayerName(playerName.getStrInput());
     }
 
     while(!gameState.checkAllWin()){
@@ -89,38 +100,48 @@ int main(int argc, char const *argv[])
 
         // PLAY FIRST ROUND
         gameState.HandUpdate();
-        cout << "out\n";
+
         for (int i = 0; i < 7 ; i++){ // per turn
             gameState.printInterface(); // nanti ganti
-            //gameState.inputAction();
-            gameState.inputRandom();
+            gameState.inputAction();
+            //gameState.inputRandom();
             gameState.evaluateAction();
             gameState.NextTurn();
         }
+        
         gameState.NextRound();
-
-
+        
         //Draw Ability Card
-        for (int i = 0; i < 7 ; i++){
-            gameState.getPlayer(i).setAbility(abilityDeck.getDeckAbilityCard().at(i));
+        // for (int i = 0; i < 7 ; i++){
+        //     // gameState.getPlayer(i).status();
+        //     // cout << abilityDeck.getDeckAbilityCard().at(i)->getAbilityCard();
+        //     gameState.getPlayer(i).setAbility(abilityDeck.getDeckAbilityCard().at(i));
+        // }
+        i = 0;
+        for(auto& player : gameState.getAllPlayer()){
+            player.setAbility(abilityDeck.getDeckAbilityCard().at(i));
+            i++;
+            player.status();
         }
-        //cout << "Ciee udh dapat ability"<<endl;
+        gameState.updateFirstTurn();
 
         //PLAY ROUND 2-7
         for(int i = 0; i < 5 ; i++){ // per round
             gameState.HandUpdate();
             for(int j = 0; j < 7 ; j++){ // per turn
                 gameState.printInterface(); // nanti ganti
-                //gameState.inputAction();
-                gameState.inputRandom();
+                gameState.inputAction();
+                //gameState.inputRandom();
                 gameState.evaluateAction();
                 gameState.NextTurn();
             }
             gameState.NextRound();
         }
+        
         gameState.getGameWinner();
-
+        
         gameState.resetGameState();
+        
     } 
 
 

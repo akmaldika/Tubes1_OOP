@@ -18,3 +18,13 @@ void Abilityless::useAbilityCard(Player& player)
     ability->useAbilityCard();
     player.setAbility(ability);
 }
+
+void Abilityless::printAbilityCard(){
+    cout<<".-----------."<<endl;
+    cout<<"|Abilityless|"<<endl;
+    cout<<"|   .---.   |"<<endl;
+    cout<<"|   : A :   |"<<endl;
+    cout<<"|   '---'   |"<<endl;
+    cout<<"|Abilityless|"<<endl;
+    cout<<"`-----------'"<<endl;
+}

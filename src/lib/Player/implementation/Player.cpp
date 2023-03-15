@@ -14,7 +14,7 @@ Player::Player(Card card1, Card card2)
 : MyCard(card1, card2, NULL, (playerCount%7)+1)
 {  
     this->ID = playerCount;
-    this->name = "NaN";
+    this->name = to_string(playerCount);
     this->point = 0;   
     this->played = false;
     playerCount++;
@@ -64,6 +64,7 @@ void Player::status(){
     cout << "  | _    /     Point : " << this->point << endl;
     cout << "  |____.'      Hand  : " << this->Hand.getType() << endl;
     cout << "  ___| |__     Value : " << this->Hand.value() << endl;
+
     cout << " __________________________YOUR CARD______________________________\n";
     MyCard.printCard();
     // print ability card

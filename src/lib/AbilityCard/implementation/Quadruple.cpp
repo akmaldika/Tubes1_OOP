@@ -16,3 +16,14 @@ void Quadruple::useAbilityCard(unsigned long long& prize)
     AbilityCard::useAbilityCard();
     prize *= 4;
 }
+
+void Quadruple::printAbilityCard(){
+    cout<<".---------."<<endl;
+    cout<<"|Quadruple|"<<endl;
+    cout<<"|  .---.  |"<<endl;
+    cout<<"|  : A :  |"<<endl;
+    cout<<"|  '---'  |"<<endl;
+    cout<<"|Quadruple|"<<endl;
+    cout<<"`---------'"<<endl;
+
+}
