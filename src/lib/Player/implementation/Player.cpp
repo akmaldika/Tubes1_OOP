@@ -19,8 +19,7 @@ Player::Player(Card card1, Card card2)
     this->played = false;
     playerCount++;
 }
-void Player::setCombo(Combo MyCombo){
-    cout << "out\n";
+void Player::setCombo(Combo &MyCombo){
     Hand = MyCombo;
 }
 Combo Player::getCombo(){

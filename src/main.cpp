@@ -13,12 +13,6 @@ int main(int argc, char const *argv[])
     string filename;
     DeckAbilityCard abilityDeck;
 
-
-    for (auto player: gameState.getAllPlayer()){
-        cout<<"Minimal test"<<endl;
-        player.status();
-    }
-
     /*
         ALGORITMA PERMAINAN
     */    
@@ -80,11 +74,6 @@ int main(int argc, char const *argv[])
     // Input Player Name
     InputApp playerName;
     cout << "\n----------   Input Player Name    ---------- " << endl;
-    // for (int i = 0; i < 7 ; i++){
-    //     cout << "Player " << i << " : ";
-    //     playerName.takeStrInput();
-    //     gameState.setPlayerName(i, playerName.getStrInput());
-    // }
 
     int i = 0;
     for (auto& player : gameState.getAllPlayer()){
@@ -96,11 +85,11 @@ int main(int argc, char const *argv[])
 
     while(!gameState.checkAllWin()){
         gameCounter++;
-        cout << "\n                         GAME " << gameCounter << "\n";
+        cout << "\n                             GAME " << gameCounter << "\n";
 
         // PLAY FIRST ROUND
         gameState.HandUpdate();
-
+        gameState.updateTurn();
         for (int i = 0; i < 7 ; i++){ // per turn
             gameState.printInterface(); // nanti ganti
             gameState.inputAction();
@@ -121,9 +110,8 @@ int main(int argc, char const *argv[])
         for(auto& player : gameState.getAllPlayer()){
             player.setAbility(abilityDeck.getDeckAbilityCard().at(i));
             i++;
-            player.status();
         }
-        gameState.updateFirstTurn();
+        gameState.updateTurn();
 
         //PLAY ROUND 2-7
         for(int i = 0; i < 5 ; i++){ // per round
@@ -148,8 +136,9 @@ int main(int argc, char const *argv[])
     // for (int i=0; i<7; i++){
     //     gameState.getPlayer(i).status();
     // }
-    cout << "The winner of the game is: " << endl;
+    cout << "---------   The winner of the game is:    ---------- " << endl;
     gameState.getAllWinner().status();
+    cout << "------------------   Congrats    -------------------- " << endl;
 
     gameState.printLeaderboard();
 

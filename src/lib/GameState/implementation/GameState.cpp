@@ -560,10 +560,9 @@ void GameState::resetGameState()
 bool GameState::checkAllWin()
 {
     // cout << "Evaluating all score...\n";
-    for (auto player: AllPlayer){
-        cout<<"Minimal test"<<endl;
-        player.status();
-    }
+    // for (auto player: AllPlayer){
+    //     player.status();
+    // }
     Player highestScorePlayer = max(AllPlayer);
     // highestScorePlayer.status();
     // 4294967296
@@ -634,7 +633,9 @@ Combo GameState::playerHighestCombo(Player &player)
                         for (int m = l + 1; m < cardList.size(); m++)
                         {
                             possibleCombination = {cardList[i], cardList[j], cardList[k], cardList[l], cardList[m]};
-                            listPossibleCombination.push_back(Combo(possibleCombination));
+                            Combo possibleCombo(cardList);
+                            float tempVal = possibleCombo.value(); // Supaya evaluasi tipeya
+                            listPossibleCombination.push_back(possibleCombination);
                         }
                     }
                 }
@@ -643,16 +644,9 @@ Combo GameState::playerHighestCombo(Player &player)
     }
     else
     { // Jika hanya ada satu kombinasi yang mungkin
-        listPossibleCombination.push_back(Combo(cardList));
-        // for (auto card : cardList){
-        //     card.print();
-        // }
-    }
-
-    cout << "call max\n";
-    for (auto com : listPossibleCombination)
-    {
-        cout << com.getType() << endl;
+        Combo possibleCombo(cardList);
+        float tempVal = possibleCombo.value(); // Supaya evaluasi tipeya
+        listPossibleCombination.push_back(possibleCombo);
     }
     return max<Combo>(listPossibleCombination);
 }
@@ -699,19 +693,13 @@ void GameState::printLeaderboard()
         i++;
         cout << i << ".   " << player.getPlayerName() << "\t (" << player.getPlayerPoint() << ")\n";
     }
-
-    // for (i = 1; i < copyPlayers.size(); i++){
-    //     cout << i << ".   " << copyPlayers.at(i).getPlayerName() << "\t (" << copyPlayers.at(i).getPlayerPoint() << ")\n";
-    // }
 }
 
 void GameState::HandUpdate()
 {
-    for (auto player : AllPlayer)
+    for (auto &player : AllPlayer)
     {
-
         Combo fff = playerHighestCombo(player);
-
         player.setCombo(fff);
     }
 }
@@ -732,6 +720,6 @@ vector<Player>& GameState::getAllPlayer(){
     return AllPlayer;
 }
 
-void GameState::updateFirstTurn(){
+void GameState::updateTurn(){
     Turn.second = AllPlayer.at(Turn.first);
 }

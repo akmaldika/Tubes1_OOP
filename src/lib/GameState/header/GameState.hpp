@@ -132,5 +132,5 @@ class GameState {
         
         void setPlayerName(int ID, string name);
 
-        void updateFirstTurn();
+        void updateTurn();
 };
