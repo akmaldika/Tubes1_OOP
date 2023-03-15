@@ -100,7 +100,7 @@ int main(int argc, char const *argv[])
 
         // PLAY FIRST ROUND
         gameState.HandUpdate();
-
+        gameState.updateTurn();
         for (int i = 0; i < 7 ; i++){ // per turn
             gameState.printInterface(); // nanti ganti
             gameState.inputAction();
@@ -123,7 +123,7 @@ int main(int argc, char const *argv[])
             i++;
             player.status();
         }
-        gameState.updateFirstTurn();
+        gameState.updateTurn();
 
         //PLAY ROUND 2-7
         for(int i = 0; i < 5 ; i++){ // per round

@@ -720,6 +720,6 @@ vector<Player>& GameState::getAllPlayer(){
     return AllPlayer;
 }
 
-void GameState::updateFirstTurn(){
+void GameState::updateTurn(){
     Turn.second = AllPlayer.at(Turn.first);
 }
