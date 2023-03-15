@@ -365,7 +365,7 @@ void GameState::evaluateAction(){
 
                     cout << "Choose other player you want to swap card with : " << endl;
                 
-                    int i = 0;
+                    i = 0;
                     for (auto player : PlayerList)
                     {
                         i++;

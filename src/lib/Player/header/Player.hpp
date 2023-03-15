@@ -55,7 +55,7 @@ class Player {
 
     // operator
     bool operator>(Player& enemy);
-    bool operator==(Player& enemy);
+    bool operator==(const Player& enemy);
     bool operator<(Player& enemy);
     Player& operator=(Player player);
 };

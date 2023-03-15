@@ -77,13 +77,13 @@ bool Player::getPlayed(){
     return played;
 }
 bool Player::operator>(Player& enemy){
-    return (getPlayerPoint() > enemy.getPlayerPoint());
+    return (this->point > enemy.point);
 }
-bool Player::operator==(Player& enemy){
-    return (getPlayerPoint() == enemy.getPlayerPoint());
+bool Player::operator==(const Player& enemy){
+    return (this->point == enemy.ID);
 }
 bool Player::operator<(Player& enemy){
-    return (getPlayerPoint() < enemy.getPlayerPoint());
+    return (this->point < enemy.point);
 }
 
 void Player::addPoint(long long int amount){
