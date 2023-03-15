@@ -3,18 +3,14 @@
 using namespace std;
 template <class T>
  // Preconditional: objects Tidak kosong 
-T& max(vector<T> objects){
-    cout << "masuk max\n";
-    T& maxElmt = objects[0];
-
+T max(vector<T> objects){
+    T maxElmt = objects[0];
 
     for(auto obj : objects){
         if(obj > maxElmt){
             maxElmt = obj;
         }
     }
-
-    cout << "out max\n";
     return maxElmt;
 };
 

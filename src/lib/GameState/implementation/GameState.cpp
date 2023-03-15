@@ -315,7 +315,10 @@ void GameState::resetGameState(){
 bool GameState::checkAllWin(){
 
     // cout << "Evaluating all score...\n";
-
+    for (auto player: AllPlayer){
+        player.status();
+        cout<<"Minimal test"<<endl;
+    }
     Player highestScorePlayer = max(AllPlayer);
     // highestScorePlayer.status();
     //4294967296
@@ -383,10 +386,13 @@ Combo GameState::playerHighestCombo(Player& player){
         }
     } else { // Jika hanya ada satu kombinasi yang mungkin
         listPossibleCombination.push_back(Combo(cardList));
+        for (auto card : cardList){
+            card.print();
+        }
     }
     
    
-    return max(listPossibleCombination);
+    return max<Combo>(listPossibleCombination);
 }
 
 
@@ -433,8 +439,8 @@ void GameState::printLeaderboard(){
 
 void GameState::HandUpdate(){
     for(auto player : AllPlayer){
-    cout << "loop\n";
-    player.setCombo(playerHighestCombo(player));
+        cout << "loop\n";
+        player.setCombo(playerHighestCombo(player));
     }
     
 }

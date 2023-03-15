@@ -68,10 +68,11 @@ pair<int,float> Combo::getPair(){
     pair<int,float> pairData; // <nPair, weightValue>
     float weightPivot;
     float weightNonPivot;
+    int size = this->combination.size();
     pairData.second = 0; // Max nilai dari pair (perhitungan single card)
-    for (int i=0; i<4; i++){
+    for (int i=0; i<(size-1); i++){
         weightPivot = this->combination[i].weightValue();
-        for (int j=i+1; j<5; j++){
+        for (int j=i+1; j<size; j++){
             if (this->combination[i].value() == this->combination[j].value()){
                 if (pairValue.count(this->combination[j].value()) == 0){
                     weightNonPivot = this->combination[j].weightValue();
@@ -100,11 +101,12 @@ pair<int,float> Combo:: getNOfKind(){
     NOfKindData.second = 0;
     float weightPivot;
     float weightNonPivot;
+    int size = this->combination.size();
     // collect the data
-    for (int i=0; i<4; i++){
+    for (int i=0; i<(size-1); i++){
         int nTemp = 1; // menyimpan sementara nOfKind untuk evaluasi setiap card 
         weightPivot = this->combination[i].weightValue();
-        for (int j=i+1; j<5; j++){
+        for (int j=i+1; j<size; j++){
             if (this->combination[i].value() == this->combination[j].value()){
                 weightNonPivot = this->combination[j].weightValue();
                 
