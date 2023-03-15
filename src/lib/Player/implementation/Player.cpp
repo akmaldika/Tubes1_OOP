@@ -19,6 +19,7 @@ Player::Player(Card card1, Card card2, Card abilityCard)
     playerCount++;
 }
 void Player::setPlayerName(string name){
+    cin >> name;
     this->name = name;
 }
 string Player::getPlayerName(){
