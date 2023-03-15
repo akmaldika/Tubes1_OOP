@@ -28,7 +28,7 @@ class Player {
     Player(Card card1, Card card2);
 
     // getter and setter
-    void setCombo(Combo MyCombo);
+    void setCombo(Combo &MyCombo);
     Combo getCombo();
     void setPlayerName(string name);
     string getPlayerName();
