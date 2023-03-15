@@ -15,7 +15,7 @@ int main()
             cout << e << endl;
         }
     }
-    cout << inputApp.gerIntInput() << endl;
+    cout << inputApp.getIntInput() << endl;
     inputApp.takeStrInput();
     cout <<  inputApp.getStrInput() << endl;
     return 0;

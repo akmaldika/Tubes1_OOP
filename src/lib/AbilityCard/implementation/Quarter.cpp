@@ -11,8 +11,8 @@ Quarter::Quarter()
     this->abilityCard = "Quarter";
 }
 
-void Quarter::useAbilityCard(GameState& GameState)
+void Quarter::useAbilityCard(unsigned long long& prize)
 {
     AbilityCard::useAbilityCard();
-    GameState.setPrize(GameState.getPrize() / 4);
+    prize /= 4;
 }

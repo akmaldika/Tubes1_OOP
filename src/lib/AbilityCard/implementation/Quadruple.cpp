@@ -11,8 +11,8 @@ Quadruple::Quadruple()
     this->abilityCard = "Quadruple";
 }
 
-void Quadruple::useAbilityCard(GameState& gameState)
+void Quadruple::useAbilityCard(unsigned long long& prize)
 {
     AbilityCard::useAbilityCard();
-    gameState.setPrize(gameState.getPrize() * 4);
+    prize *= 4;
 }

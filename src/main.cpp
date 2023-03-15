@@ -61,23 +61,10 @@ int main(int argc, char const *argv[])
     cout << "1. Random" << endl;
     cout << "2. File" << endl;
     
+    InputApp deckOrder;
+    opt = deckOrder.takeIntInput(2);
 
-    while(true){
-        try{
-            cout << "(1/2) Your Choice : ";
-            cin >> opt;
-            if(!(opt == 1 || opt == 2)){
-                throw (opt);
-            }
-            else {
-                break;
-            }
-        }
-        catch(...){
-            cout << "----------   Invalid Input!    ---------- " << endl;
-        }
-    }
-
+    // Input Deck From File
     if (opt == 2){
         cout << "\n----------   Input Deck Card File    ---------- " << endl;
         InputApp deckCardFile;
@@ -88,6 +75,15 @@ int main(int argc, char const *argv[])
         InputApp deckAbilityFile;
         DeckAbilityCard deckFromfile("../test/" + deckAbilityFile.takeFilenameInput("Ability"));
         abilityDeck = deckFromfile;
+    }
+
+    // Input Player Name
+    InputApp playerName;
+    cout << "\n----------   Input Player Name    ---------- " << endl;
+    for (int i = 0; i < 7 ; i++){
+        cout << "Player " << i << " : ";
+        playerName.takeStrInput();
+        gameState.setPlayerName(i, playerName.getStrInput());
     }
 
     while(!gameState.checkAllWin()){
@@ -144,25 +140,15 @@ int main(int argc, char const *argv[])
 
     gameState.printLeaderboard();
 
-    cout << "\nDo you want to try again?" << endl;
-    char c;
-    while(true){
-        try{
-            cout << "\n(y/n) Your Choice : ";
-            cin >> c;
-            if(!(c == 'n' || c == 'y')){
-                throw (c);
-            }
-            else {
-                break;
-            }
-        }
-        catch(...){
-            cout << "\n----------   Invalid Input!    ---------- " << endl;
-        }
-    }
-    if (c == 'y'){
-        system("../bin/main");
+    // Try Again
+    cout << "\n----------   Do you want to try again?    ---------- " << endl;
+    cout << "1. Yes" << endl;
+    cout << "2. No" << endl;
+
+    InputApp tryAgain;
+    int tryAgainOpt = tryAgain.takeIntInput(2);
+    if (tryAgainOpt == 1){
+        system("make run");
     }
     else {
         cout << "\nThank you for playing!" << endl;
