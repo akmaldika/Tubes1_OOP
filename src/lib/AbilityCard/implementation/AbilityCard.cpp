@@ -18,6 +18,11 @@ string AbilityCard::getAbilityCard() const
 void AbilityCard::useAbilityCard()
 {
     cout << "Using ability Card: " << this->abilityCard << endl;
+    this->abilityCard = ABILITYCARD_DEFAULT;
+}
+
+void AbilityCard::setOffAbilityCard()
+{
     setAbilityCard(ABILITYCARD_DEFAULT);
 }
 

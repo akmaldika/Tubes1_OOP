@@ -32,6 +32,9 @@ class AbilityCard : public Ability
         // menggunakan AbilityCard sesuai dengan jenis kartu (child)
         virtual void useAbilityCard();
 
+        // setter abilityCard ke ABILITYCard_DEFAULT
+        void setOffAbilityCard();
+
 };
 
 #endif

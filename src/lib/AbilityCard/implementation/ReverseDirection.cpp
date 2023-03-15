@@ -11,15 +11,8 @@ ReverseDirection::ReverseDirection()
     this->abilityCard = "ReverseDirection";
 }
 
-void ReverseDirection::useAbilityCard(GameState& gameState)
+void ReverseDirection::useAbilityCard(bool& reverse)
 {
     AbilityCard::useAbilityCard();
-    if (gameState.getReverse())
-    {
-        gameState.setReverse(false);
-    }
-    else
-    {
-        gameState.setReverse(true);
-    }
+    reverse = !reverse;
 }
