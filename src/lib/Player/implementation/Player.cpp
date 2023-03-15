@@ -20,6 +20,7 @@ Player::Player(Card card1, Card card2)
     playerCount++;
 }
 void Player::setCombo(Combo MyCombo){
+    cout << "out\n";
     Hand = MyCombo;
 }
 Combo Player::getCombo(){
@@ -116,7 +117,7 @@ Card Player::getCardTwo(){
 }
 
 void Player::setAbility(AbilityCard *ini){
-    cout << "Otw kasih ability" << endl;
+    //cout << "Otw kasih ability" << endl;
     MyCard.setAbilityCard(ini);
 }
 
@@ -127,4 +128,15 @@ AbilityCard* Player::getAbility(){
 PlayerCard Player::getMyCard() const
 {
     return this->MyCard;
+}
+
+Player& Player::operator=(Player player){
+    ID = player.ID;
+    name = player.name;
+    point = player.point;
+    played = player.played;
+    MyCard = player.MyCard;
+    Hand = player.Hand;
+
+    return *this;
 }

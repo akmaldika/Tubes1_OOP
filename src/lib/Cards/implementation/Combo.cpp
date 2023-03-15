@@ -182,3 +182,11 @@ void Combo::print(){
         cout<<endl;
     }
 }
+
+Combo& Combo::operator=(Combo &combo){
+    combination = combo.combination;
+    valueCombo = combo.valueCombo;
+    type = combo.type;
+
+    return *this;
+}

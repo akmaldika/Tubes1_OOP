@@ -23,8 +23,8 @@ class Player {
     Combo Hand;
     
     public:
-    // construktor
-    Player(); // temp biar gameState ga error
+    // 
+    Player();
     Player(Card card1, Card card2);
 
     // getter and setter
@@ -48,7 +48,7 @@ class Player {
     void setAbility(AbilityCard*);
     AbilityCard* getAbility();
 
-    void status();
+    void status() ;
 
     void addPoint(long long int amount);
 
@@ -57,6 +57,7 @@ class Player {
     bool operator>(Player& enemy);
     bool operator==(Player& enemy);
     bool operator<(Player& enemy);
+    Player& operator=(Player player);
 };
 
 #endif

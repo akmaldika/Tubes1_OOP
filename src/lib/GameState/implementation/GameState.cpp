@@ -206,10 +206,10 @@ void GameState::inputRandom(){
     //     , "QUARTER", "REVERSE", "SWAP", "SWITCH", "ABILITYLESS"
     // };
 
-    vector<string> com = {"NEXT", "HALF", "DOUBLE"};
+    vector<string> com = {"NEXT", "DOUBLE", "HALF"};
 
-    srand(time(NULL));
-    int choice = rand() % 2;  
+    srand(time(0));
+    int choice = rand() % com.size();  
     
     Action = com[choice];
     cout << choice << endl;
@@ -365,6 +365,7 @@ Combo GameState::playerHighestCombo(Player& player){
             cardList.push_back(card);
         }
     }
+    cout << "in\n";
 
     // Pencarian semua kombinasi yang mungkin
     if(cardList.size()>5){ // Jika ada lebih dari satu kombinasi yang mungkin
@@ -383,6 +384,7 @@ Combo GameState::playerHighestCombo(Player& player){
     } else { // Jika hanya ada satu kombinasi yang mungkin
         listPossibleCombination.push_back(Combo(cardList));
     }
+    
    
     return max(listPossibleCombination);
 }
@@ -420,7 +422,7 @@ bool GameState::getReverse() const
 
 void GameState::printLeaderboard(){
 
-    vector<Player> copyPlayers = sort(AllPlayer);
+    vector<Player> copyPlayers = sortDsc(AllPlayer);
 
     cout << "\nGAMBLING HALL OF FAME" << endl;
     cout << " Name\t (point)" << endl;
@@ -430,8 +432,9 @@ void GameState::printLeaderboard(){
 }
 
 void GameState::HandUpdate(){
-
     for(auto player : AllPlayer){
+    cout << "loop\n";
     player.setCombo(playerHighestCombo(player));
     }
+    
 }
