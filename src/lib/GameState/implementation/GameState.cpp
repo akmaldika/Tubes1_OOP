@@ -86,7 +86,7 @@ Player& GameState::getPlayer(int ID) {
     return *temp;
 }
 
-pair<int, Player> GameState::getWhoseTurn()
+pair<int, Player&> GameState::getWhoseTurn()
 {
     return Turn;
 }
@@ -728,6 +728,6 @@ void GameState::setPlayerName(int ID, string name)
 }
 
 
-vector<Player> GameState::getAllPlayer(){
+vector<Player>& GameState::getAllPlayer(){
     return AllPlayer;
 }
