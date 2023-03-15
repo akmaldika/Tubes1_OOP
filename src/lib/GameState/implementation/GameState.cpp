@@ -26,8 +26,8 @@ GameState::GameState()
         Card card1 = deck.takeCard();
         Card card2 = deck.takeCard();
         Player tempPlayer(card1, card2);
-
         AllPlayer.push_back(tempPlayer); // masukin player ke dalem array
+        
     }
 
 
@@ -103,7 +103,9 @@ void GameState::NextRound(){
     Player temp(tempCard,tempCard);
     temp = AllPlayer.front();
 
-    NextTurn();
+    // set turn ke pemain setelah pemain giliran pertama di round sebelumnya.
+    Turn.first = (Turn.first + 2) % 7;
+    Turn.second = AllPlayer.at(Turn.first);
 }
 
 void GameState::NextTurn(){
@@ -204,10 +206,10 @@ void GameState::inputRandom(){
     //     , "QUARTER", "REVERSE", "SWAP", "SWITCH", "ABILITYLESS"
     // };
 
-    vector<string> com = {"NEXT", "HALF", "DOUBLE"};
+    vector<string> com = {"NEXT", "DOUBLE", "HALF"};
 
-    srand(time(NULL));
-    int choice = rand() % 2;  
+    srand(time(0));
+    int choice = rand() % com.size();  
     
     Action = com[choice];
     cout << choice << endl;
@@ -313,7 +315,10 @@ void GameState::resetGameState(){
 bool GameState::checkAllWin(){
 
     // cout << "Evaluating all score...\n";
-
+    for (auto player: AllPlayer){
+        player.status();
+        cout<<"Minimal test"<<endl;
+    }
     Player highestScorePlayer = max(AllPlayer);
     // highestScorePlayer.status();
     //4294967296
@@ -363,6 +368,7 @@ Combo GameState::playerHighestCombo(Player& player){
             cardList.push_back(card);
         }
     }
+    cout << "in\n";
 
     // Pencarian semua kombinasi yang mungkin
     if(cardList.size()>5){ // Jika ada lebih dari satu kombinasi yang mungkin
@@ -380,9 +386,16 @@ Combo GameState::playerHighestCombo(Player& player){
         }
     } else { // Jika hanya ada satu kombinasi yang mungkin
         listPossibleCombination.push_back(Combo(cardList));
+        for (auto card : cardList){
+            card.print();
+        }
     }
-   
-    return max(listPossibleCombination);
+    
+    cout << "call max\n";
+    for (auto com : listPossibleCombination){
+        cout << com.getType() << endl;
+    }
+    return max<Combo>(listPossibleCombination);
 }
 
 
@@ -418,11 +431,21 @@ bool GameState::getReverse() const
 
 void GameState::printLeaderboard(){
 
-    vector<Player> copyPlayers = sort(AllPlayer);
+    vector<Player> copyPlayers = sortDsc(AllPlayer);
 
     cout << "\nGAMBLING HALL OF FAME" << endl;
     cout << " Name\t (point)" << endl;
     for (auto player : copyPlayers){
         cout << player.getPlayerName() << "\t (" << player.getPlayerPoint() << ")\n";
     }
+}
+
+void GameState::HandUpdate(){
+    for(auto player : AllPlayer){
+
+        Combo fff = playerHighestCombo(player);
+
+        player.setCombo(fff);
+    }
+    
 }

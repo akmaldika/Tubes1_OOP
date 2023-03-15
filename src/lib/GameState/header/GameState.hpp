@@ -120,5 +120,7 @@ class GameState {
         void AbilitylessCommand();
 
         void printLeaderboard();
+
+        void HandUpdate();
         
 };

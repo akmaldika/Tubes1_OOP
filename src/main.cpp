@@ -12,7 +12,6 @@ int main(int argc, char const *argv[])
     int gameCounter = 0;
     string filename;
     DeckAbilityCard abilityDeck;
-    Player winner;
 
 
     
@@ -89,28 +88,31 @@ int main(int argc, char const *argv[])
         cout << "\n                         GAME " << gameCounter << "\n";
 
         // PLAY FIRST ROUND
+        gameState.HandUpdate();
+        cout << "out\n";
         for (int i = 0; i < 7 ; i++){ // per turn
             gameState.printInterface(); // nanti ganti
-            gameState.inputAction();
-            //gameState.inputRandom();
+            //gameState.inputAction();
+            gameState.inputRandom();
             gameState.evaluateAction();
             gameState.NextTurn();
         }
         gameState.NextRound();
 
 
-        // Draw Ability Card
-        // for (int i = 0; i < 7 ; i++){
-        //     gameState.getPlayer(i).setAbility(abilityDeck.getDeckAbilityCard().at(i));
-        // }
-        cout << "Ciee udh dapat ability"<<endl;
+        //Draw Ability Card
+        for (int i = 0; i < 7 ; i++){
+            gameState.getPlayer(i).setAbility(abilityDeck.getDeckAbilityCard().at(i));
+        }
+        //cout << "Ciee udh dapat ability"<<endl;
 
         //PLAY ROUND 2-7
         for(int i = 0; i < 5 ; i++){ // per round
+            gameState.HandUpdate();
             for(int j = 0; j < 7 ; j++){ // per turn
                 gameState.printInterface(); // nanti ganti
-                gameState.inputAction();
-                //gameState.inputRandom();
+                //gameState.inputAction();
+                gameState.inputRandom();
                 gameState.evaluateAction();
                 gameState.NextTurn();
             }
@@ -122,12 +124,11 @@ int main(int argc, char const *argv[])
     } 
 
 
-    winner = gameState.getAllWinner();
     // for (int i=0; i<7; i++){
     //     gameState.getPlayer(i).status();
     // }
     cout << "The winner of the game is: " << endl;
-    winner.status();
+    gameState.getAllWinner().status();
 
     gameState.printLeaderboard();
 

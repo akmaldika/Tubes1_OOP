@@ -19,6 +19,13 @@ Player::Player(Card card1, Card card2)
     this->played = false;
     playerCount++;
 }
+void Player::setCombo(Combo MyCombo){
+    cout << "out\n";
+    Hand = MyCombo;
+}
+Combo Player::getCombo(){
+    return Hand;
+}
 void Player::setPlayerName(string name){
     this->name = name;
 }
@@ -55,8 +62,8 @@ void Player::status(){
     cout << "  (.)(.)-||    ID    : " << this->ID << endl;
     cout << "  | L    )|    Name  : " << this->name << endl;
     cout << "  | _    /     Point : " << this->point << endl;
-    cout << "  |____.'         \n";
-    cout << "  ___| |__        \n";
+    cout << "  |____.'      Hand  : " << this->Hand.getType() << endl;
+    cout << "  ___| |__     Value : " << this->Hand.value() << endl;
     cout << " __________________________YOUR CARD______________________________\n";
     MyCard.printCard();
     // print ability card
@@ -109,7 +116,7 @@ Card Player::getCardTwo(){
 }
 
 void Player::setAbility(AbilityCard *ini){
-    cout << "Otw kasih ability" << endl;
+    //cout << "Otw kasih ability" << endl;
     MyCard.setAbilityCard(ini);
 }
 
@@ -120,4 +127,15 @@ AbilityCard* Player::getAbility(){
 PlayerCard Player::getMyCard() const
 {
     return this->MyCard;
+}
+
+Player& Player::operator=(Player player){
+    ID = player.ID;
+    name = player.name;
+    point = player.point;
+    played = player.played;
+    MyCard = player.MyCard;
+    Hand = player.Hand;
+
+    return *this;
 }
