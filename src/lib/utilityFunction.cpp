@@ -4,6 +4,7 @@ using namespace std;
 template <class T>
  // Preconditional: objects Tidak kosong 
 T& max(vector<T> objects){
+    cout << "masuk max\n";
     T& maxElmt = objects[0];
 
 
@@ -13,14 +14,14 @@ T& max(vector<T> objects){
         }
     }
 
-
+    cout << "out max\n";
     return maxElmt;
 };
 
 // Fungsi untuk melakukan sorting list dengan element tipe generik (minimal Kartu, Combo, dan Player)
 // Mengembalikan salinan vector of T
 
-template<class T> // ASCENDING
+template<class T> // ASCENDINGSSS
 vector<T> sort(vector<T> list){
     vector<T> copyList;
     if (!list.empty()){ // Jika list tidak kosong
