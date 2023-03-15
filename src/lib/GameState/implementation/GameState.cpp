@@ -526,6 +526,7 @@ void GameState::evaluateAction()
             }
             else
             {
+                break;
             } // ACTION : NEXT
         }
         catch (const char *msg)
@@ -558,7 +559,7 @@ void GameState::resetGameState()
 
 bool GameState::checkAllWin()
 {
-
+    printLeaderboard();
     // cout << "Evaluating all score...\n";
     for (auto player: AllPlayer){
         cout<<"Minimal test"<<endl;
@@ -567,6 +568,7 @@ bool GameState::checkAllWin()
     Player highestScorePlayer = max(AllPlayer);
     // highestScorePlayer.status();
     // 4294967296
+    printLeaderboard();
     return (highestScorePlayer.getPlayerPoint() >= 4294967296);
 }
 
