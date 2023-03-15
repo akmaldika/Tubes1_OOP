@@ -19,6 +19,7 @@ class Quarter : public AbilityCard
         prizePoint pada GameState dibagi 4
         */
         void useAbilityCard(unsigned long long&);
+        void printAbilityCard();
 };
 
 #endif

@@ -18,3 +18,13 @@ void Reroll::useAbilityCard(DeckCard& deck, Player& player)
     player.setCardOne(deck.takeCard());
     player.setCardTwo(deck.takeCard());
 }
+
+void Reroll::printAbilityCard(){
+    cout<<".---------."<<endl;
+    cout<<"|Reroll   |"<<endl;
+    cout<<"|  .---.  |"<<endl;
+    cout<<"|  : A :  |"<<endl;
+    cout<<"|  '---'  |"<<endl;
+    cout<<"|   Reroll|"<<endl;
+    cout<<"`---------'"<<endl;    
+}

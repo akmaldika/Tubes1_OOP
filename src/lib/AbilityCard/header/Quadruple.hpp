@@ -19,6 +19,7 @@ class Quadruple : public AbilityCard
         prizePoint pada GmaseState dikali 4
         */
         void useAbilityCard(unsigned long long&);
+        void printAbilityCard();
 };
 
 #endif

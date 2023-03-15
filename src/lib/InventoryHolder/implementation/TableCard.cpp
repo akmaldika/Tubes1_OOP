@@ -507,7 +507,6 @@ void TableCard::printCard() {
     switch (this->tableCard.size())
     {
     case 1:
-        cout << "Ini mau ngeprint satu kartu"<<endl;
         this->tableCard[0].print();
 
         break;

@@ -164,4 +164,11 @@ void PlayerCard::printCard() {
     cout<<colorInterfaceC1<<"|       "<<pos2C1<<"|"     <<"     "<<colorInterfaceC2<<"|       "<<pos2C2<<"|"    <<endl;
     cout<<colorInterfaceC1<<"`---------'"               <<"     "<<colorInterfaceC2<<"`---------'";
     cout<<RESET<<endl;
+
+    if (this->abilityCard != NULL){
+        this->abilityCard->printAbilityCard();
+        cout<<endl;
+    } else {
+        cout<<"Don't Have any ability card"<<endl;
+    }
 }

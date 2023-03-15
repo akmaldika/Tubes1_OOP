@@ -13,9 +13,6 @@ int main(int argc, char const *argv[])
     string filename;
     DeckAbilityCard abilityDeck;
 
-
-    
-
     /*
         ALGORITMA PERMAINAN
     */    
@@ -77,34 +74,44 @@ int main(int argc, char const *argv[])
     // Input Player Name
     InputApp playerName;
     cout << "\n----------   Input Player Name    ---------- " << endl;
-    for (int i = 0; i < 7 ; i++){
+
+    int i = 0;
+    for (auto& player : gameState.getAllPlayer()){
         cout << "Player " << i << " : ";
+        i++;
         playerName.takeStrInput();
-        gameState.setPlayerName(i, playerName.getStrInput());
+        player.setPlayerName(playerName.getStrInput());
     }
 
     while(!gameState.checkAllWin()){
         gameCounter++;
-        cout << "\n                         GAME " << gameCounter << "\n";
+        cout << "\n                             GAME " << gameCounter << "\n";
 
         // PLAY FIRST ROUND
         gameState.HandUpdate();
-        cout << "out\n";
+        gameState.updateTurn();
         for (int i = 0; i < 7 ; i++){ // per turn
             gameState.printInterface(); // nanti ganti
             gameState.inputAction();
-            // gameState.inputRandom();
+            //gameState.inputRandom();
             gameState.evaluateAction();
             gameState.NextTurn();
         }
+        
         gameState.NextRound();
-
-
+        
         //Draw Ability Card
-        for (int i = 0; i < 7 ; i++){
-            gameState.getPlayer(i).setAbility(abilityDeck.getDeckAbilityCard().at(i));
+        // for (int i = 0; i < 7 ; i++){
+        //     // gameState.getPlayer(i).status();
+        //     // cout << abilityDeck.getDeckAbilityCard().at(i)->getAbilityCard();
+        //     gameState.getPlayer(i).setAbility(abilityDeck.getDeckAbilityCard().at(i));
+        // }
+        i = 0;
+        for(auto& player : gameState.getAllPlayer()){
+            player.setAbility(abilityDeck.getDeckAbilityCard().at(i));
+            i++;
         }
-        //cout << "Ciee udh dapat ability"<<endl;
+        gameState.updateTurn();
 
         //PLAY ROUND 2-7
         for(int i = 0; i < 5 ; i++){ // per round
@@ -112,23 +119,26 @@ int main(int argc, char const *argv[])
             for(int j = 0; j < 7 ; j++){ // per turn
                 gameState.printInterface(); // nanti ganti
                 gameState.inputAction();
-                // gameState.inputRandom();
+                //gameState.inputRandom();
                 gameState.evaluateAction();
                 gameState.NextTurn();
             }
             gameState.NextRound();
         }
+        
         gameState.getGameWinner();
-
+        
         gameState.resetGameState();
+        
     } 
 
 
     // for (int i=0; i<7; i++){
     //     gameState.getPlayer(i).status();
     // }
-    cout << "The winner of the game is: " << endl;
+    cout << "---------   The winner of the game is:    ---------- " << endl;
     gameState.getAllWinner().status();
+    cout << "------------------   Congrats    -------------------- " << endl;
 
     gameState.printLeaderboard();
 
