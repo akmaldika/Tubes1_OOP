@@ -126,5 +126,8 @@ class GameState {
         void swapCommand();
 
         void printLeaderboard();
+
+        void HandUpdate();
         
+        void setPlayerName(int ID, string name);
 };

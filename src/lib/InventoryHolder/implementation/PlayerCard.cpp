@@ -37,9 +37,9 @@ void PlayerCard::setSecondPlayerCard(Card card) {
 }
 
 void PlayerCard::setAbilityCard(AbilityCard* card) {
-    cout << "Apa lah itu lah" << endl;
+    //cout << "Apa lah itu lah" << endl;
     this->abilityCard = card;
-    cout << "Apa lah ya iya lah" << endl;
+    //cout << "Apa lah ya iya lah" << endl;
 }
 
 void PlayerCard::setID(int ID) {

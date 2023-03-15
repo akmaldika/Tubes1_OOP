@@ -12,7 +12,6 @@ int main(int argc, char const *argv[])
     int gameCounter = 0;
     string filename;
     DeckAbilityCard abilityDeck;
-    Player winner;
 
 
     
@@ -59,51 +58,29 @@ int main(int argc, char const *argv[])
     cout << "1. Random" << endl;
     cout << "2. File" << endl;
     
+    InputApp deckOrder;
+    opt = deckOrder.takeIntInput(2);
 
-    while(true){
-        try{
-            cout << "(1/2) Your Choice : ";
-            cin >> opt;
-            if(!(opt == 1 || opt == 2)){
-                throw (opt);
-            }
-            else {
-                break;
-            }
-        }
-        catch(...){
-            cout << "----------   Invalid Input!    ---------- " << endl;
-        }
+    // Input Deck From File
+    if (opt == 2){
+        cout << "\n----------   Input Deck Card File    ---------- " << endl;
+        InputApp deckCardFile;
+        GameState stateFromfile("../test/" + deckCardFile.takeFilenameInput("Card"));
+        gameState = stateFromfile;
+
+        cout << "\n----------   Input Deck Ability File    ---------- " << endl;
+        InputApp deckAbilityFile;
+        DeckAbilityCard deckFromfile("../test/" + deckAbilityFile.takeFilenameInput("Ability"));
+        abilityDeck = deckFromfile;
     }
 
-    if (opt == 2){
-        while(true){
-            try{
-                cout << "Deck Card Filename (inside test folder): ";
-                cin >> filename ;
-
-                GameState stateFromfile("../test/" + filename + ".txt");
-                gameState = stateFromfile; 
-                
-            }
-            catch(...){
-                cout << "----------   File Not Found!    ---------- "<< endl;
-            }
-        }
-
-        while(true){
-            try{
-                cout << "Deck Ability Filename (inside test folder): ";
-                cin >> filename ;
-
-                DeckAbilityCard deckFromfile("../test/" + filename + ".txt");
-                abilityDeck = deckFromfile; 
-                
-            }
-            catch(...){
-                cout << "----------   File Not Found!    ---------- "<< endl;
-            }
-        }
+    // Input Player Name
+    InputApp playerName;
+    cout << "\n----------   Input Player Name    ---------- " << endl;
+    for (int i = 0; i < 7 ; i++){
+        cout << "Player " << i << " : ";
+        playerName.takeStrInput();
+        gameState.setPlayerName(i, playerName.getStrInput());
     }
 
     while(!gameState.checkAllWin()){
@@ -111,28 +88,31 @@ int main(int argc, char const *argv[])
         cout << "\n                         GAME " << gameCounter << "\n";
 
         // PLAY FIRST ROUND
+        gameState.HandUpdate();
+        cout << "out\n";
         for (int i = 0; i < 7 ; i++){ // per turn
             gameState.printInterface(); // nanti ganti
-            gameState.inputAction();
-            //gameState.inputRandom();
+            //gameState.inputAction();
+            gameState.inputRandom();
             gameState.evaluateAction();
             gameState.NextTurn();
         }
         gameState.NextRound();
 
 
-        // Draw Ability Card
-        // for (int i = 0; i < 7 ; i++){
-        //     gameState.getPlayer(i).setAbility(abilityDeck.getDeckAbilityCard().at(i));
-        // }
-        cout << "Ciee udh dapat ability"<<endl;
+        //Draw Ability Card
+        for (int i = 0; i < 7 ; i++){
+            gameState.getPlayer(i).setAbility(abilityDeck.getDeckAbilityCard().at(i));
+        }
+        //cout << "Ciee udh dapat ability"<<endl;
 
         //PLAY ROUND 2-7
         for(int i = 0; i < 5 ; i++){ // per round
+            gameState.HandUpdate();
             for(int j = 0; j < 7 ; j++){ // per turn
                 gameState.printInterface(); // nanti ganti
-                gameState.inputAction();
-                //gameState.inputRandom();
+                //gameState.inputAction();
+                gameState.inputRandom();
                 gameState.evaluateAction();
                 gameState.NextTurn();
             }
@@ -144,33 +124,22 @@ int main(int argc, char const *argv[])
     } 
 
 
-    winner = gameState.getAllWinner();
     // for (int i=0; i<7; i++){
     //     gameState.getPlayer(i).status();
     // }
     cout << "The winner of the game is: " << endl;
-    winner.status();
+    gameState.getAllWinner().status();
 
     gameState.printLeaderboard();
 
-    cout << "\nDo you want to try again?" << endl;
-    char c;
-    while(true){
-        try{
-            cout << "\n(y/n) Your Choice : ";
-            cin >> c;
-            if(!(c == 'n' || c == 'y')){
-                throw (c);
-            }
-            else {
-                break;
-            }
-        }
-        catch(...){
-            cout << "\n----------   Invalid Input!    ---------- " << endl;
-        }
-    }
-    if (c == 'y'){
+    // Try Again
+    cout << "\n----------   Do you want to try again?    ---------- " << endl;
+    cout << "1. Yes" << endl;
+    cout << "2. No" << endl;
+
+    InputApp tryAgain;
+    int tryAgainOpt = tryAgain.takeIntInput(2);
+    if (tryAgainOpt == 1){
         system("../bin/main");
     }
     else {

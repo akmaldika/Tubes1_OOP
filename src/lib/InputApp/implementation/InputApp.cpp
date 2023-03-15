@@ -30,7 +30,9 @@ void InputApp::setIntInput(int i)
 
 void InputApp::takeStrInput()
 {
-    cin >> this->strInput;
+    string temp;
+    cin >> temp;
+    this->strInput = temp;
 }
 
 void InputApp::takeIntInput()
@@ -48,25 +50,61 @@ void InputApp::takeIntInput()
     }
 }
 
-void InputApp::takeIntInput(int i)
+int InputApp::takeIntInput(int i)
 {
     string temp;
     
-    cin >> temp;
-    try
-    {
-        this->intInput = stoi(temp);
-
-        if (this->intInput > i || this->intInput < 1)
+    while (true) {
+        cout << "(";
+        for (int j = 1; j < i; j++) {
+            cout << j << "/";
+        }
+        cout << i << ") Your Choice : ";
+        cin >> temp;
+        try
         {
-            throw IntInputOutOfRangeException(i);
+            this->intInput = stoi(temp);
+
+            if (this->intInput > i || this->intInput < 1)
+            {
+                throw IntInputOutOfRangeException(i);
+            }
+            break;
+        }
+        catch (IntInputOutOfRangeException& e)
+        {
+            cout << LIGHT_RED << endl << e.what() << RESET << endl << endl;
+        }
+        catch (exception& e){
+            cout << LIGHT_RED << endl << IntInputException().what() << RESET << endl << endl;
         }
     }
-    catch (IntInputOutOfRangeException& e)
-    {
-        throw e;
+
+    return this->intInput;
+}
+
+string InputApp::takeFilenameInput(string type)
+{
+    string filename;
+
+    while(true){
+        try{
+            cout << "\nInput format (example.txt). Put inside 'test' folder." << endl;
+            cout << "Deck " << type << " Filename: ";
+            cin >> filename ;
+
+            // check file exist
+            ifstream file("../test/" + filename);
+            if(!file){
+                throw FileNotFoundException(filename);
+            }
+
+            break;
+        }
+        catch (FileNotFoundException& err) {
+            cout << endl << LIGHT_RED << err.what() << RESET << endl;
+        }
     }
-    catch (exception& e){
-        throw e;
-    }
+
+    return filename;
 }
