@@ -77,8 +77,8 @@ int main(int argc, char const *argv[])
 
     int i = 0;
     for (auto& player : gameState.getAllPlayer()){
-        i++;
         cout << "Player " << i << " : ";
+        i++;
         playerName.takeStrInput();
         player.setPlayerName(playerName.getStrInput());
     }
