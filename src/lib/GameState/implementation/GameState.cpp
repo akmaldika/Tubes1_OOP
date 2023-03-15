@@ -560,9 +560,9 @@ void GameState::resetGameState()
 bool GameState::checkAllWin()
 {
     // cout << "Evaluating all score...\n";
-    for (auto player: AllPlayer){
-        player.status();
-    }
+    // for (auto player: AllPlayer){
+    //     player.status();
+    // }
     Player highestScorePlayer = max(AllPlayer);
     // highestScorePlayer.status();
     // 4294967296
