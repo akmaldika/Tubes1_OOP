@@ -21,6 +21,7 @@ class SwapCard : public AbilityCard
         jika false maka ambil kartu kanan
         */
         void useAbilityCard(Player&, const bool& isKiri1, Player&, const bool& isKiri2);
+        void printAbilityCard();
 };
 
 #endif

@@ -64,6 +64,7 @@ void Player::status(){
     cout << "  | _    /     Point : " << this->point << endl;
     cout << "  |____.'      Hand  : " << this->Hand.getType() << endl;
     cout << "  ___| |__     Value : " << this->Hand.value() << endl;
+
     cout << " __________________________YOUR CARD______________________________\n";
     MyCard.printCard();
     // print ability card

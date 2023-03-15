@@ -35,3 +35,5 @@ bool AbilityCard::operator==(const AbilityCard& other) const
 {
     return this->abilityCard == other.abilityCard;
 }
+
+void AbilityCard::printAbilityCard(){};

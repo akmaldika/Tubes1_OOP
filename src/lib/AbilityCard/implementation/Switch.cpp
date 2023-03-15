@@ -19,3 +19,13 @@ void Switch::useAbilityCard(Player& player1, Player& player2)
     player2.setCardOne(tempPlayerCard.first);
     player2.setCardTwo(tempPlayerCard.second);
 }
+
+void Switch::printAbilityCard(){
+    cout<<".---------."<<endl;
+    cout<<"|Switch   |"<<endl;
+    cout<<"|  .---.  |"<<endl;
+    cout<<"|  : A :  |"<<endl;
+    cout<<"|  '---'  |"<<endl;
+    cout<<"|   Switch|"<<endl;
+    cout<<"`---------'"<<endl;
+}
