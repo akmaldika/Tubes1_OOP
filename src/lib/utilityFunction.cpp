@@ -45,7 +45,7 @@ vector<T> sort(vector<T> list){
     return list;
 };
 
-template<class T> // ASCENDING
+template<class T> // Descending
 vector<T> sortDsc(vector<T> list){
     vector<T> copyList;
     if (!list.empty()){ // Jika list tidak kosong

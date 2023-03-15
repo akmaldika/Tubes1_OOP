@@ -77,14 +77,14 @@ TableCard GameState::getTableCard() {
 
 
 Player& GameState::getPlayer(int ID) {
-    Player &temp = AllPlayer.front();
+    Player *temp = &AllPlayer.at(0);
 
-    for (Player player : AllPlayer){
+    for (Player& player : AllPlayer){
         if (ID == player.getPlayerID()){
-            temp = player;
+            temp = &player;
         }
     }
-    return temp;
+    return *temp;
 }
 
 pair<int, Player> GameState::getWhoseTurn(){
@@ -316,8 +316,8 @@ bool GameState::checkAllWin(){
 
     // cout << "Evaluating all score...\n";
     for (auto player: AllPlayer){
-        player.status();
         cout<<"Minimal test"<<endl;
+        player.status();
     }
     Player highestScorePlayer = max(AllPlayer);
     // highestScorePlayer.status();
@@ -368,7 +368,7 @@ Combo GameState::playerHighestCombo(Player& player){
             cardList.push_back(card);
         }
     }
-    cout << "in\n";
+    //cout << "in\n";
 
     // Pencarian semua kombinasi yang mungkin
     if(cardList.size()>5){ // Jika ada lebih dari satu kombinasi yang mungkin
@@ -386,9 +386,9 @@ Combo GameState::playerHighestCombo(Player& player){
         }
     } else { // Jika hanya ada satu kombinasi yang mungkin
         listPossibleCombination.push_back(Combo(cardList));
-        for (auto card : cardList){
-            card.print();
-        }
+        // for (auto card : cardList){
+        //     card.print();
+        // }
     }
     
     cout << "call max\n";
@@ -401,22 +401,22 @@ Combo GameState::playerHighestCombo(Player& player){
 
 // Temporary
 void GameState::getGameWinner(){
-    
-    Player& winnerPlayer = AllPlayer[0]; // max(AllPlayer)
-    float highestComboWinner =  playerHighestCombo(winnerPlayer).value();
 
-    for(auto player : AllPlayer){
+    Player *winner = &AllPlayer[0];
+    float highestComboWinner =  playerHighestCombo(*winner).value();
+
+    for(auto& player : AllPlayer){
         
         float highestComboPlayer = playerHighestCombo(player).value();
         if( highestComboPlayer> highestComboWinner){
-            winnerPlayer = player;
+            winner = &player;
             highestComboWinner = highestComboPlayer; 
         }
     }
 
     cout << "This Round Winner is: " << endl;
-    winnerPlayer.addPoint(PrizePool);  
-    winnerPlayer.status();  
+    winner->addPoint(PrizePool);  
+    winner->status();  
 }
 
 void GameState::setReverse(const bool& reverse)
@@ -432,12 +432,18 @@ bool GameState::getReverse() const
 void GameState::printLeaderboard(){
 
     vector<Player> copyPlayers = sortDsc(AllPlayer);
+    int i = 0;
 
     cout << "\nGAMBLING HALL OF FAME" << endl;
-    cout << " Name\t (point)" << endl;
+    cout << "No.  Name\t (point)" << endl;
     for (auto player : copyPlayers){
-        cout << player.getPlayerName() << "\t (" << player.getPlayerPoint() << ")\n";
+        i++;
+        cout << i << ".   " << player.getPlayerName() << "\t (" << player.getPlayerPoint() << ")\n";
     }
+
+    // for (i = 1; i < copyPlayers.size(); i++){
+    //     cout << i << ".   " << copyPlayers.at(i).getPlayerName() << "\t (" << copyPlayers.at(i).getPlayerPoint() << ")\n";
+    // }
 }
 
 void GameState::HandUpdate(){
@@ -448,4 +454,8 @@ void GameState::HandUpdate(){
         player.setCombo(fff);
     }
     
+}
+
+vector<Player> GameState::getAllPlayer(){
+    return AllPlayer;
 }
