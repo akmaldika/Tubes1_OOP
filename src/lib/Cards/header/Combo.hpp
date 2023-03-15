@@ -24,7 +24,6 @@ class Combo: public Valuable{
         pair<int,float> getNOfKind();
         void setComboType();
         float value();
-        float basicValue();
         bool operator>(Combo& combo);
         bool operator>=(Combo& combo);
         bool operator==(Combo& combo);
