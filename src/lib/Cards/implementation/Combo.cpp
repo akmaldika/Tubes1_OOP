@@ -3,14 +3,14 @@
 /*Static*/
 map<string, float> Combo::thresholdCombo {
     {"High Card", 0.0},
-    {"Pair", 1.39}, // highcard single
-    {"Two Pair",4.14}, // highest pair
-    {"Three of a Kind", 9.44}, // highest two pair
-    {"Straight", 13.52}, // highest three of a kind
-    {"Flush", 19.44}, // highest straight
-    {"Full House", 25.29}, // highest flush
-    {"Four of a Kind", 31.92}, // highest full house
-    {"Straight Flush", 38.59} // highest four of a kind
+    {"Pair", 1.39}, // highcard single: 1.39
+    {"Two Pair", 2.78}, // highest pair : 1.39 + thresholdPair
+    {"Three of a Kind", 4.17}, // highest two pair: 1.39 + thresholdTwoPair
+    {"Straight", 5.56}, // highest three of a kind: 1.39 + thresholdThreeOfAKind 
+    {"Flush", 6.95}, // highest straight: 1.39 + thresholdStraight
+    {"Full House", 8.34}, // highest flush: 1.39 + thresholdFlush
+    {"Four of a Kind", 9.73}, // highest full house: 1.39 + thresholdFullHouse
+    {"Straight Flush", 11.12} // highest four of a kind: 1.39 + thresHoldFourOfAKind
     };
 
 /*Non-Static*/
@@ -66,12 +66,24 @@ bool Combo::isStraight(){
 pair<int,float> Combo::getPair(){
     set<int> pairValue;
     pair<int,float> pairData; // <nPair, weightValue>
-    pairData.second = 0;
+    float weightPivot;
+    float weightNonPivot;
+    pairData.second = 0; // Max nilai dari pair (perhitungan single card)
     for (int i=0; i<4; i++){
+        weightPivot = this->combination[i].weightValue();
         for (int j=i+1; j<5; j++){
             if (this->combination[i].value() == this->combination[j].value()){
                 if (pairValue.count(this->combination[j].value()) == 0){
-                    pairData.second += this->combination[j].weightValue();
+                    weightNonPivot = this->combination[j].weightValue();
+                    
+                    if (weightNonPivot > weightPivot){
+                        weightPivot = weightNonPivot;
+                    }
+                    
+                    if (weightPivot > pairData.second){
+                        pairData.second = weightPivot;
+                    }
+
                     pairValue.insert(this->combination[i].value());
                 }
             }
@@ -86,20 +98,26 @@ pair<int,float> Combo:: getNOfKind(){
     // default
     NOfKindData.first = 1; 
     NOfKindData.second = 0;
+    float weightPivot;
+    float weightNonPivot;
     // collect the data
     for (int i=0; i<4; i++){
         int nTemp = 1; // menyimpan sementara nOfKind untuk evaluasi setiap card 
-        float weightValue = 0;
+        weightPivot = this->combination[i].weightValue();
         for (int j=i+1; j<5; j++){
             if (this->combination[i].value() == this->combination[j].value()){
-                weightValue+= this->combination[j].weightValue();
+                weightNonPivot = this->combination[j].weightValue();
+                
+                if (weightNonPivot > weightPivot){
+                    weightPivot = weightNonPivot;
+                }
+                    
                 nTemp++;
             }
         }
-        weightValue+=this->combination[i].weightValue();
         if (nTemp>NOfKindData.first){ // Jika ditemukan angka sama lebih banyak
             NOfKindData.first=nTemp;
-            NOfKindData.second = weightValue;
+            NOfKindData.second = weightPivot;
         } 
     }
     return NOfKindData;
@@ -109,16 +127,17 @@ void Combo::setComboType(){
     // Mencari jenis combinasi
     pair<int,float> nOfKindData = getNOfKind(); // <NOfKind, weightValue>
     pair<int,float> pairData{0,0}; // <NPair, weightValue>
-    if (nOfKindData.first==2){
-        pairData = getPair(); //Jika nOfKind=2, minimal ada satu pair, lakukan pengecekan pair
+    if (nOfKindData.first>=2){
+        pairData = getPair(); //Jika nOfKind>=2, minimal ada satu pair, lakukan pengecekan pair
     }
     if (isFlush()){
         if(isStraight()){
             this->type="Straight Flush";
+            this->valueCombo = max<Card>(this->combination).weightValue();
         } else {
             this->type="Flush";
+            this->valueCombo = max<Card>(this->combination).value();
         }
-        this->valueCombo = this->basicValue();
     } else if (nOfKindData.first==4){
         this->type="Four of a Kind";
         this->valueCombo = nOfKindData.second;
@@ -126,13 +145,12 @@ void Combo::setComboType(){
         this->valueCombo = nOfKindData.second;
         if (pairData.first==2){ // Dalam kasus ini, akan terbaca dua pair => three of kind dan pair
             this->type="Full House";
-            this->valueCombo += pairData.second;
         } else {
             this->type="Three of a Kind";
         }
     } else if (isStraight()){
         this->type="Straight";
-        this->valueCombo = this->basicValue();
+        this->valueCombo = max<Card>(this->combination).weightValue();
     } else if(pairData.first==2){
         this->type="Two Pair";
         this->valueCombo = pairData.second;
@@ -153,15 +171,26 @@ float Combo::value(){
     return this->valueCombo;
 }
 
-float Combo::basicValue(){
-    double basicVal=0;
-    for (int i=0; i<this->combination.size();i++){
-        basicVal+= (this->combination[i].value()*0.1+0.03*Card::getColorFactor()[this->combination[i].getColor()]);
-    }
-    return basicVal;
-}
-
 bool Combo::operator>(Combo& combo){
+    if (*this==combo){ // Kasus untuk flush, saat angka tertinggi sama
+        vector<Card> sortedThisCombination = sort<Card>(this->combination);
+        vector<Card> sortedComboCombination = sort<Card>(combo.combination);
+        // Bandingkan angka tertinggi berikutnya
+        if (sortedThisCombination[3].value() == sortedComboCombination[3].value()){
+            if(sortedThisCombination[2].value() == sortedComboCombination[2].value()){
+                if (sortedThisCombination[1].value() == sortedComboCombination[1].value()){
+                    if (sortedThisCombination[0].value() == sortedComboCombination[0].value()){
+                        // Jika semua angka pada kedua kombinasi adalah sama, bandingkan dengan warna (terwakili oleh weight value)
+                        return (sortedThisCombination[0].weightValue() > sortedComboCombination[0].weightValue());
+                    }
+                    return (sortedThisCombination[0].value() > sortedComboCombination[0].value());
+                }
+                return (sortedThisCombination[1].value() > sortedComboCombination[1].value());
+            }
+            return (sortedThisCombination[2].value() > sortedComboCombination[2].value());
+        }
+        return (sortedThisCombination[3].value() > sortedComboCombination[3].value());
+    }
     return (this->value() > combo.value());
 }
 

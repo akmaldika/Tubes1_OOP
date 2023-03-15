@@ -3,7 +3,7 @@
 using namespace std;
 template <class T>
  // Preconditional: objects Tidak kosong 
-T& max(vector<T> &objects){
+T& max(vector<T> objects){
     T& maxElmt = objects[0];
 
 
@@ -28,9 +28,11 @@ vector<T> sort(vector<T> list){
         for (int i=1; i<size; i++){
             int j = i;
             while (j>0 && (list[j-1] > list[j])){
+                // Swap
                 T temp = list[j-1];
                 list[j-1] = list[j];
                 list[j] = temp;
+                // Decrement
                 j--;
             }
             // j<=0 || list[j-1] <= list[j]
