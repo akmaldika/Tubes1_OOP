@@ -106,7 +106,7 @@ void GameState::NextRound()
     temp = AllPlayer.front();
 
     // set turn ke pemain setelah pemain giliran pertama di round sebelumnya.
-    Turn.first = (Turn.first + 2) % 7;
+    Turn.first = (Turn.first + 1) % 7;
     Turn.second = AllPlayer.at(Turn.first);
 }
 
@@ -730,4 +730,8 @@ void GameState::setPlayerName(int ID, string name)
 
 vector<Player>& GameState::getAllPlayer(){
     return AllPlayer;
+}
+
+void GameState::updateFirstTurn(){
+    Turn.second = AllPlayer.at(Turn.first);
 }

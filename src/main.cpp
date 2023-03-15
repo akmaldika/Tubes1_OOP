@@ -121,8 +121,9 @@ int main(int argc, char const *argv[])
         for(auto& player : gameState.getAllPlayer()){
             player.setAbility(abilityDeck.getDeckAbilityCard().at(i));
             i++;
+            player.status();
         }
-
+        gameState.updateFirstTurn();
 
         //PLAY ROUND 2-7
         for(int i = 0; i < 5 ; i++){ // per round
