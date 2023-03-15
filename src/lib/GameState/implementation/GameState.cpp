@@ -103,7 +103,9 @@ void GameState::NextRound(){
     Player temp(tempCard,tempCard);
     temp = AllPlayer.front();
 
-    NextTurn();
+    // set turn ke pemain setelah pemain giliran pertama di round sebelumnya.
+    Turn.first = (Turn.first + 2) % 7;
+    Turn.second = AllPlayer.at(Turn.first);
 }
 
 void GameState::NextTurn(){
@@ -424,5 +426,12 @@ void GameState::printLeaderboard(){
     cout << " Name\t (point)" << endl;
     for (auto player : copyPlayers){
         cout << player.getPlayerName() << "\t (" << player.getPlayerPoint() << ")\n";
+    }
+}
+
+void GameState::HandUpdate(){
+
+    for(auto player : AllPlayer){
+    player.setCombo(playerHighestCombo(player));
     }
 }

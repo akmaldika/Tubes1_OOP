@@ -111,6 +111,7 @@ int main(int argc, char const *argv[])
         cout << "\n                         GAME " << gameCounter << "\n";
 
         // PLAY FIRST ROUND
+        gameState.HandUpdate();
         for (int i = 0; i < 7 ; i++){ // per turn
             gameState.printInterface(); // nanti ganti
             gameState.inputAction();
@@ -129,6 +130,7 @@ int main(int argc, char const *argv[])
 
         //PLAY ROUND 2-7
         for(int i = 0; i < 5 ; i++){ // per round
+            gameState.HandUpdate();
             for(int j = 0; j < 7 ; j++){ // per turn
                 gameState.printInterface(); // nanti ganti
                 gameState.inputAction();

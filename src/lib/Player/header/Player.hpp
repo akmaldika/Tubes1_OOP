@@ -19,8 +19,8 @@ class Player {
     static int playerCount;
     bool played;
     // Combo MyCombo;
-
     PlayerCard MyCard;
+    Combo Hand;
     
     public:
     // construktor
@@ -28,6 +28,8 @@ class Player {
     Player(Card card1, Card card2);
 
     // getter and setter
+    void setCombo(Combo MyCombo);
+    Combo getCombo();
     void setPlayerName(string name);
     string getPlayerName();
     void setPlayerPoint(long long int point);
