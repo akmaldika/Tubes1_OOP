@@ -140,7 +140,7 @@ int main(int argc, char const *argv[])
     InputApp tryAgain;
     int tryAgainOpt = tryAgain.takeIntInput(2);
     if (tryAgainOpt == 1){
-        system("../bin/main");
+        system("make run");
     }
     else {
         cout << "\nThank you for playing!" << endl;
