@@ -13,7 +13,7 @@ string InputApp::getStrInput() const
     return this->strInput;
 }
 
-int InputApp::gerIntInput() const
+int InputApp::getIntInput() const
 {
     return this->intInput;
 }
@@ -30,7 +30,9 @@ void InputApp::setIntInput(int i)
 
 void InputApp::takeStrInput()
 {
-    cin >> this->strInput;
+    string temp;
+    cin >> temp;
+    this->strInput = temp;
 }
 
 void InputApp::takeIntInput()
@@ -48,27 +50,37 @@ void InputApp::takeIntInput()
     }
 }
 
-void InputApp::takeIntInput(int i)
+int InputApp::takeIntInput(int i)
 {
     string temp;
     
-    cin >> temp;
-    try
-    {
-        this->intInput = stoi(temp);
-
-        if (this->intInput > i || this->intInput < 1)
+    while (true) {
+        cout << "(";
+        for (int j = 1; j < i; j++) {
+            cout << j << "/";
+        }
+        cout << i << ") Your Choice : ";
+        cin >> temp;
+        try
         {
-            throw IntInputOutOfRangeException(i);
+            this->intInput = stoi(temp);
+
+            if (this->intInput > i || this->intInput < 1)
+            {
+                throw IntInputOutOfRangeException(i);
+            }
+            break;
+        }
+        catch (IntInputOutOfRangeException& e)
+        {
+            cout << LIGHT_RED << endl << e.what() << RESET << endl << endl;
+        }
+        catch (exception& e){
+            cout << LIGHT_RED << endl << IntInputException().what() << RESET << endl << endl;
         }
     }
-    catch (IntInputOutOfRangeException& e)
-    {
-        cout<<e.what()<<endl;
-    }
-    catch (exception& e){
-        cout<<IntInputException().what()<<endl;
-    }
+
+    return this->intInput;
 }
 
 string InputApp::takeFilenameInput(string type)

@@ -25,7 +25,7 @@ public:
     
     // getter and setter
     string getStrInput() const;
-    int gerIntInput() const;
+    int getIntInput() const;
     void setStrInput(string str);
     void setIntInput(int i);
 
@@ -44,7 +44,7 @@ public:
     throw "Input out of range" jika diluar batas nmaks
     throw "Input must be a number from 1 to "+ to_string(nmaks) jika input bukan integer
     */
-    void takeIntInput(int nmkas);
+    int takeIntInput(int nmkas);
 
     /*
     Meminta masukan berupa string filename
