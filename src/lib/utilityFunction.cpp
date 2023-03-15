@@ -10,7 +10,7 @@ T& max(vector<T> &objects){
 
         for(auto& obj : objects){
             if(obj > *maxElmt){
-                *maxElmt = &obj;
+                maxElmt = &obj;
             }
         }
         return *maxElmt;

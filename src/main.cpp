@@ -103,13 +103,13 @@ int main(int argc, char const *argv[])
         
         gameState.NextRound();
         
-
         //Draw Ability Card
         for (int i = 0; i < 7 ; i++){
+            // gameState.getPlayer(i).status();
+            // cout << abilityDeck.getDeckAbilityCard().at(i)->getAbilityCard();
             gameState.getPlayer(i).setAbility(abilityDeck.getDeckAbilityCard().at(i));
         }
-        //cout << "Ciee udh dapat ability"<<endl;
-        gameState.printLeaderboard();
+
 
         //PLAY ROUND 2-7
         for(int i = 0; i < 5 ; i++){ // per round
@@ -122,7 +122,6 @@ int main(int argc, char const *argv[])
                 gameState.NextTurn();
             }
             gameState.NextRound();
-            gameState.printLeaderboard();
         }
         
         gameState.getGameWinner();
