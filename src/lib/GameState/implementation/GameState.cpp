@@ -26,8 +26,8 @@ GameState::GameState()
         Card card1 = deck.takeCard();
         Card card2 = deck.takeCard();
         Player tempPlayer(card1, card2);
-
         AllPlayer.push_back(tempPlayer); // masukin player ke dalem array
+        
     }
 
 
@@ -391,7 +391,10 @@ Combo GameState::playerHighestCombo(Player& player){
         }
     }
     
-   
+    cout << "call max\n";
+    for (auto com : listPossibleCombination){
+        cout << com.getType() << endl;
+    }
     return max<Combo>(listPossibleCombination);
 }
 
@@ -439,8 +442,10 @@ void GameState::printLeaderboard(){
 
 void GameState::HandUpdate(){
     for(auto player : AllPlayer){
-        cout << "loop\n";
-        player.setCombo(playerHighestCombo(player));
+
+        Combo fff = playerHighestCombo(player);
+
+        player.setCombo(fff);
     }
     
 }

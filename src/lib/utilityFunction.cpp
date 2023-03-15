@@ -3,15 +3,21 @@
 using namespace std;
 template <class T>
  // Preconditional: objects Tidak kosong 
-T max(vector<T> objects){
-    T maxElmt = objects[0];
+T& max(vector<T> &objects){
 
-    for(auto obj : objects){
-        if(obj > maxElmt){
-            maxElmt = obj;
+    if(objects.size() != 1){
+        T &maxElmt = objects[0];
+
+        for(auto obj : objects){
+            if(obj > maxElmt){
+                maxElmt = obj;
+            }
         }
+        return maxElmt;
     }
-    return maxElmt;
+    else{
+        return objects.at(0);
+    }
 };
 
 // Fungsi untuk melakukan sorting list dengan element tipe generik (minimal Kartu, Combo, dan Player)

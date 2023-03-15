@@ -111,6 +111,7 @@ int main(int argc, char const *argv[])
 
         // PLAY FIRST ROUND
         gameState.HandUpdate();
+        cout << "out\n";
         for (int i = 0; i < 7 ; i++){ // per turn
             gameState.printInterface(); // nanti ganti
             //gameState.inputAction();
