@@ -18,6 +18,7 @@
 #include "lib/AbilityCard/header/ReverseDirection.hpp"
 #include "lib/AbilityCard/header/SwapCard.hpp"
 #include "lib/AbilityCard/header/Switch.hpp"
+#include "lib/InputApp/header/InputApp.hpp"
 #include <iostream>
 
 #endif

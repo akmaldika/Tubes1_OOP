@@ -4,6 +4,7 @@
 #define IOAPP_HPP
 
 #include <iostream>
+#include <fstream>
 #include <string>
 #include "../../color.h"
 #include "../../Exceptions/header/Exceptions.hpp"
@@ -44,6 +45,12 @@ public:
     throw "Input must be a number from 1 to "+ to_string(nmaks) jika input bukan integer
     */
     void takeIntInput(int nmkas);
+
+    /*
+    Meminta masukan berupa string filename
+    throw "File filename is not found" jika input bukan string
+    */
+    string takeFilenameInput(string type);
 }; 
 
 #endif

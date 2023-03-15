@@ -78,50 +78,14 @@ int main(int argc, char const *argv[])
 
     if (opt == 2){
         cout << "\n----------   Input Deck Card File    ---------- " << endl;
-        while(true){
-            try{
-                cout << "\nInput format (example.txt). Put inside 'test' folder." << endl;
-                cout << "Deck Card Filename: ";
-                cin >> filename ;
-
-                // check file exist
-                ifstream file("../test/" + filename);
-                if(!file){
-                    throw FileNotFoundException(filename);
-                }
-
-                GameState stateFromfile("../test/" + filename);
-                gameState = stateFromfile;
-
-                break;
-            }
-            catch (FileNotFoundException& err) {
-                cout << endl << LIGHT_RED << err.what() << RESET << endl;
-            }
-        }
+        InputApp deckCardFile;
+        GameState stateFromfile("../test/" + deckCardFile.takeFilenameInput("Card"));
+        gameState = stateFromfile;
 
         cout << "\n----------   Input Deck Ability File    ---------- " << endl;
-        while(true){
-            try{
-                cout << "\nInput format (example.txt). Put inside 'test' folder." << endl;
-                cout << "Deck Ability Filename: ";
-                cin >> filename ;
-
-                // check file exist
-                ifstream file("../test/" + filename);
-                if(!file){
-                    throw FileNotFoundException(filename);;
-                }
-
-                DeckAbilityCard deckFromfile("../test/" + filename);
-                abilityDeck = deckFromfile; 
-
-                break;
-            }
-            catch (FileNotFoundException& err) {
-                cout << endl << LIGHT_RED << err.what() << RESET << endl;
-            }
-        }
+        InputApp deckAbilityFile;
+        DeckAbilityCard deckFromfile("../test/" + deckAbilityFile.takeFilenameInput("Ability"));
+        abilityDeck = deckFromfile;
     }
 
     while(!gameState.checkAllWin()){
