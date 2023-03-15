@@ -9,11 +9,16 @@ int main(){
     // AbilityCard ability1("test ability 1");
     // Card ability2("test ability 2");
 
+
     // CONSTRUKTOR
 
     // player
     Player player(card1,card2);
 
+    string name;
+    cout << "Masukkan nama pemain : ";
+    player.setPlayerName(name);
+    cout << endl;
     // Deckcard
     DeckCard deckCard;
 
@@ -21,7 +26,7 @@ int main(){
     PlayerCard playerCard(deckCard.takeCard(), deckCard.takeCard(), NULL, 3);
 
     // getter and setter
-    player.setPlayerName("Satria");
+    // player.setPlayerName(name);
     player.setPlayerPoint(100);
     player.setPlayerID(3);
     player.setCardOne(card1);
