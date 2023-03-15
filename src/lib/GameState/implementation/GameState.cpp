@@ -449,3 +449,11 @@ void GameState::HandUpdate(){
     }
     
 }
+
+void GameState::setPlayerName(int ID, string name){
+    for (auto& player : AllPlayer){
+        if (player.getPlayerID() == ID){
+            player.setPlayerName(name);
+        }
+    }
+}

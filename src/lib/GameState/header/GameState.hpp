@@ -123,4 +123,5 @@ class GameState {
 
         void HandUpdate();
         
+        void setPlayerName(int ID, string name);
 };
