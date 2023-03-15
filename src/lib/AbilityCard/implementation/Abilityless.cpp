@@ -15,6 +15,6 @@ void Abilityless::useAbilityCard(Player& player)
 {
     AbilityCard::useAbilityCard();
     AbilityCard* ability = player.getAbility();
-    ability->setOffAbilityCard();
+    ability->useAbilityCard();
     player.setAbility(ability);
 }

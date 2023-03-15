@@ -30,10 +30,16 @@ class AbilityCard : public Ability
         string getAbilityCard() const;
 
         // menggunakan AbilityCard sesuai dengan jenis kartu (child)
+        // setter abilityCard ke ABILITYCard_DEFAULT
         virtual void useAbilityCard();
 
-        // setter abilityCard ke ABILITYCard_DEFAULT
-        void setOffAbilityCard();
+        // mengembaliakn ABILITYCard_DEFAULT
+        string getAbilityCardOff();
+
+        // mengembalikan benar jika Ability == ABILITYCARD_DEFAULT
+        bool isAbilityOff() const;
+
+        bool operator==(const AbilityCard& other) const;
 
 };
 

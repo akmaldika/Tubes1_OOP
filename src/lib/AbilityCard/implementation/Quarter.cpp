@@ -11,7 +11,7 @@ Quarter::Quarter()
     this->abilityCard = "Quarter";
 }
 
-void Quarter::useAbilityCard(int& prize)
+void Quarter::useAbilityCard(unsigned long long& prize)
 {
     AbilityCard::useAbilityCard();
     prize /= 4;

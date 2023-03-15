@@ -11,7 +11,7 @@ Quadruple::Quadruple()
     this->abilityCard = "Quadruple";
 }
 
-void Quadruple::useAbilityCard(int& prize)
+void Quadruple::useAbilityCard(unsigned long long& prize)
 {
     AbilityCard::useAbilityCard();
     prize *= 4;

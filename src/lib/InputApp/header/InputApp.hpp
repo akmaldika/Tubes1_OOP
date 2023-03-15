@@ -24,7 +24,7 @@ public:
     
     // getter and setter
     string getStrInput() const;
-    int gerIntInput() const;
+    int getIntInput() const;
     void setStrInput(string str);
     void setIntInput(int i);
 

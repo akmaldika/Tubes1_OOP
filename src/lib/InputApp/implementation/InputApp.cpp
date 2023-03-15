@@ -13,7 +13,7 @@ string InputApp::getStrInput() const
     return this->strInput;
 }
 
-int InputApp::gerIntInput() const
+int InputApp::getIntInput() const
 {
     return this->intInput;
 }
@@ -64,9 +64,9 @@ void InputApp::takeIntInput(int i)
     }
     catch (IntInputOutOfRangeException& e)
     {
-        cout<<e.what()<<endl;
+        throw e;
     }
     catch (exception& e){
-        cout<<IntInputException().what()<<endl;
+        throw e;
     }
 }
