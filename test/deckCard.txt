@@ -2,3 +2,11 @@
 2 kuning
 3 hijau
 4 biru
+5 merah
+6 kuning
+7 hijau
+8 biru
+9 merah
+10 kuning
+11 hijau
+12 biru
