@@ -526,6 +526,7 @@ void GameState::evaluateAction()
             }
             else
             {
+                break;
             } // ACTION : NEXT
         }
         catch (const char *msg)
@@ -558,7 +559,6 @@ void GameState::resetGameState()
 
 bool GameState::checkAllWin()
 {
-
     // cout << "Evaluating all score...\n";
     for (auto player: AllPlayer){
         cout<<"Minimal test"<<endl;
