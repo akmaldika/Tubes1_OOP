@@ -70,3 +70,29 @@ void InputApp::takeIntInput(int i)
         cout<<IntInputException().what()<<endl;
     }
 }
+
+string InputApp::takeFilenameInput(string type)
+{
+    string filename;
+
+    while(true){
+        try{
+            cout << "\nInput format (example.txt). Put inside 'test' folder." << endl;
+            cout << "Deck " << type << " Filename: ";
+            cin >> filename ;
+
+            // check file exist
+            ifstream file("../test/" + filename);
+            if(!file){
+                throw FileNotFoundException(filename);
+            }
+
+            break;
+        }
+        catch (FileNotFoundException& err) {
+            cout << endl << LIGHT_RED << err.what() << RESET << endl;
+        }
+    }
+
+    return filename;
+}

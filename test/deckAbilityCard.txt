@@ -3,3 +3,5 @@ Abilityless
 Quadruple
 Quarter
 ReverseDirection
+SwapCard
+Switch

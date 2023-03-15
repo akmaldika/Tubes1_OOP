@@ -76,33 +76,15 @@ int main(int argc, char const *argv[])
     }
 
     if (opt == 2){
-        while(true){
-            try{
-                cout << "Deck Card Filename (inside test folder): ";
-                cin >> filename ;
+        cout << "\n----------   Input Deck Card File    ---------- " << endl;
+        InputApp deckCardFile;
+        GameState stateFromfile("../test/" + deckCardFile.takeFilenameInput("Card"));
+        gameState = stateFromfile;
 
-                GameState stateFromfile("../test/" + filename + ".txt");
-                gameState = stateFromfile; 
-                
-            }
-            catch(...){
-                cout << "----------   File Not Found!    ---------- "<< endl;
-            }
-        }
-
-        while(true){
-            try{
-                cout << "Deck Ability Filename (inside test folder): ";
-                cin >> filename ;
-
-                DeckAbilityCard deckFromfile("../test/" + filename + ".txt");
-                abilityDeck = deckFromfile; 
-                
-            }
-            catch(...){
-                cout << "----------   File Not Found!    ---------- "<< endl;
-            }
-        }
+        cout << "\n----------   Input Deck Ability File    ---------- " << endl;
+        InputApp deckAbilityFile;
+        DeckAbilityCard deckFromfile("../test/" + deckAbilityFile.takeFilenameInput("Ability"));
+        abilityDeck = deckFromfile;
     }
 
     while(!gameState.checkAllWin()){
