@@ -14,7 +14,10 @@ class Reroll : public AbilityCard
 
         // Method
         
-        // Menggunakan Reroll Card, setelahnya ability set ABILITYCARD_DEFAULT
+        /*  
+        Menggunakan Reroll Card, setelahnya ability set ABILITYCARD_DEFAULT
+        player akan mengambil karu dari deck 2 kali
+         */
         void useAbilityCard(DeckCard&, Player&);
 };
 

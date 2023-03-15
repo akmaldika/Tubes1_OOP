@@ -18,7 +18,7 @@ class Quarter : public AbilityCard
         Menggunakan Quarter Card, setelahnya ability set ABILITYCARD_DEFAULT
         prizePoint pada GameState dibagi 4
         */
-        void useAbilityCard(GameState&);
+        void useAbilityCard(unsigned long long&);
 };
 
 #endif
