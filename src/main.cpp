@@ -77,31 +77,49 @@ int main(int argc, char const *argv[])
     }
 
     if (opt == 2){
+        cout << "\n----------   Input Deck Card File    ---------- " << endl;
         while(true){
             try{
-                cout << "Deck Card Filename (inside test folder): ";
+                cout << "\nInput format (example.txt). Put inside 'test' folder." << endl;
+                cout << "Deck Card Filename: ";
                 cin >> filename ;
 
-                GameState stateFromfile("../test/" + filename + ".txt");
-                gameState = stateFromfile; 
-                
+                // check file exist
+                ifstream file("../test/" + filename);
+                if(!file){
+                    throw FileNotFoundException(filename);
+                }
+
+                GameState stateFromfile("../test/" + filename);
+                gameState = stateFromfile;
+
+                break;
             }
-            catch(...){
-                cout << "----------   File Not Found!    ---------- "<< endl;
+            catch (FileNotFoundException& err) {
+                cout << endl << LIGHT_RED << err.what() << RESET << endl;
             }
         }
 
+        cout << "\n----------   Input Deck Ability File    ---------- " << endl;
         while(true){
             try{
-                cout << "Deck Ability Filename (inside test folder): ";
+                cout << "\nInput format (example.txt). Put inside 'test' folder." << endl;
+                cout << "Deck Ability Filename: ";
                 cin >> filename ;
 
-                DeckAbilityCard deckFromfile("../test/" + filename + ".txt");
+                // check file exist
+                ifstream file("../test/" + filename);
+                if(!file){
+                    throw FileNotFoundException(filename);;
+                }
+
+                DeckAbilityCard deckFromfile("../test/" + filename);
                 abilityDeck = deckFromfile; 
-                
+
+                break;
             }
-            catch(...){
-                cout << "----------   File Not Found!    ---------- "<< endl;
+            catch (FileNotFoundException& err) {
+                cout << endl << LIGHT_RED << err.what() << RESET << endl;
             }
         }
     }
