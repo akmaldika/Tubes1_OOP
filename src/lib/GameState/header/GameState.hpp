@@ -117,7 +117,13 @@ class GameState {
 
         bool getReverse() const;
 
-        void AbilitylessCommand();
+        void abilitylessCommand();
+        void quadrupleCommand();
+        void quarterCommand();
+        void rerollCommand();
+        void reverseCommand();
+        void switchCommand();
+        void swapCommand();
 
         void printLeaderboard();
 

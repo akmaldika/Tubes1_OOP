@@ -266,32 +266,248 @@ void GameState::inputRandom(){
 
 void GameState::evaluateAction(){
 
-    if(Action == "DOUBLE"){
-        PrizePool = PrizePool * 2;
-    }
-    else if(Action == "HALF"){
-        if(!(PrizePool / 2 < 1)){
-            PrizePool = PrizePool / 2;
+    while (true)
+    {   try
+        {
+            if(Action == "DOUBLE"){
+                PrizePool = PrizePool * 2;
+                break;
+            }
+            else if(Action == "HALF"){
+                if(!(PrizePool / 2 < 1)){
+                    PrizePool = PrizePool / 2;
+                }
+                break;
+            }
+
+            // ABILITY
+            else if(Action == "REROLL"){
+                Reroll reroll;
+                if (Turn.second.getAbility()->getAbilityCard() == reroll.getAbilityCard())
+                {
+                    reroll.useAbilityCard(this->deck, Turn.second);
+                    Turn.second.setAbility(&reroll);
+                    
+                    break; 
+                }
+                else
+                {
+                    throw "You don't have this ability! or\nmaybe someone has dispell tour ability :(";
+                }
+            }
+            else if(Action == "QUADRUPLE"){
+                Quadruple quadruple;
+                if (Turn.second.getAbility()->getAbilityCard() == quadruple.getAbilityCard())
+                {
+                    quadruple.useAbilityCard(this->PrizePool);
+                    Turn.second.setAbility(&quadruple);
+                    
+                    break; 
+                }
+                else
+                {
+                    throw "You don't have this ability! or\nmaybe someone has dispell tour ability :(";
+                }
+            }
+            else if(Action == "QUARTER"){
+                Quarter Quarter;
+                if (Turn.second.getAbility()->getAbilityCard() == Quarter.getAbilityCard())
+                {
+                    Quarter.useAbilityCard(this->PrizePool);
+                    Turn.second.setAbility(&Quarter);
+                    
+                    break; 
+                }
+                else
+                {
+                    throw "You don't have this ability! or\nmaybe someone has dispell tour ability :(";
+                }
+            }
+            else if(Action == "REVERSE"){
+                ReverseDirection ReverseDirection;
+                if (Turn.second.getAbility()->getAbilityCard() == ReverseDirection.getAbilityCard())
+                {
+                    ReverseDirection.useAbilityCard(this->Reverse);
+                    Turn.second.setAbility(&ReverseDirection);
+                    
+                    break; 
+                }
+                else
+                {
+                    throw "You don't have this ability! or\nmaybe someone has dispell tour ability :(";
+                }
+            }
+            else if(Action == "SWAP"){
+                SwapCard SwapCard;
+                if (Turn.second.getAbility()->getAbilityCard() == SwapCard.getAbilityCard())
+                {
+                    vector<Player> PlayerList;
+                    remove_copy_if(this->AllPlayer.begin(), this->AllPlayer.end(), back_inserter(PlayerList),
+                                [this](Player p) { return p.getPlayerID() == this->Turn.second.getPlayerID(); });
+
+                    cout << Turn.second.getPlayerName() << " used Swap Card ability!" << endl;
+                    cout << "Choose the player you want to swap card with : " << endl;
+                
+                    int i = 0;
+                    for (auto player : PlayerList)
+                    {
+                        i++;
+                        cout << i << ". " << player.getPlayerName() << endl;
+                    }
+                    
+                    InputApp inputApp;
+                    Player player1;
+
+                            inputApp.takeIntInput(i);
+                            player1 = PlayerList[inputApp.getIntInput() - 1];
+                            PlayerList.erase(PlayerList.begin() + inputApp.getIntInput() - 1);
+                            break;
+
+                    cout << "Choose other player you want to swap card with : " << endl;
+                
+                    int i = 0;
+                    for (auto player : PlayerList)
+                    {
+                        i++;
+                        cout << i << ". " << player.getPlayerName() << endl;
+                    }
+                    
+                    Player player2;
+                    
+                    inputApp.takeIntInput(i);
+                    player2 = PlayerList[inputApp.getIntInput() - 1];
+                    PlayerList.erase(PlayerList.begin() + inputApp.getIntInput() - 1);
+                    
+                    bool isKiri1;
+                    bool isKiri2;
+
+                    cout << "Choose left or right card for " << player1.getPlayerName() << " : " << endl;
+                    cout << "1. Left" << endl << "2. Right" << endl;
+
+                    inputApp.takeIntInput(2);
+                    isKiri1 = isKiri1 == 1 ? true : false;
+
+                    cout << "Choose left or right card for " << player2.getPlayerName() << " : " << endl;
+                    cout << "1. Left" << endl << "2. Right" << endl;
+                    
+                    inputApp.takeIntInput(2);
+                    isKiri2 = isKiri2 == 1 ? true : false;
+
+                    SwapCard.useAbilityCard(player1, isKiri1, player2, isKiri2);
+                    Turn.second.setAbility(&SwapCard);
+                    
+                    break; 
+                }
+                else
+                {
+                    throw "You don't have this ability! or\nmaybe someone has dispell tour ability :(";
+                }
+            }
+            else if(Action == "SWITCH"){
+                Switch Switch;
+                if (Turn.second.getAbility()->getAbilityCard() == Switch.getAbilityCard())
+                {
+                    vector<Player> PlayerList;
+                    remove_copy_if(this->AllPlayer.begin(), this->AllPlayer.end(), back_inserter(PlayerList),
+                                [this](Player p) { return p.getPlayerID() == this->Turn.second.getPlayerID(); });
+
+                    cout << Turn.second.getPlayerName() << " used Switch ability!" << endl;
+                    cout << "Your card now :" << endl; 
+                    Turn.second.getCardOne().print();
+                    Turn.second.getCardTwo().print();
+
+                    cout << "Choose the player you want to switch card with : " << endl;
+                    int i = 0;
+                    for (auto player : PlayerList)
+                    {
+                        i++;
+                        cout << i << ". " << player.getPlayerName() << endl;
+                    }
+
+                    InputApp inputApp;
+                    Player playerOther;
+
+                    inputApp.takeIntInput(i);
+                    playerOther = PlayerList[inputApp.getIntInput() - 1];
+                    
+                    auto itr = find(AllPlayer.begin(), AllPlayer.end(), playerOther);
+                    int idx = distance(AllPlayer.begin(), itr);
+                    
+                    Switch.useAbilityCard(Turn.second, playerOther);
+                    Turn.second.setAbility(&Switch);
+
+                    cout << "Your card now :" << endl;
+                    Turn.second.getCardOne().print();
+                    Turn.second.getCardTwo().print();
+                    
+                    break; 
+                }
+                else
+                {
+                    throw "You don't have this ability! or\nmaybe someone has dispell tour ability :(";
+                }
+            }
+            else if(Action == "ABILITYLESS"){
+                Abilityless abilityLess;
+                if (Turn.second.getAbility()->getAbilityCard() == abilityLess.getAbilityCard())
+                {
+                    vector<Player> PlayerList;
+                    remove_copy_if(this->AllPlayer.begin(), this->AllPlayer.end(), back_inserter(PlayerList),
+                                    [this](Player p) { return p.getPlayerID() == this->Turn.second.getPlayerID(); });
+
+                    if (find_if(PlayerList.begin(), PlayerList.end(), [](Player &p) {return p.getAbility()->getAbilityCard() != p.getAbility()->getAbilityCardOff(); }) != PlayerList.end())
+                    {
+                        // Case 4
+                        cout << "Poor you, All Player has used Ability, you displell your own Ability Card" << endl;
+                    }
+                    else
+                    {
+                        cout << Turn.second.getPlayerName() << " will dispell other player ability!" << endl;
+                        cout << "Choose the player you want to dispell ability with : " << endl;
+                        int i = 0;
+                        for (auto player : PlayerList)
+                        {
+                            i++;
+                            cout << i << ". " << player.getPlayerName() << endl;
+                        }
+                        
+                        InputApp inputApp;
+                        Player playerOther;
+                        
+                        inputApp.takeIntInput(i);
+                        playerOther = PlayerList[inputApp.getIntInput() - 1];
+                        
+                        auto itr = find(AllPlayer.begin(), AllPlayer.end(), playerOther);
+                        int idx = distance(AllPlayer.begin(), itr);
+
+                        if (AllPlayer[idx].getAbility()->getAbilityCard() == AllPlayer[idx].getAbility()->getAbilityCardOff())
+                        {
+                            // Case 2
+                            cout << "This player "<< AllPlayer[idx].getPlayerName() << " has used Ability Card, You used the Abilityless card in vain :( !" << endl;
+                        }
+                        else
+                        {
+                            // Case 1
+                            abilityLess.useAbilityCard(AllPlayer[idx]);
+                            Turn.second.setAbility(&abilityLess);
+                        }
+                    }
+                    
+                    break; 
+                }
+                else
+                {
+                    // Case Tidak punya kemampuan
+                    throw "You don't have this ability! or\nmaybe someone has dispell tour ability :(";
+                }
+            }
+            else{} // ACTION : NEXT
+        }
+        catch (const char *msg)
+        {
+            cout << msg << endl;
         }
     }
-
-    // ABILITY
-    else if(Action == "REROLL"){
-    }
-    else if(Action == "QUADRUPLE"){
-    }
-    else if(Action == "QUARTER"){
-    }
-    else if(Action == "REVERSE"){
-    }
-    else if(Action == "SWAP"){
-    }
-    else if(Action == "SWITCH"){
-    }
-    else if(Action == "ABILITYLESS"){
-    }
-
-    else{} // ACTION : NEXT
 }
 
 void GameState::resetGameState(){

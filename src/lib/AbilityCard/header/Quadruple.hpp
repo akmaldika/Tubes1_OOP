@@ -18,7 +18,7 @@ class Quadruple : public AbilityCard
         Menggunakan Quadruple Card, setelahnya ability set ABILITYCARD_DEFAULT
         prizePoint pada GmaseState dikali 4
         */
-        void useAbilityCard(GameState&);
+        void useAbilityCard(unsigned long long&);
 };
 
 #endif

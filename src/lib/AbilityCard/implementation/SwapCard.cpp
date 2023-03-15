@@ -11,10 +11,13 @@ SwapCard::SwapCard()
     this->abilityCard = "SwapCard";
 }
 
-void SwapCard::useAbilityCard(Card& Card1, Card& Card2)
+void SwapCard::useAbilityCard(Player& Player1, const bool& isKiri1, Player& Player2, const bool& isKiri2)
 {
     AbilityCard::useAbilityCard();
-    Card tempCard(Card1);
-    Card1 = Card2;
-    Card2 = tempCard;
+    Card card1(isKiri1 ? Player2.getCardOne() : Player2.getCardTwo());
+
+    isKiri1 ? Player2.setCardOne(isKiri2 ? Player1.getCardOne() : Player1.getCardTwo()) : Player2.setCardTwo(isKiri2 ? Player1.getCardOne() : Player1.getCardTwo());
+
+    isKiri2 ? Player1.setCardOne(card1) : Player1.setCardTwo(card1);
+
 }

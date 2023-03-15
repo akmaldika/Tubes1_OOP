@@ -17,10 +17,21 @@ string AbilityCard::getAbilityCard() const
 
 void AbilityCard::useAbilityCard()
 {
-    cout << "Using ability Card: " << this->abilityCard << endl;
-    setAbilityCard(ABILITYCARD_DEFAULT);
+    // cout << "Using ability Card: " << this->abilityCard << endl;
+    this->abilityCard = ABILITYCARD_DEFAULT;
 }
 
+string AbilityCard::getAbilityCardOff()
+{
+    return this->ABILITYCARD_DEFAULT;
+}
 
+bool AbilityCard::isAbilityOff() const
+{
+    return this->abilityCard == ABILITYCARD_DEFAULT;
+}
 
-
+bool AbilityCard::operator==(const AbilityCard& other) const
+{
+    return this->abilityCard == other.abilityCard;
+}
