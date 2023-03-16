@@ -17,7 +17,7 @@ Switch::Switch()
     this->abilityCard = "Switch";
 }
 
-void Switch::useAbilityCard(Player& player1, Player& player2, const Player& _player1)
+void Switch::useAbilityCard(Player& player1, Player& player2, const Player _player1)
 {
     AbilityCard::useAbilityCard();
     // pair<Card*,Card*> tempPlayerCard;
