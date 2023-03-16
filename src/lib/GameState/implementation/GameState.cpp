@@ -116,8 +116,9 @@ void GameState::NextRound()
     temp = AllPlayer.front();
 
     // set turn ke pemain setelah pemain giliran pertama di round sebelumnya.
-    Turn.first = (Turn.first + 1) % 7;
-    Turn.second = AllPlayer.at(Turn.first);
+    Pivot.first += 1;
+    Pivot.second = AllPlayer.at(Pivot.first);
+    Turn = Pivot;
 }
 
 void GameState::NextTurn()
