@@ -95,7 +95,9 @@ int main(int argc, char const *argv[])
             gameState.inputAction();
             //gameState.inputRandom();
             gameState.evaluateAction(offAbility);
-            gameState.NextTurn();
+            if(i != 6){
+                gameState.NextTurn();
+            }
             gameState.updateTurn();
         }
         
@@ -122,8 +124,9 @@ int main(int argc, char const *argv[])
                 gameState.inputAction();
                 //gameState.inputRandom();
                 gameState.evaluateAction(offAbility);
-                gameState.getWhoseTurn().second.status();
-                gameState.NextTurn();
+                if(j != 6){
+                    gameState.NextTurn();
+                }
                 gameState.updateTurn();
                 
             }
