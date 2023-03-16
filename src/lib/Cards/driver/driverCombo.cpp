@@ -39,7 +39,7 @@ int main(){
 
 
     vector<Card> collectionCard2{kartu2h,kartu3h,kartu4h,kartu7h, kartu9h};
-    vector<Card> collectionCard1{kartu2k, kartu3k, kartu5k, kartu7k,kartu9k};
+    vector<Card> collectionCard1{kartu2k, kartu3k, kartu4k, kartu5k,kartu6k};
     Combo defCombination;
     Combo combination1(collectionCard1);
     Combo combination2(collectionCard2);

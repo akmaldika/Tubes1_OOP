@@ -74,6 +74,10 @@ TableCard GameState::getTableCard()
     return CardTable;
 }
 
+DeckCard GameState::getDeck()
+{
+    return this->deck;
+}
 
 Player& GameState::getPlayer(int ID) {
     Player *temp = &AllPlayer.at(0);
@@ -601,9 +605,6 @@ void GameState::resetGameState()
 bool GameState::checkAllWin()
 {
     // cout << "Evaluating all score...\n";
-    // for (auto player: AllPlayer){
-    //     player.status();
-    // }
     Player highestScorePlayer = max(AllPlayer);
     // highestScorePlayer.status();
     // 4294967296
@@ -649,8 +650,6 @@ Combo GameState::playerHighestCombo(Player &player)
     vector<Combo> listPossibleCombination; // list semua kombinasi kartu yang mungkin
 
     // Filling the cardList
-    cardList.push_back(player.getCardOne());
-    cardList.push_back(player.getCardTwo());
     if (CardTable.getTableCardCount() > 0)
     {
         for (auto card : CardTable.getTableCard())
@@ -658,6 +657,8 @@ Combo GameState::playerHighestCombo(Player &player)
             cardList.push_back(card);
         }
     }
+    cardList.push_back(player.getCardOne());
+    cardList.push_back(player.getCardTwo());
     //cout << "in\n";
 
     // Pencarian semua kombinasi yang mungkin
@@ -689,6 +690,12 @@ Combo GameState::playerHighestCombo(Player &player)
         float tempVal = possibleCombo.value(); // Supaya evaluasi tipeya
         listPossibleCombination.push_back(possibleCombo);
     }
+
+    if ((this->Round == 6) && (player.getListFinalCombo().size()==0)){ // Simpan semua possible combination untuk handling tie breaker di akhir game
+        vector<Combo> best = sortDsc<Combo>(listPossibleCombination); 
+        player.setListFinalCombo(best);
+    }
+
     return max<Combo>(listPossibleCombination);
 }
 
@@ -696,18 +703,69 @@ Combo GameState::playerHighestCombo(Player &player)
 void GameState::getGameWinner(){
 
     Player *winner = &AllPlayer[0];
+    vector<Player> playersTied;
     float highestComboWinner =  playerHighestCombo(*winner).value();
-
-    for(auto& player : AllPlayer){
-        
+    bool tied = false;
+    int numTieBreaker = 0;
+    int i =1;
+    int n = AllPlayer.size();
+    while (i < n){
+        auto& player = AllPlayer[i];
         float highestComboPlayer = playerHighestCombo(player).value();
         if( highestComboPlayer> highestComboWinner){
             winner = &player;
             highestComboWinner = highestComboPlayer; 
+        } else if (highestComboPlayer == highestComboWinner)
+        {
+            // Jika terjadi kasus sama
+            playersTied.push_back(player);
+        }
+        i++;
+    }
+
+    // Cek apakah highestCombo ada yang sama jika terdapat beberapa combo yang sama
+    if (playersTied.size() > 0){
+        if(highestComboWinner == playersTied[0].getCombo().value()){
+            tied = true;
         }
     }
 
-    cout << "This Round Winner is: " << endl;
+    // TIE BREAKER
+    while (tied && numTieBreaker>0){
+        numTieBreaker++;
+        tied = false; // default
+        winner = &playersTied[0];
+        vector<Player> tempTied;
+        highestComboWinner =  winner->getListFinalCombo()[numTieBreaker].value();
+        i =1;
+        n = playersTied.size();
+        // Pencarian value yang lebih besar
+        while (i < n){
+            auto& player = playersTied[i];
+            float highestComboPlayer = player.getListFinalCombo()[numTieBreaker].value();
+            if( highestComboPlayer> highestComboWinner){
+                winner = &player;
+                highestComboWinner = highestComboPlayer; 
+            } else if (highestComboPlayer == highestComboWinner)
+            {
+                // Jika terjadi kasus sama
+                tempTied.push_back(player);
+            }
+            
+            i++;
+        }
+        playersTied = tempTied;        
+        if (playersTied.size() > 0){
+            if(highestComboWinner == playersTied[0].getCombo().value()){
+                tied = true;
+        }
+    }
+    }
+
+
+
+
+    cout << "This Game Winner is: " << endl;
     winner->addPoint(PrizePool);  
     winner->status();  
 }
@@ -740,8 +798,8 @@ void GameState::HandUpdate()
 {
     for (auto &player : AllPlayer)
     {
-        Combo fff = playerHighestCombo(player);
-        player.setCombo(fff);
+        Combo bestCombo = playerHighestCombo(player);
+        player.setCombo(bestCombo);
     }
 }
 
@@ -755,7 +813,6 @@ void GameState::setPlayerName(int ID, string name)
         }
     }
 }
-
 
 vector<Player>& GameState::getAllPlayer(){
     return AllPlayer;
