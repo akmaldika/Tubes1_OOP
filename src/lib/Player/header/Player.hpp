@@ -21,6 +21,7 @@ class Player {
     // Combo MyCombo;
     PlayerCard MyCard;
     Combo Hand;
+    vector<Combo> listFinalCombo;
     
     public:
     // 
@@ -30,6 +31,8 @@ class Player {
     // getter and setter
     void setCombo(Combo &MyCombo);
     Combo getCombo();
+    void setListFinalCombo(vector<Combo> listFinalCombo);
+    vector<Combo> getListFinalCombo();
     void setPlayerName(string name);
     string getPlayerName();
     void setPlayerPoint(long long int point);

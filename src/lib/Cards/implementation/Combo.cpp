@@ -138,7 +138,7 @@ void Combo::setComboType(){
             this->valueCombo = max<Card>(this->combination).weightValue();
         } else {
             this->type="Flush";
-            this->valueCombo = max<Card>(this->combination).value();
+            this->valueCombo = max<Card>(this->combination).value() * 0.1;
         }
     } else if (nOfKindData.first==4){
         this->type="Four of a Kind";
@@ -214,10 +214,10 @@ void Combo::print(){
     }
 }
 
-Combo& Combo::operator=(Combo &combo){
-    combination = combo.combination;
-    valueCombo = combo.valueCombo;
-    type = combo.type;
+// Combo& Combo::operator=(Combo &combo){
+//     combination = combo.combination;
+//     valueCombo = combo.valueCombo;
+//     type = combo.type;
 
-    return *this;
-}
+//     return *this;
+// }
