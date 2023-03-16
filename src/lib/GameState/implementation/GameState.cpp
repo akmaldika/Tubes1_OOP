@@ -392,26 +392,26 @@ void GameState::evaluateAction(AbilityCard& offAbility)
                     cout << temp.getPlayerName() << " use REVERSE!" << endl
                         << "Rest turn this round: ";
                     int nextTurn;
-                    pair<int, Player*> tempTurn(this->Pivot);
-                    tempTurn.first = (tempTurn.first + 1) % AllPlayer.size();
+                    pair<int, Player*> tempPivot(this->Pivot);
+                    tempPivot.first = (tempPivot.first + 1) % AllPlayer.size();
                     if (!this->Reverse)
                     {
-                        nextTurn = (this->Turn.first - 1) % AllPlayer.size();
+                        nextTurn = (this->Turn.first - 1 + AllPlayer.size()) % AllPlayer.size();
                         for (int i = 0; i < this->AllPlayer.size(); i++)
                         {
-                            // cout << (nextTurn - i) % AllPlayer.size() + 1 << endl;
+                            // cout << (nextTurn - i + AllPlayer.size()) % AllPlayer.size() << endl;
                             if (
-                                !AllPlayer[(nextTurn - i) % AllPlayer.size() + 1].getPlayed() &&
-                                AllPlayer[(nextTurn - i) % AllPlayer.size() + 1].getPlayerID() != temp.getPlayerID()
+                                !AllPlayer[(nextTurn - i + AllPlayer.size()) % AllPlayer.size()].getPlayed() &&
+                                AllPlayer[(nextTurn - i + AllPlayer.size()) % AllPlayer.size()].getPlayerID() != temp.getPlayerID()
                                 )
                             {
-                                cout << "P" << AllPlayer[(nextTurn - i) % AllPlayer.size() + 1].getPlayerID() << " ";
+                                cout << "P" << AllPlayer[(nextTurn - i + AllPlayer.size()) % AllPlayer.size()].getPlayerID() << " ";
                             }
                         }
                         cout << endl << "Turn next round: ";
                         for (int i = 0; i < this->AllPlayer.size(); i++)
                         {
-                            cout << "P" << AllPlayer[(nextTurn - i) % AllPlayer.size() + 1].getPlayerID() << " ";
+                            cout << "P" << AllPlayer[(tempPivot.first - i + AllPlayer.size()) % AllPlayer.size()].getPlayerID() << " ";
 
                         }
                         cout << endl;
@@ -421,20 +421,22 @@ void GameState::evaluateAction(AbilityCard& offAbility)
                         nextTurn = (this->Turn.first + 1) % AllPlayer.size();
                         for (int i = 0; i < this->AllPlayer.size(); i++)
                         {
+                            // cout << (nextTurn - i + AllPlayer.size()) % AllPlayer.size() << endl;
                             if (
-                                !AllPlayer[(i + nextTurn) % AllPlayer.size() + 1].getPlayed() &&
-                                AllPlayer[(i + nextTurn) % AllPlayer.size() + 1].getPlayerID() != temp.getPlayerID()
+                                !AllPlayer[(nextTurn + i) % AllPlayer.size()].getPlayed() &&
+                                AllPlayer[(nextTurn + i) % AllPlayer.size()].getPlayerID() != temp.getPlayerID()
                                 )
                             {
-                                cout << "P" << AllPlayer[(i + nextTurn) % AllPlayer.size() + 1].getPlayerID() << " ";
+                                cout << "P" << AllPlayer[(nextTurn + i) % AllPlayer.size()].getPlayerID() << " ";
                             }
                         }
                         cout << endl << "Turn next round: ";
                         for (int i = 0; i < this->AllPlayer.size(); i++)
                         {
-                            cout << "P" << AllPlayer[(i + nextTurn) % AllPlayer.size() + 1].getPlayerID() << " ";
+                            cout << "P" << AllPlayer[(tempPivot.first + i) % AllPlayer.size()].getPlayerID() << " ";
 
                         }
+                        cout << endl;
                     }
 
                     ReverseDirection.useAbilityCard(this->Reverse);
