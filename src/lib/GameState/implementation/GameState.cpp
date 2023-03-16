@@ -328,10 +328,10 @@ void GameState::evaluateAction()
                     vector<int> turnReverse;
                     cout << Turn.second.getPlayerName() << " use REVERSE!" << endl
                         << "Rest turn this round: ";
-
+                    int nextTurn;
                     if (!this->Reverse)
                     {
-                        int nextTurn(Turn.first - 1);
+                        nextTurn = this->Turn.first - 1;
                         for (int i = 0; i < this->AllPlayer.size(); i++)
                         {
                             if (!AllPlayer[(nextTurn - i) % AllPlayer.size()].getPlayed())
@@ -349,8 +349,7 @@ void GameState::evaluateAction()
                     Turn.second.setAbility(&ReverseDirection);
 
 
-
-                    
+                    inputAction();                    
                 }
                 else
                 {
@@ -368,13 +367,13 @@ void GameState::evaluateAction()
                                    { return p.getPlayerID() == this->Turn.second.getPlayerID(); });
 
                     cout << Turn.second.getPlayerName() << " used Swap Card ability!" << endl;
-                    cout << "Choose the player you want to swap card with : " << endl;
+                    cout << "Choose the player to swap card : " << endl;
 
                     int i = 0;
                     for (auto player : PlayerList)
                     {
                         i++;
-                        cout << i << ". " << player.getPlayerName() << endl;
+                        cout << i << ". P" << player.getPlayerID() << " " << player.getPlayerName() << endl;
                     }
 
                     InputApp inputApp;
@@ -387,24 +386,23 @@ void GameState::evaluateAction()
                     auto itr = find(AllPlayer.begin(), AllPlayer.end(), player1);
                     int idx1 = distance(AllPlayer.begin(), itr);
 
-                    cout << "Choose other player you want to swap card with : " << endl;
+                    cout << "Choose other player to swap card with P" << player1.getPlayerID() << ": " << endl;
 
                     i = 0;
                     for (auto player : PlayerList)
                     {
                         i++;
-                        cout << i << ". " << player.getPlayerName() << endl;
+                        cout << i << ". P" << player.getPlayerID() << " " << player.getPlayerName() << endl;
                     }
 
                     Player player2;
 
                     inputApp.takeIntInput(i);
                     player2 = PlayerList[inputApp.getIntInput() - 1];
-                    PlayerList.erase(PlayerList.begin() + inputApp.getIntInput() - 1);
 
-                    itr = find(AllPlayer.begin(), AllPlayer.end(), player2);
-                    int idx2 = distance(AllPlayer.begin(), itr);
-
+                    auto itr2 = find(AllPlayer.begin(), AllPlayer.end(), player2);
+                    int idx2 = distance(AllPlayer.begin(), itr2);
+cout << idx2 << endl;
                     bool isKiri1;
                     bool isKiri2;
 
@@ -422,7 +420,9 @@ void GameState::evaluateAction()
                     inputApp.takeIntInput(2);
                     isKiri2 = inputApp.getIntInput() == 1 ? true : false;
 
-                    SwapCard.useAbilityCard(this->AllPlayer[idx1], isKiri1, this->AllPlayer[idx2], isKiri2);
+                    AllPlayer[idx1].getMyCard().printCard();
+                    AllPlayer[idx2].getMyCard().printCard();
+                    SwapCard.useAbilityCard((this->AllPlayer[idx1]), isKiri1, this->AllPlayer[idx2], isKiri2);
                     Turn.second.setAbility(&SwapCard);
 
                     break;
@@ -444,15 +444,15 @@ void GameState::evaluateAction()
 
                     cout << Turn.second.getPlayerName() << " used Switch ability!" << endl;
                     cout << "Your card now :" << endl;
-                    Turn.second.getCardOne().print();
-                    Turn.second.getCardTwo().print();
+                    Turn.second.getMyCard().printCard();
 
                     cout << "Choose the player you want to switch card with : " << endl;
                     int i = 0;
                     for (auto player : PlayerList)
                     {
                         i++;
-                        cout << i << ". " << player.getPlayerName() << endl;
+                        cout << i << ". P" << player.getPlayerID() << " " << player.getPlayerName() << endl;
+
                     }
 
                     InputApp inputApp;
@@ -460,14 +460,14 @@ void GameState::evaluateAction()
 
                     inputApp.takeIntInput(i);
                     playerOther = PlayerList[inputApp.getIntInput() - 1];
-
                     auto itr = find(AllPlayer.begin(), AllPlayer.end(), playerOther);
                     int idx = distance(AllPlayer.begin(), itr);
 
                     Switch.useAbilityCard(Turn.second, AllPlayer[idx]);
                     Turn.second.setAbility(&Switch);
 
-                    cout << "Your card now :" << endl;
+                    cout << "Your take P" << playerOther.getPlayerID() << " " << playerOther.getPlayerName() << "card" << endl
+                        << "Your card now :" << endl;
                     Turn.second.getMyCard().printCard();
                     break;
                 }
@@ -487,7 +487,7 @@ void GameState::evaluateAction()
                                    { return p.getPlayerID() == this->Turn.second.getPlayerID(); });
 
                     if (find_if(PlayerList.begin(), PlayerList.end(), [](Player &p)
-                                { return p.getAbility()->getAbilityCard() != p.getAbility()->getAbilityCardOff(); }) != PlayerList.end())
+                                { return p.getAbility()->getAbilityCard() != p.getAbility()->getAbilityCardOff(); }) == PlayerList.end())
                     {
                         // Case 4
                         cout << "Poor you, All Player has used Ability, you displell your own Ability Card" << endl;
@@ -500,7 +500,8 @@ void GameState::evaluateAction()
                         for (auto player : PlayerList)
                         {
                             i++;
-                            cout << i << ". " << player.getPlayerName() << endl;
+                            cout << i << ". P" << player.getPlayerID() << " " << player.getPlayerName() << endl;
+
                         }
 
                         InputApp inputApp;
@@ -541,6 +542,7 @@ void GameState::evaluateAction()
         catch (const char *msg)
         {
             cout << msg << endl;
+            inputAction();
         }
     }
 }
