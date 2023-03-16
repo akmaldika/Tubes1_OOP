@@ -11,9 +11,9 @@
     bagian ini aku gatau bisa apa ga
 */
 Card tempCard;
-Player temp;
+Player * temp;
 
-pair<int, Player &> emptyPlayer(0, temp); // inisiasi pair kosong buat turn
+pair<int, Player*> emptyPlayer(0, temp); // inisiasi pair kosong buat turn
 
 GameState::GameState()
     : Turn(emptyPlayer), Pivot(emptyPlayer)
@@ -30,11 +30,11 @@ GameState::GameState()
     }
 
     Turn.first = 0;
-    Turn.second = AllPlayer.at(0);
+    Turn.second = &AllPlayer.at(0);
     Reverse = false;
 
     Pivot.first = 0;
-    Pivot.second = AllPlayer.at(0);
+    Pivot.second = &AllPlayer.at(0);
 
     Action = "";
 }
@@ -56,11 +56,11 @@ GameState::GameState(string filename)
     }
 
     Turn.first = 0;
-    Turn.second = AllPlayer.at(0);
+    Turn.second = &AllPlayer.at(0);
     Reverse = false;
 
     Pivot.first = 0;
-    Pivot.second = AllPlayer.at(0);
+    Pivot.second = &AllPlayer.at(0);
 
     Action = "";
 }
@@ -96,7 +96,7 @@ Player& GameState::getPlayer(int ID) {
     return *temp;
 }
 
-pair<int, Player&> GameState::getWhoseTurn()
+pair<int, Player*> GameState::getWhoseTurn()
 {
     return Turn;
 }
@@ -117,7 +117,7 @@ void GameState::NextRound()
 
     // set turn ke pemain setelah pemain giliran pertama di round sebelumnya.
     Pivot.first += 1;
-    Pivot.second = AllPlayer.at(Pivot.first);
+    Pivot.second = &AllPlayer.at(Pivot.first);
     Turn = Pivot;
 }
 
@@ -125,21 +125,22 @@ void GameState::NextTurn()
 {
     // nandain player udah main
     // dan majuin/mundurin pointer turn
-    Turn.second.setPlayed(true);
+    Player &temp = *Turn.second;
+    temp.setPlayed(true);
 
-    while (Turn.second.getPlayed())
+    while (temp.getPlayed())
     {
         if (!Reverse)
         {
             if (Turn.first == 6)
             {
                 Turn.first = 0;
-                Turn.second = AllPlayer.at(Turn.first);
+                Turn.second = &AllPlayer.at(Turn.first);
             }
             else
             {
                 Turn.first++;
-                Turn.second = AllPlayer.at(Turn.first);
+                Turn.second = &AllPlayer.at(Turn.first);
             }
         }
         else
@@ -147,12 +148,12 @@ void GameState::NextTurn()
             if (Turn.first == 0)
             {
                 Turn.first = 6;
-                Turn.second = AllPlayer.at(Turn.first);
+                Turn.second = &AllPlayer.at(Turn.first);
             }
             else
             {
                 Turn.first--;
-                Turn.second = AllPlayer.at(Turn.first);
+                Turn.second = &AllPlayer.at(Turn.first);
             }
         }
     }
@@ -165,9 +166,10 @@ void GameState::AddCardToTable(Card cardAdded)
 
 void GameState::printState()
 {
+    Player &temp = *Turn.second;
     cout << "Round       : " << Round << endl;
     cout << "Prize Pool  : " << PrizePool << endl;
-    cout << "Turn        : " << Turn.second.getPlayerID() << " " << Turn.second.getPlayerName() << endl;
+    cout << "Turn        : " << temp.getPlayerID() << " " << temp.getPlayerName() << endl;
     cout << "Table Card  : " << endl;
     CardTable.printCard();
 }
@@ -176,9 +178,10 @@ void GameState::inputAction()
 {
 
     InputApp command;
+    Player &temp = *Turn.second;
 
     cout << "\n                 -----> YOUR TURN <-----" << endl;
-    Turn.second.status();
+    temp.status();
 
     cout << " ____________________________\n";
     cout << "|      LIST OF COMMAND       |" << endl;
@@ -282,6 +285,7 @@ void GameState::inputRandom()
 
 void GameState::evaluateAction()
 {
+    Player &temp = *Turn.second;
 
     while (true)
     {
@@ -305,7 +309,7 @@ void GameState::evaluateAction()
             else if (Action == "REROLL")
             {
                 Reroll reroll;
-                if (Turn.second.getAbility()->getAbilityCard() == reroll.getAbilityCard())
+                if (temp.getAbility()->getAbilityCard() == reroll.getAbilityCard())
                 {
                     cout << "You throw your card  :" << endl;
                     // Turn.second.getMyCard().printCard();
