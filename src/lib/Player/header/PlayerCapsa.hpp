@@ -13,7 +13,7 @@ using namespace std;
 class PlayerCapsa : public StandardPlayer{
     private: 
     PlayerCapsaCard MyHands;
-    
+    int numWin;
     public:
     // 
     PlayerCapsa();
@@ -21,6 +21,8 @@ class PlayerCapsa : public StandardPlayer{
     // getter and setter
     PlayerCapsaCard getMyCard() const;
     void setMyCard(PlayerCapsaCard newHands);
+    int getNumWin();
+    void setNumWin(int numWin);
     void status();
 
     void addPoint(long long int amount);

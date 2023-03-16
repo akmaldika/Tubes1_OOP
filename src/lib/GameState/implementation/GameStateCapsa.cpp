@@ -129,6 +129,10 @@ void GameStateCapsa::NextRound()
     resetGameState();
     Turn.first = (Turn.first + 1) % 4;
     Turn.second = AllPlayer.at(Turn.first);
+
+    for (int i=0; i<4; i++){
+        AllPlayer[i].addPoint(AllPlayer[i].getNumWin()*bid);
+    }
 }
 
 void GameStateCapsa::NextTurn()
@@ -222,6 +226,21 @@ void GameStateCapsa::evaluateAction()
             inputAction();
         }
     }
+
+    // Udh action
+    // Lakukan adu combo
+
+    // Adu back
+    for (int i=0; i < 3; i++){
+        if (AllPlayer[Turn.first].getMyCard().getBackCombo()> AllPlayer[(Turn.first+i)%4].getMyCard().getBackCombo()){
+            AllPlayer[Turn.first].setNumWin(AllPlayer[Turn.first].getNumWin()+1);
+        } else {
+            AllPlayer[Turn.first].setNumWin(AllPlayer[Turn.first].getNumWin()-1);
+        }
+    }
+
+
+
 }
 
 void GameStateCapsa::resetGameState()
@@ -249,7 +268,7 @@ void GameStateCapsa::resetGameState()
             cardsAllocation.push_back(deckCapsa.back());
             deckCapsa.pop_back();
         }
-        PlayerCapsaCard newHands(cardsAllocation);
+        PlayerCapsaCard newHands(cardsAllocation, i+1);
         AllPlayer[i].setMyCard(newHands);
     }
 

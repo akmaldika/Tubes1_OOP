@@ -4,14 +4,16 @@ PlayerCapsa::PlayerCapsa(){
     this->ID = 0;
     this->name = "NaN";
     this->point = 0;
+    this->numWin = 0;
 }
 
 PlayerCapsa::PlayerCapsa(int ID, string name, vector<CapsaCard> cards):
-    MyHands(cards)
+    MyHands(cards, ID)
 {
     this->ID = ID;
     this->name = name;
     this->point = 10000;
+    this->numWin = 0;
 }
 
 PlayerCapsaCard PlayerCapsa::getMyCard() const{
@@ -20,6 +22,14 @@ PlayerCapsaCard PlayerCapsa::getMyCard() const{
 
 void PlayerCapsa::setMyCard(PlayerCapsaCard newHands){
     this->MyHands = newHands;
+}
+
+int PlayerCapsa::getNumWin(){
+    return this->numWin;
+}
+
+void PlayerCapsa::setNumWin(int numWin){
+    this->numWin = numWin;
 }
 
 void PlayerCapsa::status(){
