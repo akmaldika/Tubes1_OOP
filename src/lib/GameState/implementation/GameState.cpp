@@ -298,13 +298,15 @@ void GameState::evaluateAction()
             else if (Action == "REROLL")
             {
                 Reroll reroll;
-                if (Turn.second.getAbility()->getAbilityCard() == reroll.getAbilityCard())
+cout << "ABILTY AWAL " << Turn.second.getAbility()->getAbilityCard() << endl;
+                if (Turn.second.getAbility()->getAbilityCard() == reroll.getAbilityCard() && !Turn.second.getAbility()->isAbilityOff())
                 {
                     cout << "You throw your card  :" << endl;
                     // Turn.second.getMyCard().printCard();
 
                     reroll.useAbilityCard(this->deck, Turn.second);
                     Turn.second.setAbility(&reroll);
+cout << "ABILTY MATI" << Turn.second.getAbility()->getAbilityCard() << endl;
 
                     cout << "Your you get 2 new card :" << endl;
                     Turn.second.getMyCard().printCard();
@@ -318,14 +320,15 @@ void GameState::evaluateAction()
             else if (Action == "QUADRUPLE")
             {
                 Quadruple quadruple;
-                if (Turn.second.getAbility()->getAbilityCard() == quadruple.getAbilityCard())
+cout << "ABILTY AWAL " << Turn.second.getAbility()->getAbilityCard() << endl;
+                if (Turn.second.getAbility()->getAbilityCard() == quadruple.getAbilityCard() && !Turn.second.getAbility()->isAbilityOff())
                 {
                     cout << Turn.second.getPlayerName() << " use QUADRUPLE! prize pool increase" << endl 
-                        <<  this->PrizePool << " -> ";
+                            <<  this->PrizePool << " -> ";
                     
                     quadruple.useAbilityCard(this->PrizePool);
                     Turn.second.setAbility(&quadruple);
-                    
+cout << "ABILTY MATI" << Turn.second.getAbility()->getAbilityCard() << endl;
                     cout << this->PrizePool << endl;
 
                     break;
@@ -338,13 +341,21 @@ void GameState::evaluateAction()
             else if (Action == "QUARTER")
             {
                 Quarter Quarter;
-                if (Turn.second.getAbility()->getAbilityCard() == Quarter.getAbilityCard())
+cout << "ABILTY AWAL " << Turn.second.getAbility()->getAbilityCard() << endl;
+                if (Turn.second.getAbility()->getAbilityCard() == Quarter.getAbilityCard() && !Turn.second.getAbility()->isAbilityOff())
                 {
-                    cout << Turn.second.getPlayerName() << " use QUARTER! prize pool decrease" << endl 
+                    cout << Turn.second.getPlayerName() << " use QUARTER!";
+                    if (this->PrizePool == 1)
+                    {
+                        cout << " but prize pool was low" << endl
+                            << " prize didn't change = ";
+                    }
+                    cout << " prize pool decrease" << endl
                         <<  this->PrizePool << " -> ";
                     
                     Quarter.useAbilityCard(this->PrizePool);
                     Turn.second.setAbility(&Quarter);
+cout << "ABILTY MATI" << Turn.second.getAbility()->getAbilityCard() << endl;
 
                     cout << this->PrizePool << endl;
                     break;
@@ -357,7 +368,7 @@ void GameState::evaluateAction()
             else if (Action == "REVERSE")
             {
                 ReverseDirection ReverseDirection;
-                if (Turn.second.getAbility()->getAbilityCard() == ReverseDirection.getAbilityCard())
+                if (Turn.second.getAbility()->getAbilityCard() == ReverseDirection.getAbilityCard() && !Turn.second.getAbility()->isAbilityOff())
                 {
                     vector<int> turnReverse;
                     cout << Turn.second.getPlayerName() << " use REVERSE!" << endl
@@ -380,7 +391,9 @@ void GameState::evaluateAction()
 
 
                     ReverseDirection.useAbilityCard(this->Reverse);
+                    cout << ReverseDirection.getAbilityCard() << endl;
                     Turn.second.setAbility(&ReverseDirection);
+                    cout << Turn.second.getAbility()->getAbilityCard() << endl;
 
 
                     inputAction();                    
@@ -393,7 +406,7 @@ void GameState::evaluateAction()
             else if (Action == "SWAP")
             {
                 SwapCard SwapCard;
-                if (Turn.second.getAbility()->getAbilityCard() == SwapCard.getAbilityCard())
+                if (Turn.second.getAbility()->getAbilityCard() == SwapCard.getAbilityCard() && !Turn.second.getAbility()->isAbilityOff())
                 {
                     vector<Player> PlayerList;
                     remove_copy_if(this->AllPlayer.begin(), this->AllPlayer.end(), back_inserter(PlayerList),
@@ -469,7 +482,7 @@ cout << idx2 << endl;
             else if (Action == "SWITCH")
             {
                 Switch Switch;
-                if (Turn.second.getAbility()->getAbilityCard() == Switch.getAbilityCard())
+                if (Turn.second.getAbility()->getAbilityCard() == Switch.getAbilityCard() && !Turn.second.getAbility()->isAbilityOff())
                 {
                     vector<Player> PlayerList;
                     remove_copy_if(this->AllPlayer.begin(), this->AllPlayer.end(), back_inserter(PlayerList),
@@ -513,7 +526,7 @@ cout << idx2 << endl;
             else if (Action == "ABILITYLESS")
             {
                 Abilityless abilityLess;
-                if (Turn.second.getAbility()->getAbilityCard() == abilityLess.getAbilityCard())
+                if (Turn.second.getAbility()->getAbilityCard() == abilityLess.getAbilityCard() && !Turn.second.getAbility()->isAbilityOff())
                 {
                     vector<Player> PlayerList;
                     remove_copy_if(this->AllPlayer.begin(), this->AllPlayer.end(), back_inserter(PlayerList),
@@ -546,7 +559,7 @@ cout << idx2 << endl;
 
                         auto itr = find(AllPlayer.begin(), AllPlayer.end(), playerOther);
                         int idx = distance(AllPlayer.begin(), itr);
-
+cout << "idx " << idx << endl;
                         if (AllPlayer[idx].getAbility()->getAbilityCard() == AllPlayer[idx].getAbility()->getAbilityCardOff())
                         {
                             // Case 2
