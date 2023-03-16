@@ -11,7 +11,7 @@ Player::Player(){
     this->point = 0;
 }
 Player::Player(Card card1, Card card2) 
-: MyCard(card1, card2, NULL, (playerCount%7)+1)
+: MyCard(card1, card2, new AbilityCard(), (playerCount%7)+1)
 {  
     this->ID = playerCount;
     this->name = to_string(playerCount);
