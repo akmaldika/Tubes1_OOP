@@ -7,6 +7,9 @@
 
 class SwapCard : public AbilityCard
 {
+    private :
+        // Attribute
+        // static Card* tempCard;
     public:
         // Constructor Default
         // ability = "SwapCard"
@@ -20,7 +23,7 @@ class SwapCard : public AbilityCard
         jika isKiri2 true maka Player 2 akan mengambil kartu kiri dari palyer 1
         jika false maka ambil kartu kanan
         */
-        void useAbilityCard(Player&, const bool& isKiri1, Player&, const bool& isKiri2);
+        void useAbilityCard(Player&, const bool& isKiri1, Player&, const bool& isKiri2, const Player);
         void printAbilityCard();
 };
 

@@ -7,6 +7,9 @@
 
 class Switch : public AbilityCard
 {
+    private:
+        // Attribute
+        // static pair<Card*, Card*> tempPlayerCard;
     public:
         // Constructor Default
         // ability = "Switch"
@@ -15,7 +18,7 @@ class Switch : public AbilityCard
         // Method
 
         // Menggunakan Switch Card, setelahnya ability set ABILITYCARD_DEFAULT
-        void useAbilityCard(Player&, Player&);
+        void useAbilityCard(Player&, Player&, const Player&);
         void printAbilityCard();
 };
 
