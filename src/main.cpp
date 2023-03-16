@@ -63,7 +63,7 @@ int main(int argc, char const *argv[])
         InputApp deckCardFile;
         GameState stateFromfile("../test/" + deckCardFile.takeFilenameInput("Card"));
         gameState = stateFromfile;
-
+        gameState.printDeck();
         cout << "\n----------   Input Deck Ability File    ---------- " << endl;
         InputApp deckAbilityFile;
         DeckAbilityCard deckFromfile("../test/" + deckAbilityFile.takeFilenameInput("Ability"));
@@ -91,8 +91,9 @@ int main(int argc, char const *argv[])
         gameState.updateTurn();
         for (int i = 0; i < 7 ; i++){ // per turn
             gameState.printInterface(); // nanti ganti
-            gameState.inputAction();
+            //gameState.inputAction();
             //gameState.inputRandom();
+            gameState.setDouble();
             gameState.evaluateAction();
             gameState.NextTurn();
         }
@@ -117,8 +118,9 @@ int main(int argc, char const *argv[])
             gameState.HandUpdate();
             for(int j = 0; j < 7 ; j++){ // per turn
                 gameState.printInterface(); // nanti ganti
-                gameState.inputAction();
+                //gameState.inputAction();
                 //gameState.inputRandom();
+                gameState.setDouble();
                 gameState.evaluateAction();
                 gameState.NextTurn();
             }

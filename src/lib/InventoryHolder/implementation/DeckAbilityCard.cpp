@@ -78,7 +78,7 @@ void DeckAbilityCard::setDeckAbilityCard(vector<AbilityCard*> deckAbilityCard) {
 }
 
 vector<AbilityCard*> DeckAbilityCard::getDeckAbilityCard() {
-    cout << "Makan nih ability"<<endl;
+    //cout << "Makan nih ability"<<endl;
     return this->deckAbilityCard;
 }
 

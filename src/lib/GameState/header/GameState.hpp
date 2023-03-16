@@ -111,7 +111,7 @@ class GameState {
 
         Combo playerHighestCombo(Player& player);
 
-        void operator=(const GameState& copy);
+        GameState& operator=(const GameState& copy);
 
         void printInterface();
 
@@ -134,4 +134,8 @@ class GameState {
         void setPlayerName(int ID, string name);
 
         void updateTurn();
+
+        void setDouble();
+
+        void printDeck();
 };

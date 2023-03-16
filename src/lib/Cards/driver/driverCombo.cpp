@@ -38,8 +38,8 @@ int main(){
     Card kartu13k(13,"kuning");
 
 
-    vector<Card> collectionCard2{kartu2h,kartu3h,kartu4h,kartu7h, kartu9h};
-    vector<Card> collectionCard1{kartu2k, kartu3k, kartu4k, kartu5k,kartu6k};
+    vector<Card> collectionCard1{kartu7h,kartu6h,kartu9h,kartu10h, kartu12h};
+    vector<Card> collectionCard2{kartu1h, kartu6h,kartu9h,kartu10h, kartu12h};
     Combo defCombination;
     Combo combination1(collectionCard1);
     Combo combination2(collectionCard2);

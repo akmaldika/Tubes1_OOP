@@ -39,7 +39,6 @@ GameState::GameState()
 GameState::GameState(string filename)
     : Turn(emptyPlayer), deck(filename)
 {
-
     PrizePool = DEFAULT_PRIZE;
     Round = 1;
 
@@ -62,6 +61,13 @@ GameState::GameState(string filename)
 long int GameState::getPrize()
 {
     return PrizePool;
+}
+
+void GameState::printDeck(){
+    for(auto card : deck.getDeckCard()){
+        card.print();
+    }
+    cout << deck.getDeckCard().size();
 }
 
 int GameState::getRound()
@@ -229,6 +235,7 @@ void GameState::inputRandom()
 
     Action = com[choice];
     cout << choice << endl;
+    Turn.second.status();
     cout << "Command : " << Action << endl;
 }
 
@@ -574,7 +581,7 @@ Player GameState::getAllWinner()
     return max(AllPlayer);
 }
 
-void GameState::operator=(const GameState &copy)
+GameState& GameState::operator=(const GameState &copy)
 {
     AllPlayer = copy.AllPlayer;
     PrizePool = copy.PrizePool;
@@ -584,6 +591,8 @@ void GameState::operator=(const GameState &copy)
     deck = copy.deck;
     Action = copy.Action;
     Reverse = copy.Reverse;
+
+    return *this;
 }
 
 void GameState::printInterface()
@@ -688,7 +697,7 @@ void GameState::getGameWinner(){
     }
 
     // TIE BREAKER
-    while (tied && numTieBreaker>0){
+    while (tied){
         numTieBreaker++;
         tied = false; // default
         winner = &playersTied[0];
@@ -777,4 +786,10 @@ vector<Player>& GameState::getAllPlayer(){
 
 void GameState::updateTurn(){
     Turn.second = AllPlayer.at(Turn.first);
+}
+
+void GameState::setDouble(){
+    Action = "DOUBLE";
+
+    Turn.second.status();
 }
