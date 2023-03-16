@@ -300,14 +300,19 @@ void GameState::evaluateAction()
                 Reroll reroll;
                 if (Turn.second.getAbility()->getAbilityCard() == reroll.getAbilityCard())
                 {
+                    cout << "You throw your card  :" << endl;
+                    // Turn.second.getMyCard().printCard();
+
                     reroll.useAbilityCard(this->deck, Turn.second);
                     Turn.second.setAbility(&reroll);
 
+                    cout << "Your you get 2 new card :" << endl;
+                    Turn.second.getMyCard().printCard();
                     break;
                 }
                 else
                 {
-                    throw "You don't have this ability! or\nmaybe someone has dispell tour ability :(";
+                    throw "You don't have this ability! or\nmaybe someone has dispell your ability :(";
                 }
             }
             else if (Action == "QUADRUPLE")
@@ -315,14 +320,19 @@ void GameState::evaluateAction()
                 Quadruple quadruple;
                 if (Turn.second.getAbility()->getAbilityCard() == quadruple.getAbilityCard())
                 {
+                    cout << Turn.second.getPlayerName() << " use QUADRUPLE! prize pool increase" << endl 
+                        <<  this->PrizePool << " -> ";
+                    
                     quadruple.useAbilityCard(this->PrizePool);
                     Turn.second.setAbility(&quadruple);
+                    
+                    cout << this->PrizePool << endl;
 
                     break;
                 }
                 else
                 {
-                    throw "You don't have this ability! or\nmaybe someone has dispell tour ability :(";
+                    throw "You don't have this ability! or\nmaybe someone has dispell your ability :(";
                 }
             }
             else if (Action == "QUARTER")
@@ -330,14 +340,18 @@ void GameState::evaluateAction()
                 Quarter Quarter;
                 if (Turn.second.getAbility()->getAbilityCard() == Quarter.getAbilityCard())
                 {
+                    cout << Turn.second.getPlayerName() << " use QUARTER! prize pool decrease" << endl 
+                        <<  this->PrizePool << " -> ";
+                    
                     Quarter.useAbilityCard(this->PrizePool);
                     Turn.second.setAbility(&Quarter);
 
+                    cout << this->PrizePool << endl;
                     break;
                 }
                 else
                 {
-                    throw "You don't have this ability! or\nmaybe someone has dispell tour ability :(";
+                    throw "You don't have this ability! or\nmaybe someone has dispell your ability :(";
                 }
             }
             else if (Action == "REVERSE")
@@ -345,14 +359,36 @@ void GameState::evaluateAction()
                 ReverseDirection ReverseDirection;
                 if (Turn.second.getAbility()->getAbilityCard() == ReverseDirection.getAbilityCard())
                 {
+                    vector<int> turnReverse;
+                    cout << Turn.second.getPlayerName() << " use REVERSE!" << endl
+                        << "Rest turn this round: ";
+
+                    if (!this->Reverse)
+                    {
+                        int nextTurn(Turn.first - 1);
+                        for (int i = 0; i < this->AllPlayer.size(); i++)
+                        {
+                            if (!AllPlayer[(nextTurn - i) % AllPlayer.size()].getPlayed())
+                            {
+                                cout << "P" << AllPlayer[(nextTurn - i) % AllPlayer.size()].getPlayerID() << " ";
+                            }
+                        }
+                        cout << endl << "Turn next round: ";
+                    }
+                    // turnReverse.push_back((nextTurn - i) % AllPlayer.size());
+
+
+
                     ReverseDirection.useAbilityCard(this->Reverse);
                     Turn.second.setAbility(&ReverseDirection);
 
-                    break;
+
+
+                    
                 }
                 else
                 {
-                    throw "You don't have this ability! or\nmaybe someone has dispell tour ability :(";
+                    throw "You don't have this ability! or\nmaybe someone has dispell your ability :(";
                 }
             }
             else if (Action == "SWAP")
@@ -381,7 +417,9 @@ void GameState::evaluateAction()
                     inputApp.takeIntInput(i);
                     player1 = PlayerList[inputApp.getIntInput() - 1];
                     PlayerList.erase(PlayerList.begin() + inputApp.getIntInput() - 1);
-                    break;
+                    
+                    auto itr = find(AllPlayer.begin(), AllPlayer.end(), player1);
+                    int idx1 = distance(AllPlayer.begin(), itr);
 
                     cout << "Choose other player you want to swap card with : " << endl;
 
@@ -398,6 +436,9 @@ void GameState::evaluateAction()
                     player2 = PlayerList[inputApp.getIntInput() - 1];
                     PlayerList.erase(PlayerList.begin() + inputApp.getIntInput() - 1);
 
+                    itr = find(AllPlayer.begin(), AllPlayer.end(), player2);
+                    int idx2 = distance(AllPlayer.begin(), itr);
+
                     bool isKiri1;
                     bool isKiri2;
 
@@ -406,23 +447,23 @@ void GameState::evaluateAction()
                          << "2. Right" << endl;
 
                     inputApp.takeIntInput(2);
-                    isKiri1 = isKiri1 == 1 ? true : false;
+                    isKiri1 = inputApp.getIntInput() == 1 ? true : false;
 
                     cout << "Choose left or right card for " << player2.getPlayerName() << " : " << endl;
                     cout << "1. Left" << endl
                          << "2. Right" << endl;
 
                     inputApp.takeIntInput(2);
-                    isKiri2 = isKiri2 == 1 ? true : false;
+                    isKiri2 = inputApp.getIntInput() == 1 ? true : false;
 
-                    SwapCard.useAbilityCard(player1, isKiri1, player2, isKiri2);
+                    SwapCard.useAbilityCard(this->AllPlayer[idx1], isKiri1, this->AllPlayer[idx2], isKiri2);
                     Turn.second.setAbility(&SwapCard);
 
                     break;
                 }
                 else
                 {
-                    throw "You don't have this ability! or\nmaybe someone has dispell tour ability :(";
+                    throw "You don't have this ability! or\nmaybe someone has dispell your ability :(";
                 }
             }
             else if (Action == "SWITCH")
@@ -461,14 +502,12 @@ void GameState::evaluateAction()
                     Turn.second.setAbility(&Switch);
 
                     cout << "Your card now :" << endl;
-                    Turn.second.getCardOne().print();
-                    Turn.second.getCardTwo().print();
-
+                    Turn.second.getMyCard().printCard();
                     break;
                 }
                 else
                 {
-                    throw "You don't have this ability! or\nmaybe someone has dispell tour ability :(";
+                    throw "You don't have this ability! or\nmaybe someone has dispell your ability :(";
                 }
             }
             else if (Action == "ABILITYLESS")
@@ -525,7 +564,7 @@ void GameState::evaluateAction()
                 else
                 {
                     // Case Tidak punya kemampuan
-                    throw "You don't have this ability! or\nmaybe someone has dispell tour ability :(";
+                    throw "You don't have this ability! or\nmaybe someone has dispell your ability :(";
                 }
             }
             else

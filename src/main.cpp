@@ -12,12 +12,6 @@ int main(int argc, char const *argv[])
     int gameCounter = 0;
     string filename;
     DeckAbilityCard abilityDeck;
-
-
-    for (auto player: gameState.getAllPlayer()){
-        player.status();
-    }
-
     /*
         ALGORITMA PERMAINAN
     */    
@@ -79,23 +73,18 @@ int main(int argc, char const *argv[])
     // Input Player Name
     InputApp playerName;
     cout << "\n----------   Input Player Name    ---------- " << endl;
-    // for (int i = 0; i < 7 ; i++){
-    //     cout << "Player " << i << " : ";
-    //     playerName.takeStrInput();
-    //     gameState.setPlayerName(i, playerName.getStrInput());
-    // }
 
     int i = 0;
     for (auto& player : gameState.getAllPlayer()){
-        i++;
         cout << "Player " << i << " : ";
+        i++;
         playerName.takeStrInput();
         player.setPlayerName(playerName.getStrInput());
     }
 
     while(!gameState.checkAllWin()){
         gameCounter++;
-        cout << "\n                         GAME " << gameCounter << "\n";
+        cout << "\n                             GAME " << gameCounter << "\n";
 
         // PLAY FIRST ROUND
         gameState.HandUpdate();
@@ -120,7 +109,6 @@ int main(int argc, char const *argv[])
         for(auto& player : gameState.getAllPlayer()){
             player.setAbility(abilityDeck.getDeckAbilityCard().at(i));
             i++;
-            player.status();
         }
         gameState.updateTurn();
 
@@ -147,8 +135,11 @@ int main(int argc, char const *argv[])
     // for (int i=0; i<7; i++){
     //     gameState.getPlayer(i).status();
     // }
-    cout << "The winner All of the game is: " << endl;
+
+    cout << "---------   The winner of the game is:    ---------- " << endl;
+
     gameState.getAllWinner().status();
+    cout << "------------------   Congrats    -------------------- " << endl;
 
     gameState.printLeaderboard();
 
