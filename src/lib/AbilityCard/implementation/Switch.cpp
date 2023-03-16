@@ -6,18 +6,26 @@
 #include "../../Player/header/Player.hpp"
 #include "../../GameState/header/GameState.hpp"
 
+using namespace std;
+
+// Card tempCard1, tempCard2;
+
+pair<Card*,Card*> Switch::tempPlayerCard;
+
 Switch::Switch() 
 {
     this->abilityCard = "Switch";
 }
+
 void Switch::useAbilityCard(Player& player1, Player& player2)
 {
     AbilityCard::useAbilityCard();
-    pair<Card,Card> tempPlayerCard(player1.getMyCard().getFirstPlayerCard(), player1.getMyCard().getSecondPlayerCard());
-    player1.setCardOne(player2.getMyCard().getFirstPlayerCard());
-    player1.setCardTwo(player2.getMyCard().getSecondPlayerCard());
-    player2.setCardOne(tempPlayerCard.first);
-    player2.setCardTwo(tempPlayerCard.second);
+    tempPlayerCard.first  = &player1.getCardOne(); 
+    tempPlayerCard.second = &player1.getCardTwo();
+    player1.setCardOne(player2.getCardOne());
+    player1.setCardTwo(player2.getCardTwo());
+    player2.setCardOne(*tempPlayerCard.first);
+    player2.setCardTwo(*tempPlayerCard.second);
 }
 
 void Switch::printAbilityCard(){
