@@ -15,7 +15,6 @@ int main(int argc, char const *argv[])
 
 
     for (auto player: gameState.getAllPlayer()){
-        cout<<"Minimal test"<<endl;
         player.status();
     }
 
@@ -148,7 +147,7 @@ int main(int argc, char const *argv[])
     // for (int i=0; i<7; i++){
     //     gameState.getPlayer(i).status();
     // }
-    cout << "The winner of the game is: " << endl;
+    cout << "The winner All of the game is: " << endl;
     gameState.getAllWinner().status();
 
     gameState.printLeaderboard();

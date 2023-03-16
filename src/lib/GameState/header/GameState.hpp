@@ -64,6 +64,7 @@ class GameState {
         long int getPrize();
         int getRound();
         TableCard getTableCard();
+        DeckCard getDeck();
         Player& getPlayer(int ID); // setiap player ada id 1-7 yang terpisah dari urutannya.
         pair<int,Player&> getWhoseTurn(); // return giliran siapa skrg
         vector<Player>& getAllPlayer();
