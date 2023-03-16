@@ -399,7 +399,7 @@ void GameState::evaluateAction(AbilityCard& offAbility)
                         nextTurn = (this->Turn.first - 1) % AllPlayer.size();
                         for (int i = 0; i < this->AllPlayer.size(); i++)
                         {
-                            cout << (nextTurn - i) % AllPlayer.size() + 1 << endl;
+                            // cout << (nextTurn - i) % AllPlayer.size() + 1 << endl;
                             if (
                                 !AllPlayer[(nextTurn - i) % AllPlayer.size() + 1].getPlayed() &&
                                 AllPlayer[(nextTurn - i) % AllPlayer.size() + 1].getPlayerID() != temp.getPlayerID()
