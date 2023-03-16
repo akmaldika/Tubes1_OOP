@@ -12,6 +12,7 @@ int main(int argc, char const *argv[])
     int gameCounter = 0;
     string filename;
     DeckAbilityCard abilityDeck;
+    AbilityCard offAbility;
     /*
         ALGORITMA PERMAINAN
     */    
@@ -83,6 +84,7 @@ int main(int argc, char const *argv[])
     }
 
     while(!gameState.checkAllWin()){
+        abilityDeck = DeckAbilityCard();
         gameCounter++;
         cout << "\n                             GAME " << gameCounter << "\n";
 
@@ -93,8 +95,11 @@ int main(int argc, char const *argv[])
             gameState.printInterface(); // nanti ganti
             gameState.inputAction();
             //gameState.inputRandom();
-            gameState.evaluateAction();
-            gameState.NextTurn();
+            gameState.evaluateAction(offAbility);
+            if(i != 6){
+                gameState.NextTurn();
+            }
+            gameState.updateTurn();
         }
         
         gameState.NextRound();
@@ -110,17 +115,21 @@ int main(int argc, char const *argv[])
             player.setAbility(abilityDeck.getDeckAbilityCard().at(i));
             i++;
         }
-        gameState.updateTurn();
 
-        //PLAY ROUND 2-7
+        //PLAY ROUND 2-6
         for(int i = 0; i < 5 ; i++){ // per round
             gameState.HandUpdate();
+            gameState.updateTurn();
             for(int j = 0; j < 7 ; j++){ // per turn
                 gameState.printInterface(); // nanti ganti
                 gameState.inputAction();
                 //gameState.inputRandom();
-                gameState.evaluateAction();
-                gameState.NextTurn();
+                gameState.evaluateAction(offAbility);
+                if(j != 6){
+                    gameState.NextTurn();
+                }
+                gameState.updateTurn();
+                
             }
             gameState.NextRound();
         }

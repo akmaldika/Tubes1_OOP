@@ -31,7 +31,8 @@ class GameState {
             pair->first = urutan player/ index dalam vector
             pair->second = objek playernya
         */
-        pair<int, Player&> Turn;
+        pair<int, Player*> Turn;
+        pair<int, Player*> Pivot;
         TableCard CardTable; // kartu di meja
         DeckCard deck; // kartu dalam deck
 
@@ -66,7 +67,7 @@ class GameState {
         TableCard getTableCard();
         DeckCard getDeck();
         Player& getPlayer(int ID); // setiap player ada id 1-7 yang terpisah dari urutannya.
-        pair<int,Player&> getWhoseTurn(); // return giliran siapa skrg
+        pair<int,Player*> getWhoseTurn(); // return giliran siapa skrg
         vector<Player>& getAllPlayer();
 
     // Set Method
@@ -88,7 +89,7 @@ class GameState {
 
         void AddCardToTable(Card cardAdded); // tambah kartu di meja
 
-        void evaluateAction();
+        void evaluateAction(AbilityCard& offAbility);
 
         void printState();
 
@@ -134,4 +135,6 @@ class GameState {
         void setPlayerName(int ID, string name);
 
         void updateTurn();
+
+        void playedReset();
 };

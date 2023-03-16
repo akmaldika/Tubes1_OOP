@@ -20,6 +20,9 @@ class AbilityCard : public Ability
         const string ABILITYCARD_DEFAULT = "unknown";
         string abilityCard;
     public :
+        // Constructor      
+        AbilityCard();
+        AbilityCard(const string& abilityCard);
         // Method
 
         // Setter abilityCard ke ABILITYCard_DEFAULT

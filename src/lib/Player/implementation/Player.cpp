@@ -69,7 +69,6 @@ bool Player::getPlayed(){
     return played;
 }
 
-
 void Player::addPoint(long long int amount){
     point += amount;
 }

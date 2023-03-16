@@ -165,7 +165,8 @@ void PlayerCard::printCard() {
     cout<<colorInterfaceC1<<"`---------'"               <<"     "<<colorInterfaceC2<<"`---------'";
     cout<<RESET<<endl;
 
-    if (this->abilityCard != NULL){
+
+    if (!this->abilityCard->isAbilityOff()){
         this->abilityCard->printAbilityCard();
         cout<<endl;
     } else {

@@ -47,7 +47,7 @@ int main()
     cout << "=========== Driver Game State ===========" << endl;
     cout << abilityless.getAbilityCard() << endl;
     // abilityless.useAbilityCard(player1);
-    abilityless.setAbilityCard("MININDSAFDSAFDS");
+    abilityless.getAbilityCardOff();
     cout << abilityless.getAbilityCard() << endl;
 
     return 0;
