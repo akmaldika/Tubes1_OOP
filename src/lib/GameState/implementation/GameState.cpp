@@ -120,7 +120,7 @@ void GameState::NextRound()
     }
 
     // set turn ke pemain setelah pemain giliran pertama di round sebelumnya.
-    Pivot.first += 1;
+    Pivot.first = (Pivot.first + 1) % 7;
     Pivot.second = &AllPlayer.at(Pivot.first);
     Turn = Pivot;
 }
@@ -134,7 +134,7 @@ void GameState::NextTurn()
 
     while (Turn.second->getPlayed())
     {
-        cout << Turn.first << endl;
+        // cout << Turn.first << endl;
         if (!Reverse)
         {
             if (Turn.first == 6)

@@ -100,7 +100,7 @@ int main(int argc, char const *argv[])
             }
             gameState.updateTurn();
         }
-        
+        cout << "NNNNNNNNNNNNNNNNNNNNNNN\n";
         gameState.NextRound();
         
         //Draw Ability Card
@@ -109,12 +109,15 @@ int main(int argc, char const *argv[])
         //     // cout << abilityDeck.getDeckAbilityCard().at(i)->getAbilityCard();
         //     gameState.getPlayer(i).setAbility(abilityDeck.getDeckAbilityCard().at(i));
         // }
+
+        cout << "NNNNNNNNNNNNNNNNNNNNNNN\n";
         i = 0;
         for(auto& player : gameState.getAllPlayer()){
             player.setAbility(abilityDeck.getDeckAbilityCard().at(i));
             i++;
         }
-
+        cout << "NNNNNNNNNNNNNNNNNNNNNNN\n";
+        
         //PLAY ROUND 2-6
         for(int i = 0; i < 5 ; i++){ // per round
             gameState.HandUpdate();
