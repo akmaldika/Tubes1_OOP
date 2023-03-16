@@ -1,25 +1,28 @@
 #include "../header/Combo.hpp"
 #include "../../utilityFunction.cpp"
 /*Static*/
-map<string, float> Combo::thresholdCombo {
+template <class C>
+map<string, float> Combo<C>::thresholdCombo {
     {"High Card", 0.0},
-    {"Pair", 1.39}, // highcard single: 1.39
-    {"Two Pair", 2.78}, // highest pair : 1.39 + thresholdPair
-    {"Three of a Kind", 4.17}, // highest two pair: 1.39 + thresholdTwoPair
-    {"Straight", 5.56}, // highest three of a kind: 1.39 + thresholdThreeOfAKind 
-    {"Flush", 6.95}, // highest straight: 1.39 + thresholdStraight
-    {"Full House", 8.34}, // highest flush: 1.39 + thresholdFlush
-    {"Four of a Kind", 9.73}, // highest full house: 1.39 + thresholdFullHouse
-    {"Straight Flush", 11.12} // highest four of a kind: 1.39 + thresHoldFourOfAKind
+    {"Pair", 1.49}, // highcard single: 1.39
+    {"Two Pair", 2.98}, // highest pair : 1.39 + thresholdPair
+    {"Three of a Kind", 4.47}, // highest two pair: 1.39 + thresholdTwoPair
+    {"Straight", 5.96}, // highest three of a kind: 1.39 + thresholdThreeOfAKind 
+    {"Flush", 7.45}, // highest straight: 1.39 + thresholdStraight
+    {"Full House", 8.94}, // highest flush: 1.39 + thresholdFlush
+    {"Four of a Kind", 10.43}, // highest full house: 1.39 + thresholdFullHouse
+    {"Straight Flush", 11.92} // highest four of a kind: 1.39 + thresHoldFourOfAKind
     };
 
 /*Non-Static*/
-Combo::Combo(){
+template <class C>
+Combo<C>::Combo(){
     this->type = "unknown";
     this->valueCombo = 0;
 }
 
-Combo::Combo(vector<Card>& combination){
+template <class C>
+Combo<C>::Combo(vector<C>& combination){
     if(combination.size() > 0){
         for (auto i= combination.begin(); i!=combination.end(); i++){
             this->combination.push_back(*i);
@@ -29,15 +32,18 @@ Combo::Combo(vector<Card>& combination){
     this->valueCombo = 0;
 }
 
-Combo::~Combo(){
+template <class C>
+Combo<C>::~Combo(){
     this->combination.clear();
 }
 
-string Combo::getType(){
+template <class C>
+string Combo<C>::getType(){
     return this->type;
 }
 
-bool Combo::isFlush(){ 
+template <class C>
+bool Combo<C>::isFlush(){ 
     if (this->combination.size() == 5){
         for (int i=0; i<4;i++){
             if (this->combination[i].getColor() != this->combination[i+1].getColor()){
@@ -49,7 +55,8 @@ bool Combo::isFlush(){
     return false;
 }
 
-bool Combo::isStraight(){
+template <class C>
+bool Combo<C>::isStraight(){
     if (this->combination.size() == 5){
         vector<Card> orderedCombination = sort(this->combination);
         for (int i=0; i<4;i++){
@@ -62,8 +69,8 @@ bool Combo::isStraight(){
     return false;
 }
 
-
-pair<int,float> Combo::getPair(){
+template <class C>
+pair<int,float> Combo<C>::getPair(){
     set<int> pairValue;
     pair<int,float> pairData; // <nPair, weightValue>
     float weightPivot;
@@ -94,7 +101,8 @@ pair<int,float> Combo::getPair(){
     return pairData;
 }
 
-pair<int,float> Combo:: getNOfKind(){
+template <class C>
+pair<int,float> Combo<C>:: getNOfKind(){
     pair<int,float> NOfKindData; // <nKind, weightValue>
     // default
     NOfKindData.first = 1; 
@@ -125,7 +133,8 @@ pair<int,float> Combo:: getNOfKind(){
     return NOfKindData;
 }
 
-void Combo::setComboType(){
+template <class C>
+void Combo<C>::setComboType(){
     // Mencari jenis combinasi
     pair<int,float> nOfKindData = getNOfKind(); // <NOfKind, weightValue>
     pair<int,float> pairData{0,0}; // <NPair, weightValue>
@@ -135,10 +144,10 @@ void Combo::setComboType(){
     if (isFlush()){
         if(isStraight()){
             this->type="Straight Flush";
-            this->valueCombo = max<Card>(this->combination).weightValue();
+            this->valueCombo = max<C>(this->combination).weightValue();
         } else {
             this->type="Flush";
-            this->valueCombo = max<Card>(this->combination).value() * 0.1;
+            this->valueCombo = max<C>(this->combination).value() * 0.1;
         }
     } else if (nOfKindData.first==4){
         this->type="Four of a Kind";
@@ -152,7 +161,7 @@ void Combo::setComboType(){
         }
     } else if (isStraight()){
         this->type="Straight";
-        this->valueCombo = max<Card>(this->combination).weightValue();
+        this->valueCombo = max<C>(this->combination).weightValue();
     } else if(pairData.first==2){
         this->type="Two Pair";
         this->valueCombo = pairData.second;
@@ -161,11 +170,12 @@ void Combo::setComboType(){
         this->valueCombo = pairData.second;
     } else {
         this->type="High Card";
-        this->valueCombo = (max<Card>(this->combination)).weightValue();
+        this->valueCombo = (max<C>(this->combination)).weightValue();
     }
 }
 
-float Combo::value(){
+template <class C>
+float Combo<C>::value(){
     if (this->type == "unknown" && (this->combination.size()>0)){
         setComboType();
         this->valueCombo += thresholdCombo[this->type];
@@ -173,10 +183,11 @@ float Combo::value(){
     return this->valueCombo;
 }
 
-bool Combo::operator>(Combo& combo){
+template <class C>
+bool Combo<C>::operator>(Combo<C>& combo){
     if (*this==combo){ // Kasus untuk flush, saat angka tertinggi sama
-        vector<Card> sortedThisCombination = sort<Card>(this->combination);
-        vector<Card> sortedComboCombination = sort<Card>(combo.combination);
+        vector<C> sortedThisCombination = sort<C>(this->combination);
+        vector<C> sortedComboCombination = sort<C>(combo.combination);
         // Bandingkan angka tertinggi berikutnya
         if (sortedThisCombination[3].value() == sortedComboCombination[3].value()){
             if(sortedThisCombination[2].value() == sortedComboCombination[2].value()){
@@ -196,18 +207,21 @@ bool Combo::operator>(Combo& combo){
     return (this->value() > combo.value());
 }
 
-bool Combo::operator>=(Combo& combo){
+template <class C>
+bool Combo<C>::operator>=(Combo<C>& combo){
     return (this->value() >= combo.value());
 }
 
-bool Combo::operator==(Combo& combo){
+template <class C>
+bool Combo<C>::operator==(Combo<C>& combo){
     return (this->value() == combo.value());
 }
-
-bool Combo::operator<(Combo& combo){
+template <class C>
+bool Combo<C>::operator<(Combo<C>& combo){
     return (this->value() < combo.value());
 }
-void Combo::print(){
+template <class C>
+void Combo<C>::print(){
     for (int i=0; i< this->combination.size();i++){
         this->combination[i].print();
         cout<<endl;
@@ -221,3 +235,5 @@ void Combo::print(){
 
 //     return *this;
 // }
+
+template class Combo<Card>;

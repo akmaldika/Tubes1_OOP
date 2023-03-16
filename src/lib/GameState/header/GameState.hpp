@@ -109,7 +109,7 @@ class GameState {
 
         void getGameWinner(); //langsung tambahin skor ke winner game ini (6 round)
 
-        Combo playerHighestCombo(Player& player);
+        Combo<Card> playerHighestCombo(Player& player);
 
         void operator=(const GameState& copy);
 

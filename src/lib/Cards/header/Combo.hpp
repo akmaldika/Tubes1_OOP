@@ -6,16 +6,17 @@
 #include <vector>
 #include <set>
 
+template <class C>
 class Combo: public Valuable{
     private:
-        vector<Card> combination;
+        vector<C> combination;
         float valueCombo; 
         string type;
         static map<string, float> thresholdCombo;
 
     public:
         Combo();
-        Combo(vector<Card>& combination); // Combination sudah terurut sesuai besar nilai kartu
+        Combo(vector<C>& combination); // Combination sudah terurut sesuai besar nilai kartu
         ~Combo();
         string getType();
         bool isFlush();
@@ -24,10 +25,10 @@ class Combo: public Valuable{
         pair<int,float> getNOfKind();
         void setComboType();
         float value();
-        bool operator>(Combo& combo);
-        bool operator>=(Combo& combo);
-        bool operator==(Combo& combo);
-        bool operator<(Combo& combo);
+        bool operator>(Combo<C>& combo);
+        bool operator>=(Combo<C>& combo);
+        bool operator==(Combo<C>& combo);
+        bool operator<(Combo<C>& combo);
         // Combo& operator=(Combo& combo);
         void print();
 };

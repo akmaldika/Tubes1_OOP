@@ -642,12 +642,12 @@ void GameState::printInterface()
     CardTable.printCard();
 }
 
-Combo GameState::playerHighestCombo(Player &player)
+Combo<Card> GameState::playerHighestCombo(Player &player)
 {
 
     vector<Card> cardList;                 // kumpulan kartu yang bisa digunakan untuk menemukan kombinasi
     vector<Card> possibleCombination;      // kombinasi kartu yang mungkin
-    vector<Combo> listPossibleCombination; // list semua kombinasi kartu yang mungkin
+    vector<Combo<Card>> listPossibleCombination; // list semua kombinasi kartu yang mungkin
 
     // Filling the cardList
     if (CardTable.getTableCardCount() > 0)
@@ -675,7 +675,7 @@ Combo GameState::playerHighestCombo(Player &player)
                         for (int m = l + 1; m < cardList.size(); m++)
                         {
                             possibleCombination = {cardList[i], cardList[j], cardList[k], cardList[l], cardList[m]};
-                            Combo possibleCombo(cardList);
+                            Combo<Card> possibleCombo(cardList);
                             float tempVal = possibleCombo.value(); // Supaya evaluasi tipeya
                             listPossibleCombination.push_back(possibleCombination);
                         }
@@ -686,17 +686,17 @@ Combo GameState::playerHighestCombo(Player &player)
     }
     else
     { // Jika hanya ada satu kombinasi yang mungkin
-        Combo possibleCombo(cardList);
+        Combo<Card> possibleCombo(cardList);
         float tempVal = possibleCombo.value(); // Supaya evaluasi tipeya
         listPossibleCombination.push_back(possibleCombo);
     }
 
     if ((this->Round == 6) && (player.getListFinalCombo().size()==0)){ // Simpan semua possible combination untuk handling tie breaker di akhir game
-        vector<Combo> best = sortDsc<Combo>(listPossibleCombination); 
+        vector<Combo<Card>> best = sortDsc<Combo<Card>>(listPossibleCombination); 
         player.setListFinalCombo(best);
     }
 
-    return max<Combo>(listPossibleCombination);
+    return max<Combo<Card>>(listPossibleCombination);
 }
 
 // Temporary
@@ -798,7 +798,7 @@ void GameState::HandUpdate()
 {
     for (auto &player : AllPlayer)
     {
-        Combo bestCombo = playerHighestCombo(player);
+        Combo<Card> bestCombo = playerHighestCombo(player);
         player.setCombo(bestCombo);
     }
 }

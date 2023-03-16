@@ -19,39 +19,22 @@ Player::Player(Card card1, Card card2)
     this->played = false;
     playerCount++;
 }
-void Player::setCombo(Combo &MyCombo){
+void Player::setCombo(Combo<Card> &MyCombo){
     Hand = MyCombo;
 }
-Combo Player::getCombo(){
+Combo<Card> Player::getCombo(){
     return Hand;
 }
 
-void Player::setListFinalCombo(vector<Combo> listFinalCombo){
+void Player::setListFinalCombo(vector<Combo<Card>> listFinalCombo){
     this->listFinalCombo = listFinalCombo;
 }
 
-vector<Combo> Player::getListFinalCombo(){
+vector<Combo<Card>> Player::getListFinalCombo(){
     return this->listFinalCombo;
 }
 
-void Player::setPlayerName(string name){
-    this->name = name;
-}
-string Player::getPlayerName(){
-    return name;
-}
-void Player::setPlayerPoint(long long int p){
-    this->point = p;
-}
-long long int Player::getPlayerPoint(){
-    return point;
-}
-void Player::setPlayerID(int ID){
-    this->ID = ID;
-}
-int Player::getPlayerID(){
-    return ID;
-}
+
 // void Player::status() const{
 //     cout << "Status Player" << endl;
 //     cout << "ID : " << this->ID << endl;
@@ -85,28 +68,11 @@ void Player::setPlayed(bool played){
 bool Player::getPlayed(){
     return played;
 }
-bool Player::operator>(Player& enemy){
-    return (this->point > enemy.point);
-}
-bool Player::operator==(const Player& enemy){
-    return (this->point == enemy.ID);
-}
-bool Player::operator<(Player& enemy){
-    return (this->point < enemy.point);
-}
+
 
 void Player::addPoint(long long int amount){
     point += amount;
 }
-
-// void Player::setCombo(Combo paket){
-//     MyCombo = paket;
-// }
-
-// Combo Player::getCombo(){
-//     return MyCombo;
-// }
-
 
 void Player::setCardOne(Card card1){
     MyCard.setFirstPlayerCard(card1);

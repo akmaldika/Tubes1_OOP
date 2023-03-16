@@ -40,9 +40,9 @@ int main(){
 
     vector<Card> collectionCard2{kartu2h,kartu3h,kartu4h,kartu7h, kartu9h};
     vector<Card> collectionCard1{kartu2k, kartu3k, kartu4k, kartu5k,kartu6k};
-    Combo defCombination;
-    Combo combination1(collectionCard1);
-    Combo combination2(collectionCard2);
+    Combo<Card> defCombination;
+    Combo<Card> combination1(collectionCard1);
+    Combo<Card> combination2(collectionCard2);
     cout<<"isFlush: "<<combination1.isFlush()<<endl;
     cout<<"isStraight: "<<combination1.isStraight()<<endl;
     cout<<"nPair: "<<combination1.getPair().first<<endl;
@@ -51,12 +51,12 @@ int main(){
     cout<<"Type1: "<<combination1.getType()<<endl;
     combination1.print();
 
-    if (combination1>combination2){
-        cout<< "Kombinasi pertama lebih besar daripada kombinasi kedua"<<endl;
+    if (combination1<combination2){
+        cout<< "Kombinasi pertama lebih kecil daripada kombinasi kedua"<<endl;
     } else if (combination1==combination2){
         cout<<"Kombinasi pertama sama dengan kombinasi kedua"<<endl;
-    } else if(combination1<combination2){
-        cout<<"Kombinasi pertama lebih kecil daripada kombinasi kedua"<<endl;
+    } else if(combination1>combination2){
+        cout<<"Kombinasi pertama lebih besar daripada kombinasi kedua"<<endl;
     }
     cout<<"Type2: "<<combination2.getType()<<endl;
     combination2.print();

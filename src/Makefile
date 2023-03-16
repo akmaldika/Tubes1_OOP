@@ -23,15 +23,15 @@ LIBA6 := lib/AbilityCard/implementation/ReverseDirection.cpp
 LIBA7 := lib/AbilityCard/implementation/SwapCard.cpp
 LIBA8 := lib/AbilityCard/implementation/Switch.cpp
 LIBEXC := lib/Exceptions/implementation/Exceptions.cpp
-
+LIBSTANDARDPLAYER := lib/Player/implementation/StandardPlayer.cpp
 OUTPUT := ../bin/main
 
 main: 
 	@echo "Compiling main.."
-	$(CPP) $(SRCMAIN) $(LIBSTATE) $(LIBPLAYER) $(LIBCARD) $(LIBCOMBO) $(LIBPCARD) $(LIBDCARD) $(LIBDACARD) $(LIBTCARD) $(LIBINPUT) $(LIBA1) $(LIBA2) $(LIBA3) $(LIBA4) $(LIBA5) $(LIBA6) $(LIBA7) $(LIBA8) $(LIBEXC) -o $(OUTPUT)
+	$(CPP) $(SRCMAIN) $(LIBSTATE) $(LIBSTANDARDPLAYER) $(LIBPLAYER) $(LIBCARD) $(LIBCOMBO) $(LIBPCARD) $(LIBDCARD) $(LIBDACARD) $(LIBTCARD) $(LIBINPUT) $(LIBA1) $(LIBA2) $(LIBA3) $(LIBA4) $(LIBA5) $(LIBA6) $(LIBA7) $(LIBA8) $(LIBEXC) -o $(OUTPUT)
 test:
 	@echo "Compiling main.."
-	$(CPP) $(SRCTES) $(LIBSTATE) $(LIBPLAYER) $(LIBCARD) $(LIBCOMBO) $(LIBPCARD) $(LIBDCARD) $(LIBDACARD) $(LIBTCARD) $(LIBINPUT) $(LIBA1) $(LIBA2) $(LIBA3) $(LIBA4) $(LIBA5) $(LIBA6) $(LIBA7) $(LIBA8) $(LIBEXC) -o $(OUTPUT)
+	$(CPP) $(SRCTES) $(LIBSTATE) $(LIBSTANDARDPLAYER) $(LIBPLAYER) $(LIBCARD) $(LIBCOMBO) $(LIBPCARD) $(LIBDCARD) $(LIBDACARD) $(LIBTCARD) $(LIBINPUT) $(LIBA1) $(LIBA2) $(LIBA3) $(LIBA4) $(LIBA5) $(LIBA6) $(LIBA7) $(LIBA8) $(LIBEXC) -o $(OUTPUT)
 run:
 	$(OUTPUT)
 clean:

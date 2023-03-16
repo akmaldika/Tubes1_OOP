@@ -1,14 +1,11 @@
 #ifndef CARD_HPP
 #define CARD_HPP
 
-#include "Valuable.hpp"
+#include "StandardCard.hpp"
 #include "../../color.h"
-#include <iostream>
-#include <map>
 using namespace std;
-class Card : public Valuable {
+class Card : public StandardCard{
     private:
-        int valueCard;
         string color;
         static map<string, float> colorFactor;
     public: 
