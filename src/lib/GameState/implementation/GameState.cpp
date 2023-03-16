@@ -396,41 +396,43 @@ void GameState::evaluateAction(AbilityCard& offAbility)
                     tempTurn.first = (tempTurn.first + 1) % AllPlayer.size();
                     if (!this->Reverse)
                     {
-                        nextTurn = this->Turn.first - 1;
+                        nextTurn = (this->Turn.first - 1) % AllPlayer.size();
                         for (int i = 0; i < this->AllPlayer.size(); i++)
                         {
+                            cout << (nextTurn - i) % AllPlayer.size() + 1 << endl;
                             if (
-                                !AllPlayer[(nextTurn - i) % AllPlayer.size()].getPlayed() &&
-                                AllPlayer[(nextTurn - i) % AllPlayer.size()].getPlayerID() != temp.getPlayerID()
+                                !AllPlayer[(nextTurn - i) % AllPlayer.size() + 1].getPlayed() &&
+                                AllPlayer[(nextTurn - i) % AllPlayer.size() + 1].getPlayerID() != temp.getPlayerID()
                                 )
                             {
-                                cout << "P" << AllPlayer[(nextTurn - i) % AllPlayer.size()].getPlayerID() << " " << AllPlayer[(nextTurn - i) % AllPlayer.size()].getPlayerName();
+                                cout << "P" << AllPlayer[(nextTurn - i) % AllPlayer.size() + 1].getPlayerID() << " ";
                             }
                         }
                         cout << endl << "Turn next round: ";
                         for (int i = 0; i < this->AllPlayer.size(); i++)
                         {
-                            cout << "P" << AllPlayer[(nextTurn - i) % AllPlayer.size()].getPlayerID() << " " << AllPlayer[(nextTurn - i) % AllPlayer.size()].getPlayerName();
+                            cout << "P" << AllPlayer[(nextTurn - i) % AllPlayer.size() + 1].getPlayerID() << " ";
 
                         }
+                        cout << endl;
                     }
                     else
                     {
-                        nextTurn = this->Turn.first + 1;
+                        nextTurn = (this->Turn.first + 1) % AllPlayer.size();
                         for (int i = 0; i < this->AllPlayer.size(); i++)
                         {
                             if (
-                                !AllPlayer[(i + nextTurn) % AllPlayer.size()].getPlayed() &&
-                                AllPlayer[(i + nextTurn) % AllPlayer.size()].getPlayerID() != temp.getPlayerID()
+                                !AllPlayer[(i + nextTurn) % AllPlayer.size() + 1].getPlayed() &&
+                                AllPlayer[(i + nextTurn) % AllPlayer.size() + 1].getPlayerID() != temp.getPlayerID()
                                 )
                             {
-                                cout << "P" << AllPlayer[(i + nextTurn) % AllPlayer.size()].getPlayerID() << " " << AllPlayer[(i + nextTurn) % AllPlayer.size()].getPlayerName();
+                                cout << "P" << AllPlayer[(i + nextTurn) % AllPlayer.size() + 1].getPlayerID() << " ";
                             }
                         }
                         cout << endl << "Turn next round: ";
                         for (int i = 0; i < this->AllPlayer.size(); i++)
                         {
-                            cout << "P" << AllPlayer[(i + nextTurn) % AllPlayer.size()].getPlayerID() << " " << AllPlayer[(i + nextTurn) % AllPlayer.size()].getPlayerName();
+                            cout << "P" << AllPlayer[(i + nextTurn) % AllPlayer.size() + 1].getPlayerID() << " ";
 
                         }
                     }
@@ -517,7 +519,7 @@ void GameState::evaluateAction(AbilityCard& offAbility)
                     inputApp.takeIntInput(2);
                     isKiri2 = inputApp.getIntInput() == 1 ? true : false;
 
-                    SwapCard.useAbilityCard(this->AllPlayer[idx1], isKiri1, this->AllPlayer[idx2], isKiri2);
+                    SwapCard.useAbilityCard(this->AllPlayer[idx1], isKiri1, this->AllPlayer[idx2], isKiri2, this->AllPlayer[idx2]);
                     temp.setAbility(&offAbility);
 
                     cout << "P" << AllPlayer[idx1].getPlayerID() << " " << AllPlayer[idx1].getPlayerName() << " cards: " << endl;
@@ -563,7 +565,7 @@ void GameState::evaluateAction(AbilityCard& offAbility)
                     auto itr = find(AllPlayer.begin(), AllPlayer.end(), playerOther);
                     int idx = distance(AllPlayer.begin(), itr);
 
-                    Switch.useAbilityCard(temp, AllPlayer[idx]);
+                    Switch.useAbilityCard(temp, AllPlayer[idx], temp);
                     temp.setAbility(&offAbility);
 
                     cout << "Your take P" << playerOther.getPlayerID() << " " << playerOther.getPlayerName() << "card" << endl
@@ -624,6 +626,7 @@ void GameState::evaluateAction(AbilityCard& offAbility)
                         else
                         {
                             // Case 1
+                            cout << "You dispell " << AllPlayer[idx].getAbility()->getAbilityCard() << " ability!" << endl;
                             abilityLess.useAbilityCard(AllPlayer[idx]);
                             temp.setAbility(&offAbility);
                         }

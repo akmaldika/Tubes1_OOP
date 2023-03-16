@@ -10,22 +10,23 @@ using namespace std;
 
 // Card tempCard1, tempCard2;
 
-pair<Card*,Card*> Switch::tempPlayerCard;
+// pair<Card*,Card*> Switch::tempPlayerCard(nullptr,nullptr);
 
 Switch::Switch() 
 {
     this->abilityCard = "Switch";
 }
 
-void Switch::useAbilityCard(Player& player1, Player& player2)
+void Switch::useAbilityCard(Player& player1, Player& player2, const Player& _player1)
 {
     AbilityCard::useAbilityCard();
-    tempPlayerCard.first  = &player1.getCardOne(); 
-    tempPlayerCard.second = &player1.getCardTwo();
+    // pair<Card*,Card*> tempPlayerCard;
+    // tempPlayerCard.first  = &player1.getCardOne(); 
+    // tempPlayerCard.second = &player1.getCardTwo();
     player1.setCardOne(player2.getCardOne());
     player1.setCardTwo(player2.getCardTwo());
-    player2.setCardOne(*tempPlayerCard.first);
-    player2.setCardTwo(*tempPlayerCard.second);
+    player2.setCardOne(_player1.getMyCard().getFirstPlayerCard());
+    player2.setCardTwo(_player1.getMyCard().getSecondPlayerCard());
 }
 
 void Switch::printAbilityCard(){
