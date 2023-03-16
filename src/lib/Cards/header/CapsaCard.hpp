@@ -1,5 +1,5 @@
-#ifndef CARD_HPP
-#define CARD_HPP
+#ifndef CAPSACARD_HPP
+#define CAPSACARD_HPP
 
 #include "StandardCard.hpp"
 #include "../../color.h"
