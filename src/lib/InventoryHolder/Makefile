@@ -25,14 +25,27 @@ LIBA8 := ../AbilityCard/implementation/Switch.cpp
 LIBEXC := ../Exceptions/implementation/Exceptions.cpp
 OUTPUTINVEN := ../../../bin/inventoryholder
 
+SRCPCAPSA := driver/DriverPlayerCapsaCard.cpp
+LIBPCAPSA := implementation/PlayerCapsaCard.cpp
+LIBCARDC := ../Cards/implementation/CapsaCard.cpp
+LIBCOMBO := ../Cards/implementation/Combo.cpp
+OUTPUTPCAPSA := ../../../bin/playercapsacard
+
 all: inventory runInventory
 
 inventory: 
 	@echo "Compiling inventory driver.."
 	$(CPP) $(SRCDINVEN) $(LIBCARD) $(LIBPCARD) $(LIBDCARD) $(LIBDACARD) $(LIBTCARD) $(LIBA1) $(LIBA2) $(LIBA3) $(LIBA4) $(LIBA5) $(LIBA6) $(LIBA7) $(LIBA8) $(LIBEXC) -o $(OUTPUTINVEN)
 
+playerCapsa:
+	@echo "Compiling player capsa.."
+	$(CPP) $(SRCPCAPSA) $(LIBCARD) $(LIBPCAPSA) $(LIBCARDC) $(LIBCOMBO) -o $(OUTPUTPCAPSA)
+
 runInventory:
 	$(OUTPUTINVEN)
+
+runPlayerCapsa:
+	$(OUTPUTPCAPSA)
 
 cleanInventory:
 	@echo "Cleaning up inventory..."
