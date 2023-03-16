@@ -84,6 +84,7 @@ int main(int argc, char const *argv[])
     }
 
     while(!gameState.checkAllWin()){
+        abilityDeck = DeckAbilityCard();
         gameCounter++;
         cout << "\n                             GAME " << gameCounter << "\n";
 

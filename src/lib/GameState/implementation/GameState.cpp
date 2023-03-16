@@ -120,7 +120,7 @@ void GameState::NextRound()
     }
 
     // set turn ke pemain setelah pemain giliran pertama di round sebelumnya.
-    Pivot.first += 1;
+    Pivot.first = (Pivot.first + 1) % 7;
     Pivot.second = &AllPlayer.at(Pivot.first);
     Turn = Pivot;
 }
@@ -421,20 +421,22 @@ void GameState::evaluateAction(AbilityCard& offAbility)
                         nextTurn = (this->Turn.first + 1) % AllPlayer.size();
                         for (int i = 0; i < this->AllPlayer.size(); i++)
                         {
+                            // cout << (nextTurn - i + AllPlayer.size()) % AllPlayer.size() << endl;
                             if (
-                                !AllPlayer[(i + nextTurn) % AllPlayer.size() + 1].getPlayed() &&
-                                AllPlayer[(i + nextTurn) % AllPlayer.size() + 1].getPlayerID() != temp.getPlayerID()
+                                !AllPlayer[(nextTurn + i) % AllPlayer.size()].getPlayed() &&
+                                AllPlayer[(nextTurn + i) % AllPlayer.size()].getPlayerID() != temp.getPlayerID()
                                 )
                             {
-                                cout << "P" << AllPlayer[(i + nextTurn) % AllPlayer.size() + 1].getPlayerID() << " ";
+                                cout << "P" << AllPlayer[(nextTurn + i) % AllPlayer.size()].getPlayerID() << " ";
                             }
                         }
                         cout << endl << "Turn next round: ";
                         for (int i = 0; i < this->AllPlayer.size(); i++)
                         {
-                            cout << "P" << AllPlayer[(i + nextTurn) % AllPlayer.size() + 1].getPlayerID() << " ";
+                            cout << "P" << AllPlayer[(tempPivot.first + i) % AllPlayer.size()].getPlayerID() << " ";
 
                         }
+                        cout << endl;
                     }
 
                     ReverseDirection.useAbilityCard(this->Reverse);
