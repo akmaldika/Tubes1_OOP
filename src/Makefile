@@ -24,11 +24,22 @@ LIBA7 := lib/AbilityCard/implementation/SwapCard.cpp
 LIBA8 := lib/AbilityCard/implementation/Switch.cpp
 LIBEXC := lib/Exceptions/implementation/Exceptions.cpp
 LIBSTANDARDPLAYER := lib/Player/implementation/StandardPlayer.cpp
+LIBPCAPSA := lib/InventoryHolder/implementation/PlayerCapsaCard.cpp
+LIBCARDC := lib/Cards/implementation/CapsaCard.cpp
+LIBPLAYERCAPSA := lib/Player/implementation/PlayerCapsa.cpp
+LIBSTATECAPSA := lib/GameState/implementation/GameState.cpp
+
 OUTPUT := ../bin/main
 
 main: 
 	@echo "Compiling main.."
 	$(CPP) $(SRCMAIN) $(LIBSTATE) $(LIBSTANDARDPLAYER) $(LIBPLAYER) $(LIBCARD) $(LIBCOMBO) $(LIBPCARD) $(LIBDCARD) $(LIBDACARD) $(LIBTCARD) $(LIBINPUT) $(LIBA1) $(LIBA2) $(LIBA3) $(LIBA4) $(LIBA5) $(LIBA6) $(LIBA7) $(LIBA8) $(LIBEXC) -o $(OUTPUT)
+
+mainCapsa:
+	@echo "Compiling main Capsa"
+	$(CPP) $(SRCMAINCAPSA) $(LIBSTATECAPSA) $(LIBSTANDARDPLAYER) $(LIBPLAYERCAPSA) $(LIBCARDC) $(LIBPCAPSA) $(LIBCOMBO) $(LIBINPUT) $(LIBEXC) -o $(OUTPUT)
+
+
 test:
 	@echo "Compiling main.."
 	$(CPP) $(SRCTES) $(LIBSTATE) $(LIBSTANDARDPLAYER) $(LIBPLAYER) $(LIBCARD) $(LIBCOMBO) $(LIBPCARD) $(LIBDCARD) $(LIBDACARD) $(LIBTCARD) $(LIBINPUT) $(LIBA1) $(LIBA2) $(LIBA3) $(LIBA4) $(LIBA5) $(LIBA6) $(LIBA7) $(LIBA8) $(LIBEXC) -o $(OUTPUT)
