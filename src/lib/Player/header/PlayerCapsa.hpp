@@ -20,7 +20,7 @@ class PlayerCapsa : public StandardPlayer{
     PlayerCapsa(int ID, string name,  vector<CapsaCard> cards);
     // getter and setter
     PlayerCapsaCard getMyCard() const;
-
+    void setMyCard(PlayerCapsaCard newHands);
     void status();
 
     void addPoint(long long int amount);

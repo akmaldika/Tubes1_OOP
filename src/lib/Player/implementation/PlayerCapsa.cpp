@@ -18,6 +18,10 @@ PlayerCapsaCard PlayerCapsa::getMyCard() const{
     return this->MyHands;
 }
 
+void PlayerCapsa::setMyCard(PlayerCapsaCard newHands){
+    this->MyHands = newHands;
+}
+
 void PlayerCapsa::status(){
         cout << "    .///\\.        " << endl;
         cout << "   //////\\\\     \n";
