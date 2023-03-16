@@ -12,7 +12,6 @@ int main(int argc, char const *argv[])
     int gameCounter = 0;
     string filename;
     DeckAbilityCard abilityDeck;
-
     /*
         ALGORITMA PERMAINAN
     */    
@@ -136,7 +135,9 @@ int main(int argc, char const *argv[])
     // for (int i=0; i<7; i++){
     //     gameState.getPlayer(i).status();
     // }
+
     cout << "---------   The winner of the game is:    ---------- " << endl;
+
     gameState.getAllWinner().status();
     cout << "------------------   Congrats    -------------------- " << endl;
 

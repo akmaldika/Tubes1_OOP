@@ -25,6 +25,15 @@ void Player::setCombo(Combo &MyCombo){
 Combo Player::getCombo(){
     return Hand;
 }
+
+void Player::setListFinalCombo(vector<Combo> listFinalCombo){
+    this->listFinalCombo = listFinalCombo;
+}
+
+vector<Combo> Player::getListFinalCombo(){
+    return this->listFinalCombo;
+}
+
 void Player::setPlayerName(string name){
     this->name = name;
 }
