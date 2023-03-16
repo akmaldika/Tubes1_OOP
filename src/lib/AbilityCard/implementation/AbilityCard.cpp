@@ -5,6 +5,13 @@
 #include "../../Player/header/Player.hpp"
 #include "../../GameState/header/GameState.hpp"
 
+AbilityCard::AbilityCard() : AbilityCard(this->ABILITYCARD_DEFAULT) {}
+
+AbilityCard::AbilityCard(const string& abilityCard)
+{
+    this->abilityCard = abilityCard;
+}
+
 void AbilityCard::setAbilityCard(const string& abilityCard)
 {
     this->abilityCard = abilityCard;
@@ -36,4 +43,7 @@ bool AbilityCard::operator==(const AbilityCard& other) const
     return this->abilityCard == other.abilityCard;
 }
 
-void AbilityCard::printAbilityCard(){};
+void AbilityCard::printAbilityCard()
+{
+    return;
+};

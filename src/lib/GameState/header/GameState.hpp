@@ -89,7 +89,7 @@ class GameState {
 
         void AddCardToTable(Card cardAdded); // tambah kartu di meja
 
-        void evaluateAction();
+        void evaluateAction(AbilityCard& offAbility);
 
         void printState();
 

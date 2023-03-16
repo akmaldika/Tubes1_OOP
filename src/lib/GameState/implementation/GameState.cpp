@@ -177,6 +177,7 @@ void GameState::inputAction()
     InputApp command;
 
     cout << "\n                 -----> YOUR TURN <-----" << endl;
+    updateTurn();
     Turn.second.status();
 
     cout << " ____________________________\n";
@@ -279,9 +280,8 @@ void GameState::inputRandom()
 //     Action = command.getStrInput();
 // }
 
-void GameState::evaluateAction()
+void GameState::evaluateAction(AbilityCard& offAbility)
 {
-
     while (true)
     {
         try
@@ -311,8 +311,8 @@ cout << "ABILTY AWAL " << Turn.second.getAbility()->getAbilityCard() << endl;
                     // Turn.second.getMyCard().printCard();
 
                     reroll.useAbilityCard(this->deck, Turn.second);
-                    Turn.second.setAbility(&reroll);
-cout << "ABILTY MATI" << Turn.second.getAbility()->getAbilityCard() << endl;
+                    Turn.second.setAbility(&offAbility);
+cout << "ABILTY MATI " << Turn.second.getAbility()->getAbilityCard() << endl;
 
                     cout << "Your you get 2 new card :" << endl;
                     Turn.second.getMyCard().printCard();
@@ -333,8 +333,8 @@ cout << "ABILTY AWAL " << Turn.second.getAbility()->getAbilityCard() << endl;
                             <<  this->PrizePool << " -> ";
                     
                     quadruple.useAbilityCard(this->PrizePool);
-                    Turn.second.setAbility(&quadruple);
-cout << "ABILTY MATI" << Turn.second.getAbility()->getAbilityCard() << endl;
+                    Turn.second.setAbility(&offAbility);
+cout << "ABILTY MATI " << Turn.second.getAbility()->getAbilityCard() << endl;
                     cout << this->PrizePool << endl;
 
                     break;
@@ -360,8 +360,8 @@ cout << "ABILTY AWAL " << Turn.second.getAbility()->getAbilityCard() << endl;
                         <<  this->PrizePool << " -> ";
                     
                     Quarter.useAbilityCard(this->PrizePool);
-                    Turn.second.setAbility(&Quarter);
-cout << "ABILTY MATI" << Turn.second.getAbility()->getAbilityCard() << endl;
+                    Turn.second.setAbility(&offAbility);
+cout << "ABILTY MATI " << Turn.second.getAbility()->getAbilityCard() << endl;
 
                     cout << this->PrizePool << endl;
                     break;
@@ -398,7 +398,7 @@ cout << "ABILTY MATI" << Turn.second.getAbility()->getAbilityCard() << endl;
 
                     ReverseDirection.useAbilityCard(this->Reverse);
                     cout << ReverseDirection.getAbilityCard() << endl;
-                    Turn.second.setAbility(&ReverseDirection);
+                    Turn.second.setAbility(&offAbility);
                     cout << Turn.second.getAbility()->getAbilityCard() << endl;
 
 
@@ -476,7 +476,7 @@ cout << idx2 << endl;
                     AllPlayer[idx1].getMyCard().printCard();
                     AllPlayer[idx2].getMyCard().printCard();
                     SwapCard.useAbilityCard((this->AllPlayer[idx1]), isKiri1, this->AllPlayer[idx2], isKiri2);
-                    Turn.second.setAbility(&SwapCard);
+                    Turn.second.setAbility(&offAbility);
 
                     break;
                 }
@@ -517,7 +517,7 @@ cout << idx2 << endl;
                     int idx = distance(AllPlayer.begin(), itr);
 
                     Switch.useAbilityCard(Turn.second, AllPlayer[idx]);
-                    Turn.second.setAbility(&Switch);
+                    Turn.second.setAbility(&offAbility);
 
                     cout << "Your take P" << playerOther.getPlayerID() << " " << playerOther.getPlayerName() << "card" << endl
                         << "Your card now :" << endl;
@@ -575,7 +575,7 @@ cout << "idx " << idx << endl;
                         {
                             // Case 1
                             abilityLess.useAbilityCard(AllPlayer[idx]);
-                            Turn.second.setAbility(&abilityLess);
+                            Turn.second.setAbility(&offAbility);
                         }
                     }
 
@@ -598,6 +598,7 @@ cout << "idx " << idx << endl;
             inputAction();
         }
     }
+
 }
 
 void GameState::resetGameState()
