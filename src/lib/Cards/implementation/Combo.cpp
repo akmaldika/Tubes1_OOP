@@ -58,7 +58,7 @@ bool Combo<C>::isFlush(){
 template <class C>
 bool Combo<C>::isStraight(){
     if (this->combination.size() == 5){
-        vector<Card> orderedCombination = sort(this->combination);
+        vector<C> orderedCombination = sort(this->combination);
         for (int i=0; i<4;i++){
             if (orderedCombination[i].value()!=(orderedCombination[i+1].value()-1)){
                 return false;
@@ -131,6 +131,11 @@ pair<int,float> Combo<C>:: getNOfKind(){
         } 
     }
     return NOfKindData;
+}
+
+template <class C>
+vector<C> Combo<C>::getCombination(){
+    return this->combination;
 }
 
 template <class C>
@@ -237,3 +242,4 @@ void Combo<C>::print(){
 // }
 
 template class Combo<Card>;
+template class Combo<CapsaCard>;
