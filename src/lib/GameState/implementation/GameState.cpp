@@ -16,7 +16,7 @@ Player temp;
 pair<int, Player &> emptyPlayer(0, temp); // inisiasi pair kosong buat turn
 
 GameState::GameState()
-    : Turn(emptyPlayer)
+    : Turn(emptyPlayer), Pivot(emptyPlayer)
 {
     PrizePool = DEFAULT_PRIZE;
     Round = 1;
@@ -32,12 +32,15 @@ GameState::GameState()
     Turn.first = 0;
     Turn.second = AllPlayer.at(0);
     Reverse = false;
+
+    Pivot.first = 0;
+    Pivot.second = AllPlayer.at(0);
 
     Action = "";
 }
 
 GameState::GameState(string filename)
-    : Turn(emptyPlayer), deck(filename)
+    : Turn(emptyPlayer), deck(filename), Pivot(emptyPlayer)
 {
 
     PrizePool = DEFAULT_PRIZE;
@@ -55,6 +58,9 @@ GameState::GameState(string filename)
     Turn.first = 0;
     Turn.second = AllPlayer.at(0);
     Reverse = false;
+
+    Pivot.first = 0;
+    Pivot.second = AllPlayer.at(0);
 
     Action = "";
 }
