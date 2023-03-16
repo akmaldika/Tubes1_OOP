@@ -122,7 +122,7 @@ int main(int argc, char const *argv[])
                 gameState.inputAction();
                 //gameState.inputRandom();
                 gameState.evaluateAction(offAbility);
-                gameState.getWhoseTurn().second.status();
+                // gameState.getWhoseTurn().second.status();
                 gameState.NextTurn();
                 gameState.updateTurn();
                 
