@@ -115,6 +115,10 @@ void GameState::NextRound()
     Player temp(tempCard, tempCard);
     temp = AllPlayer.front();
 
+    for (auto &player : AllPlayer){
+        player.setPlayed(false);
+    }
+
     // set turn ke pemain setelah pemain giliran pertama di round sebelumnya.
     Pivot.first += 1;
     Pivot.second = &AllPlayer.at(Pivot.first);
@@ -128,8 +132,9 @@ void GameState::NextTurn()
     Player &temp = *Turn.second;
     temp.setPlayed(true);
 
-    while (temp.getPlayed())
+    while (Turn.second->getPlayed())
     {
+        cout << Turn.first << endl;
         if (!Reverse)
         {
             if (Turn.first == 6)
@@ -157,7 +162,9 @@ void GameState::NextTurn()
             }
         }
     }
+
 }
+
 
 void GameState::AddCardToTable(Card cardAdded)
 {
@@ -181,7 +188,6 @@ void GameState::inputAction()
     Player &temp = *Turn.second;
 
     cout << "\n                 -----> YOUR TURN <-----" << endl;
-    updateTurn();
     temp.status();
 
     cout << " ____________________________\n";
@@ -294,7 +300,9 @@ void GameState::evaluateAction(AbilityCard& offAbility)
         {
             if (Action == "DOUBLE")
             {
+                //cout << "in\n";
                 PrizePool = PrizePool * 2;
+                
                 break;
             }
             else if (Action == "HALF")
@@ -310,18 +318,18 @@ void GameState::evaluateAction(AbilityCard& offAbility)
             else if (Action == "REROLL")
             {
                 Reroll reroll;
-cout << "ABILTY AWAL " << Turn.second.getAbility()->getAbilityCard() << endl;
-                if (temp.getAbility()->getAbilityCard() == reroll.getAbilityCard() && !Turn.second.getAbility()->isAbilityOff())
+                cout << "ABILTY AWAL " << temp.getAbility()->getAbilityCard() << endl;
+                if (temp.getAbility()->getAbilityCard() == reroll.getAbilityCard() && !temp.getAbility()->isAbilityOff())
                 {
                     cout << "You throw your card  :" << endl;
                     // Turn.second.getMyCard().printCard();
 
-                    reroll.useAbilityCard(this->deck, Turn.second);
-                    Turn.second.setAbility(&offAbility);
-cout << "ABILTY MATI " << Turn.second.getAbility()->getAbilityCard() << endl;
+                    reroll.useAbilityCard(this->deck, temp);
+                    temp.setAbility(&offAbility);
+                    cout << "ABILTY MATI " << temp.getAbility()->getAbilityCard() << endl;
 
                     cout << "Your you get 2 new card :" << endl;
-                    Turn.second.getMyCard().printCard();
+                    temp.getMyCard().printCard();
                     break;
                 }
                 else
@@ -332,15 +340,15 @@ cout << "ABILTY MATI " << Turn.second.getAbility()->getAbilityCard() << endl;
             else if (Action == "QUADRUPLE")
             {
                 Quadruple quadruple;
-cout << "ABILTY AWAL " << Turn.second.getAbility()->getAbilityCard() << endl;
-                if (Turn.second.getAbility()->getAbilityCard() == quadruple.getAbilityCard() && !Turn.second.getAbility()->isAbilityOff())
+                cout << "ABILTY AWAL " << temp.getAbility()->getAbilityCard() << endl;
+                if (temp.getAbility()->getAbilityCard() == quadruple.getAbilityCard() && !temp.getAbility()->isAbilityOff())
                 {
-                    cout << Turn.second.getPlayerName() << " use QUADRUPLE! prize pool increase" << endl 
+                    cout << temp.getPlayerName() << " use QUADRUPLE! prize pool increase" << endl 
                             <<  this->PrizePool << " -> ";
                     
                     quadruple.useAbilityCard(this->PrizePool);
-                    Turn.second.setAbility(&offAbility);
-cout << "ABILTY MATI " << Turn.second.getAbility()->getAbilityCard() << endl;
+                    temp.setAbility(&offAbility);
+                    cout << "ABILTY MATI " << temp.getAbility()->getAbilityCard() << endl;
                     cout << this->PrizePool << endl;
 
                     break;
@@ -353,10 +361,10 @@ cout << "ABILTY MATI " << Turn.second.getAbility()->getAbilityCard() << endl;
             else if (Action == "QUARTER")
             {
                 Quarter Quarter;
-cout << "ABILTY AWAL " << Turn.second.getAbility()->getAbilityCard() << endl;
-                if (Turn.second.getAbility()->getAbilityCard() == Quarter.getAbilityCard() && !Turn.second.getAbility()->isAbilityOff())
+                cout << "ABILTY AWAL " << temp.getAbility()->getAbilityCard() << endl;
+                if (temp.getAbility()->getAbilityCard() == Quarter.getAbilityCard() && !temp.getAbility()->isAbilityOff())
                 {
-                    cout << Turn.second.getPlayerName() << " use QUARTER!";
+                    cout << temp.getPlayerName() << " use QUARTER!";
                     if (this->PrizePool == 1)
                     {
                         cout << " but prize pool was low" << endl
@@ -366,8 +374,8 @@ cout << "ABILTY AWAL " << Turn.second.getAbility()->getAbilityCard() << endl;
                         <<  this->PrizePool << " -> ";
                     
                     Quarter.useAbilityCard(this->PrizePool);
-                    Turn.second.setAbility(&offAbility);
-cout << "ABILTY MATI " << Turn.second.getAbility()->getAbilityCard() << endl;
+                    temp.setAbility(&offAbility);
+                    cout << "ABILTY MATI " << temp.getAbility()->getAbilityCard() << endl;
 
                     cout << this->PrizePool << endl;
                     break;
@@ -380,10 +388,10 @@ cout << "ABILTY MATI " << Turn.second.getAbility()->getAbilityCard() << endl;
             else if (Action == "REVERSE")
             {
                 ReverseDirection ReverseDirection;
-                if (Turn.second.getAbility()->getAbilityCard() == ReverseDirection.getAbilityCard() && !Turn.second.getAbility()->isAbilityOff())
+                if (temp.getAbility()->getAbilityCard() == ReverseDirection.getAbilityCard() && !temp.getAbility()->isAbilityOff())
                 {
                     vector<int> turnReverse;
-                    cout << Turn.second.getPlayerName() << " use REVERSE!" << endl
+                    cout << temp.getPlayerName() << " use REVERSE!" << endl
                         << "Rest turn this round: ";
                     int nextTurn;
                     if (!this->Reverse)
@@ -404,8 +412,8 @@ cout << "ABILTY MATI " << Turn.second.getAbility()->getAbilityCard() << endl;
 
                     ReverseDirection.useAbilityCard(this->Reverse);
                     cout << ReverseDirection.getAbilityCard() << endl;
-                    Turn.second.setAbility(&offAbility);
-                    cout << Turn.second.getAbility()->getAbilityCard() << endl;
+                    temp.setAbility(&offAbility);
+                    cout << temp.getAbility()->getAbilityCard() << endl;
 
 
                     inputAction();                    
@@ -418,14 +426,16 @@ cout << "ABILTY MATI " << Turn.second.getAbility()->getAbilityCard() << endl;
             else if (Action == "SWAP")
             {
                 SwapCard SwapCard;
-                if (Turn.second.getAbility()->getAbilityCard() == SwapCard.getAbilityCard() && !Turn.second.getAbility()->isAbilityOff())
+                if (temp.getAbility()->getAbilityCard() == SwapCard.getAbilityCard() && !temp.getAbility()->isAbilityOff())
                 {
                     vector<Player> PlayerList;
+                    Player &temp2 = temp;
                     remove_copy_if(this->AllPlayer.begin(), this->AllPlayer.end(), back_inserter(PlayerList),
                                    [this](Player p)
-                                   { return p.getPlayerID() == this->Turn.second.getPlayerID(); });
+                                   { Player &temp2 = *this->Turn.second;
+                                    return p.getPlayerID() == temp2.getPlayerID(); });
 
-                    cout << Turn.second.getPlayerName() << " used Swap Card ability!" << endl;
+                    cout << temp.getPlayerName() << " used Swap Card ability!" << endl;
                     cout << "Choose the player to swap card : " << endl;
 
                     int i = 0;
@@ -461,7 +471,7 @@ cout << "ABILTY MATI " << Turn.second.getAbility()->getAbilityCard() << endl;
 
                     auto itr2 = find(AllPlayer.begin(), AllPlayer.end(), player2);
                     int idx2 = distance(AllPlayer.begin(), itr2);
-cout << idx2 << endl;
+                    cout << idx2 << endl;
                     bool isKiri1;
                     bool isKiri2;
 
@@ -482,7 +492,7 @@ cout << idx2 << endl;
                     AllPlayer[idx1].getMyCard().printCard();
                     AllPlayer[idx2].getMyCard().printCard();
                     SwapCard.useAbilityCard((this->AllPlayer[idx1]), isKiri1, this->AllPlayer[idx2], isKiri2);
-                    Turn.second.setAbility(&offAbility);
+                    temp.setAbility(&offAbility);
 
                     break;
                 }
@@ -494,16 +504,17 @@ cout << idx2 << endl;
             else if (Action == "SWITCH")
             {
                 Switch Switch;
-                if (Turn.second.getAbility()->getAbilityCard() == Switch.getAbilityCard() && !Turn.second.getAbility()->isAbilityOff())
+                if (temp.getAbility()->getAbilityCard() == Switch.getAbilityCard() && !temp.getAbility()->isAbilityOff())
                 {
                     vector<Player> PlayerList;
                     remove_copy_if(this->AllPlayer.begin(), this->AllPlayer.end(), back_inserter(PlayerList),
                                    [this](Player p)
-                                   { return p.getPlayerID() == this->Turn.second.getPlayerID(); });
+                                   { Player &temp2 = *this->Turn.second;
+                                    return p.getPlayerID() == temp2.getPlayerID(); });
 
-                    cout << Turn.second.getPlayerName() << " used Switch ability!" << endl;
+                    cout << temp.getPlayerName() << " used Switch ability!" << endl;
                     cout << "Your card now :" << endl;
-                    Turn.second.getMyCard().printCard();
+                    temp.getMyCard().printCard();
 
                     cout << "Choose the player you want to switch card with : " << endl;
                     int i = 0;
@@ -522,12 +533,12 @@ cout << idx2 << endl;
                     auto itr = find(AllPlayer.begin(), AllPlayer.end(), playerOther);
                     int idx = distance(AllPlayer.begin(), itr);
 
-                    Switch.useAbilityCard(Turn.second, AllPlayer[idx]);
-                    Turn.second.setAbility(&offAbility);
+                    Switch.useAbilityCard(temp, AllPlayer[idx]);
+                    temp.setAbility(&offAbility);
 
                     cout << "Your take P" << playerOther.getPlayerID() << " " << playerOther.getPlayerName() << "card" << endl
                         << "Your card now :" << endl;
-                    Turn.second.getMyCard().printCard();
+                    temp.getMyCard().printCard();
                     break;
                 }
                 else
@@ -538,12 +549,13 @@ cout << idx2 << endl;
             else if (Action == "ABILITYLESS")
             {
                 Abilityless abilityLess;
-                if (Turn.second.getAbility()->getAbilityCard() == abilityLess.getAbilityCard() && !Turn.second.getAbility()->isAbilityOff())
+                if (temp.getAbility()->getAbilityCard() == abilityLess.getAbilityCard() && !temp.getAbility()->isAbilityOff())
                 {
                     vector<Player> PlayerList;
                     remove_copy_if(this->AllPlayer.begin(), this->AllPlayer.end(), back_inserter(PlayerList),
                                    [this](Player p)
-                                   { return p.getPlayerID() == this->Turn.second.getPlayerID(); });
+                                   {Player &temp2 = *this->Turn.second;
+                                    return p.getPlayerID() == temp2.getPlayerID(); });
 
                     if (find_if(PlayerList.begin(), PlayerList.end(), [](Player &p)
                                 { return p.getAbility()->getAbilityCard() != p.getAbility()->getAbilityCardOff(); }) == PlayerList.end())
@@ -553,7 +565,7 @@ cout << idx2 << endl;
                     }
                     else
                     {
-                        cout << Turn.second.getPlayerName() << " will dispell other player ability!" << endl;
+                        cout << temp.getPlayerName() << " will dispell other player ability!" << endl;
                         cout << "Choose the player you want to dispell ability with : " << endl;
                         int i = 0;
                         for (auto player : PlayerList)
@@ -571,7 +583,7 @@ cout << idx2 << endl;
 
                         auto itr = find(AllPlayer.begin(), AllPlayer.end(), playerOther);
                         int idx = distance(AllPlayer.begin(), itr);
-cout << "idx " << idx << endl;
+                        cout << "idx " << idx << endl;
                         if (AllPlayer[idx].getAbility()->getAbilityCard() == AllPlayer[idx].getAbility()->getAbilityCardOff())
                         {
                             // Case 2
@@ -581,7 +593,7 @@ cout << "idx " << idx << endl;
                         {
                             // Case 1
                             abilityLess.useAbilityCard(AllPlayer[idx]);
-                            Turn.second.setAbility(&offAbility);
+                            temp.setAbility(&offAbility);
                         }
                     }
 
@@ -597,6 +609,8 @@ cout << "idx " << idx << endl;
             {
                 break;
             } // ACTION : NEXT
+
+        cout << "out\n";
         }
         catch (const char *msg)
         {
@@ -604,7 +618,6 @@ cout << "idx " << idx << endl;
             inputAction();
         }
     }
-
 }
 
 void GameState::resetGameState()
@@ -657,12 +670,13 @@ void GameState::operator=(const GameState &copy)
 
 void GameState::printInterface()
 {
+    Player &temp = *Turn.second;
 
     cout << " _____________________________________________________________________\n";
     cout << "                                                                      \n";
     cout << "                            ROUND " << Round << endl;
     cout << "      PRIZE POOL : " << PrizePool << endl;
-    cout << "      WHOSE TURN : (" << Turn.first << ") " << Turn.second.getPlayerName() << endl;
+    cout << "      WHOSE TURN : (" << Turn.first << ") " << temp.getPlayerName() << endl;
     cout << endl;
     cout << "                        CARD ON TABLE :\n";
     CardTable.printCard();
@@ -845,5 +859,5 @@ vector<Player>& GameState::getAllPlayer(){
 }
 
 void GameState::updateTurn(){
-    Turn.second = AllPlayer.at(Turn.first);
+    Turn.second = &AllPlayer.at(Turn.first);
 }
