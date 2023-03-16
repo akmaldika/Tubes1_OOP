@@ -3,6 +3,7 @@
 
 #include "Valuable.hpp"
 #include "Card.hpp"
+#include "CapsaCard.hpp"
 #include <vector>
 #include <set>
 
@@ -23,6 +24,7 @@ class Combo: public Valuable{
         bool isStraight();
         pair<int,float> getPair();
         pair<int,float> getNOfKind();
+        vector<C> getCombination();
         void setComboType();
         float value();
         bool operator>(Combo<C>& combo);
