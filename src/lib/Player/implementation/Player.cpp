@@ -88,8 +88,8 @@ bool Player::getPlayed(){
 bool Player::operator>(Player& enemy){
     return (this->point > enemy.point);
 }
-bool Player::operator==(const Player& enemy){
-    return (this->point == enemy.ID);
+bool Player::operator==(const Player& other){
+    return (this->ID == other.ID);
 }
 bool Player::operator<(Player& enemy){
     return (this->point < enemy.point);

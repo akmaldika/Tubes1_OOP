@@ -6,6 +6,9 @@
 #include "../../Player/header/Player.hpp"
 #include "../../GameState/header/GameState.hpp"
 
+
+Card* SwapCard::tempCard;
+
 SwapCard::SwapCard() 
 {
     this->abilityCard = "SwapCard";
@@ -14,38 +17,33 @@ SwapCard::SwapCard()
 void SwapCard::useAbilityCard(Player& Player1, const bool& isKiri1, Player& Player2, const bool& isKiri2)
 {
     AbilityCard::useAbilityCard();
-    Card card1;
-    
-    Player1.getMyCard().printCard();
-    Player2.getMyCard().printCard();
+
     if (isKiri1)
     {
-        card1 = Player2.getCardOne();
+        tempCard = &Player2.getCardOne();
     }
     else
     {
-        card1 = Player2.getCardTwo();
+        tempCard = &Player2.getCardTwo();
     }
 
     if(isKiri1)
     {
-        Player2.setCardOne(isKiri2 ? Player1.getCardOne() : Player1.getCardTwo());
+        Player2.setCardOne((isKiri2 ? Player1.getCardOne() : Player1.getCardTwo()));
     }
     else
     {
-        Player2.setCardTwo(isKiri2 ? Player1.getCardOne() : Player1.getCardTwo());
+        Player2.setCardTwo((isKiri2 ? Player1.getCardOne() : Player1.getCardTwo()));
     }
 
     if (isKiri2)
     {
-        Player1.setCardOne(card1);
+        Player1.setCardOne(*tempCard);
     }
     else
     {
-        Player1.setCardTwo(card1);
+        Player1.setCardTwo(*tempCard);
     }
-    Player1.getMyCard().printCard();
-    Player2.getMyCard().printCard();
 }
 
 void SwapCard::printAbilityCard(){

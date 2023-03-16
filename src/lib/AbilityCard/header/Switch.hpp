@@ -7,6 +7,9 @@
 
 class Switch : public AbilityCard
 {
+    private:
+        // Attribute
+        static pair<Card*, Card*> tempPlayerCard;
     public:
         // Constructor Default
         // ability = "Switch"

@@ -7,6 +7,9 @@
 
 class SwapCard : public AbilityCard
 {
+    private :
+        // Attribute
+        static Card* tempCard;
     public:
         // Constructor Default
         // ability = "SwapCard"
