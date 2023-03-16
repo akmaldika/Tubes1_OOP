@@ -32,6 +32,7 @@ class GameState {
             pair->second = objek playernya
         */
         pair<int, Player&> Turn;
+        pair<int, Player&> Pivot;
         TableCard CardTable; // kartu di meja
         DeckCard deck; // kartu dalam deck
 

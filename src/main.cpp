@@ -110,11 +110,11 @@ int main(int argc, char const *argv[])
             player.setAbility(abilityDeck.getDeckAbilityCard().at(i));
             i++;
         }
-        gameState.updateTurn();
 
-        //PLAY ROUND 2-7
+        //PLAY ROUND 2-6
         for(int i = 0; i < 5 ; i++){ // per round
             gameState.HandUpdate();
+            gameState.updateTurn();
             for(int j = 0; j < 7 ; j++){ // per turn
                 gameState.printInterface(); // nanti ganti
                 gameState.inputAction();
