@@ -15,6 +15,10 @@ void Quarter::useAbilityCard(unsigned long long& prize)
 {
     AbilityCard::useAbilityCard();
     prize /= 4;
+    if (prize <= 0) 
+    {
+        prize = 1;
+    }
 }
 
 void Quarter::printAbilityCard(){

@@ -12,6 +12,7 @@ int main(int argc, char const *argv[])
     int gameCounter = 0;
     string filename;
     DeckAbilityCard abilityDeck;
+    AbilityCard offAbility;
     /*
         ALGORITMA PERMAINAN
     */    
@@ -93,8 +94,9 @@ int main(int argc, char const *argv[])
             gameState.printInterface(); // nanti ganti
             gameState.inputAction();
             //gameState.inputRandom();
-            gameState.evaluateAction();
+            gameState.evaluateAction(offAbility);
             gameState.NextTurn();
+            gameState.updateTurn();
         }
         
         gameState.NextRound();
@@ -119,8 +121,11 @@ int main(int argc, char const *argv[])
                 gameState.printInterface(); // nanti ganti
                 gameState.inputAction();
                 //gameState.inputRandom();
-                gameState.evaluateAction();
+                gameState.evaluateAction(offAbility);
+                gameState.getWhoseTurn().second.status();
                 gameState.NextTurn();
+                gameState.updateTurn();
+                
             }
             gameState.NextRound();
         }

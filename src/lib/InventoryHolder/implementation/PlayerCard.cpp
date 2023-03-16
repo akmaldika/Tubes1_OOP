@@ -165,10 +165,14 @@ void PlayerCard::printCard() {
     cout<<colorInterfaceC1<<"`---------'"               <<"     "<<colorInterfaceC2<<"`---------'";
     cout<<RESET<<endl;
 
-    if (this->abilityCard != NULL){
+
+    cout << "Ability Card:" << this->abilityCard->getAbilityCard();
+    if (!this->abilityCard->isAbilityOff()){
+        cout << "masuk\n";
         this->abilityCard->printAbilityCard();
         cout<<endl;
     } else {
         cout<<"Don't Have any ability card"<<endl;
     }
+    cout << "out\n";
 }

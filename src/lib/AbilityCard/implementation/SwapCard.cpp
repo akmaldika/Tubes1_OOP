@@ -18,8 +18,15 @@ void SwapCard::useAbilityCard(Player& Player1, const bool& isKiri1, Player& Play
     
     Player1.getMyCard().printCard();
     Player2.getMyCard().printCard();
-    card1 = isKiri1 ? Player2.getMyCard().getFirstPlayerCard() : Player2.getCardTwo();
-    cout << "================================= card1 " << card1.getColor() << endl;
+    if (isKiri1)
+    {
+        card1 = Player2.getCardOne();
+    }
+    else
+    {
+        card1 = Player2.getCardTwo();
+    }
+
     if(isKiri1)
     {
         Player2.setCardOne(isKiri2 ? Player1.getCardOne() : Player1.getCardTwo());
@@ -28,6 +35,7 @@ void SwapCard::useAbilityCard(Player& Player1, const bool& isKiri1, Player& Play
     {
         Player2.setCardTwo(isKiri2 ? Player1.getCardOne() : Player1.getCardTwo());
     }
+
     if (isKiri2)
     {
         Player1.setCardOne(card1);
